@@ -4,12 +4,12 @@ const Schema = mongoose.Schema;
 const movieSchema = new Schema({
   actors: [{ type: String }],
   ageLimit: Number,
-  description: String,
+  description: String,    // Needs to be written in Swedish
   director: String,
   genre: String,
   image: String,
   language: String,
-  length: String, // Or should it be Number? Info from OMDB is ie Runtime: "155 Min"
+  length: String,       // Or should it be Number? Info from OMDB is ie Runtime: "155 min"
   productionCountries: [{type: String}],
   productionYear: Number,
   title: String,

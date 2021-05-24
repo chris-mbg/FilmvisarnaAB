@@ -3,8 +3,8 @@ const Schema = mongoose.Schema;
 
 const screeningSchema = new Schema({
   auditoriumName: String,
-  startTime: Date,            // Datatype for the starttime?? 
-  seats: [{ type: Number }],
+  startTime: Date, // UTC-format
+  seats: [[{ type: Number }]],
   price: Number,
   movieId: { type: Schema.Types.ObjectId, ref: "Movie" },
 });

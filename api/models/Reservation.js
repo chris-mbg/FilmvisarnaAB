@@ -9,7 +9,18 @@ const reservationSchema = new Schema({
     length: String,
     genre: String,
   },
-  tickets: [{ ticketType: String, seatNumber: [{ type: Number }] }],   // Check if correct formatted!!
+  tickets: [{ ticketType: String, seatNumber: [Number] }], 
+  // seatNumber: [1,11]
+  /* tickets: [
+    {
+      ticketType: "adult",
+      seatNumber: [1,2]
+    },
+    {
+      ticketType: "child",
+      seatNumber: [1,3]
+    }
+  ] */
   totalPrice: Number,
   screeningId: { type: Schema.Types.ObjectId, ref: "Screening" },
   userId: { type: Schema.Types.ObjectId, ref: "User" },
