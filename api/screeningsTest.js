@@ -115,14 +115,15 @@ dates.forEach((date) => {
 screenings.forEach((screening, i) => {
   if(screening.startTime.includes("21:00") && screenings[i-1].startTime.includes("19:00")){
     screenings[i-1].auditoriumName === "Lilla salongen" ? screening.auditoriumName = "Stora salongen" : screening.auditoriumName = "Lilla salongen";
+  } else {
+    screening.auditoriumName = auditoria[selectRandom(2)].name;
   }
-  screening.auditoriumName = auditoria[selectRandom(2)].name;
   screening.auditoriumName === "Lilla salongen" ? screening.seats = auditoria[0].seats : screening.seats = auditoria[1].seats;
 });
 
 screenings.forEach(screening => screening.movieId = movies[selectRandom(20)]);
 
-console.log(screenings[0]);
+console.log(screenings);
 
 // let datum = new Date(screenings[0].startTime);
 // console.log(datum.toLocaleString());
