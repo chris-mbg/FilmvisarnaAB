@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 const screeningSchema = new Schema({
   auditoriumName: String,
   startTime: Date, // UTC-format
-  seats: [[{ type: Number }]],
+  seats: [[Number]],
   price: Number,
   movieId: { type: Schema.Types.ObjectId, ref: "Movie" },
 });

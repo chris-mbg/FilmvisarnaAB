@@ -2,15 +2,15 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const movieSchema = new Schema({
-  actors: [{ type: String }],
+  actors: [String],
   ageLimit: Number,
   description: String,    // Needs to be written in Swedish
   director: String,
   genre: String,
   image: String,
   language: String,
-  length: String,       // Or should it be Number? Info from OMDB is ie Runtime: "155 min"
-  productionCountries: [{type: String}],
+  length: String,       // Or should this be a Number? But info from OMDB is ie Runtime: "155 min"
+  productionCountries: [String],
   productionYear: Number,
   title: String,
   youtubeTrailer: String,
