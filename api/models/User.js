@@ -4,11 +4,11 @@ const Schema = mongoose.Schema;
 const encrypt = require("../utilities/encrypt");
 
 const userSchema = new Schema({
-  email: { type: String, required: true },
-  password: { type: String, required: true },
-  firstName: { type: String, required: true },
-  lastName: { type: String, required: true },
-  phoneNumber: String,               
+  email: { type: String, required: true, trim: true },
+  password: { type: String, required: true, trim: true },
+  firstName: { type: String, required: true, trim: true },
+  lastName: { type: String, required: true, trim: true },
+  phoneNumber: String,
   reservations: [{ type: Schema.Types.ObjectId, ref: "Reservation" }],
 });
 
