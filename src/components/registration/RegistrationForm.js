@@ -1,19 +1,52 @@
 import styles from "../../css/RegistrationForm.module.css";
 import { useState } from "react";
 import { NavLink, useHistory } from "react-router-dom";
-import { Row, Col } from "react-bootstrap";
 
 const RegistrationForm = () => {
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  // Handlers
+
+  const handleRegister = (e) => {
+    e.preventDefault();
+  };
+
+  const handleFirstName = (e) => {
+    setFirstName(e.target.value);
+  };
+
+  const handleLastName = (e) => {
+    setLastName(e.target.value);
+  };
+
+  const handlePhone = (e) => {
+    setPhone(e.target.value);
+  };
+
+  const handleEmail = (e) => {
+    setEmail(e.target.value);
+  };
+
+  const handlePassword = (e) => {
+    setPassword(e.target.value);
+  };
+
   return (
     <div className={`${styles.form_container} `}>
       <h2 className={styles.title}>Registrering</h2>
 
-      <form className={`${styles.form}`}>
+      <form onSubmit={(e) => handleRegister(e)} className={`${styles.form}`}>
         <div className="form-group">
           <label className="pl-2" htmlFor="firstname">
             Förnamn:
           </label>
           <input
+            value={firstName}
+            onChange={(e) => handleFirstName(e)}
             autoComplete="off"
             required
             className="form-control"
@@ -27,6 +60,8 @@ const RegistrationForm = () => {
             Efternamn:
           </label>
           <input
+            value={lastName}
+            onChange={(e) => handleLastName(e)}
             autoComplete="off"
             required
             className="form-control"
@@ -40,6 +75,8 @@ const RegistrationForm = () => {
             Telefonnummer:
           </label>
           <input
+            value={phone}
+            onChange={(e) => handlePhone(e)}
             autoComplete="off"
             required
             className="form-control"
@@ -53,6 +90,8 @@ const RegistrationForm = () => {
             Epost:
           </label>
           <input
+            value={email}
+            onChange={(e) => handleEmail(e)}
             autoComplete="off"
             required
             className="form-control"
@@ -66,6 +105,8 @@ const RegistrationForm = () => {
             Lösenord:
           </label>
           <input
+            value={password}
+            onChange={(e) => handlePassword(e)}
             autoComplete="off"
             required
             className="form-control"
