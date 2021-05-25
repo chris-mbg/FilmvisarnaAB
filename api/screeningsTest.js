@@ -27,7 +27,26 @@ const auditoria = [
 ];
 
 const movies = [
-  //_id
+  "60acb7942ec1e13448754a82",
+  "60acb7942ec1e13448754a83",
+  "60acb7942ec1e13448754a84",
+  "60acb7942ec1e13448754a85",
+  "60acb7942ec1e13448754a86",
+  "60acb7942ec1e13448754a87",
+  "60acb7942ec1e13448754a88",
+  "60acb7942ec1e13448754a89",
+  "60acb7942ec1e13448754a8a",
+  "60acb7942ec1e13448754a8e",
+  "60acb7942ec1e13448754a8b",
+  "60acb7942ec1e13448754a8d",
+  "60acb7942ec1e13448754a8c",
+  "60acb7942ec1e13448754a8f",
+  "60acb7942ec1e13448754a90",
+  "60acb7942ec1e13448754a91",
+  "60acb7942ec1e13448754a92",
+  "60acb7942ec1e13448754a93",
+  "60acb7942ec1e13448754a94",
+  "60acb7942ec1e13448754a95",
 ];
 
 const dates = [
@@ -130,4 +149,4 @@ console.log(screenings);
 // let datum = new Date(screenings[0].startTime);
 // console.log(datum.toLocaleString());
 let data = JSON.stringify(screenings);
-fs.writeFileSync('scrinings.json', data);
+fs.writeFileSync('screenings.json', data);
