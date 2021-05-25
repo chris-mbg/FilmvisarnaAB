@@ -1,3 +1,4 @@
+/* Form  */
 .button {
   background-color: #e87209;
   color: #f3f3f3;
@@ -30,6 +31,8 @@
   color: #e1e1e1;
   text-align: center;
 }
+
+/* CTA */
 
 .login_link {
   color: #e1e1e1;

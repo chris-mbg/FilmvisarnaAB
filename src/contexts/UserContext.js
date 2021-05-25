@@ -5,6 +5,11 @@ export const UserContext = createContext();
 const UserContextProvider = ({ children }) => {
   const [loggedInUser, setLoggedInUser] = useState(null);
 
+  useEffect(() => {
+    // Removes console log after testing
+    console.log("loggedInUser:", loggedInUser);
+  }, [loggedInUser]);
+
   // Registration for new user.
   const register = async (userInformation) => {
     try {
@@ -28,8 +33,11 @@ const UserContextProvider = ({ children }) => {
         throw new Error();
       }
 
-      // Return true, if registration was successful
+      // Return true, if registration was successful.
       if (data.status === "success") {
+        // Registration - logs user in after registration is completed.
+        setLoggedInUser(data.data);
+
         return true;
       }
     } catch (err) {

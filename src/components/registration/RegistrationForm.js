@@ -2,6 +2,7 @@ import styles from "../../css/RegistrationForm.module.css";
 import { useContext, useState } from "react";
 import { NavLink, useHistory } from "react-router-dom";
 import { UserContext } from "../../contexts/UserContext";
+import { Alert } from "react-bootstrap";
 import { checkPassword } from "../../utilities/utilities";
 
 const RegistrationForm = () => {
@@ -10,6 +11,8 @@ const RegistrationForm = () => {
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [alertPassword, setAlertPassword] = useState(false);
+  const [alertEmail, setAlertEmail] = useState(false);
 
   // Context
   const { register } = useContext(UserContext);
@@ -34,12 +37,21 @@ const RegistrationForm = () => {
           setEmail("");
           setPassword("");
 
+          // Reset alerts
+          setAlertPassword(false);
+          setAlertEmail(false);
+
           // Re-directs to:
           history.push("/");
         }
         if (!data) {
+          setAlertEmail(true);
         }
       });
+    }
+
+    if (!checkPassword(password)) {
+      setAlertPassword(true);
     }
   };
 
@@ -62,6 +74,27 @@ const RegistrationForm = () => {
   const handlePassword = (e) => {
     setPassword(e.target.value);
   };
+
+  // Alert boxes
+  const alertPasswordBox = alertPassword ? (
+    <Alert variant="dark" onClose={() => setAlertPassword(false)} dismissible>
+      <p>
+        Försök igen! <br />
+        Ditt lösenord måste innehålla minst 8 tecken, varav en stor bokstav, en
+        siffra, ett specialtecken.
+      </p>
+    </Alert>
+  ) : (
+    ""
+  );
+
+  const alertEmailBox = alertEmail ? (
+    <Alert variant="dark" onClose={() => setAlertEmail(false)} dismissible>
+      <p>Välj en annan e-post!</p>
+    </Alert>
+  ) : (
+    ""
+  );
 
   return (
     <div className={`${styles.form_container} `}>
@@ -132,6 +165,9 @@ const RegistrationForm = () => {
             placeholder="Lösenord"
           />
         </div>
+
+        {alertPasswordBox}
+        {alertEmailBox}
 
         <div className="d-flex justify-content-center">
           <button type="submit" className={`${styles.button} btn`}>
