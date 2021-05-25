@@ -41,77 +41,67 @@ const RegistrationForm = () => {
 
       <form onSubmit={(e) => handleRegister(e)} className={`${styles.form}`}>
         <div className="form-group">
-          <label className="pl-2" htmlFor="firstname">
-            Förnamn:
-          </label>
           <input
             value={firstName}
             onChange={(e) => handleFirstName(e)}
             autoComplete="off"
             required
-            className="form-control"
+            className={`${styles.input} form-control`}
             type="text"
             id="firstname"
+            placeholder="Förnamn"
           />
         </div>
 
         <div className="form-group">
-          <label className="pl-2" htmlFor="lastname">
-            Efternamn:
-          </label>
           <input
             value={lastName}
             onChange={(e) => handleLastName(e)}
             autoComplete="off"
             required
-            className="form-control"
+            className={`${styles.input} form-control`}
             type="text"
             id="lastname"
+            placeholder="Efternamn"
           />
         </div>
 
         <div className="form-group">
-          <label className="pl-2" htmlFor="phone">
-            Telefonnummer:
-          </label>
           <input
             value={phone}
             onChange={(e) => handlePhone(e)}
             autoComplete="off"
             required
-            className="form-control"
+            className={`${styles.input} form-control`}
             type="tel"
             id="phone"
+            placeholder="Telefonnummer"
           />
         </div>
 
         <div className="form-group">
-          <label className="pl-2" htmlFor="email">
-            Epost:
-          </label>
           <input
             value={email}
             onChange={(e) => handleEmail(e)}
             autoComplete="off"
             required
-            className="form-control"
+            className={`${styles.input} form-control`}
             type="email"
             id="email"
+            placeholder="E-post"
           />
         </div>
 
         <div className="form-group">
-          <label className="pl-2" htmlFor="password">
-            Lösenord:
-          </label>
           <input
             value={password}
             onChange={(e) => handlePassword(e)}
             autoComplete="off"
             required
-            className="form-control"
+            className={`${styles.input} form-control`}
             type="password"
             id="password"
+            placeholder="Lösenord"
           />
         </div>
 
