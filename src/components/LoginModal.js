@@ -1,6 +1,10 @@
+// import { NavLink } from 'react-router-dom';
+
 import style from '../css/LoginModal.module.css';
 
-const LoginModal = () => {
+const LoginModal = (props) => {
+  // const { users, setLoggedInUser } = useContext();
+
   return (
     <div className={`form-group ${style.modalContainer}`}>
       <h2 className={style.loginHeading}>Logga in</h2>
@@ -29,7 +33,7 @@ const LoginModal = () => {
       >
         Inte medlen än? Registrera dig här
       </NavLink> */}
-      <p className={style.regText}>Inte medlen än? Registrera dig här</p>
+      <p className={style.regText}>Inte medlem än? Registrera dig här</p>
     </div>
   );
 };
