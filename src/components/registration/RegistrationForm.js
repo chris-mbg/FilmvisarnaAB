@@ -1,6 +1,7 @@
 import styles from "../../css/RegistrationForm.module.css";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { NavLink, useHistory } from "react-router-dom";
+import { UserContext } from "../../contexts/UserContext";
 import { checkPassword } from "../../utilities/utilities";
 
 const RegistrationForm = () => {
@@ -9,6 +10,9 @@ const RegistrationForm = () => {
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  // Context
+  const { setUserLoggedIn, register } = useContext(UserContext);
 
   // Handlers
 
