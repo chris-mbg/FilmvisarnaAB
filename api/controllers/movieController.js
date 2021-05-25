@@ -4,8 +4,9 @@ const getAllMovies = async (req, res) => {
   try {
     let movies = await Movie.find().exec();
     return res.json(movies);
-  } catch (err) {
-    return res.status(404).json({error: "Something went wrong"});
+  } catch (error) {
+    res.status(500).json({ status: "error", message: error.message });
+    throw error;
   }
 };
 
