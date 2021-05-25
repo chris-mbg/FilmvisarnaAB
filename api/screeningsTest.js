@@ -1,3 +1,5 @@
+const fs = require('fs');
+
 const auditoria = [
   {
     name: "Lilla salongen",
@@ -127,3 +129,5 @@ console.log(screenings);
 
 // let datum = new Date(screenings[0].startTime);
 // console.log(datum.toLocaleString());
+let data = JSON.stringify(screenings);
+fs.writeFileSync('scrinings.json', data);
