@@ -6,5 +6,30 @@
   height: 30vh;
   min-width: 100%;
   object-fit: cover;
+}
+.captionText {
+  color: #e1e1e1;
+  background-color: #3333338c;
+  display: inline-block;
+  padding: 0.2rem 0.5rem;
+  border-radius: 5px;
+}
+.welcomeText {
+  font-family: "Limelight";
+}
+p.welcomeText {
+  font-size: 2.5rem;
+}
 
+.caption {
+  color: #e1e1e1;
+  background-color: #3333338c;
+  display: inline-block;
+  border-radius: 5px;
+}
+
+@media screen and (min-width: 992px){
+  .caroImg {
+    height: 45vh;
+  }
 }
