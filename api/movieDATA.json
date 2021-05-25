@@ -1,7 +1,7 @@
 [
 {
   "actors": ["Chris Pratt"," Zoe Saldana", "Dave Bautista", "Vin Diesel"],
-  "ageLimit": "PG-13",
+  "ageLimit": "PG-11",
   "description": "Till tonerna av 'Awesome Mixtape #2' fortsätter gängets äventyr i Marvel Studios 'Guardians of the Galaxy, Vol 2', där de färdas i kosmos yttersta gränsland. Väktarna måste kämpa för att hålla ihop sin nyfunna familj när de nu börjar nysta i mysteriet kring vem som är Peter Quills riktiga pappa. Gamla fiender blir till nya allierade och favoriter från serietidningarna dyker upp för att hjälpa våra hjältar när Marvels filmiska universum fortsätter att breda ut sig.",
   "director": "James Gunn",
   "genre": "Äventyr",
@@ -43,7 +43,7 @@
 },
 {
   "actors": ["Chris Pine", "Gal Gadot","Jeff Moore", "Justin Sisk", "Kaila Ingram", "Kristen Wiig", "Natasha Rothwell", "Pedro Pascal", "Spencer Trinwith"],
-  "ageLimit": "PG-12",
+  "ageLimit": "PG-11",
   "description": "Vi snabbspolar till 1980-talet när Wonder Womans filmäventyr börjar. Här ställs hon inför ett brett spektrum av fiender, inklusive Maxwell Lord och Cheetah.",
   "director": "Patty Jenkins",
   "genre": "Fantasy",
@@ -135,7 +135,7 @@
   "image": "https://m.media-amazon.com/images/M/MV5BNDg4NjM1YjMtYmNhZC00MjM0LWFiZmYtNGY1YjA3MzZmODc5XkEyXkFqcGdeQXVyNDk3NzU2MTQ@._V1_SX300.jpg",
   "language": "Danska",
   "length": "126 min",
-  "productionCountries": [	
+  "productionCountries": [
     "France", "Germany"],
   "productionYear": "2001",
   "title": "Amélie",
@@ -157,7 +157,7 @@
 },
 {
   "actors": ["Joel Edgerton", "Lucas Hedges", "Nicole Kidman"],
-  "ageLimit": "PG-16",
+  "ageLimit": "PG-15",
   "description": "Det här är historien om Jared Eamons (Lucas Hedges), son till pastorn i en amerikansk småstad, som hamnar i problem när hans föräldrar (Nicole Kidman och Russell Crowe) upptäcker att deras son är homosexuell. Föräldrarna kämpar för att förena kärleken till sin son med den kristna tron, och av rädsla för att förlora familj, vänner och gemenskap, övertalas Jared att delta i terapi som ska ”bota” hans homosexualitet. Men Jared hamnar i konflikt med ledaren (Joel Edgerton) och börjar istället att finna sin egen röst och bejaka sig själv som den han är.",
   "director": "Joel Edgerton",
   "genre": "Biografi",
@@ -171,7 +171,7 @@
 },
 {
   "actors": ["Helen Hunt", "Jon Tenney", "Judah Lewis"],
-  "ageLimit": "PG-16",
+  "ageLimit": "PG-15",
   "description": "Filmen centreras kring en familj i obalans. Terapeuten Jackie Harper (Helen Hunt) har haft ett utomäktenskapligt äventyr som gör att hon ligger på minuskontot hos polisen Greg (Jon Tenney) och deras tonårsson Connor (Judah Lewis). Jackie försöker på alla sätt och vis att göra bot, men det går trögt",
   "director": "Adam Randall",
   "genre": "Crime",
@@ -207,7 +207,7 @@
 },
 {
   "actors": ["Chad Lindberg", "Hill Harper", "Ja Rule", "Jordana Brewster", "Michelle Rodriguez", "Paul Walker", "Ted Levine", "Vin Diesel"],
-  "ageLimit": " PG-13",
+  "ageLimit": " PG-11",
   "description": "Efter solnedgången börjar ett annat slags liv. Om natten äger 'Dom' Toretto gatorna i L.A. Påhejad av sina fans kör han som rena rockstjärnan bilrace mot alla som törs utmana honom. Bland hans beundrare finns Brian, som utvecklar en vänskap med honom - och förälskar sig i hans syster. Problemet är att Brian arbetar undercover för att avslöja en brottshärva där Dom är huvudmisstänkt. Snart testas både hans lojalitet och gränser. De skrikande däcken stannar aldrig i denna fartfyllda och bränt gummidoftande actionthriller där undercoveragenten Brian - som spelas av PAUL WALKER (Joyride, She's All That) får problem - både som polis och bakom ratten. Dom Toretto spelas av VIN DIESEL (Boiler Room), medan JORDANA BREWSTER (Faculty) är hans syster Mia i denna kanonfilm som bara måste ses - med säkerhetsbältet på.",
   "director": "Rob Cohen",
   "genre": "Thriller",
@@ -249,7 +249,7 @@
 },
 {
   "actors": ["Andrew Lees", "Caren Pistorius", "Colin Salmon", "Frankie Adams", "Hera Hilmar", "Hugo Weaving", "Jihae", "Joel Tobeck", "Leila George", "Mark Mitchinson", "Patrick Malahide", "Robert Sheehan", "Ronan Raftery", "Sarah Peirse", "Stephen Lang"],
-  "ageLimit": "PG-12",
+  "ageLimit": "PG-11",
   "description": "Den visionäre filmskaparen Peter Jackson är tillbaka med ett nytt, storslaget äventyr som inte liknar något annat. Hundratals år efter att vår civilisation gått under har en ny värld bildats. En gåtfull ung kvinna vid namn Hester Shaw leder en grupp utstötta rebeller i kampen mot London – nu en jättelik storstad på hjul som hotar att förgöra allt i dess väg. ",
   "director": "Christian Rivers",
   "genre": "Science Fiction",
