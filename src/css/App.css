@@ -48,7 +48,9 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
-
+* {
+  box-sizing: border-box;
+}
 .App {
   background-color: #333333;
   color: #e1e1e1;
