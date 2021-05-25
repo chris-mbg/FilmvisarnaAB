@@ -1,13 +1,13 @@
 const mongoose = require("mongoose");
-const Movie = require("./models/Movie");
-//const Auditorium = require("./models/Movie");
-//const Screening = require("./models/Movie");
+//const Movie = require("./models/Movie");
+const Auditorium = require("./models/Auditorium");
+//const Screening = require("./models/Screening");
 
 const uri =
   "mongodb+srv://dbUser:Immobile@cluster0.lqzlt.mongodb.net/filmvisarnaAB?retryWrites=true&w=majority";
 
-const movieData = require("./movieDATA.json");
-//const auditoriumData = require("./auditoria.json");
+//const movieData = require("./movieDATA.json");
+const auditoriumData = require("./auditoria.json");
 //const screeningData = require("./screenings.json");
 
 mongoose
@@ -17,22 +17,21 @@ mongoose
   })
   .then(() => {
     console.log("MongoDB connected.");
-    //insertAudiDataFunc();
-    insertMovieDataFunc();
+    insertAudiDataFunc();
   })
   .catch((err) => console.log("Error in db connection:", err));
 
-// async function insertAudiDataFunc() {
-//   console.log("Data is being inserted...");
-//   await Auditorium.create(auditoriumData);
-//   console.log("Insertion completed");
-//   mongoose.connection.close();
-//   console.log("Shutting down...");
-// }
-async function insertMovieDataFunc() {
+async function insertAudiDataFunc() {
+  console.log("Data is being inserted...");
+  await Auditorium.create(auditoriumData);
+  console.log("Insertion completed");
+  mongoose.connection.close();
+  console.log("Shutting down...");
+}
+/* async function insertMovieDataFunc() {
   console.log("Data is being inserted...");
   await Movie.create(movieData);
   console.log("Insertion completed");
   mongoose.connection.close();
   console.log("Shutting down...");
-}
+} */
