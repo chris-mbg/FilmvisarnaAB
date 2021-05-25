@@ -33,6 +33,12 @@ const register = async (req, res) => {
         if (err) {
           return res.sendStatus(400);
         } else {
+          // "Logs" user in after successful registration.
+          req.session.user = result;
+
+          // TESTING: delete this console log after testing.
+          console.log("req.session.user:", req.session.user);
+
           res.status(201).json({
             status: "success",
             message: "Successfully created a new user.",
