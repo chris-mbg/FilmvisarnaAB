@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const movieSchema = new Schema({
   actors: [String],
-  ageLimit: Number,
+  ageLimit: String,
   description: String,    // Needs to be written in Swedish
   director: String,
   genre: String,
