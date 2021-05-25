@@ -1,6 +1,7 @@
 import React from "react";
 import { Card } from "react-bootstrap";
 import styles from '../css/MovieCard.module.css'
+import CustomButton from './CustomButton';
 
 export default function MovieCard() {
   return (
@@ -10,8 +11,10 @@ export default function MovieCard() {
         <Card.Title>  Amelie från Montmartre</Card.Title>
         <Card.Text>Dramakomedi</Card.Text>
         <Card.Text>Längd: 2.25</Card.Text>
-        <button>Boka</button>
-        {/* <Button variant="primary">Go somewhere</Button> */}
+        <div className="d-flex justify-content-between">
+          <CustomButton text="Info"/>
+          <CustomButton text="Boka"/>
+        </div>
       </Card.Body>
     </Card>
   );
