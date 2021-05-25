@@ -1,14 +1,14 @@
 const mongoose = require("mongoose");
 //const Movie = require("./models/Movie");
 //const Auditorium = require("./models/Auditorium");
-const Screening = require("./models/Screening");
+const Screening = require("../../models/Screening");
 
 const uri =
   "mongodb+srv://dbUser:Immobile@cluster0.lqzlt.mongodb.net/filmvisarnaAB?retryWrites=true&w=majority";
 
 //const movieData = require("./movieDATA.json");
 //const auditoriumData = require("./auditoria.json");
-const screeningData = require("./screenings.json");
+const screeningData = require("../screenings.json");
 
 mongoose
   .connect(uri, {
