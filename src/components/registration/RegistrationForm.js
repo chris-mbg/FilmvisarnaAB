@@ -1,6 +1,7 @@
 import styles from "../../css/RegistrationForm.module.css";
 import { useState } from "react";
 import { NavLink, useHistory } from "react-router-dom";
+import { checkPassword } from "../../utilities/utilities";
 
 const RegistrationForm = () => {
   const [firstName, setFirstName] = useState("");
