@@ -1,16 +1,16 @@
 import React from "react";
 import { Card } from "react-bootstrap";
+import styles from '../css/MovieCard.module.css'
 
 export default function MovieCard() {
   return (
-    <Card style={{ width: "18rem" }}>
+    <Card className={styles.cardWrapper}>
       <Card.Img  src="https://i.imgur.com/tytuFx3.png" />
-      <Card.Body>
-        <Card.Title>Card Title</Card.Title>
-        <Card.Text>
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
-        </Card.Text>
+      <Card.Body className={styles.bodyWrapper}>
+        <Card.Title>  Amelie från Montmartre</Card.Title>
+        <Card.Text>Dramakomedi</Card.Text>
+        <Card.Text>Längd: 2.25</Card.Text>
+        <button>Boka</button>
         {/* <Button variant="primary">Go somewhere</Button> */}
       </Card.Body>
     </Card>
