@@ -8,12 +8,12 @@ export default function CustomButton({text}) {
     console.log(typeof text);
     if( text==="Boka" ){return "bookButton"}
     if( text==="Info" ){return "infoButton"}
-    if( text=== "Avboka"){return "cancelButton"}
-    if( text=== "Logga in"){return "loginButton"}
-    if( text=== "Registrera"){return "signInButton"}
-    if( text=== "ok"){return "okButton"}
-    if( text=== "Boka biljetter"){return "bookTicketButton"}
-    if( text=== "Trailer"){return "trailerButton"}
+    if( text==="Avboka"){return "cancelButton"}
+    if( text==="Logga in"){return "loginButton"}
+    if( text==="Registrera"){return "signInButton"}
+    if( text=== "OK"){return "okButton"}
+    if( text==="Boka biljetter"){return "bookTicketButton"}
+    if( text==="Trailer"){return "trailerButton"}
   }
   return (
     <>
