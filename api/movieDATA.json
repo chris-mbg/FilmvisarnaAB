@@ -70,18 +70,18 @@
   "youtubeTrailer": "https://www.youtube.com/watch?v=owK1qxDselE"
 },
 {
-  "actors": ["Jared Harris", "Jessie Buckley", "Stellan Skarsgård"],
+  "actors": ["Cillian Murphy", "Ellen Page", "Joseph Gordon-Levitt", "Ken Watanabe", "Leonardo DiCaprio", "Lukas Haas", "Marion Cotillard", "Michael Caine", "Tom Berenger",  "Tom Hardy"],
   "ageLimit": "PG-15",
-  "description": "Denna gripande miniserie i fem delar med Jared Harris, Stellan Skarsgård och Emily Watson i rollerna, skildrar den fruktansvärda historien om den värsta katastrof som någonsin orsakats av människan: den kraftiga explosion som inträffade 1986 vid Tjernobyls kärnkraftverk i Sovjetunionen.",
-  "director": "Craig Mazin",
-  "genre": "Historiskt drama",
-  "image": "https://m.media-amazon.com/images/M/MV5BZGQ2YmMxZmEtYjI5OS00NzlkLTlkNTEtYWMyMzkyMzc2MDU5XkEyXkFqcGdeQXVyMzQ2MDI5NjU@._V1_SX300.jpg",
-  "language": "Svenska ",
-  "length": "321 min",
-  "productionCountries": ["United States"],
-  "productionYear": "2019",
-  "title": "Chernobyl",
-  "youtubeTrailer": "https://www.youtube.com/watch?v=s9APLXM9Ei8"
+  "description": "En enkel idé kan vara ovärderlig eller livsfarlig i en framtid där brotten begås i den mänskliga hjärnan. Don Cobb har en unik förmåga att stjäla information direkt från källan, när hans offer är som mest sårbara - i drömmen. När det gäller företagsspionage är Cobb en legend, men det är ett rykte som kostat honom alla möjligheter till ett vanligt liv och som håller honom på ständig flykt.nNu har han erbjudits en chans att vinna sitt liv tillbaka, om han lyckas med ett sista jobb.För det krävs att han ska tänja gränserna för vad han kan för att lyckas med något ingen tidigare kunnat göra: plantera information i ett annat medvetande.Men det som kunde varit en perfekt avslutning på en brottslig karriär blir en omöjlig utmaning att överlista en motståndare som verkar kunna förutse Cobbs varje handling. Ingen människa kunde varit beredd på det som väntar. Utom Cobb.",
+  "director": "Christopher Nolan",
+  "genre": "Science Fiction",
+  "image": "https://m.media-amazon.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_SX300.jpg",
+  "language": "Engelska ",
+  "length": "147 min",
+  "productionCountries": ["United States", "United Kingdom"],
+  "productionYear": "2010",
+  "title": "Inception",
+  "youtubeTrailer": "Inception"
 },
 {
   "actors": [
@@ -184,18 +184,26 @@
   "youtubeTrailer": "https://www.youtube.com/watch?v=k72fdSYHHvQ"
 },
 {
-  "actors": ["Anthony Sharpe", "Ashleigh Cummings", "Daniel Lapaine", "Essie Davis", "Hugo Johnstone-Burt", "Izabella Yena", "Jacqueline McKenzie", "John Waters", "Kal Naga", "Miriam Margolyes", "Nathan Page", "Nicole Chamoun","Richard Bligh"],
+  "actors": ["Aaron Taylor-Johnson", 
+    "Al Sapienza", 
+    "Brian Markinson", 
+    "Bryan Cranston", 
+    "Christian Tessier", 
+    "CJ Adams", 
+    "David Strathairn", 
+    "Elizabeth Olsen", 
+    "Juliette Binoche" ],
   "ageLimit": "PG-15",
-  "description": "All the episodes from series one to three of the Australian crime drama following the adventures of a glamorous female detective played by Essie Davis in 1920s Melbourne. The collection also includes the movie 'Miss Fisher and the Crypt of Tears' (2020). Series 1 episodes are: 'Cocaine Blues', 'Murder On the Ballarat Train', 'The Green Mill Murder', 'Death at Victoria Dock', 'Raisins and Almonds', 'Ruddy Gore', 'Murder in Montparnasse', 'Away With the Fairies', 'Queen of the Flowers', 'Death By Miss Adventure', 'Blood and Circuses', 'Murder in the Dark' and 'King Memses' Curse'.",
-  "director": "Tony Tilse",
-  "genre": "Crime",
-  "image": "https://m.media-amazon.com/images/M/MV5BYTI5MGI0NmItNzZiNC00N2I3LTk4ZTctNDVjMDc4ZmZhZGVmXkEyXkFqcGdeQXVyNTE1NjY5Mg@@._V1_SX300.jpg",
+  "description": "I DETTA SPEKTAKULÄRA ÄVENTYR STÄLLS GODZILLA,™världens mest berömda monster, mot ondskefulla skapelser som styrkta av mänsklighetens vetenskapliga arrogans hotar vår existens.",
+  "director": "Gareth Edwards",
+  "genre": "Äventyr",
+  "image": "https://m.media-amazon.com/images/M/MV5BZDFmYTM4NzAtNWM0ZC00MGJlLWEyYzQtYzA3ZTFiNzc1YjllXkEyXkFqcGdeQXVyMTA4NjE0NjEy._V1_SX300.jpg",
   "language": "Engelska",
   "length": "123 min",
-  "productionCountries": ["Australia"],
-  "productionYear": "2019",
-  "title": "Miss Fisher's Murder Mysteries:",
-  "youtubeTrailer": "https://www.youtube.com/watch?v=TUsYWWWHNwI"
+  "productionCountries": ["United States"],
+  "productionYear": "2014",
+  "title": "Godzilla",
+  "youtubeTrailer": "https://www.youtube.com/watch?v=vIu85WQTPRc"
 },
 {
   "actors": ["Chad Lindberg", "Hill Harper", "Ja Rule", "Jordana Brewster", "Michelle Rodriguez", "Paul Walker", "Ted Levine", "Vin Diesel"],
