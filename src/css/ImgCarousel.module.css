@@ -1,0 +1,10 @@
+.restictions {
+  height: 200px;
+}
+
+.caroImg {
+  height: 30vh;
+  min-width: 100%;
+  object-fit: cover;
+
+}
