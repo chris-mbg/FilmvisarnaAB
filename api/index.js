@@ -12,6 +12,7 @@ const mongoose = require("mongoose");
 const db = mongoose.connection;
 
 // Import routes
+const movieRoutes = require("./routes/movieRoutes");
 const userRoutes = require("./routes/userRoutes");
 
 // Middleware that parses JSON
@@ -28,6 +29,7 @@ app.use(
 );
 
 // Middlewares
+app.use("/api/v1/movies", movieRoutes);
 app.use("/api/v1/users", userRoutes);
 
 // Server
