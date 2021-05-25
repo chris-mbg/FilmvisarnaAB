@@ -12,8 +12,6 @@ const getAllMovies = async (req, res) => {
 
 
 const getMovieById = async (req, res) => {
-  console.log(req, typeof req);
-  console.log(res, typeof res);
   Movie.findById(req.params.movieId).exec(async(err, movie) => {
     if(err) {
       throw new Error ('error message: ', err)
