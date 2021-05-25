@@ -17,13 +17,19 @@ const UserContextProvider = ({ children }) => {
           phone: userInformation.phone,
           email: userInformation.email,
           password: userInformation.password,
+          reservations: [],
         }),
       });
 
+      const data = await response.json();
+
       // If registration was not successful, then throw new error.
-      if (response.status !== 200) {
+      if (data.status === "error") {
         throw new Error();
-      } else {
+      }
+
+      // Return true, if registration was successful
+      if (data.status === "success") {
         return true;
       }
     } catch (err) {
@@ -31,9 +37,7 @@ const UserContextProvider = ({ children }) => {
     }
   };
   return (
-    <UserContext.Provider
-      value={{ loggedInUser, setLoggedInUser, register }}
-    >
+    <UserContext.Provider value={{ loggedInUser, setLoggedInUser, register }}>
       {children}
     </UserContext.Provider>
   );

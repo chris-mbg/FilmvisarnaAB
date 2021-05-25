@@ -12,12 +12,35 @@ const RegistrationForm = () => {
   const [password, setPassword] = useState("");
 
   // Context
-  const { setUserLoggedIn, register } = useContext(UserContext);
+  const { register } = useContext(UserContext);
+
+  // useHistory
+  const history = useHistory();
 
   // Handlers
 
   const handleRegister = (e) => {
     e.preventDefault();
+
+    if (checkPassword(password)) {
+      register({ firstName, lastName, phone, email, password }).then((data) => {
+        if (data) {
+          // Registration - logs user in after registration is completed.
+
+          // Resets form
+          setFirstName("");
+          setLastName("");
+          setPhone("");
+          setEmail("");
+          setPassword("");
+
+          // Re-directs to:
+          history.push("/");
+        }
+        if (!data) {
+        }
+      });
+    }
   };
 
   const handleFirstName = (e) => {
