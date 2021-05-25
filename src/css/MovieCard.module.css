@@ -1,6 +1,8 @@
 .cardWrapper{
+  padding: 20px;
   max-width: 18rem;
   background: transparent;
+  border: none;
 }
 
 .bodyWrapper {
