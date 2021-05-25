@@ -1,0 +1,32 @@
+.button {
+  background-color: #e87209;
+  color: #f3f3f3;
+  margin: 20px;
+}
+
+.form_container {
+}
+
+.title {
+  color: #e1e1e1;
+  text-align: center;
+}
+
+.login_link {
+  color: #e1e1e1;
+}
+
+.login_link:hover {
+  color: #e1e1e1;
+  text-decoration: none;
+}
+
+.cta {
+  color: #e1e1e1;
+  text-align: center;
+}
+
+.hr {
+  background-color: #ffffff;
+  width: 10%;
+}
