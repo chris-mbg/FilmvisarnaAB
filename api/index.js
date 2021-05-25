@@ -12,6 +12,7 @@ const mongoose = require("mongoose");
 const db = mongoose.connection;
 
 // Import routes
+const userRoutes = require("./routes/userRoutes");
 
 // Middleware that parses JSON
 app.use(express.json());
@@ -27,6 +28,7 @@ app.use(
 );
 
 // Middlewares
+app.use("/api/v1/users", userRoutes);
 
 // Server
 app.listen(port, (err) => {
