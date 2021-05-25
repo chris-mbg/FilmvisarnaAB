@@ -184,15 +184,7 @@
   "youtubeTrailer": "https://www.youtube.com/watch?v=k72fdSYHHvQ"
 },
 {
-  "actors": ["Aaron Taylor-Johnson", 
-    "Al Sapienza", 
-    "Brian Markinson", 
-    "Bryan Cranston", 
-    "Christian Tessier", 
-    "CJ Adams", 
-    "David Strathairn", 
-    "Elizabeth Olsen", 
-    "Juliette Binoche" ],
+  "actors": ["Aaron Taylor-Johnson", "Al Sapienza", "Brian Markinson", "Bryan Cranston","Christian Tessier", "CJ Adams", "David Strathairn", "Elizabeth Olsen", "Juliette Binoche" ],
   "ageLimit": "PG-15",
   "description": "I DETTA SPEKTAKULÄRA ÄVENTYR STÄLLS GODZILLA,™världens mest berömda monster, mot ondskefulla skapelser som styrkta av mänsklighetens vetenskapliga arrogans hotar vår existens.",
   "director": "Gareth Edwards",
