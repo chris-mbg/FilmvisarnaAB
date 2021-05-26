@@ -1,19 +1,19 @@
 import React from "react";
 import { Card } from "react-bootstrap";
-import styles from '../css/MovieCard.module.css'
-import CustomButton from './CustomButton';
+import styles from "../css/MovieCard.module.css";
+import CustomButton from "./CustomButton";
 
-export default function MovieCard() {
+export default function MovieCard({ movie }) {
   return (
-    <Card className={`${styles.cardWrapper} mb-2 col-md-6 col-lg-4`}>
-      <Card.Img  src="https://i.imgur.com/tytuFx3.png" />
+    <Card className={`${styles.cardWrapper} mb-2 col-md-6 col-lg-4 `}>
+      <Card.Img style={{maxHeight:"350px"}} src={movie.image} />
       <Card.Body className={styles.bodyWrapper}>
-        <Card.Title>  Amelie från Montmartre</Card.Title>
-        <Card.Text>Dramakomedi</Card.Text>
-        <Card.Text>Längd: 2.25</Card.Text>
+        <Card.Title className={styles.title}>{movie.title}</Card.Title>
+        <Card.Text>{movie.genre}</Card.Text>
+        <Card.Text>Längd: {movie.length}</Card.Text>
         <div className="d-flex justify-content-between mt-4">
-          <CustomButton text="Info"/>
-          <CustomButton text="Boka"/>
+          <CustomButton text="Info" />
+          <CustomButton text="Boka" />
         </div>
       </Card.Body>
     </Card>
