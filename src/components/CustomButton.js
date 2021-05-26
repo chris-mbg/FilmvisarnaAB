@@ -4,7 +4,7 @@ import styles from '../css/CustomButton.css'
 export default function CustomButton({text}) {
 
   const defineClass = (text) => {
-    
+
     if( text==="Boka" ){return "bookButton"}
     if( text==="Info" ){return "infoButton"}
     if( text==="Avboka"){return "cancelButton"}
@@ -16,7 +16,7 @@ export default function CustomButton({text}) {
   }
   return (
     <div className={styles.wrapper}>
-    <div role="button" className={defineClass(text)}>{text}</div>
+      <div role="button" className={defineClass(text)}>{text}</div>
     </div>
   )
 }
