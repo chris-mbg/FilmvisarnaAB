@@ -9,22 +9,26 @@ const ImgCarousel = () => {
   useEffect(() => setMoviePics(require("../assets/caroPics.json")), []);
 
   return (
-    <div className={`container border border-danger ${styles.restrictions}`}>
+    <div className={`container py-3`}>
       <Carousel>
-        <Carousel.Item>
+        <Carousel.Item interval={7000}>
           <img
             className={`d-block ${styles.caroImg}`}
             src="https://images.unsplash.com/photo-1514306191717-452ec28c7814?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1050&q=80"
             alt="First slide"
           />
           <Carousel.Caption>
-            <h2 className={`${styles.captionText} ${styles.welcomeText}`}>Filmvisarna</h2>
+            <h3 className={`${styles.captionText} ${styles.welcomeText}`}>
+              Filmvisarna
+            </h3>
             <br />
-            <p className={`${styles.captionText} ${styles.welcomeText}`}>Bara bra film.</p>
+            <p className={`${styles.captionText} ${styles.welcomeText}`}>
+              Bara bra film.
+            </p>
           </Carousel.Caption>
         </Carousel.Item>
         {moviePics.map((obj, index) => (
-          <Carousel.Item key={index}>
+          <Carousel.Item key={index} interval={3500}>
             <Link to={`/movie/${obj.DBId}`}>
               <img
                 className={`d-block ${styles.caroImg}`}
@@ -32,9 +36,18 @@ const ImgCarousel = () => {
                 alt={`From the movie ${obj.title}`}
               />
               <Carousel.Caption>
-                <h3 className={`${styles.captionText}`}>{obj.title}</h3>
-                <br />
-                <h3 className={`${styles.captionText}`}>Visas nu!</h3>
+                <div className={styles.captionWrapper}>
+                  <p
+                    className={`${styles.captionText} ${styles.movieTitleCaption}`}
+                  >
+                    {obj.title}
+                    <span
+                      className={`${styles.captionText} ${styles.screeningCaption}`}
+                    >
+                      Visas nu!
+                    </span>
+                  </p>
+                </div>
               </Carousel.Caption>
             </Link>
           </Carousel.Item>
