@@ -31,7 +31,7 @@ function Navbar1() {
               MIN PROFIL
             </Nav.Link>
           ) : (
-            <Nav.Link as={Link} to="/register" className={styles.link}>
+            <Nav.Link as={Link} to="/registration" className={styles.link}>
               REGISTRERA
             </Nav.Link>
           )}
