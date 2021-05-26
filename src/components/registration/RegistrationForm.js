@@ -11,7 +11,9 @@ const RegistrationForm = () => {
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [alertPassword, setAlertPassword] = useState(false);
+  const [alertConfirmPassword, setAlertConfirmPassword] = useState(false);
   const [alertEmail, setAlertEmail] = useState(false);
 
   // Context
@@ -24,6 +26,16 @@ const RegistrationForm = () => {
 
   const handleRegister = (e) => {
     e.preventDefault();
+
+    // If password and confirmPassword does NOT matches with each other, set "AlertConfirmPassword" to true.
+    if (
+      !password.includes(confirmPassword) ||
+      !confirmPassword.includes(password)
+    ) {
+      setAlertConfirmPassword(true);
+
+      return;
+    }
 
     if (checkPassword(password)) {
       register({ firstName, lastName, phone, email, password }).then((data) => {
@@ -39,6 +51,7 @@ const RegistrationForm = () => {
 
           // Reset alerts
           setAlertPassword(false);
+          setAlertConfirmPassword(false);
           setAlertEmail(false);
 
           // Re-directs to:
@@ -75,6 +88,10 @@ const RegistrationForm = () => {
     setPassword(e.target.value);
   };
 
+  const handleConfirmPassword = (e) => {
+    setConfirmPassword(e.target.value);
+  };
+
   // Alert boxes
   const alertPasswordBox = alertPassword ? (
     <Alert variant="dark" onClose={() => setAlertPassword(false)} dismissible>
@@ -82,6 +99,21 @@ const RegistrationForm = () => {
         Försök igen! <br />
         Ditt lösenord måste innehålla minst 8 tecken, varav en stor bokstav, en
         siffra, ett specialtecken.
+      </p>
+    </Alert>
+  ) : (
+    ""
+  );
+
+  const alertConfirmPasswordBox = alertConfirmPassword ? (
+    <Alert
+      variant="dark"
+      onClose={() => setAlertConfirmPassword(false)}
+      dismissible
+    >
+      <p>
+        Försök igen! <br />
+        Ditt lösenord måste matcha med varandra.
       </p>
     </Alert>
   ) : (
@@ -166,6 +198,19 @@ const RegistrationForm = () => {
           />
         </div>
 
+        <div className="form-group">
+          <input
+            value={confirmPassword}
+            onChange={(e) => handleConfirmPassword(e)}
+            autoComplete="off"
+            required
+            className={`${styles.input} form-control`}
+            type="password"
+            id="confirmpassword"
+            placeholder="Bekräfta lösenord"
+          />
+        </div>
+        {alertConfirmPasswordBox}
         {alertPasswordBox}
         {alertEmailBox}
 
