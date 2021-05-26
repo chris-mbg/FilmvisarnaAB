@@ -17,26 +17,41 @@ const ProfileForm = () => {
   const [email, setEmail] = useState(user.email); // Placeholder data
   const [password, setPassword] = useState(user.password); // Placeholder data
 
-  // Handlers
-  const handleFirstName = (e) => {};
+  const [firstNameDisabled, setFirstNameDisabled] = useState(true);
+  const [lastNameDisabled, setLastNameDisabled] = useState(true);
+  const [phoneDisabled, setPhoneDisabled] = useState(true);
+  const [emailDisabled, setEmailDisabled] = useState(true);
+  const [passwordDisabled, setPasswordDisabled] = useState(true);
 
-  const handleLastName = (e) => {};
+  const handlePhone = (e) => {
+    // Only allows numbers - input
+    const checkNumber = /^[0-9]*$/g;
 
-  const handlePhone = (e) => {};
+    if (checkNumber.test(e.target.value)) {
+      setPhone(e.target.value);
+    }
+  };
 
-  const handleEmail = (e) => {};
+  // Handlers - edit
+  const handleFirstNameEdit = () => {
+    setFirstNameDisabled(true);
+  };
 
-  const handlePassword = (e) => {};
+  const handleLastNameEdit = () => {
+    setLastNameDisabled(true);
+  };
 
-  const handleFirstNameEdit = () => {};
+  const handlePhoneEdit = () => {
+    setPhoneDisabled(true);
+  };
 
-  const handleLastNameEdit = () => {};
+  const handlePasswordEdit = () => {
+    setPasswordDisabled(true);
+  };
 
-  const handlePhoneEdit = () => {};
-
-  const handleEmailEdit = () => {};
-
-  const handlePasswordEdit = () => {};
+  const handleEmailEdit = () => {
+    setEmailDisabled(true);
+  };
 
   return (
     <form className={styles.form}>
@@ -48,6 +63,10 @@ const ProfileForm = () => {
             </label>
 
             <input
+              style={{ opacity: firstNameDisabled && "0.45" }}
+              disabled={firstNameDisabled}
+              value={firstName}
+              onChange={(e) => setFirstName(e.target.value)}
               autoComplete="off"
               required
               className={`${styles.input} form-control`}
@@ -63,7 +82,17 @@ const ProfileForm = () => {
           md={1}
           lg={1}
         >
-          <i class={`${styles.icon} fas fa-edit`} />
+          {firstNameDisabled ? (
+            <i
+              onClick={(e) => setFirstNameDisabled(false)}
+              className={`${styles.icon} fas fa-edit`}
+            />
+          ) : (
+            <i
+              onClick={handleFirstNameEdit}
+              className={`${styles.icon} fas fa-check`}
+            ></i>
+          )}
         </Col>
       </Row>
 
@@ -75,6 +104,10 @@ const ProfileForm = () => {
             </label>
 
             <input
+              style={{ opacity: lastNameDisabled && "0.45" }}
+              disabled={lastNameDisabled}
+              value={lastName}
+              onChange={(e) => setLastName(e.target.value)}
               autoComplete="off"
               required
               className={`${styles.input} form-control`}
@@ -90,7 +123,17 @@ const ProfileForm = () => {
           md={1}
           lg={1}
         >
-          <i class={`${styles.icon} fas fa-edit`} />
+          {lastNameDisabled ? (
+            <i
+              onClick={(e) => setLastNameDisabled(false)}
+              className={`${styles.icon} fas fa-edit`}
+            />
+          ) : (
+            <i
+              onClick={handleLastNameEdit}
+              className={`${styles.icon} fas fa-check`}
+            ></i>
+          )}
         </Col>
       </Row>
 
@@ -102,6 +145,10 @@ const ProfileForm = () => {
             </label>
 
             <input
+              style={{ opacity: phoneDisabled && "0.45" }}
+              disabled={phoneDisabled}
+              value={phone}
+              onChange={(e) => handlePhone(e)}
               autoComplete="off"
               required
               className={`${styles.input} form-control`}
@@ -117,7 +164,17 @@ const ProfileForm = () => {
           md={1}
           lg={1}
         >
-          <i class={`${styles.icon} fas fa-edit`} />
+          {phoneDisabled ? (
+            <i
+              onClick={(e) => setPhoneDisabled(false)}
+              className={`${styles.icon} fas fa-edit`}
+            />
+          ) : (
+            <i
+              onClick={handlePhoneEdit}
+              className={`${styles.icon} fas fa-check`}
+            ></i>
+          )}
         </Col>
       </Row>
 
@@ -129,6 +186,10 @@ const ProfileForm = () => {
             </label>
 
             <input
+              style={{ opacity: emailDisabled && "0.45" }}
+              disabled={emailDisabled}
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               autoComplete="off"
               required
               className={`${styles.input} form-control`}
@@ -144,7 +205,17 @@ const ProfileForm = () => {
           md={1}
           lg={1}
         >
-          <i class={`${styles.icon} fas fa-edit`} />
+          {emailDisabled ? (
+            <i
+              onClick={(e) => setEmailDisabled(false)}
+              className={`${styles.icon} fas fa-edit`}
+            />
+          ) : (
+            <i
+              onClick={handleEmailEdit}
+              className={`${styles.icon} fas fa-check`}
+            ></i>
+          )}
         </Col>
       </Row>
 
@@ -156,6 +227,10 @@ const ProfileForm = () => {
             </label>
 
             <input
+              style={{ opacity: passwordDisabled && "0.45" }}
+              disabled={passwordDisabled}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               autoComplete="off"
               required
               className={`${styles.input} form-control`}
@@ -171,7 +246,17 @@ const ProfileForm = () => {
           md={1}
           lg={1}
         >
-          <i class={`${styles.icon} fas fa-edit`} />
+          {passwordDisabled ? (
+            <i
+              onClick={(e) => setPasswordDisabled(false)}
+              className={`${styles.icon} fas fa-edit`}
+            />
+          ) : (
+            <i
+              onClick={handlePasswordEdit}
+              className={`${styles.icon} fas fa-check`}
+            ></i>
+          )}
         </Col>
       </Row>
     </form>
