@@ -23,7 +23,6 @@ const RegistrationForm = () => {
   const history = useHistory();
 
   // Handlers
-
   const handleRegister = (e) => {
     e.preventDefault();
 
@@ -93,7 +92,7 @@ const RegistrationForm = () => {
   };
 
   // Alert boxes
-  const alertPasswordBox = alertPassword ? (
+  const alertPasswordBox = alertPassword && (
     <Alert variant="dark" onClose={() => setAlertPassword(false)} dismissible>
       <p>
         Försök igen! <br />
@@ -101,11 +100,9 @@ const RegistrationForm = () => {
         siffra, ett specialtecken.
       </p>
     </Alert>
-  ) : (
-    ""
   );
 
-  const alertConfirmPasswordBox = alertConfirmPassword ? (
+  const alertConfirmPasswordBox = alertConfirmPassword && (
     <Alert
       variant="dark"
       onClose={() => setAlertConfirmPassword(false)}
@@ -116,16 +113,12 @@ const RegistrationForm = () => {
         Ditt lösenord måste matcha med varandra.
       </p>
     </Alert>
-  ) : (
-    ""
   );
 
-  const alertEmailBox = alertEmail ? (
+  const alertEmailBox = alertEmail && (
     <Alert variant="dark" onClose={() => setAlertEmail(false)} dismissible>
       <p>Välj en annan e-post!</p>
     </Alert>
-  ) : (
-    ""
   );
 
   return (
