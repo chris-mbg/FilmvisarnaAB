@@ -16,8 +16,6 @@ const MovieContextProvider = (props) => {
   // All movies fetch from DB on render
   useEffect(() => fetchAllMovies(), []);
 
-  // Delete this console.log when done testing!
-  useEffect(() => console.log("All movies: ", allMovies), [allMovies]);
 
   const values = {
     allMovies,
