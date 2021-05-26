@@ -1,6 +1,7 @@
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import MoviePage from "./pages/MoviePage";
+import OrderPage from './pages/OrderPage';
 import RegistrationPage from "./pages/RegistrationPage";
 import UserContextProvider from "./contexts/UserContext";
 import MovieContextProvider from "./contexts/MovieContext";
@@ -16,6 +17,7 @@ function App() {
           <Switch>
             <Route exact path="/" component={HomePage} />
             <Route exact path="/movies/:movieId" component={MoviePage} />
+            <Route exact path="/order" component={OrderPage} />
             <Route exact path="/registration" component={RegistrationPage} />
           </Switch>
         </BrowserRouter>

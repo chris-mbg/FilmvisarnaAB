@@ -1,3 +1,7 @@
+.wrapper{
+  margin: 0;
+}
+
 .bookButton, 
 .infoButton, 
 .loginButton,
@@ -14,6 +18,7 @@
   border: none;
   font-family: "Open Sans";
   background-color: #E87209;
+  cursor: pointer;
 }
 
 .infoButton, .okButton, .trailerButton{
@@ -59,21 +64,5 @@ font-size: 16px;
   background-color:#525050 !important; 
 }
 
-.bookButton:focus, 
-.infoButton:focus, 
-.loginButton:focus,
-.cancelButton:focus,
-.signInButton:focus,
-.okButton:focus,
-.bookTicketButton:focus,
-.trailerButton:focus{
-border: none;
-background-color: #fb5801 ;
-box-shadow: none;
-}
 
-.infoButton:focus, 
-.okButton:focus,
-.trailerButton:focus{
-  background-color:#525050
-}
+

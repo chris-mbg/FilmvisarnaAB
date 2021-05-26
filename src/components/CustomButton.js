@@ -1,8 +1,8 @@
 import React from 'react'
-import { Button } from 'react-bootstrap'
 import styles from '../css/CustomButton.css'
 
 export default function CustomButton({text}) {
+  
 
   const defineClass = (text) => {
     if( text==="Boka" ){return "bookButton"}
@@ -15,8 +15,8 @@ export default function CustomButton({text}) {
     if( text==="Trailer"){return "trailerButton"}
   }
   return (
-    <>
-    <Button className={defineClass(text)}>{text}</Button>
-    </>
+    <div className={styles.wrapper}>
+    <div className={defineClass(text)}>{text}</div>
+    </div>
   )
 }

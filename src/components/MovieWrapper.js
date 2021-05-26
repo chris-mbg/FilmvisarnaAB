@@ -18,6 +18,7 @@ export default function MovieWrapper() {
        return <MovieCard key={i} movie={movie} />;
       });
     } else {
+      // todo implement Spinner?
       return <p>...loading</p>;
     }
   };
