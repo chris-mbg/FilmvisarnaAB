@@ -1,8 +1,8 @@
 import React from 'react'
 import styles from '../css/CustomButton.css'
 
-export default function CustomButton({text}) {
-  
+export default function CustomButton({text, clickHandler}) {
+
 
   const defineClass = (text) => {
     if( text==="Boka" ){return "bookButton"}
@@ -16,7 +16,7 @@ export default function CustomButton({text}) {
   }
   return (
     <div className={styles.wrapper}>
-    <div className={defineClass(text)}>{text}</div>
+      <div className={defineClass(text)} onClick={clickHandler}>{text}</div>
     </div>
   )
 }
