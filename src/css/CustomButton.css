@@ -1,0 +1,79 @@
+.bookButton, 
+.infoButton, 
+.loginButton,
+.cancelButton,
+.signInButton,
+.okButton,
+.bookTicketButton,
+.trailerButton
+{
+  padding: 5px 35px ;
+  border-radius: 2px;
+  font-weight: 600;
+  font-size: 1.2rem;
+  border: none;
+  font-family: "Open Sans";
+  background-color: #E87209;
+}
+
+.infoButton, .okButton, .trailerButton{
+  background-color: #151515;
+}
+
+.cancelButton{
+padding: 5px 14px;
+font-size: 0.6rem;
+}
+
+.loginButton{
+  padding: 5px 14px;
+}
+
+.signInButton{
+  padding: 11px 42px;
+}
+
+.okButton{
+padding: 6px 20px;
+text-transform: uppercase;
+font-size: 16px;
+}
+
+.bookTicketButton{
+  padding: 4px 30px;
+}
+ 
+.trailerButton{
+  padding: 5px 24;
+}
+
+.bookButton:hover,
+.cancelButton:hover, 
+.loginButton:hover,
+.signInButton:hover,
+.bookTicketButton:hover{
+  background-color: #fb5801  !important;
+}
+
+.infoButton:hover, .okButton:hover, .trailerButton:hover{
+  background-color:#525050 !important; 
+}
+
+.bookButton:focus, 
+.infoButton:focus, 
+.loginButton:focus,
+.cancelButton:focus,
+.signInButton:focus,
+.okButton:focus,
+.bookTicketButton:focus,
+.trailerButton:focus{
+border: none;
+background-color: #fb5801 ;
+box-shadow: none;
+}
+
+.infoButton:focus, 
+.okButton:focus,
+.trailerButton:focus{
+  background-color:#525050
+}
