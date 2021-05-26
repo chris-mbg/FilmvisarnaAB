@@ -1,14 +1,10 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useState } from "react";
 
 export const UserContext = createContext();
 
 const UserContextProvider = ({ children }) => {
   const [loggedInUser, setLoggedInUser] = useState(null);
 
-  useEffect(() => {
-    // Removes console log after testing
-    console.log("loggedInUser:", loggedInUser);
-  }, [loggedInUser]);
 
   // Registration for new user.
   const register = async (userInformation) => {
@@ -22,7 +18,7 @@ const UserContextProvider = ({ children }) => {
           phone: userInformation.phone,
           email: userInformation.email,
           password: userInformation.password,
-          reservations: [],
+          reservations: [], 
         }),
       });
 
@@ -30,7 +26,6 @@ const UserContextProvider = ({ children }) => {
       if (response.status === 409) {
         return { status: response.status };
       }
-
       const data = await response.json();
 
       // If registration was not successful, then throw new error.
@@ -42,7 +37,7 @@ const UserContextProvider = ({ children }) => {
       if (data.status === "success") {
         // Registration - logs user in after registration is completed.
         setLoggedInUser(data.data);
-
+        
         return true;
       }
     } catch (err) {
