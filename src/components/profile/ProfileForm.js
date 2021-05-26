@@ -3,26 +3,30 @@ import { useState } from "react";
 import { Col, Row } from "react-bootstrap";
 
 const ProfileForm = () => {
-  const user = { firstName: "Lorem", lastName: "Ipsum", phoneNumber: "0700000000", email: "admin@mail.com", password: "123456789" }; // Dummy data
+  const user = {
+    firstName: "Lorem",
+    lastName: "Ipsum",
+    phoneNumber: "0700000000",
+    email: "admin@mail.com",
+    password: "123456789",
+  }; // Dummy data
 
-  const [firstName, setFirstName] = useState(); // Placeholder data
-  const [lastName, setLastName] = useState(""); // Placeholder data
-  const [phone, setPhone] = useState(""); // Placeholder data
-  const [email, setEmail] = useState(""); // Placeholder data
-  const [password, setPassword] = useState(""); // Placeholder data
-
-  //   const [firstNameEdit, setFirstNameEdit] = useState(false);
+  const [firstName, setFirstName] = useState(user.firstName); // Placeholder data
+  const [lastName, setLastName] = useState(user.lastName); // Placeholder data
+  const [phone, setPhone] = useState(user.phoneNumber); // Placeholder data
+  const [email, setEmail] = useState(user.email); // Placeholder data
+  const [password, setPassword] = useState(user.password); // Placeholder data
 
   // Handlers
-  const handleFirstName = () => {};
+  const handleFirstName = (e) => {};
 
-  const handleLastName = () => {};
+  const handleLastName = (e) => {};
 
-  const handlePhone = () => {};
+  const handlePhone = (e) => {};
 
-  const handleEmail = () => {};
+  const handleEmail = (e) => {};
 
-  const handlePassword = () => {};
+  const handlePassword = (e) => {};
 
   const handleFirstNameEdit = () => {};
 
