@@ -5,6 +5,11 @@ const User = require("../models/User");
 const utilities = require("../utilities/utilities");
 const Encrypt = require("../utilities/encrypt");
 
+// GET - check if anyone is logged in
+const whoami = (req, res) => {
+  return res.json(req.session.user || null);
+};
+
 // POST - register a new user
 const register = async (req, res) => {
   try {
@@ -73,14 +78,19 @@ const login = async (req, res) => {
       req.session.user = user;
       req.session.user.password = undefined;
       req.password = undefined;
-      return res.json({ message: "login successful", loggedInUser: user });
+      return res.json({
+        status: "success",
+        message: "login successful",
+        loggedInUser: user,
+      });
     }
   }
 
-  return res.status(401).json({ error: "bad credentials" });
+  return res.status(401).json({ status: "error", message: "Bad credentials" });
 };
 
 module.exports = {
+  whoami,
   register,
   login,
 };
