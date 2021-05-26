@@ -1,0 +1,9 @@
+#profile_information_wrapper {
+  display: inline-flex;
+  width: 50%;
+}
+
+#profile_reservation_wrapper {
+  display: inline-flex;
+  width: 50%;
+}
