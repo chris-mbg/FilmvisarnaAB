@@ -13,9 +13,9 @@ const ImgCarousel = () => {
       <Carousel>
         <Carousel.Item interval={7000}>
           <img
-            className={`d-block ${styles.caroImg}`}
-            src="https://images.unsplash.com/photo-1514306191717-452ec28c7814?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1050&q=80"
-            alt="First slide"
+            className={`d-block ${styles.caroImg} ${styles.welcomeImg}`}
+            src="https://images.unsplash.com/photo-1574267432644-f410f8ec2474?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1189&q=80"
+            alt="Cinema auditorium"
           />
           <Carousel.Caption>
             <h3 className={`${styles.captionText} ${styles.welcomeText}`}>
