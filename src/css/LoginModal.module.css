@@ -18,6 +18,12 @@
   margin: 20px;
 }
 
+.loginBtn:hover {
+  background-color: #b55e0c;
+  color: #F3F3F3;
+  margin: 20px;
+}
+
 .input {
   margin-bottom: 20px;
  
