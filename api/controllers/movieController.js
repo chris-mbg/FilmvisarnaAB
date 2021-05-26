@@ -10,6 +10,17 @@ const getAllMovies = async (req, res) => {
   }
 };
 
+
+const getMovieById = async (req, res) => {
+  Movie.findById(req.params.movieId).exec(async(err, movie) => {
+    if(err) {
+      throw new Error ('error message: ', err)
+    }
+    return res.json(movie)
+  })
+}
+
 module.exports = {
   getAllMovies,
+  getMovieById,
 };
