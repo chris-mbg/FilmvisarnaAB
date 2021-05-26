@@ -1,5 +1,8 @@
-.bookButton, 
-.infoButton, 
+.wrapper{
+  margin: 0;
+}
+.bookButton,
+.infoButton,
 .loginButton,
 .cancelButton,
 .signInButton,
@@ -42,13 +45,13 @@ font-size: 16px;
 .bookTicketButton{
   padding: 4px 30px;
 }
- 
+
 .trailerButton{
-  padding: 5px 24;
+  padding: 5px 24px;
 }
 
 .bookButton:hover,
-.cancelButton:hover, 
+.cancelButton:hover,
 .loginButton:hover,
 .signInButton:hover,
 .bookTicketButton:hover{
@@ -56,24 +59,5 @@ font-size: 16px;
 }
 
 .infoButton:hover, .okButton:hover, .trailerButton:hover{
-  background-color:#525050 !important; 
-}
-
-.bookButton:focus, 
-.infoButton:focus, 
-.loginButton:focus,
-.cancelButton:focus,
-.signInButton:focus,
-.okButton:focus,
-.bookTicketButton:focus,
-.trailerButton:focus{
-border: none;
-background-color: #fb5801 ;
-box-shadow: none;
-}
-
-.infoButton:focus, 
-.okButton:focus,
-.trailerButton:focus{
-  background-color:#525050
+  background-color:#525050 !important;
 }
