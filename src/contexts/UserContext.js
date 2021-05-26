@@ -5,7 +5,6 @@ export const UserContext = createContext();
 const UserContextProvider = ({ children }) => {
   const [loggedInUser, setLoggedInUser] = useState(null);
 
-
   // Registration for new user.
   const register = async (userInformation) => {
     try {
@@ -15,10 +14,10 @@ const UserContextProvider = ({ children }) => {
         body: JSON.stringify({
           firstName: userInformation.firstName,
           lastName: userInformation.lastName,
-          phone: userInformation.phone,
+          phoneNumber: userInformation.phone,
           email: userInformation.email,
           password: userInformation.password,
-          reservations: [], 
+          reservations: [],
         }),
       });
 
@@ -37,7 +36,7 @@ const UserContextProvider = ({ children }) => {
       if (data.status === "success") {
         // Registration - logs user in after registration is completed.
         setLoggedInUser(data.data);
-        
+
         return true;
       }
     } catch (err) {
