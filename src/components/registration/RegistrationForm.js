@@ -27,7 +27,7 @@ const RegistrationForm = () => {
 
     if (checkPassword(password)) {
       register({ firstName, lastName, phone, email, password }).then((data) => {
-        if (data) {
+        if (data === true) {
           // Registration - logs user in after registration is completed.
 
           // Resets form
@@ -44,7 +44,7 @@ const RegistrationForm = () => {
           // Re-directs to:
           history.push("/");
         }
-        if (!data) {
+        if (data.status === 409) {
           setAlertEmail(true);
         }
       });

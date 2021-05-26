@@ -26,6 +26,11 @@ const UserContextProvider = ({ children }) => {
         }),
       });
 
+      // Returns status code: 409 - if e-mail already exists in database.
+      if (response.status === 409) {
+        return { status: response.status };
+      }
+
       const data = await response.json();
 
       // If registration was not successful, then throw new error.
