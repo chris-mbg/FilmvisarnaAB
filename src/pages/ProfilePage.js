@@ -4,7 +4,7 @@ import { Container } from "react-bootstrap";
 
 const ProfilePage = () => {
   return (
-    <Container fluid>
+    <Container className="mt-5" fluid>
       <div id={styles.profile_information_wrapper}>
         <ProfileInformation />
       </div>

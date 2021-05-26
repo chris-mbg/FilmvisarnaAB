@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Col, Row } from "react-bootstrap";
 
 const ProfileForm = () => {
+  // Import variable from UserContext here ...
   const user = {
     firstName: "Lorem",
     lastName: "Ipsum",
@@ -56,7 +57,7 @@ const ProfileForm = () => {
   return (
     <form className={styles.form}>
       <Row noGutters>
-        <Col xs={11} sm={11} md={11} lg={11}>
+        <Col xs={11} sm={11} md={10} lg={11}>
           <div className="form-group">
             <label className="pl-2" htmlFor="firstname">
               Förnamn:
@@ -79,7 +80,7 @@ const ProfileForm = () => {
           className="d-flex align-items-center justify-content-center"
           xs={1}
           sm={1}
-          md={1}
+          md={2}
           lg={1}
         >
           {firstNameDisabled ? (
@@ -97,7 +98,7 @@ const ProfileForm = () => {
       </Row>
 
       <Row noGutters>
-        <Col xs={11} sm={11} md={11} lg={11}>
+        <Col xs={11} sm={11} md={10} lg={11}>
           <div className="form-group">
             <label className="pl-2" htmlFor="lastname">
               Efternamn:
@@ -120,7 +121,7 @@ const ProfileForm = () => {
           className="d-flex align-items-center justify-content-center"
           xs={1}
           sm={1}
-          md={1}
+          md={2}
           lg={1}
         >
           {lastNameDisabled ? (
@@ -138,7 +139,7 @@ const ProfileForm = () => {
       </Row>
 
       <Row noGutters>
-        <Col xs={11} sm={11} md={11} lg={11}>
+        <Col xs={11} sm={11} md={10} lg={11}>
           <div className="form-group">
             <label className="pl-2" htmlFor="phone">
               Telefonnummer:
@@ -161,7 +162,7 @@ const ProfileForm = () => {
           className="d-flex align-items-center justify-content-center"
           xs={1}
           sm={1}
-          md={1}
+          md={2}
           lg={1}
         >
           {phoneDisabled ? (
@@ -179,7 +180,7 @@ const ProfileForm = () => {
       </Row>
 
       <Row noGutters>
-        <Col xs={11} sm={11} md={11} lg={11}>
+        <Col xs={11} sm={11} md={10} lg={11}>
           <div className="form-group">
             <label className="pl-2" htmlFor="email">
               E-post:
@@ -202,7 +203,7 @@ const ProfileForm = () => {
           className="d-flex align-items-center justify-content-center"
           xs={1}
           sm={1}
-          md={1}
+          md={2}
           lg={1}
         >
           {emailDisabled ? (
@@ -220,7 +221,7 @@ const ProfileForm = () => {
       </Row>
 
       <Row noGutters>
-        <Col xs={11} sm={11} md={11} lg={11}>
+        <Col xs={11} sm={11} md={10} lg={11}>
           <div className="form-group">
             <label className="pl-2" htmlFor="password">
               Lösenord:
@@ -243,7 +244,7 @@ const ProfileForm = () => {
           className="d-flex align-items-center justify-content-center"
           xs={1}
           sm={1}
-          md={1}
+          md={2}
           lg={1}
         >
           {passwordDisabled ? (
