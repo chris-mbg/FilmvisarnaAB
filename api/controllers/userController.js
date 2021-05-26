@@ -3,6 +3,12 @@ const User = require("../models/User");
 
 // Import utils
 const utilities = require("../utilities/utilities");
+const Encrypt = require("../utilities/encrypt");
+
+// GET - check if anyone is logged in
+const whoami = (req, res) => {
+  return res.json(req.session.user || null);
+};
 
 // POST - register a new user
 const register = async (req, res) => {
@@ -33,6 +39,9 @@ const register = async (req, res) => {
         if (err) {
           return res.sendStatus(400);
         } else {
+          // "Logs" user in after successful registration.
+          req.session.user = result;
+
           res.status(201).json({
             status: "success",
             message: "Successfully created a new user.",
@@ -56,4 +65,35 @@ const register = async (req, res) => {
   }
 };
 
-module.exports = { register };
+// POST log in
+const login = async (req, res) => {
+  // model.exist  return true if user exist
+  let userExist = await User.exists({ email: req.body.email });
+
+  if (userExist) {
+    // findOne() return first matching (Query object)
+    let user = await User.findOne({ email: req.body.email }).exec();
+
+    // get encrypted password
+    req.body.password = Encrypt(req.body.password);
+    if (user.password === req.body.password) {
+      // connect to app.use(session) in index.js
+      req.session.user = user;
+      req.session.user.password = undefined;
+      req.password = undefined;
+      return res.json({
+        status: "success",
+        message: "login successful",
+        loggedInUser: user,
+      });
+    }
+  }
+
+  return res.status(401).json({ status: "error", message: "Bad credentials" });
+};
+
+module.exports = {
+  whoami,
+  register,
+  login,
+};
