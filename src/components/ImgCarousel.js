@@ -29,7 +29,7 @@ const ImgCarousel = () => {
         </Carousel.Item>
         {moviePics.map((obj, index) => (
           <Carousel.Item key={index} interval={3500}>
-            <Link to={`/movie/${obj.DBId}`}>
+            <Link to={`/movies/${obj.DBId}`}>
               <img
                 className={`d-block ${styles.caroImg}`}
                 src={obj.imgLink}
