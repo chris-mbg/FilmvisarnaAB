@@ -76,7 +76,12 @@ const RegistrationForm = () => {
   };
 
   const handlePhone = (e) => {
-    setPhone(e.target.value);
+    // Only allows numbers - input
+    const checkNumber = /^[0-9]*$/g;
+
+    if (checkNumber.test(e.target.value)) {
+      setPhone(e.target.value);
+    }
   };
 
   const handleEmail = (e) => {
