@@ -1,16 +1,22 @@
-import { BrowserRouter, Route } from "react-router-dom";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import HomePage from "./pages/HomePage";
-import "./css/App.css"
-import React from "react";
+import RegistrationPage from "./pages/RegistrationPage";
+import UserContextProvider from "./contexts/UserContext";
+import MovieContextProvider from "./contexts/MovieContext";
+import "./css/App.css";
 import Navbar from "./components/Navbar";
-
 function App() {
   return (
     <div className="App">
-      <BrowserRouter>
+      <UserContextProvider>
+        <BrowserRouter>
         <Navbar />
-        <Route exact path="/" component={HomePage}/>
-      </BrowserRouter>
+          <Switch>
+            <Route exact path="/" component={HomePage} />
+            <Route exact path="/registration" component={RegistrationPage} />
+          </Switch>
+        </BrowserRouter>
+      </UserContextProvider>
     </div>
   );
 }
