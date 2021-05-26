@@ -9,13 +9,15 @@ function App() {
   return (
     <div className="App">
       <UserContextProvider>
-        <BrowserRouter>
-        <Navbar />
-          <Switch>
-            <Route exact path="/" component={HomePage} />
-            <Route exact path="/registration" component={RegistrationPage} />
-          </Switch>
-        </BrowserRouter>
+        <MovieContextProvider>
+          <BrowserRouter>
+            <Navbar />
+            <Switch>
+              <Route exact path="/" component={HomePage} />
+              <Route exact path="/registration" component={RegistrationPage} />
+            </Switch>
+          </BrowserRouter>
+        </MovieContextProvider>
       </UserContextProvider>
     </div>
   );
