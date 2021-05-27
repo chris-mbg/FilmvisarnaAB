@@ -1,6 +1,6 @@
-import styles from "../../css/ReservationListing.module.css";
+import styles from "../../css/ReservationList.module.css";
 
-const ReservationListing = () => {
+const ReservationList = () => {
   return (
     <div className={styles.listing_wrapper}>
       <h2 className={styles.title}>Bokade biljetter</h2>
@@ -8,4 +8,4 @@ const ReservationListing = () => {
   );
 };
 
-export default ReservationListing;
+export default ReservationList;

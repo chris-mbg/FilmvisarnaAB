@@ -1,6 +1,6 @@
 import styles from "../css/ProfilePage.module.css";
 import ProfileInformation from "../components/profile/ProfileInformation";
-import ReservationListing from "../components/profile/ReservationListing";
+import ReservationList from "../components/profile/ReservationList";
 import { Container } from "react-bootstrap";
 
 const ProfilePage = () => {
@@ -10,7 +10,7 @@ const ProfilePage = () => {
         <ProfileInformation />
       </div>
       <div id={styles.profile_reservation_wrapper}>
-        <ReservationListing />
+        <ReservationList />
       </div>
     </Container>
   );
