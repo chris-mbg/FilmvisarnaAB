@@ -32,12 +32,6 @@ const MovieContextProvider = (props) => {
     }
   };
 
-  // ! Delete this useEffect when done testing
-  useEffect(async () => {
-    let screenings = await getAllScreeningsForMovie("60acb7942ec1e13448754a85");
-    console.log(screenings);
-  }, []);
-
   const values = {
     allMovies,
     getMovieById,
