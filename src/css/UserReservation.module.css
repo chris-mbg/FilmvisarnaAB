@@ -1,24 +1,80 @@
 .reservation {
-  /* background-color: #fff; */
-  margin: auto;
+  background-color: #fff;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 1rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
   width: 80%;
 }
 
+.ul {
+  font-size: 0.75rem;
+  list-style-type: disc;
+  padding-left: 1rem;
+}
+
 .hr {
+  background-color: #000;
+}
+
+.sub_information {
+  font-size: 0.75rem;
+  font-weight: normal;
 }
 
 /* Header */
 .header_wrapper {
 }
 
-/* Description */
-.description_wrapper {
+.header_information {
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+/* Movie */
+.movie_wrapper {
+}
+
+.movie_information {
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.movie_image {
+  max-height: 120px;
+  width: 100px;
 }
 
 /* Auditoria */
 .auditoria_wrapper {
 }
 
+.auditoria_information {
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
 /* Summary  */
+
+.order_information {
+  font-size: 0.75rem;
+  font-weight: bold;
+  /* text-align: right; */
+}
+
 .summary_wrapper {
+}
+
+.summary_information {
+  font-size: 0.75rem;
+  font-weight: 600;
+  margin-bottom: 0;
+}
+
+/* Button */
+
+.button_wrapper {
+  display: flex;
+  justify-content: flex-end;
 }
