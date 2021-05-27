@@ -1,15 +1,12 @@
 const Reservation = require("../models/Reservation");
 const Movie = require("../models/Movie");
 const Screening = require("../models/Screening");
+const User = require("../models/User");
 
 const createNewReservation = async (req, res) => {
   /*
     req.body = {
-      screening: {
-        screeningId: "ObjectId",
-        startTime: "date and time"  ! Do not need this!
-      }
-      movieId: "ObjectId",
+      screeningId: "ObjectId",
       tickets: [{
         ticketType: "adult",
         seatNumber: [y,x]
@@ -28,13 +25,14 @@ const createNewReservation = async (req, res) => {
   try {
     // get screening by id
     let screening = await Screening.findById(
-      req.body.screening.screeningId
+      req.body.screeningId
     );
     // Movie information also needs to be saved with the reservation
+    // Gets movieId from screening.
     let movie = await Movie.findById(screening.movieId).exec();
 
-    // ...and check that the seats that user tries to book is free
-    // Which seats have the user picked? Are they already taken? If not taken --> set the seat to 1.
+    // Checks that the seats that user tries to book is free. (finds the right seat in screening.seats by using the seatNumber in tickets)
+    //If not taken --> change the value to 1.
     for (let i = 0; i < req.body.tickets.length; i++) {
       if (
         screening.seats[req.body.tickets[i].seatNumber[0]][
@@ -59,7 +57,7 @@ const createNewReservation = async (req, res) => {
     }
     console.log(screening.seats);
 
-    // reserves the seats on the screening (is this the correct syntax??)
+    // reserves the seats on the screening. Need to use .markModified() or else is no changed detected by mongoose and the screening not saved.
     screening.markModified("seats");
     await screening.save();
 
@@ -82,11 +80,9 @@ const createNewReservation = async (req, res) => {
       userId: req.session.user._id,
     });
 
-    //! Add reservation to user!
-
     return res.json({ status: "success", reservation: reservation });
   } catch (error) {
-    // If error occurs ie with id format..
+    // If error occurs ie with id format
     res.status(400).json({ status: "error", message: error.message });
   }
 };
