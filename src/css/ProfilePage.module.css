@@ -5,7 +5,7 @@
 
 #profile_reservation_wrapper {
   display: inline-flex;
-  width: 49%;
+  width: 50%;
 }
 
 /* Media Queries */
@@ -19,14 +19,17 @@
     width: 100%;
   }
 
-  /* #profile_reservation_wrapper {
+  #profile_reservation_wrapper {
     display: inline-flex;
-    width: 50%;
-  } */
+    width: 100%;
+  }
 }
 
 /**
 *** Large screen
 **/
 @media (min-width: 769px) {
+  .profile_container {
+    display: flex;
+  }
 }

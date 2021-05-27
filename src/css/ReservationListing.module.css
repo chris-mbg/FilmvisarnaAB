@@ -1,7 +1,27 @@
 .listing_wrapper {
-  background-color: #E1E1E1;
+  background-color: #e1e1e1;
   border-radius: 0.5%;
-  margin: auto;
+  margin-top: 5rem;
+  margin-left: auto;
+  margin-right: auto;
   height: 450px;
   width: 80%;
+}
+
+/* Media Queries */
+
+/** 
+*** Mobile Screen
+**/
+@media (max-width: 768px) {
+  .listing_wrapper {
+    margin-top: 2rem;
+    width: 100%;
+  }
+}
+
+/**
+*** Large screen
+**/
+@media (min-width: 769px) {
 }
