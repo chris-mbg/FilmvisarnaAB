@@ -6,9 +6,9 @@ const UserReservation = () => {
   const [toggleAccordion, setToggleAccordion] = useState(false);
 
   const icon = !toggleAccordion ? (
-    <i className="fas fa-arrow-down" />
+    <i className={`${styles.icon} fas fa-arrow-down`} />
   ) : (
-    <i className="fas fa-arrow-up" />
+    <i className={`${styles.icon} fas fa-arrow-up`} />
   );
 
   return (
@@ -54,6 +54,7 @@ const UserReservation = () => {
           </Row>
           {/* /.movie_wrapper */}
           <hr className={styles.hr} />
+
           <Row className={styles.auditoria_wrapper} noGutters={true}>
             <Col>
               <p className={styles.auditoria_information}>
@@ -62,7 +63,7 @@ const UserReservation = () => {
               </p>
             </Col>
             <Col>
-              <p className={styles.auditoria_information}>
+              <p className={styles.auditoria_seats_information}>
                 Rad och stolsnummer
               </p>
               <ul className={styles.ul}>
@@ -74,6 +75,7 @@ const UserReservation = () => {
           </Row>
           {/* /.auditoria_wrapper */}
           <hr className={styles.hr} />
+
           <Row className={styles.summary_wrapper} noGutters={true}>
             <Col>
               <p className={styles.summary_information}>
@@ -81,15 +83,21 @@ const UserReservation = () => {
                 <span className={styles.sub_information}>3</span>
               </p>
               <p className={styles.summary_information}>
-                Totalpris (SEK):{" "}
+                Totalpris (SEK) :{" "}
                 <span className={styles.sub_information}>200:-</span>
               </p>
             </Col>
             <Col>
-              <p className={styles.order_information}>Order: </p>
+              <p className={styles.order_information}>
+                Order:{" "}
+                <span className={styles.sub_information}>
+                  #60acbc58b7b50656ccec8734
+                </span>
+              </p>
             </Col>
           </Row>
           {/* /.summary_wrapper */}
+
           <Row noGutters={true}>
             <Col className={styles.button_wrapper}>
               <button className="cancelButton">Avboka</button>
