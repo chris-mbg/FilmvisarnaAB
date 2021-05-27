@@ -6,7 +6,6 @@ const getReservationsForUser = async (req, res) => {
   }
   try {
     let reservations = await Reservation.find({userId: req.session.user._id});
-    console.log(reservations);
     return res.json(reservations);
   } catch (error) {
     res.status(400).json({status: "error", message: error.message});
@@ -14,5 +13,5 @@ const getReservationsForUser = async (req, res) => {
 }
 
 module.exports = {
-  getReservationsForUser
+  getReservationsForUser,
 };
