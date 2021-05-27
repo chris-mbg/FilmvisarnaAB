@@ -1,11 +1,18 @@
 .listing_wrapper {
   background-color: #e1e1e1;
+  color: #000;
   border-radius: 0.5%;
   margin-top: 5rem;
   margin-left: auto;
   margin-right: auto;
   height: 450px;
   width: 80%;
+}
+
+.title {
+  text-align: center;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
 }
 
 /* Media Queries */
