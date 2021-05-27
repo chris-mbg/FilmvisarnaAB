@@ -55,7 +55,14 @@ export default function MoviePage(props) {
   return (
     <>
       {movie ? renderMovieDescription() : <h1>...loading</h1>}
-      <MovieSchedule />
+      <MovieSchedule
+      isMoviePage={true}
+      date={"2021-05-19"}
+      time={"18:00"}
+      totalPlaces={"30"}
+      reservedPlaces={"9"}
+      auditorium={"1"}
+      />
     </>
   );
 }

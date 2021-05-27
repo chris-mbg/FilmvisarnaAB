@@ -20,15 +20,16 @@
 }
 
 .scheduleDetails{
+  flex-basis: calc((100% / 4) - 1rem);
   color: black;
   text-align: center;
 }
 .scheduleDetails > h5 {
-font-size: 0.8rem;
+font-size: 1em;
 font-weight: 600;
 }
 .scheduleDetails > p{
-  font-size: 0.75rem;
+  font-size: 1rem;
   font-weight: 300;
 }
 
