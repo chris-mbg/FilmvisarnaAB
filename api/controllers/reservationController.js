@@ -81,6 +81,7 @@ const createNewReservation = async (req, res) => {
     });
 
     return res.json({ status: "success", reservation: reservation });
+    
   } catch (error) {
     // If error occurs ie with id format
     res.status(400).json({ status: "error", message: error.message });

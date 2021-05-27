@@ -17,7 +17,6 @@ const UserContextProvider = ({ children }) => {
           phoneNumber: userInformation.phone,
           email: userInformation.email,
           password: userInformation.password,
-          reservations: [],
         }),
       });
 
