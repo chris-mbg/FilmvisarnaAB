@@ -4,6 +4,7 @@ import { Row, Col, Image } from "react-bootstrap";
 
 import styles from "../css/MoviePage.module.css";
 import CustomButton from "../components/CustomButton";
+import MovieSchedule from "../components/MovieSchedule";
 
 export default function MoviePage(props) {
   const { movieId } = props.match.params;
@@ -50,5 +51,9 @@ export default function MoviePage(props) {
     </section>
   );
 
-  return <>{movie ? renderMovieDescription() : <h1>...loading</h1>}</>;
+  return (
+  <>
+  {movie ? renderMovieDescription() : <h1>...loading</h1>}
+  <MovieSchedule/>
+  </>);
 }

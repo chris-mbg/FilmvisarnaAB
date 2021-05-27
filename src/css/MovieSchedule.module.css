@@ -1,0 +1,50 @@
+.scheduleWrapper{
+  background-color: #E5E5E5;
+  margin: 1rem;
+  padding: 0.9rem 1.8rem;
+}
+.schedileItem{
+  border-bottom: 1px solid #FFFFFF;
+  margin-bottom: 1.2rem;
+  padding-top: 0.6rem;
+  padding-bottom: 0.6rem;
+}
+.scheduleWrapper > h2{
+  color: black;
+  font-size: 1.25rem;
+  margin-bottom: 1.8rem;
+}
+
+.detailWrapper{
+  max-width: 670px;
+}
+
+.scheduleDetails{
+  color: black;
+  text-align: center;
+}
+.scheduleDetails > h5 {
+font-size: 0.8rem;
+font-weight: 600;
+}
+.scheduleDetails > p{
+  font-size: 0.75rem;
+  font-weight: 300;
+}
+
+@media only screen and (min-width: 958px) {
+  .scheduleWrapper{
+    max-width: 930px;
+    margin: auto;
+  }
+
+  .scheduleWrapper > h2{
+    font-size: 1.8rem;
+  }
+  .scheduleDetails > h5{
+    font-size: 1.5rem;
+  }
+  .scheduleDetails > p{
+    font-size: 1.25rem;
+  }
+}
