@@ -39,6 +39,7 @@ export default function MoviePage(props) {
                 Sammanfattning: <span>{movie.productionYear}</span>
                 &#183;<span>{movie.length}</span>
               </p>
+              <p>{movie.genre}</p>
             </div>
             <CustomButton
               text="Trailer"
@@ -52,8 +53,9 @@ export default function MoviePage(props) {
   );
 
   return (
-  <>
-  {movie ? renderMovieDescription() : <h1>...loading</h1>}
-  <MovieSchedule/>
-  </>);
+    <>
+      {movie ? renderMovieDescription() : <h1>...loading</h1>}
+      <MovieSchedule />
+    </>
+  );
 }
