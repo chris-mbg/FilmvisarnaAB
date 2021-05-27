@@ -4,8 +4,8 @@ import ImgCarousel from "../components/ImgCarousel"
 const HomePage = () => {
   return (
     <div className="homePage">
-      <MovieWrapper/>
       <ImgCarousel />
+      <MovieWrapper/>
     </div>
   );
 }
