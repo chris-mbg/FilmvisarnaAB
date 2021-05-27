@@ -67,11 +67,11 @@
 /**
 *** Tablet screen
 **/
-@media (min-width: 577px) and (max-width: 768px) {
+/* @media (min-width: 577px) and (max-width: 768px) {
   .form_container {
     width: 100%;
   }
-}
+} */
 
 /**
 *** Large screen
