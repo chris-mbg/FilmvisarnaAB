@@ -5,6 +5,7 @@ export default function CustomButton({text, clickHandler}) {
 
 
   const defineClass = (text) => {
+
     if( text==="Boka" ){return "bookButton"}
     if( text==="Info" ){return "infoButton"}
     if( text==="Avboka"){return "cancelButton"}
