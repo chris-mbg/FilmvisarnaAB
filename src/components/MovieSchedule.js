@@ -4,6 +4,7 @@ import { Row, Col } from "react-bootstrap";
 import styles from "../css/MovieSchedule.module.css";
 import CustomButtom from "../components/CustomButton";
 
+// props are accepted from the parent component. The layout is created depends on them with the help of a conditional rendering
 export default function MovieSchedule({
   isMoviePage,
   date,
