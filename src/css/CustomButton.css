@@ -18,6 +18,7 @@
   font-family: "Open Sans";
   background-color: #E87209;
   cursor: pointer;
+  display: inline-block;
 }
 
 .infoButton, .okButton, .trailerButton{
