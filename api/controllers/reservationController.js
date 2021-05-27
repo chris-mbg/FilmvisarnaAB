@@ -30,7 +30,7 @@ const createNewReservation = async (req, res) => {
     // Which seats have the user picked? Are they already taken? If not taken --> set to 1.
     let screening = await Screening.findById(
       req.body.screening.screeningId
-    ).exec();
+    );
     // Movie information also needs to be saved with the reservation
     let movie = await Movie.findById(screening.movieId).exec();
 
@@ -69,6 +69,7 @@ const createNewReservation = async (req, res) => {
       screening: {
         screeningId: screening._id,
         startTime: screening.startTime,
+        auditoriumName: screening.auditoriumName
       },
       tickets: req.body.tickets,
       totalPrice: req.body.totalPrice,
