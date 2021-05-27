@@ -17,14 +17,18 @@ export default function MoviePage(props) {
     console.log("movie", response);
   }, []);
 
+  const seeTrailer = () => {
+    console.log("this is a wonderful trailer...");
+  };
+
   const renderMovieDescription = () => (
-    <div className={styles.movieContainer}>
-      <Row>
-        <Col md={6} sm={12}>
+    <section className={styles.movieContainer}>
+      <Row className="text-center">
+        <Col sm={12} md={6} lg={3}>
           <Image src={movie.image} fluid />
         </Col>
-        <Col md={6} sm={12}>
-          <div className="row flex-column-reverse flex-md-row">
+        <Col sm={12} md={6} lg={9}>
+          <div className=" row flex-column-reverse flex-md-row">
             <div className={styles.description}>
               <h1>{movie.title}</h1>
               <p>{movie.description}</p>
@@ -35,11 +39,15 @@ export default function MoviePage(props) {
                 &#183;<span>{movie.length}</span>
               </p>
             </div>
-            <CustomButton text="Trailer" className="order-md-last" />
+            <CustomButton
+              text="Trailer"
+              className="order-md-last"
+              clickHandler={seeTrailer}
+            />
           </div>
         </Col>
       </Row>
-    </div>
+    </section>
   );
 
   return <>{movie ? renderMovieDescription() : <h1>...loading</h1>}</>;
