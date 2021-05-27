@@ -4,13 +4,9 @@ export const MovieContext = createContext();
 
 const MovieContextProvider = (props) => {
   const [allMovies, setAllMovies] = useState(null);
- 
 
   // All movies fetch from DB on render
-
-  useEffect(() => {
-    fetchAllMovies();
-  },[])
+  useEffect(() => fetchAllMovies(), []);
 
   const fetchAllMovies = async () => {
     let result = await fetch("/api/v1/movies/");
@@ -28,11 +24,24 @@ const MovieContextProvider = (props) => {
     }
   };
 
-  
+  const getAllScreeningsForMovie = async movieId => {
+    let result = await fetch(`/api/v1/screenings/${movieId}`);
+    result = await result.json();
+    if (result.status !== "error") {
+      return result;
+    }
+  };
+
+  // ! Delete this useEffect when done testing
+  useEffect(async () => {
+    let screenings = await getAllScreeningsForMovie("60acb7942ec1e13448754a85");
+    console.log(screenings);
+  }, []);
 
   const values = {
     allMovies,
     getMovieById,
+    getAllScreeningsForMovie,
   };
 
   return (
