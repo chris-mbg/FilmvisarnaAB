@@ -1,6 +1,7 @@
 .scheduleWrapper{
   background-color: #E5E5E5;
   margin: 1rem;
+  margin-bottom: 2rem;
   padding: 0.9rem 1.8rem;
 }
 .schedileItem{
@@ -36,7 +37,7 @@ font-weight: 600;
 @media only screen and (min-width: 958px) {
   .scheduleWrapper{
     max-width: 930px;
-    margin: auto;
+    margin: 1rem auto;
   }
 
   .scheduleWrapper > h2{

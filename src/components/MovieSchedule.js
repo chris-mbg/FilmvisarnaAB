@@ -11,6 +11,7 @@ export default function MovieSchedule({
   totalPlaces,
   reservedPlaces,
   auditorium,
+  title
 }) {
   return (
     <div className={styles.scheduleWrapper}>
@@ -52,11 +53,15 @@ export default function MovieSchedule({
           <div className={styles.scheduleDetails}>
             <p>{time}</p>
           </div>
-          {totalPlaces && (
+          {totalPlaces ? (
             <div className={styles.scheduleDetails}>
               <p>
                 <span>{reservedPlaces}</span>/<span>{totalPlaces}</span>
               </p>
+            </div>
+          ) : (
+            <div className={styles.scheduleDetails}>
+              <p>{title}</p>
             </div>
           )}
           <div className={styles.scheduleDetails}>
