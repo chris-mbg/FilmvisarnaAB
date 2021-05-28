@@ -52,10 +52,10 @@ const UserReservation = () => {
               />
             </Col>
             <Col
-              xs={{ span: 8, offset: 1 }}
-              sm={{ span: 8, offset: 1 }}
-              md={{ span: 8, offset: 1 }}
-              lg={{ span: 8, offset: 1 }}
+              xs={9}
+              sm={9}
+              md={9}
+              lg={9}
               className="d-flex align-items-center"
             >
               <p className={styles.movie_information}>

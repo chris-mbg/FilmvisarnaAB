@@ -44,6 +44,7 @@
 .movie_information {
   font-size: 0.75rem;
   font-weight: 600;
+  padding-left: 0.5rem;
 }
 
 .movie_image {
