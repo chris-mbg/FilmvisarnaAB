@@ -1,28 +1,21 @@
-import React, { useState } from 'react';
+// import { NavLink } from 'react-router-dom';
 
 import style from '../css/LoginModal.module.css';
 
-const LoginModal = () => {
-  const [username, setUsername] = useState();
-  const [password, setPassword] = useState();
-
-  function handleSubmit(e) {
-    e.preventDefault();
-  }
+const LoginModal = (props) => {
+  // const { users, setLoggedInUser } = useContext();
 
   return (
     <div className={`form-group ${style.modalContainer}`}>
       <h2 className={style.loginHeading}>Logga in</h2>
-      <form onSubmit={handleSubmit}>
+      <form>
         <input
-          onChange={(e) => setUsername(e.target.value)}
           type='email'
           className={`form-control ${style.input}`}
           required
           placeholder='E-post'
         />
         <input
-          onChange={(e) => setPassword(e.target.value)}
           type='password'
           className={`form-control`}
           required
@@ -32,7 +25,15 @@ const LoginModal = () => {
           Logga in
         </button>
       </form>
-      <p className={style.regText}>Inte medlem än? Registrera dig här.</p>
+      {/* <NavLink
+        exact
+        to='/register'
+        className={`${style.regText}`}
+        onClick={() => props.setShowLoginModal(false)}
+      >
+        Inte medlen än? Registrera dig här
+      </NavLink> */}
+      <p className={style.regText}>Inte medlem än? Registrera dig här</p>
     </div>
   );
 };
