@@ -14,13 +14,19 @@ const UserReservation = () => {
   return (
     <Accordion className={styles.reservation}>
       <Row className={styles.header_wrapper} noGutters={true}>
-        <Col lg={10}>
+        <Col xs={10} sm={10} md={10} lg={10}>
           <p className={styles.header_information}>
             Amelie <br />
             Ons, 19 2021 | 11:30
           </p>
         </Col>
-        <Col lg={2} className="d-flex justify-content-end align-items-center">
+        <Col
+          xs={2}
+          sm={2}
+          md={2}
+          lg={2}
+          className="d-flex justify-content-end align-items-center"
+        >
           <div className={styles.icon_wrapper}>
             <Accordion.Toggle
               onClick={() => setToggleAccordion(!toggleAccordion)}
@@ -38,14 +44,20 @@ const UserReservation = () => {
         <div>
           <hr className={styles.hr} />
           <Row className={styles.movie_wrapper} noGutters={true}>
-            <Col lg={3}>
+            <Col xs={3} sm={3} md={3} lg={3}>
               <Image
                 className={styles.movie_image}
                 src="https://m.media-amazon.com/images/M/MV5BNDg4NjM1YjMtYmNhZC00MjM0LWFiZmYtNGY1YjA3MzZmODc5XkEyXkFqcGdeQXVyNDk3NzU2MTQ@._V1_SX300.jpg"
                 alt="image"
               />
             </Col>
-            <Col className="d-flex align-items-center">
+            <Col
+              xs={{ span: 8, offset: 1 }}
+              sm={{ span: 8, offset: 1 }}
+              md={{ span: 8, offset: 1 }}
+              lg={{ span: 8, offset: 1 }}
+              className="d-flex align-items-center"
+            >
               <p className={styles.movie_information}>
                 Dramakomedi
                 <br /> Längd: 225min
