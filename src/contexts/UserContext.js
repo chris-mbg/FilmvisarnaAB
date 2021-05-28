@@ -1,9 +1,18 @@
+import { useEffect } from "react";
 import { createContext, useState } from "react";
 
 export const UserContext = createContext();
 
 const UserContextProvider = ({ children }) => {
   const [loggedInUser, setLoggedInUser] = useState(null);
+
+  const loggedInCheck = async () => {
+    let loggedIn = await fetch("/api/v1/users/whoami");
+    loggedIn = await loggedIn.json();
+    loggedIn ? setLoggedInUser(loggedIn) : setLoggedInUser(null);
+  };
+  // On application render, checks if user saved to session
+  useEffect( () => loggedInCheck(), []);
 
   // Registration for new user.
   const register = async (userInformation) => {
@@ -17,7 +26,6 @@ const UserContextProvider = ({ children }) => {
           phoneNumber: userInformation.phone,
           email: userInformation.email,
           password: userInformation.password,
-          reservations: [],
         }),
       });
 
@@ -43,8 +51,30 @@ const UserContextProvider = ({ children }) => {
       return false;
     }
   };
+
+  const login = async (userInformation) => {
+    const response = await fetch(`/api/v1/users/login`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        email: userInformation.email,
+        password: userInformation.password,
+      }),
+    });
+    const result = await response.json();
+
+    if (result.status === "error") {
+      return false;
+    } else {
+      setLoggedInUser(result.loggedInUser);
+      return true;
+    }
+  };
+
   return (
-    <UserContext.Provider value={{ loggedInUser, setLoggedInUser, register }}>
+    <UserContext.Provider
+      value={{ loggedInUser, setLoggedInUser, register, login }}
+    >
       {children}
     </UserContext.Provider>
   );
