@@ -43,8 +43,30 @@ const UserContextProvider = ({ children }) => {
       return false;
     }
   };
+
+  const login = async (userInformation) => {
+    const response = await fetch(`/api/v1/users/login`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        email: userInformation.email,
+        password: userInformation.password,
+      }),
+    });
+    const result = await response.json();
+
+    if (result.status === "error") {
+      return false;
+    } else {
+      setLoggedInUser(result.loggedInUser);
+      return true;
+    }
+  };
+
   return (
-    <UserContext.Provider value={{ loggedInUser, setLoggedInUser, register }}>
+    <UserContext.Provider
+      value={{ loggedInUser, setLoggedInUser, register, login }}
+    >
       {children}
     </UserContext.Provider>
   );
