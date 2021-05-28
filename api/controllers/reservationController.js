@@ -24,9 +24,7 @@ const createNewReservation = async (req, res) => {
 
   try {
     // get screening by id
-    let screening = await Screening.findById(
-      req.body.screeningId
-    );
+    let screening = await Screening.findById(req.body.screeningId);
     // Movie information also needs to be saved with the reservation
     // Gets movieId from screening.
     let movie = await Movie.findById(screening.movieId).exec();
@@ -42,20 +40,12 @@ const createNewReservation = async (req, res) => {
         return res
           .status(400)
           .json({ status: "error", message: "Seat already reserved." });
-        break;
       } else {
-        console.log("on way to book seat.. Current value:", screening.seats[req.body.tickets[i].seatNumber[0]][
-          req.body.tickets[i].seatNumber[1]
-        ])
         screening.seats[req.body.tickets[i].seatNumber[0]][
           req.body.tickets[i].seatNumber[1]
         ] = 1;
-        console.log("Booked seat.. Current value:", screening.seats[req.body.tickets[i].seatNumber[0]][
-          req.body.tickets[i].seatNumber[1]
-        ])
       }
     }
-    console.log(screening.seats);
 
     // reserves the seats on the screening. Need to use .markModified() or else is no changed detected by mongoose and the screening not saved.
     screening.markModified("seats");
@@ -73,7 +63,7 @@ const createNewReservation = async (req, res) => {
       screening: {
         screeningId: screening._id,
         startTime: screening.startTime,
-        auditoriumName: screening.auditoriumName
+        auditoriumName: screening.auditoriumName,
       },
       tickets: req.body.tickets,
       totalPrice: req.body.totalPrice,
@@ -81,7 +71,6 @@ const createNewReservation = async (req, res) => {
     });
 
     return res.json({ status: "success", reservation: reservation });
-    
   } catch (error) {
     // If error occurs ie with id format
     res.status(400).json({ status: "error", message: error.message });
