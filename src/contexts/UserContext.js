@@ -64,9 +64,13 @@ const UserContextProvider = ({ children }) => {
 
   // ! FOR TESTING saveReservation-func. Delete when done!
   useEffect(async () => {
-    await login({email: "ch@mail.com", password: "Password123!"})
+    await login({email: "ch@mail.com", password: "Password123!"});
   }, []);
 
+  useEffect(() => {
+    console.log(loggedInUser)
+  }, [loggedInUser]);
+  
   return (
     <UserContext.Provider
       value={{ loggedInUser, setLoggedInUser, register, login }}

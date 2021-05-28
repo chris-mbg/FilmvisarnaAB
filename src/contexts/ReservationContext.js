@@ -15,6 +15,7 @@ const ReservationContextProvider = (props) => {
   //     }
 
   const saveReservation = async (reservationInfo) => {
+    console.log(reservationInfo);
     let result = await fetch("/api/v1/reservations/", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -36,13 +37,14 @@ const ReservationContextProvider = (props) => {
 
   //! Test booking. Delete when done testing.
   useEffect(() => {
+    console.log("Want to save reservation", loggedInUser)
     if (loggedInUser) {
       saveReservation({
         screeningId: "60acbc58b7b50656ccec8734",
         tickets: [
           {
             ticketType: "adult",
-            seatNumber: [2, 2],
+            seatNumber: [2, 6],
           },
         ],
         totalPrice: 90,
