@@ -53,7 +53,7 @@ const UserReservation = ({ reservation }) => {
 
       <Accordion.Collapse eventKey="0">
         <div>
-          <hr className={styles.hr} />
+          {/* <hr className={styles.hr} />
           <Row className={styles.movie_wrapper} noGutters={true}>
             <Col xs={3} sm={3} md={3} lg={3}>
               <Image
@@ -74,7 +74,7 @@ const UserReservation = ({ reservation }) => {
                 <br /> Längd: {reservation.movie.length}
               </p>
             </Col>
-          </Row>
+          </Row> */}
           {/* /.movie_wrapper */}
           <hr className={styles.hr} />
 
