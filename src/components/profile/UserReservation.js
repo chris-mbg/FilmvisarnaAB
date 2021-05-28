@@ -16,8 +16,6 @@ const UserReservation = ({ reservation }) => {
     <i className={`${styles.icon} fas fa-arrow-up`} />
   );
 
-  console.log("reservation:", reservation);
-
   return (
     <Accordion
       style={{
