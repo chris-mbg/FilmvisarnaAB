@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 
 export const UserContext = createContext();
 
@@ -62,6 +62,11 @@ const UserContextProvider = ({ children }) => {
       return true;
     }
   };
+
+  // ! FOR TESTING saveReservation-func. Delete when done!
+  useEffect(async () => {
+    await login({email: "ch@mail.com", password: "Password123!"})
+  }, []);
 
   return (
     <UserContext.Provider
