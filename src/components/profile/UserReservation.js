@@ -2,7 +2,7 @@ import styles from "../../css/UserReservation.module.css";
 import { useState } from "react";
 import { Accordion, Row, Col, Image } from "react-bootstrap";
 
-const UserReservation = () => {
+const UserReservation = ({ reservation }) => {
   const [toggleAccordion, setToggleAccordion] = useState(false);
 
   const icon = !toggleAccordion ? (
@@ -11,13 +11,15 @@ const UserReservation = () => {
     <i className={`${styles.icon} fas fa-arrow-up`} />
   );
 
+  console.log("reservation:", reservation);
+
   return (
     <Accordion className={styles.reservation}>
       <Row className={styles.header_wrapper} noGutters={true}>
         <Col xs={10} sm={10} md={10} lg={10}>
           <p className={styles.header_information}>
-            Amelie <br />
-            Ons, 19 2021 | 11:30
+            {reservation.movie.title} <br />
+            {reservation.screening.startTime}
           </p>
         </Col>
         <Col
@@ -47,7 +49,7 @@ const UserReservation = () => {
             <Col xs={3} sm={3} md={3} lg={3}>
               <Image
                 className={styles.movie_image}
-                src="https://m.media-amazon.com/images/M/MV5BNDg4NjM1YjMtYmNhZC00MjM0LWFiZmYtNGY1YjA3MzZmODc5XkEyXkFqcGdeQXVyNDk3NzU2MTQ@._V1_SX300.jpg"
+                src={reservation.movie.image}
                 alt="image"
               />
             </Col>
@@ -59,8 +61,8 @@ const UserReservation = () => {
               className="d-flex align-items-center"
             >
               <p className={styles.movie_information}>
-                Dramakomedi
-                <br /> Längd: 225min
+                {reservation.movie.genre}
+                <br /> Längd: {reservation.movie.length}
               </p>
             </Col>
           </Row>
@@ -71,7 +73,9 @@ const UserReservation = () => {
             <Col>
               <p className={styles.auditoria_information}>
                 Salong: <br />
-                <span className={styles.sub_information}>Stora salongen</span>
+                <span className={styles.sub_information}>
+                  {reservation.screening.auditoriaName}
+                </span>
               </p>
             </Col>
             <Col>
@@ -79,9 +83,9 @@ const UserReservation = () => {
                 Rad och stolsnummer
               </p>
               <ul className={styles.ul}>
-                <li>Rad 2, Stol 3</li>
+                {/* <li>Rad 2, Stol 3</li>
                 <li>Rad 2, Stol 4</li>
-                <li>Rad 2, Stol 5</li>
+                <li>Rad 2, Stol 5</li> */}
               </ul>
             </Col>
           </Row>
@@ -92,18 +96,22 @@ const UserReservation = () => {
             <Col>
               <p className={styles.summary_information}>
                 Antal personer:{" "}
-                <span className={styles.sub_information}>3</span>
+                <span className={styles.sub_information}>
+                  {reservation.tickets.map((ticket, index) => index + 1)}
+                </span>
               </p>
               <p className={styles.summary_information}>
                 Totalpris (SEK) :{" "}
-                <span className={styles.sub_information}>200:-</span>
+                <span className={styles.sub_information}>
+                  {reservation.totalPrice}
+                </span>
               </p>
             </Col>
             <Col>
               <p className={styles.order_information}>
                 Order:{" "}
                 <span className={styles.sub_information}>
-                  #60acbc58b7b50656ccec8734
+                  #{reservation._id}
                 </span>
               </p>
             </Col>
