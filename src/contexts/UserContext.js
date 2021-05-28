@@ -5,7 +5,6 @@ export const UserContext = createContext();
 const UserContextProvider = ({ children }) => {
   const [loggedInUser, setLoggedInUser] = useState(null);
 
-
   // Registration for new user.
   const register = async (userInformation) => {
     try {
@@ -15,10 +14,9 @@ const UserContextProvider = ({ children }) => {
         body: JSON.stringify({
           firstName: userInformation.firstName,
           lastName: userInformation.lastName,
-          phone: userInformation.phone,
+          phoneNumber: userInformation.phone,
           email: userInformation.email,
           password: userInformation.password,
-          reservations: [], 
         }),
       });
 
@@ -37,15 +35,37 @@ const UserContextProvider = ({ children }) => {
       if (data.status === "success") {
         // Registration - logs user in after registration is completed.
         setLoggedInUser(data.data);
-        
+
         return true;
       }
     } catch (err) {
       return false;
     }
   };
+
+  const login = async (userInformation) => {
+    const response = await fetch(`/api/v1/users/login`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        email: userInformation.email,
+        password: userInformation.password,
+      }),
+    });
+    const result = await response.json();
+
+    if (result.status === "error") {
+      return false;
+    } else {
+      setLoggedInUser(result.loggedInUser);
+      return true;
+    }
+  };
+
   return (
-    <UserContext.Provider value={{ loggedInUser, setLoggedInUser, register }}>
+    <UserContext.Provider
+      value={{ loggedInUser, setLoggedInUser, register, login }}
+    >
       {children}
     </UserContext.Provider>
   );
