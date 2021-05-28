@@ -6,7 +6,7 @@ import CustomButtom from "../components/CustomButton";
 
 // props are accepted from the parent component. The layout is created depends on them with the help of a conditional rendering
 export default function MovieSchedule({
-  isMoviePage,
+  isHomePage,
   date,
   time,
   totalPlaces,
@@ -15,30 +15,8 @@ export default function MovieSchedule({
   title
 }) {
   return (
-    <div className={styles.scheduleWrapper}>
-      {isMoviePage ? <h2>Föreställningar</h2> : <h2>Visas idag</h2>}
-      {isMoviePage && (
-        <Row className={`${styles.schedileItem} d-flex align-items-md-center`}>
-          <Col
-            sm={12}
-            md={10}
-            className={`${styles.detailWrapper} d-flex justify-content-between`}
-          >
-            <div className={styles.scheduleDetails}>
-              <h5>Datum</h5>
-            </div>
-            <div className={styles.scheduleDetails}>
-              <h5>Tid</h5>
-            </div>
-            <div className={styles.scheduleDetails}>
-              <h5>Platser</h5>
-            </div>
-            <div className={styles.scheduleDetails}>
-              <h5>Salong</h5>
-            </div>
-          </Col>
-        </Row>
-      )}
+  
+      <>
       <Row className={`${styles.schedileItem} d-flex align-items-md-center`}>
         <Col
           sm={12}
@@ -51,7 +29,7 @@ export default function MovieSchedule({
             </div>
           )}
 
-          <div className={styles.scheduleDetails}>
+          <div className={isHomePage ? `col-2 ${styles.scheduleDetails}`: styles.scheduleDetails}>
             <p>{time}</p>
           </div>
           {totalPlaces ? (
@@ -61,11 +39,11 @@ export default function MovieSchedule({
               </p>
             </div>
           ) : (
-            <div className={styles.scheduleDetails}>
+            <div className={isHomePage ? `col-8 ${styles.scheduleDetails}`: styles.scheduleDetails}>
               <p>{title}</p>
             </div>
           )}
-          <div className={styles.scheduleDetails}>
+          <div className={isHomePage ? ` ${styles.scheduleDetails}`: styles.scheduleDetails}>
             <p>{auditorium}</p>
           </div>
         </Col>
@@ -75,6 +53,7 @@ export default function MovieSchedule({
           <CustomButtom text="Boka" />
         </Col>
       </Row>
-    </div>
+      </>
+  
   );
 }

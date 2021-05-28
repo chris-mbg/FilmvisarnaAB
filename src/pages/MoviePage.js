@@ -90,8 +90,30 @@ export default function MoviePage(props) {
   return (
     <>
       {movie ? renderMovieDescription() : <h2>...loading</h2>}
-      {screenings ? (
-        screenings.map((screen) => (
+      {screenings ? ( 
+        <div className={styles.scheduleWrapper}>
+          <h2>Föreställningar</h2>
+          <Row className={`${styles.schedileItem} d-flex align-items-md-center`}>
+          <Col
+            sm={12}
+            md={10}
+            className={`${styles.detailWrapper} d-flex justify-content-between`}
+          >
+            <div className={styles.scheduleDetails}>
+              <h5>Datum</h5>
+            </div>
+            <div className={styles.scheduleDetails}>
+              <h5>Tid</h5>
+            </div>
+            <div className={styles.scheduleDetails}>
+              <h5>Platser</h5>
+            </div>
+            <div className={styles.scheduleDetails}>
+              <h5>Salong</h5>
+            </div>
+          </Col>
+        </Row>
+       { screenings.map((screen) => (
           <MovieSchedule
             isMoviePage={true}
             date={new Date(screen.startTime)
@@ -105,7 +127,8 @@ export default function MoviePage(props) {
             reservedPlaces={getReservedPlaces(screen.seats)}
             auditorium={screen.auditoriumName}
           />
-        ))
+        ))}
+        </div>
       ) : (
         <h2>...loading</h2>
       )}
