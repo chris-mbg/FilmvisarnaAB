@@ -1,9 +1,14 @@
 import styles from "../../css/UserReservation.module.css";
 import { useState } from "react";
 import { Accordion, Row, Col, Image } from "react-bootstrap";
+import moment from "moment";
+import "moment/locale/sv";
 
 const UserReservation = ({ reservation }) => {
   const [toggleAccordion, setToggleAccordion] = useState(false);
+
+  // Current time
+  const now = moment(new Date()).format();
 
   const icon = !toggleAccordion ? (
     <i className={`${styles.icon} fas fa-arrow-down`} />
@@ -14,12 +19,18 @@ const UserReservation = ({ reservation }) => {
   console.log("reservation:", reservation);
 
   return (
-    <Accordion className={styles.reservation}>
+    <Accordion
+      style={{
+        backgroundColor:
+          reservation.screening.startTime <= now ? "#C4C4C4" : "#fff",
+      }}
+      className={styles.reservation}
+    >
       <Row className={styles.header_wrapper} noGutters={true}>
         <Col xs={10} sm={10} md={10} lg={10}>
           <p className={styles.header_information}>
             {reservation.movie.title} <br />
-            {reservation.screening.startTime}
+            {moment(reservation.screening.startTime).locale("sv").format("LLL")}
           </p>
         </Col>
         <Col
@@ -83,9 +94,9 @@ const UserReservation = ({ reservation }) => {
                 Rad och stolsnummer
               </p>
               <ul className={styles.ul}>
-                {/* <li>Rad 2, Stol 3</li>
+                <li>Rad 2, Stol 3</li>
                 <li>Rad 2, Stol 4</li>
-                <li>Rad 2, Stol 5</li> */}
+                <li>Rad 2, Stol 5</li>
               </ul>
             </Col>
           </Row>
@@ -120,7 +131,7 @@ const UserReservation = ({ reservation }) => {
 
           <Row noGutters={true}>
             <Col className={styles.button_wrapper}>
-              <button className="cancelButton">Avboka</button>
+              {/* <button className="cancelButton">Avboka</button> */}
             </Col>
             {/* /.button_wrapper */}
           </Row>

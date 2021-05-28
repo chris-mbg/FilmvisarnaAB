@@ -18,7 +18,7 @@ const ReservationList = () => {
       screening: {
         screeningId: "60acbc58b7b50656ccec8734",
         auditoriaName: "Lilla Salongen",
-        startTime: "2021-05-28T13:00:00.000+00:00",
+        startTime: "2021-05-30T13:00:00.000+00:00",
       },
       tickets: [
         {
