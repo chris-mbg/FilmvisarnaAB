@@ -25,21 +25,35 @@ export default function MoviePage(props) {
   const renderMovieDescription = () => (
     <section className={styles.movieContainer}>
       <Row className="text-center">
-        <Col sm={12} md={6} lg={3}>
+        <Col sm={12} md={6} lg={5}>
           <Image src={movie.image} fluid />
         </Col>
-        <Col sm={12} md={6} lg={9}>
+        <Col sm={12} md={6} lg={7}>
           <div className=" row flex-column-reverse flex-md-row">
             <div className={styles.description}>
               <h1>{movie.title}</h1>
               <p>{movie.description}</p>
-              <p>Director: {movie.director} </p>
+              <p>Åldersgräns: {movie.ageLimit}</p>
+              <p>Direktör: {movie.director} </p>
+              <p>
+                Skådespelare:{" "}
+                {movie.actors.map((actor) => (
+                  <span>{actor} &#183; </span>
+                ))}
+              </p>
               <p>Språk: {movie.language}</p>
+              <p>
+                {" "}
+                Produktion Länder:{" "}
+                {movie.productionCountries.map((country) => (
+                  <span>{country}</span>
+                ))}
+              </p>
               <p>
                 Sammanfattning: <span>{movie.productionYear}</span>
                 &#183;<span>{movie.length}</span>
               </p>
-              <p>{movie.genre}</p>
+              <p>Genre:{movie.genre}</p>
             </div>
             <CustomButton
               text="Trailer"
@@ -56,12 +70,12 @@ export default function MoviePage(props) {
     <>
       {movie ? renderMovieDescription() : <h1>...loading</h1>}
       <MovieSchedule
-      isMoviePage={true}
-      date={"2021-05-19"}
-      time={"18:00"}
-      totalPlaces={"30"}
-      reservedPlaces={"9"}
-      auditorium={"1"}
+        isMoviePage={true}
+        date={"2021-05-19"}
+        time={"18:00"}
+        totalPlaces={"30"}
+        reservedPlaces={"9"}
+        auditorium={"1"}
       />
     </>
   );

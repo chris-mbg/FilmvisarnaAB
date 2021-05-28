@@ -1,16 +1,28 @@
-.movieContainer{
+.movieContainer {
   background-color: #E1E1E1;
   margin: 1rem;
   padding: 0.9rem 1.8rem;
 }
-.description{
+
+.description {
   color: black;
   font-size: 0.9rem;
-  font-weight: 600;
+  font-weight: 400;
   text-align: start;
 }
 
-.description > h1{
+.description>h1 {
   font-size: 1.25rem;
   font-weight: bold;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+@media only screen and (min-width: 768px) {
+  .description {
+    padding-right: 3rem;
+  }
+  .description > h1{
+    text-align: start;
+  }
 }
