@@ -1,9 +1,18 @@
+import { useEffect } from "react";
 import { createContext, useState } from "react";
 
 export const UserContext = createContext();
 
 const UserContextProvider = ({ children }) => {
   const [loggedInUser, setLoggedInUser] = useState(null);
+
+  const loggedInCheck = async () => {
+    let loggedIn = await fetch("/api/v1/users/whoami");
+    loggedIn = await loggedIn.json();
+    loggedIn ? setLoggedInUser(loggedIn) : setLoggedInUser(null);
+  };
+  // On application render, checks if user saved to session
+  useEffect( () => loggedInCheck(), []);
 
   // Registration for new user.
   const register = async (userInformation) => {
