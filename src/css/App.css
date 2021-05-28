@@ -1,0 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Limelight&family=Open+Sans:wght@400;600;700&display=swap');
+
+.App {
+  background-color: #333333;
+  color: #e1e1e1;
+  font-family: 'Open Sans', sans-serif;
+  position: relative;
+  min-height: 100vh;
+}
