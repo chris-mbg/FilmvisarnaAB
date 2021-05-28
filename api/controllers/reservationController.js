@@ -3,6 +3,18 @@ const Movie = require("../models/Movie");
 const Screening = require("../models/Screening");
 const User = require("../models/User");
 
+const getReservationsForUser = async (req, res) => {
+  if(!req.session.user) {
+    return res.status(401).json({status: "error", message: "No user logged in"});
+  }
+  try {
+    let reservations = await Reservation.find({userId: req.session.user._id});
+    return res.json(reservations);
+  } catch (error) {
+    res.status(400).json({status: "error", message: error.message});
+  }
+}
+
 const createNewReservation = async (req, res) => {
   /*
     req.body = {
@@ -78,5 +90,6 @@ const createNewReservation = async (req, res) => {
 };
 
 module.exports = {
+  getReservationsForUser,
   createNewReservation,
 };
