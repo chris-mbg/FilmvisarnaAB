@@ -1,12 +1,3 @@
-<<<<<<< HEAD
-import LoginModal from './components/LoginModal';
-
-function App() {
-  return (
-    <div className='App'>
-      testar
-      <LoginModal />
-=======
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import MoviePage from "./pages/MoviePage";
@@ -25,17 +16,16 @@ function App() {
         <MovieContextProvider>
           <BrowserRouter>
             <Navbar />
-          <Switch>
-            <Route exact path="/" component={HomePage} />
-            <Route exact path="/movies/:movieId" component={MoviePage} />
-            <Route exact path="/order" component={OrderPage} />
-            <Route exact path="/registration" component={RegistrationPage} />
+            <Switch>
+              <Route exact path="/" component={HomePage} />
+              <Route exact path="/movies/:movieId" component={MoviePage} />
+              <Route exact path="/order" component={OrderPage} />
+              <Route exact path="/registration" component={RegistrationPage} />
               <Route exact path="/profile" component={ProfilePage} />
-          </Switch>
-        </BrowserRouter>
+            </Switch>
+          </BrowserRouter>
         </MovieContextProvider>
       </UserContextProvider>
->>>>>>> dev
     </div>
   );
 }
