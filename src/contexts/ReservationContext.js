@@ -22,13 +22,14 @@ const ReservationContextProvider = (props) => {
       body: JSON.stringify(reservationInfo),
     });
     result = await result.json();
-    if (!result.status === "error") {
-      console.log("Seats booked", result.reservation);
-      // Update list of user reservations showed on ProfilePage.
-      return true;
-    } else {
+    console.log("in saveReserv, result:", result);
+    if (result.status === "error") {
       console.log("Error. Could not save reservation");
       return false;
+    } else {
+      console.log("Seats booked", result.reservation);
+      //* When possible --> Update list of user reservations showed on ProfilePage.
+      return true;
     }
   };
 
@@ -44,7 +45,7 @@ const ReservationContextProvider = (props) => {
         tickets: [
           {
             ticketType: "adult",
-            seatNumber: [2, 6],
+            seatNumber: [2, 7],
           },
         ],
         totalPrice: 90,
