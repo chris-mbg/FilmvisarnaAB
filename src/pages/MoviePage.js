@@ -9,15 +9,36 @@ import MovieSchedule from "../components/MovieSchedule";
 export default function MoviePage(props) {
   const { movieId } = props.match.params;
   const [movie, setMovie] = useState(null);
-  const { getMovieById } = useContext(MovieContext);
+  const [screenings, setScreening] = useState(null);
+
+  const { getMovieById, getAllScreeningsForMovie } = useContext(MovieContext);
 
   useEffect(async () => {
     let response = await getMovieById(movieId);
     setMovie(response);
     // todo delete after test
     console.log("movie", response);
+
+    let schedule = await getAllScreeningsForMovie(response._id);
+    setScreening(schedule);
+    // todo delete after test
+    console.log(schedule);
   }, []);
 
+  
+  /*
+   **{params} = multidimensional array
+   **{return} = number or string
+   */
+  const getReservedPlaces = (seats) => {
+    //  flat() returns a new array in which all the elements of the nested subarrays have been recursively "hoisted", then added values together ( 0 + 0 + 1 + 0 + ...)
+    let reservedPlaces = seats
+      .flat()
+      .reduce((accumulator, currentValue) => accumulator + currentValue);
+    return reservedPlaces ? reservedPlaces : "0";
+  };
+
+  // todo connect trailer
   const seeTrailer = () => {
     console.log("this is a wonderful trailer...");
   };
@@ -68,15 +89,26 @@ export default function MoviePage(props) {
 
   return (
     <>
-      {movie ? renderMovieDescription() : <h1>...loading</h1>}
-      <MovieSchedule
-        isMoviePage={true}
-        date={"2021-05-19"}
-        time={"18:00"}
-        totalPlaces={"30"}
-        reservedPlaces={"9"}
-        auditorium={"1"}
-      />
+      {movie ? renderMovieDescription() : <h2>...loading</h2>}
+      {screenings ? (
+        screenings.map((screen) => (
+          <MovieSchedule
+            isMoviePage={true}
+            date={new Date(screen.startTime)
+              .toLocaleString("sv-SE")
+              .slice(0, 11)}
+            time={new Date(screen.startTime)
+              .toLocaleString("sv-SE")
+              .slice(11, 16)}
+            // flat() returns a new array in which all the elements of the nested subarrays have been recursively "hoisted"
+            totalPlaces={screen.seats.flat(Infinity).length}
+            reservedPlaces={getReservedPlaces(screen.seats)}
+            auditorium={screen.auditoriumName}
+          />
+        ))
+      ) : (
+        <h2>...loading</h2>
+      )}
     </>
   );
 }
