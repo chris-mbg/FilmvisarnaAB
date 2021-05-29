@@ -15,13 +15,10 @@ export default function MoviePage(props) {
     console.log("movie", response);
   },[])
 
-  const screeningId = "60acbc58b7b50656ccec87b5" // 6 juli kl 15.00
-
-
   return (
     <div>
       <h1>Movie page</h1>
-      {movie && <BookButton movieId={movie._id} movieTitle={movie.title} screeningId={screeningId} />}
+      {movie && <BookButton movieId={movie._id} movieTitle={movie.title} />}
     </div>
   )
 }

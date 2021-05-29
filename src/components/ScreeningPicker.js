@@ -28,7 +28,7 @@ const ScreeningPicker = () => {
             </option>
           ))}
       </select>
-      {screeningToShow &&
+      {screeningToShow && screeningToShow.length > 0 &&
         <div>
           {screeningToShow[0].movieId}
           <p>Ska visas för grafisk komponent: </p>

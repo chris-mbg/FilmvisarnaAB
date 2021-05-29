@@ -3,6 +3,7 @@ import { Card } from "react-bootstrap";
 import styles from "../css/MovieCard.module.css";
 import CustomButton from "./CustomButton";
 import { useHistory } from "react-router-dom";
+import BookButton from "./BookButton";
 
 export default function MovieCard({ movie }) {
   const history = useHistory();
@@ -19,7 +20,8 @@ export default function MovieCard({ movie }) {
         <Card.Text>Längd: {movie.length}</Card.Text>
         <div className="d-flex justify-content-between mt-4">
           <CustomButton clickHandler={handleInfoClick} text="Info" />
-          <CustomButton clickHandler={handleOrderClick} text="Boka" />
+          {/* <CustomButton clickHandler={handleOrderClick} text="Boka" /> */}
+          <BookButton movieId={movie._id} movieTitle={movie.title} />
         </div>
       </Card.Body>
     </Card>

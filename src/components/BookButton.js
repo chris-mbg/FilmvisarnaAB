@@ -15,7 +15,7 @@ const BookButton = ({ movieId, movieTitle, screeningId = null }) => {
     if(loggedInUser) {
       setMovieOnOrderPage({movieId, movieTitle});
       if(screeningId) {
-        setScreeningIdOnOrderPage(screeningId)
+        setScreeningIdOnOrderPage(screeningId);
       }
       history.push("/order");
     }
