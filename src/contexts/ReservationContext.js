@@ -26,9 +26,10 @@ const ReservationContextProvider = (props) => {
 
   useEffect(async () => {
     if(screeningIdOnOrderPage && movieScreenings) {
+      console.log("Setting screening to show..")
       setScreeningToShow(movieScreenings.filter(screen => screen._id === screeningIdOnOrderPage));
     }
-  }, [screeningIdOnOrderPage]);
+  }, [movieScreenings]);
 
   useEffect(() => console.log("movie Screenings", movieScreenings),[movieScreenings]);
   useEffect(() => console.log("one screening", screeningToShow),[screeningToShow]);

@@ -28,6 +28,8 @@ const MovieContextProvider = (props) => {
     let result = await fetch(`/api/v1/screenings/${movieId}`);
     result = await result.json();
     if (result.status !== "error") {
+      // Makes the startTime property into a Date object before returning the result
+      result = result.map(screening => ({...screening, startTime: new Date(screening.startTime)}));
       return result;
     }
   };
