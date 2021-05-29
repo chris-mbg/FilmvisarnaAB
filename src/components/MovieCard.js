@@ -7,7 +7,7 @@ import CustomButton from "./CustomButton";
 import { MovieContext } from "../contexts/MovieContext";
 
 export default function MovieCard({ movie }) {
-  const { getAllScreeningsForMovie } = useContext(MovieContext);
+  const { getAllScreeningsForMovie, setOrderScreenings } = useContext(MovieContext);
   const history = useHistory();
 
   const handleInfoClick = () => history.push(`/movies/${movie._id}`);
@@ -16,6 +16,7 @@ export default function MovieCard({ movie }) {
     // ** to go to the order page for a specific movie. 
     // ** I find   ??THE FIRST ??? closest screening based on the film id
     let screenings = await getAllScreeningsForMovie(id);
+    setOrderScreenings(screenings)
     const screeningId = screenings[0]._id;
     history.push(`/order/${screeningId}`);
   };

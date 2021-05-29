@@ -4,8 +4,10 @@ export const MovieContext = createContext();
 
 const MovieContextProvider = (props) => {
   const [allMovies, setAllMovies] = useState(null);
-
+  // for render in OrderPage
+  const [orderScreenings, setOrderScreenings] = useState(null);
   // All movies fetch from DB on render
+
   useEffect(() => fetchAllMovies(), []);
 
   const fetchAllMovies = async () => {
@@ -24,7 +26,7 @@ const MovieContextProvider = (props) => {
     }
   };
 
-  const getAllScreeningsForMovie = async movieId => {
+  const getAllScreeningsForMovie = async (movieId) => {
     let result = await fetch(`/api/v1/screenings/${movieId}`);
     result = await result.json();
     if (result.status !== "error") {
@@ -36,6 +38,8 @@ const MovieContextProvider = (props) => {
     allMovies,
     getMovieById,
     getAllScreeningsForMovie,
+    orderScreenings,
+    setOrderScreenings,
   };
 
   return (
