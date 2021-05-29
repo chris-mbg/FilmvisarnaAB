@@ -3,6 +3,7 @@ import { Row, Col } from "react-bootstrap";
 import { MovieContext } from "../contexts/MovieContext";
 
 import styles from '../css/OrderPage.module.css';
+import Chair from '../components/order/Chair';
 
 
 // For this page is necessarily (otherwise page not be loaded) to click the "BOOK" button, Because screening id  is needed for to find  the desired movie !!!!!
@@ -13,12 +14,15 @@ export default function OrderPage() {
   const [currentMovie, setCurremtMovie] = useState(null);
   // for rendering a matrix of seats in a particular auditorium (dynamically changes, depending on input select)
   const [selectedScreening, setSelectedScreening] = useState(null);
+  // toggle class when user to click on cinema seat
+  const [isActive, setActive] = useState(false)
 
   useEffect(async () => {
     //  geted from MovieCard when was click on the "BOKA" button
     if (orderScreenings) {
       let movie = await getMovieById(orderScreenings[0].movieId);
       setCurremtMovie(movie);
+      setSelectedScreening()
       // todo delete console log
       console.log(movie);
       console.log(orderScreenings);
@@ -31,6 +35,10 @@ export default function OrderPage() {
     );
   };
 
+ const setActiveHandler = () => console.log('click');
+  
+
+ 
   const renderCinemaMatrix = () => {
     const cinemaMatrix = [];
     if(selectedScreening){
@@ -44,27 +52,18 @@ export default function OrderPage() {
         // check for reserved places by values from db
         if (seats[row][seat].reserved === 1) {
           cinemaMatrix.push(
-            <div className={`${styles.chairItem} ${styles.reserved}`}key={seats[row][seat].id}>
-              <span className={styles.tooltip}>
-                row: <strong>{row + 1}</strong>
-                chair: <strong>{seat + 1} </strong>
-              </span>
-            </div>
+            <Chair row ={row} seat={seat} key={seats[row][seat].id} reserved={true}/>
           );
         } else {
           // 
           cinemaMatrix.push(
-            <div
-            className={styles.chairItem }
-              key={seats[row][seat].id}
-              // className={toggleActiveStyles(row, seat, seats[row][seat].id)}
-              // onClick={() => reserveTicket(row, seat, seats[row][seat].id)}
-            >
-              <span className={styles.tooltip}>
-                row:<strong> {row + 1}</strong>
-                chair: <strong>{seat + 1}</strong>
-              </span>
-            </div>
+
+            <Chair className={isActive && `${styles.active}`}
+            row ={row} seat={seat} 
+            key={seats[row][seat].id} 
+            // todo add click!!!
+            clickHandler={setActiveHandler}
+            />
           );
         }
       }
@@ -83,7 +82,7 @@ export default function OrderPage() {
           <select onChange={(e) => getSelectedScreening(e)}>
             {orderScreenings.map((time) => (
               <option key={time.startTime} value={time.startTime}>
-                {new Date(time.startTime).toLocaleString("sv-SE")}
+                {new Date(time.startTime).toLocaleString("sv-SE").slice(0, 16)}
               </option>
             ))}
           </select>
@@ -97,7 +96,6 @@ export default function OrderPage() {
       </Row>
     </>
   );
-
   return (
     <div>
       <h1>Boka bilijetter</h1>
