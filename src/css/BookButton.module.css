@@ -1,0 +1,30 @@
+.bookButton {
+  /* display: inline-block; */
+}
+
+.disabled {
+  filter: grayscale(0.6);
+}
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 150px;
+  background-color: #013220b0;
+  color: #e1e1e1;
+  text-align: center;
+  padding: 0.5rem;
+  border-radius: 6px;
+  position: absolute;
+  z-index: 1;
+  top: -5px;
+  left: 105%;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
