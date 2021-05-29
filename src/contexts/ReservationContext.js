@@ -6,26 +6,41 @@ export const ReservationContext = createContext();
 
 const ReservationContextProvider = (props) => {
 
-  const [movieToShow, setMovieToShow] = useState(null);
+  const [movieOnOrderPage, setMovieOnOrderPage] = useState(null);
+
+  const [screeningIdOnOrderPage, setScreeningIdOnOrderPage] = useState(null);
   const [movieScreenings, setMovieScreenings] = useState(null);
   const [screeningToShow, setScreeningToShow] = useState(null);
 
   const { getAllScreeningsForMovie } = useContext(MovieContext);
 
   useEffect(async () => {
-    if(movieToShow) {
-      setMovieScreenings(await getAllScreeningsForMovie(movieToShow));
+    if(movieOnOrderPage && movieScreenings && (movieOnOrderPage?.movieId !== movieScreenings[0].movieId)) {
+      setMovieScreenings(null);
+      setScreeningToShow(null)
     }
-  }, [movieToShow]);
+    if(movieOnOrderPage) {
+      setMovieScreenings(await getAllScreeningsForMovie(movieOnOrderPage.movieId));
+    }
+  }, [movieOnOrderPage]);
+
+  useEffect(async () => {
+    if(screeningIdOnOrderPage && movieScreenings) {
+      setScreeningToShow(movieScreenings.filter(screen => screen._id === screeningIdOnOrderPage));
+    }
+  }, [screeningIdOnOrderPage]);
 
   useEffect(() => console.log("movie Screenings", movieScreenings),[movieScreenings]);
+  useEffect(() => console.log("one screening", screeningToShow),[screeningToShow]);
 
   const values = {
-    movieToShow,
-    setMovieToShow,
+    movieOnOrderPage,
+    setMovieOnOrderPage,
+    screeningIdOnOrderPage,
+    setScreeningIdOnOrderPage,
     movieScreenings,
     screeningToShow,
-    setScreeningToShow
+    // setScreeningToShow,
   };
 
   return (
