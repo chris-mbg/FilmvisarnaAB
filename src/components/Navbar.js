@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import styles from "../css/Navbar.module.css";
 import { Link } from "react-router-dom";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
+import { UserContext } from "../contexts/UserContext";
 
 function Navbar1() {
   // Import variable from UserContext here...
+  const { logout } = useContext(UserContext);
   const userLoggedIn = false;
 
   return (
@@ -36,7 +38,9 @@ function Navbar1() {
             </Nav.Link>
           )}
           {userLoggedIn ? (
-            <Nav.Link className={styles.link}>LOGGA UT</Nav.Link>
+            <Nav.Link onClick={() => logout()} className={styles.link}>
+              LOGGA UT
+            </Nav.Link>
           ) : (
             <Nav.Link className={styles.link}>LOGGA IN</Nav.Link>
           )}
