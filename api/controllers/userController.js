@@ -10,6 +10,9 @@ const whoami = (req, res) => {
   return res.json(req.session.user || null);
 };
 
+// GET - log the user out.
+const logout = async (req, res) => {};
+
 // POST - register a new user
 const register = async (req, res) => {
   try {
@@ -96,4 +99,5 @@ module.exports = {
   whoami,
   register,
   login,
+  logout,
 };
