@@ -44,6 +44,7 @@ const createNewReservation = async (req, res) => {
     // Checks that the seats that user tries to book is free. (finds the right seat in screening.seats by using the seatNumber in tickets)
     //If not taken --> change the value to 1.
     for (let i = 0; i < req.body.tickets.length; i++) {
+      console.log("In for loop, i:", i);
       if (
         screening.seats[req.body.tickets[i].seatNumber[0]][
           req.body.tickets[i].seatNumber[1]
@@ -56,6 +57,7 @@ const createNewReservation = async (req, res) => {
         screening.seats[req.body.tickets[i].seatNumber[0]][
           req.body.tickets[i].seatNumber[1]
         ] = 1;
+        console.log("Booking ticket...");
       }
     }
 
