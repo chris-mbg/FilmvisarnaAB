@@ -1,5 +1,4 @@
-import { useEffect } from "react";
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 
 export const UserContext = createContext();
 
@@ -79,6 +78,21 @@ const UserContextProvider = ({ children }) => {
     }
   };
 
+  // Log the user out.
+  const logout = async () => {
+    // Checks if user is logged in or not. If user is not logged in, then "return".
+    if (!loggedInUser) return;
+
+    const { status } = await fetch("/api/v1/users/logout");
+
+    // If logout is successful. Set loggedInUser to "null".
+    if (status === 200) {
+      setLoggedInUser(null);
+
+      return true;
+    }
+  };
+
   const getAllReservationsForUser = async () => {
     let result = await fetch("/api/v1/reservations/user");
     result = await result.json();
@@ -97,6 +111,7 @@ const UserContextProvider = ({ children }) => {
         login,
         getAllReservationsForUser,
       }}
+      value={{ loggedInUser, setLoggedInUser, register, login, logout }}
     >
       {children}
     </UserContext.Provider>
