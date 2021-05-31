@@ -4,6 +4,7 @@ export const UserContext = createContext();
 
 const UserContextProvider = ({ children }) => {
   const [loggedInUser, setLoggedInUser] = useState(null);
+  const [userReservations, setUserReservations] = useState(null);
 
   const loggedInCheck = async () => {
     let loggedIn = await fetch("/api/v1/users/whoami");
@@ -12,6 +13,13 @@ const UserContextProvider = ({ children }) => {
   };
   // On application render, checks if user saved to session
   useEffect(() => loggedInCheck(), []);
+
+  // Get all reservations for a logged in user
+  useEffect(() => {
+    if (loggedInUser) {
+      getAllReservationsForUser();
+    }
+  }, [loggedInUser]);
 
   // Registration for new user.
   const register = async (userInformation) => {
@@ -85,9 +93,25 @@ const UserContextProvider = ({ children }) => {
     }
   };
 
+  const getAllReservationsForUser = async () => {
+    let result = await fetch("/api/v1/reservations/user");
+    result = await result.json();
+    if (result.status !== "error") {
+      setUserReservations(result);
+    }
+  };
+
   return (
     <UserContext.Provider
-      value={{ loggedInUser, setLoggedInUser, register, login, logout }}
+      value={{
+        loggedInUser,
+        userReservations,
+        setLoggedInUser,
+        register,
+        login,
+        logout,
+        getAllReservationsForUser,
+      }}
     >
       {children}
     </UserContext.Provider>
