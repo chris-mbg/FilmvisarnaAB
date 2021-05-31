@@ -22,7 +22,7 @@ const ReservationContextProvider = (props) => {
   const [screeningIdOnOrderPage, setScreeningIdOnOrderPage] = useState(null);
 
   // Seats
-  const [chosenSeats, setChosenSeats] = useState(null);
+  const [chosenSeats, setChosenSeats] = useState([]);
 
   useEffect(() => {}, [
     movieOnOrderPage,

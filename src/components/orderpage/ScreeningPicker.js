@@ -17,6 +17,7 @@ const ScreeningPicker = () => {
     setMovieOnOrderPage,
     movieScreenings,
     setMovieScreenings,
+    screeningToShow,
     setScreeningToShow,
   } = useContext(ReservationContext);
 
@@ -40,7 +41,7 @@ const ScreeningPicker = () => {
     if (selectedScreening === "default") {
       setScreeningToShow(null);
     } else {
-      setScreeningToShow(filterSelectedScreening());
+      setScreeningToShow(...filterSelectedScreening());
     }
   }, [selectedScreening]);
 
@@ -83,7 +84,9 @@ const ScreeningPicker = () => {
         </Col>
       </Row>
       <Row className="my-2">
-        <Col>{movieScreenings && movieScreenings[0].auditoriumName}</Col>
+        <Col>
+          <p>Salongsnamn: {screeningToShow && screeningToShow.auditoriumName}</p>
+        </Col>
       </Row>
     </div>
   );
