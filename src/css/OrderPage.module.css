@@ -1,0 +1,35 @@
+#cinema_wrapper {
+  display: inline-flex;
+  width: 50%;
+}
+
+#tickets_wrapper {
+  display: inline-flex;
+  width: 50%;
+}
+
+/* Media Queries */
+
+/** 
+*** Mobile Screen
+**/
+@media (max-width: 768px) {
+  #cinema_wrapper {
+    /* display: inline-flex; */
+    width: 100%;
+  }
+
+  #tickets_wrapper {
+    /* display: inline-flex; */
+    width: 100%;
+  }
+}
+
+/**
+*** Large screen
+**/
+@media (min-width: 769px) {
+  .profile_container {
+    display: flex;
+  }
+}
