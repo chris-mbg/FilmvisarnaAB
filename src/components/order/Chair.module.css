@@ -35,3 +35,7 @@
   background-color: #C4C4C4;
 }
 
+.chairItem.chosen {
+  background-color: tomato;
+}
+

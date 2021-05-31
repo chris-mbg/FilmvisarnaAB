@@ -18,7 +18,7 @@ const ScreeningPicker = () => {
   return (
     <div>
       {movieOnOrderPage && <p>{movieOnOrderPage.movieTitle}</p>}
-      {screeningIdOnOrderPage && <p>{screeningIdOnOrderPage}</p>}
+      {/* {screeningIdOnOrderPage && <p>{screeningIdOnOrderPage}</p>} */}
       <select onChange={handleSelectChange} value={selectedScreening}>
         <option value="">Välj en tid</option>
         {movieScreenings &&
@@ -28,7 +28,7 @@ const ScreeningPicker = () => {
             </option>
           ))}
       </select>
-      {screeningToShow && screeningToShow.length > 0 &&
+      {/* {screeningToShow && screeningToShow.length > 0 &&
         <div>
           {screeningToShow[0].movieId}
           <p>Ska visas för grafisk komponent: </p>
@@ -42,7 +42,7 @@ const ScreeningPicker = () => {
           )
           }
         </div>
-      }
+      } */}
     </div>
   );
 };
