@@ -1,5 +1,5 @@
 import styles from "../../css/Chair.module.css";
-import { useContext, useRef } from "react";
+import { useContext } from "react";
 import { ReservationContext } from "../../contexts/ReservationContext";
 
 const Chair = ({ row, seat, reserved }) => {
