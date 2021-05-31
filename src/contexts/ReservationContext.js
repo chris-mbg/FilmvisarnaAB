@@ -1,11 +1,13 @@
 import { useEffect } from "react";
 import { createContext, useContext, useState } from "react";
 import { MovieContext } from "./MovieContext";
+import { UserContext } from "./UserContext";
 
 export const ReservationContext = createContext();
 
 const ReservationContextProvider = (props) => {
   const { getAllScreeningsForMovie } = useContext(MovieContext);
+  const { getAllReservationsForUser } = useContext(UserContext);
 
   const [movieIdOnOrderPage, setMovieIdOnOrderPage] = useState(null);
   const [screeningIdOnOrderPage, setScreeningIdOnOrderPage] = useState(null);
@@ -62,10 +64,28 @@ const ReservationContextProvider = (props) => {
       return false;
     } else {
       console.log("Seats booked", result.reservation);
-      //* When possible --> Update list of user reservations showed on ProfilePage.
-      return true;
+      //When possible --> Update list of user reservations showed on ProfilePage.
+      getAllReservationsForUser();
+      return result.reservation;
     }
   };
+
+  const getTickets = () => {
+    const tickets = [];
+    for(let i = 0; i < seatsChosen.length; i++) {
+      tickets.push({ ticketType: "adult", seatNumber: seatsChosen[i]});
+    }
+    return tickets;
+  }
+
+  const userConfirmsReservation = async () => {
+    let result = await saveReservation({
+      screeningId: screeningToShow[0]._id,
+      tickets: getTickets(),
+      totalPrice: seatsChosen.length * screeningToShow[0].price
+    });
+    return result;
+  }
 
 
   const values = {
@@ -79,6 +99,7 @@ const ReservationContextProvider = (props) => {
     //setScreeningToShow,
     seatsChosen,
     setSeatsChosen,
+    userConfirmsReservation
   };
 
   return (
