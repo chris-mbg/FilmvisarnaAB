@@ -1,11 +1,5 @@
 .matrixWrapper{
-  /* width: 50%; */
-  /* margin: 0 auto; */
   background-color: #F1F1F1;
   text-align: center;
   margin-top: 30px;
-}
-
-.active{
-  background-color: #E87209;
 }

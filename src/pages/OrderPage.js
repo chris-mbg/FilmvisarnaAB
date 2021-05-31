@@ -35,7 +35,10 @@ export default function OrderPage() {
     );
   };
 
- const setActiveHandler = () => console.log('click');
+ const setActiveHandler = () =>{
+   console.log('click');
+   setActive(!isActive)
+ } 
   
 
  
@@ -58,10 +61,11 @@ export default function OrderPage() {
           // 
           cinemaMatrix.push(
 
-            <Chair className={isActive && `${styles.active}`}
+            <Chair 
             row ={row} seat={seat} 
-            key={seats[row][seat].id} 
-            // todo add click!!!
+            key={seats[row][seat].id}
+            isActive={isActive} 
+            // delegation
             clickHandler={setActiveHandler}
             />
           );

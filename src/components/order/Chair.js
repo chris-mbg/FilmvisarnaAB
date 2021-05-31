@@ -1,16 +1,18 @@
 import React from "react";
 import styles from "./Chair.module.css";
 
-export default function chair({reserved, row, seat}) {
- 
+export default function chair({reserved, row, seat, clickHandler, isActive}) {
+  
+
   return (
     <>
-      <div
-        className={
-          reserved
-            ? `${styles.chairItem}  ${styles.reserved}`
-            : `${styles.chairItem}`
+      <div 
+        className={ `${styles.chairItem} 
+        ${reserved
+          ? styles.reserved
+          : isActive && styles.active}`
         }
+        onClick={clickHandler}
       >
         <span className={styles.tooltip}>
           row: <strong>{row + 1}</strong>
