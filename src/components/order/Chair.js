@@ -50,7 +50,7 @@ export default function Chair({ reserved, row, seat }) {
           ) : (
             <span>
               Rad: <strong>{row + 1}</strong> {""}
-              Stol: <strong>{seat + 1} </strong>{" "}
+              Plats: <strong>{seat + 1} </strong>{" "}
             </span>
           )}
         </span>
