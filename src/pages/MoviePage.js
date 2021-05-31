@@ -25,7 +25,7 @@ export default function MoviePage(props) {
     console.log(schedule);
   }, []);
 
-  
+
   /*
    **{params} = multidimensional array
    **{return} = number or string
@@ -54,7 +54,8 @@ export default function MoviePage(props) {
             <div className={styles.description}>
               <h1>{movie.title}</h1>
               <p>{movie.description}</p>
-              <p>Åldersgräns: {movie.ageLimit}</p>
+              <hr></hr>
+              <p>Åldersgräns: {movie.ageLimit.slice(-2)} år</p>
               <p>Direktör: {movie.director} </p>
               <p>
                 Skådespelare:{" "}
@@ -63,24 +64,23 @@ export default function MoviePage(props) {
                 ))}
               </p>
               <p>Språk: {movie.language}</p>
-              <p>
-                {" "}
-                Produktion Länder:{" "}
-                {movie.productionCountries.map((country) => (
+              <p>Produktionsår:{" "} {movie.productionYear}
+                {/* {movie.productionCountries.map((country) => (
                   <span>{country}</span>
-                ))}
+                ))} */}
               </p>
-              <p>
-                Sammanfattning: <span>{movie.productionYear}</span>
-                &#183;<span>{movie.length}</span>
+              <p> Längd: <span>{movie.length}</span>
+                {/* Sammanfattning: <span>{movie.productionYear}</span>
+                &#183;<span>{movie.length}</span> */}
               </p>
-              <p>Genre:{movie.genre}</p>
+              <p>Genre:{""} {movie.genre}</p>
             </div>
-            <CustomButton
+            {/* Needed when possibility to see trailer is implemented! */}
+            {/* <CustomButton
               text="Trailer"
               className="order-md-last"
               clickHandler={seeTrailer}
-            />
+            /> */}
           </div>
         </Col>
       </Row>
@@ -88,12 +88,12 @@ export default function MoviePage(props) {
   );
 
   return (
-    <>
+    <div className="container pb-3">
       {movie ? renderMovieDescription() : <h2>...loading</h2>}
-      {screenings ? ( 
+      {screenings ? (
         <div className={styles.scheduleWrapper}>
           <h2>Föreställningar</h2>
-          <Row className={`${styles.schedileItem} d-flex align-items-md-center`}>
+          <Row className={`${styles.scheduleItem} d-flex align-items-md-center`}>
           <Col
             sm={12}
             md={10}
@@ -106,7 +106,7 @@ export default function MoviePage(props) {
               <h5>Tid</h5>
             </div>
             <div className={styles.scheduleDetails}>
-              <h5>Platser</h5>
+              <h5>Platser kvar</h5>
             </div>
             <div className={styles.scheduleDetails}>
               <h5>Salong</h5>
@@ -132,6 +132,6 @@ export default function MoviePage(props) {
       ) : (
         <h2>...loading</h2>
       )}
-    </>
+    </div>
   );
 }

@@ -15,9 +15,9 @@ export default function MovieSchedule({
   title
 }) {
   return (
-  
+
       <>
-      <Row className={`${styles.schedileItem} d-flex align-items-md-center`}>
+      <Row className={`${styles.scheduleItem} d-flex align-items-md-center`}>
         <Col
           sm={12}
           md={10}
@@ -35,7 +35,8 @@ export default function MovieSchedule({
           {totalPlaces ? (
             <div className={styles.scheduleDetails}>
               <p>
-                <span>{reservedPlaces}</span>/<span>{totalPlaces}</span>
+                <span>{totalPlaces - reservedPlaces}</span>
+                {/* /<span>{totalPlaces}</span> */}
               </p>
             </div>
           ) : (
@@ -54,6 +55,6 @@ export default function MovieSchedule({
         </Col>
       </Row>
       </>
-  
+
   );
 }
