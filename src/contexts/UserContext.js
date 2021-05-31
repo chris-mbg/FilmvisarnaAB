@@ -14,12 +14,6 @@ const UserContextProvider = ({ children }) => {
   // On application render, checks if user saved to session
   useEffect(() => loggedInCheck(), []);
 
-  // Testing - remove after testing.
-  useEffect(() => {
-    // Testing: insert valid email and password from MongoDB
-    login();
-  }, []);
-
   // Registration for new user.
   const register = async (userInformation) => {
     try {
