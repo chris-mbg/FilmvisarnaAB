@@ -14,6 +14,23 @@ const ReservationContextProvider = (props) => {
   //       totalPrice: Number,
   //     }
 
+  const [movieOnOrderPage, setMovieOnOrderPage] = useState(null);
+  const [movieScreenings, setMovieScreenings] = useState(null);
+
+  // Screenings
+  const [selectedScreening, setSelectedScreening] = useState("default");
+  const [screeningToShow, setScreeningToShow] = useState(null);
+  const [screeningIdOnOrderPage, setScreeningIdOnOrderPage] = useState(null);
+
+  // Seats
+  const [chosenSeats, setChosenSeats] = useState(null);
+
+  useEffect(() => {}, [
+    movieOnOrderPage,
+    movieScreenings,
+    screeningIdOnOrderPage,
+  ]);
+
   const saveReservation = async (reservationInfo) => {
     console.log(reservationInfo);
     let result = await fetch("/api/v1/reservations/", {
@@ -35,6 +52,18 @@ const ReservationContextProvider = (props) => {
 
   const values = {
     saveReservation,
+    movieOnOrderPage,
+    setMovieOnOrderPage,
+    movieScreenings,
+    setMovieScreenings,
+    screeningToShow,
+    setScreeningToShow,
+    screeningIdOnOrderPage,
+    setScreeningIdOnOrderPage,
+    selectedScreening,
+    setSelectedScreening,
+    chosenSeats,
+    setChosenSeats,
   };
 
   return (
