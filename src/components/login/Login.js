@@ -63,29 +63,31 @@ export const Login = () => {
     <div className={`form-group ${style.modalContainer}`}>
       <h2 className={style.loginHeading}>Logga in</h2>
       <form onSubmit={handleFormSubmit}>
-        <label htmlFor='email' className={style.labelForm}>
-          Email Address
-          <input
-            type='text'
-            className={`form-control ${style.input}`}
-            value={data.email}
-            onChange={handleInputChange}
-            name='email'
-            id='email'
-          />
-        </label>
+        {/* <label htmlFor='email' className={style.labelForm}>
+          Email Address */}
+        <input
+          type='text'
+          className={`form-control ${style.input}`}
+          value={data.email}
+          onChange={handleInputChange}
+          name='email'
+          id='email'
+          placeholder='E-postadress'
+        />
+        {/* </label> */}
 
-        <label htmlFor='password' className={style.labelForm}>
-          Password
-          <input
-            type='password'
-            className={`form-control ${style.input}`}
-            value={data.password}
-            onChange={handleInputChange}
-            name='password'
-            id='password'
-          />
-        </label>
+        {/* <label htmlFor='password' className={style.labelForm}>
+          Password */}
+        <input
+          type='password'
+          className={`form-control ${style.input}`}
+          value={data.password}
+          onChange={handleInputChange}
+          name='password'
+          id='password'
+          placeholder='Lösenord'
+        />
+        {/* </label> */}
 
         {data.errorMessage && (
           <span className='form-error'>{data.errorMessage}</span>

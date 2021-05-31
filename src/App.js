@@ -70,7 +70,6 @@ function App() {
     >
       <Header />
       <div className='App'>
-        {!state.isAuthenticated ? <Login /> : <HomePage />}
         <UserContextProvider>
           <MovieContextProvider>
             <BrowserRouter>
@@ -89,7 +88,7 @@ function App() {
             </BrowserRouter>
           </MovieContextProvider>
         </UserContextProvider>
-        <Login />
+        {!state.isAuthenticated ? <Login /> : <HomePage />}
       </div>
     </AuthContext.Provider>
   );
