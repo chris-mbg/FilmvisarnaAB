@@ -7,7 +7,7 @@ export const ReservationContext = createContext();
 const ReservationContextProvider = (props) => {
   const { getAllScreeningsForMovie } = useContext(MovieContext);
 
-  const [movieOnOrderPage, setMovieOnOrderPage] = useState(null);
+  const [movieIdOnOrderPage, setMovieIdOnOrderPage] = useState(null);
   const [screeningIdOnOrderPage, setScreeningIdOnOrderPage] = useState(null);
 
   const [movieScreenings, setMovieScreenings] = useState(null);
@@ -17,21 +17,22 @@ const ReservationContextProvider = (props) => {
 
   useEffect(() => {
     async function changeMovie() {
-      if(movieOnOrderPage && movieScreenings && (movieOnOrderPage.movieId !== movieScreenings[0].movieId)) {
+      if(movieIdOnOrderPage && movieScreenings && (movieIdOnOrderPage !== movieScreenings[0].movieId)) {
         setMovieScreenings(null);
         setScreeningToShow(null)
       }
-      if(movieOnOrderPage) {
-        setMovieScreenings(await getAllScreeningsForMovie(movieOnOrderPage.movieId));
+      if(movieIdOnOrderPage) {
+        setMovieScreenings(await getAllScreeningsForMovie(movieIdOnOrderPage));
       }
     }
+    console.log("movieIdOnOrderPage", movieIdOnOrderPage);
     changeMovie();
-  }, [movieOnOrderPage]);
+  }, [movieIdOnOrderPage]);
 
   useEffect(() => {
     // If change in movie or screening --> reset seatsChosen
     setSeatsChosen([]);
-  },[screeningIdOnOrderPage, movieOnOrderPage]);
+  },[screeningIdOnOrderPage, movieIdOnOrderPage]);
 
   useEffect(() => console.log("Seats chosen by user", seatsChosen));
 
@@ -48,42 +49,6 @@ const ReservationContextProvider = (props) => {
 
   useEffect(() => console.log("movie Screenings", movieScreenings),[movieScreenings]);
   useEffect(() => console.log("one screening", screeningToShow),[screeningToShow]);
-
-  const values = {
-    movieOnOrderPage,
-    setMovieOnOrderPage,
-    screeningIdOnOrderPage,
-    setScreeningIdOnOrderPage,
-    movieScreenings,
-    screeningToShow,
-    //setScreeningToShow,
-    seatsChosen,
-    setSeatsChosen,
-  };
-
-  return (
-    <ReservationContext.Provider value={values}>
-      {props.children}
-    </ReservationContext.Provider>
-  );
-};
-
-export default ReservationContextProvider;
-import { createContext, useContext, useEffect, useState } from "react";
-import { UserContext } from "./UserContext";
-
-export const ReservationContext = createContext();
-
-const ReservationContextProvider = (props) => {
-  //     reservationInfo needs to look like following for func to work
-  //     {
-  //       screeningId: "ObjectId",
-  //       tickets: [{
-  //         ticketType: "adult",
-  //         seatNumber: [y,x]
-  //       }]
-  //       totalPrice: Number,
-  //     }
 
   const saveReservation = async (reservationInfo) => {
     console.log(reservationInfo);
@@ -104,8 +69,18 @@ const ReservationContextProvider = (props) => {
     }
   };
 
+
   const values = {
     saveReservation,
+    movieIdOnOrderPage,
+    setMovieIdOnOrderPage,
+    screeningIdOnOrderPage,
+    setScreeningIdOnOrderPage,
+    movieScreenings,
+    screeningToShow,
+    //setScreeningToShow,
+    seatsChosen,
+    setSeatsChosen,
   };
 
   return (
@@ -116,3 +91,14 @@ const ReservationContextProvider = (props) => {
 };
 
 export default ReservationContextProvider;
+
+
+  //     reservationInfo needs to look like following for func to work
+  //     {
+  //       screeningId: "ObjectId",
+  //       tickets: [{
+  //         ticketType: "adult",
+  //         seatNumber: [y,x]
+  //       }]
+  //       totalPrice: Number,
+  //     }

@@ -8,16 +8,16 @@ import styles from "../css/BookButton.module.css"
 const BookButton = ({ movieId, movieTitle, screeningId = null }) => {
 
   const { loggedInUser } = useContext(UserContext);
-  const { setMovieOnOrderPage, setScreeningIdOnOrderPage } = useContext(ReservationContext);
+  //const { setMovieOnOrderPage, setScreeningIdOnOrderPage } = useContext(ReservationContext);
   const history = useHistory();
 
   const bookButtonClick = () => {
     if(loggedInUser) {
-      setMovieOnOrderPage({movieId, movieTitle});
+      //setMovieOnOrderPage({movieId, movieTitle});
       if(screeningId) {
-        setScreeningIdOnOrderPage(screeningId);
+        //setScreeningIdOnOrderPage(screeningId);
       }
-      history.push("/order");
+      history.push(`/order/${movieId}/${screeningId ? screeningId : ""}`);
     }
   }
 

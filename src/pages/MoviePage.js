@@ -133,9 +133,9 @@ export default function MoviePage(props) {
       ) : (
         <h2>...loading</h2>
       )}
-    <div>
+   {/*  <div>
       <h1>Movie page</h1>
-      {movie && <BookButton movieId={movie._id} movieTitle={movie.title} />}
+      {movie && <BookButton movieId={movie._id} movieTitle={movie.title} />} */}
     </div>
   );
 }
