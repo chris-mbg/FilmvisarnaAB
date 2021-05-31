@@ -109,9 +109,9 @@ const UserContextProvider = ({ children }) => {
         setLoggedInUser,
         register,
         login,
+        logout,
         getAllReservationsForUser,
       }}
-      value={{ loggedInUser, setLoggedInUser, register, login, logout }}
     >
       {children}
     </UserContext.Provider>
