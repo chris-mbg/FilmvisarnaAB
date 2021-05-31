@@ -1,9 +1,10 @@
-import React from 'react'
+import styles from "../css/OrderPage.module.css";
+import { Container } from "react-bootstrap";
 
 export default function OrderPage() {
   return (
-    <div>
-      <h1>Order Page</h1>
-    </div>
-  )
+    <Container className="mt-5" fluid>
+      <h2>Boka biljetter</h2>
+    </Container>
+  );
 }
