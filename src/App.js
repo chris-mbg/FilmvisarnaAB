@@ -13,6 +13,7 @@ import Login from './components/login/Login';
 import Header from './components/Header';
 
 export const AuthContext = React.createContext();
+
 const initialState = {
   isAuthenticated: false,
   user: null,
@@ -44,8 +45,29 @@ const reducer = (state, action) => {
 
 function App() {
   const [state, dispatch] = React.useReducer(reducer, initialState);
+
+  React.useEffect(() => {
+    const user = JSON.parse(localStorage.getItem('user') || null);
+    const token = JSON.parse(localStorage.getItem('token') || null);
+
+    if (user && token) {
+      dispatch({
+        type: 'LOGIN',
+        payload: {
+          user,
+          token,
+        },
+      });
+    }
+  }, []);
+
   return (
-    <AuthContext.Provider>
+    <AuthContext.Provider
+      value={{
+        state,
+        dispatch,
+      }}
+    >
       <Header />
       <div className='App'>
         {!state.isAuthenticated ? <Login /> : <HomePage />}
