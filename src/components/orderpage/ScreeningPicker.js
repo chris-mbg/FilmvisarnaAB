@@ -36,6 +36,7 @@ const ScreeningPicker = () => {
   }, []);
 
   useEffect(() => {
+    // Sets screeningToShow - based on user's selected "screening time".
     if (selectedScreening === "default") {
       setScreeningToShow(null);
     } else {
@@ -48,7 +49,7 @@ const ScreeningPicker = () => {
     setSelectedScreening(e.target.value);
   };
 
-  // Filter
+  // Filter - returns specific "screening time" based on user's selection.
   const filterSelectedScreening = () => {
     return (
       movieScreenings &&
