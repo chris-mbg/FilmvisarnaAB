@@ -1,10 +1,10 @@
-import { useEffect } from "react";
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 
 export const UserContext = createContext();
 
 const UserContextProvider = ({ children }) => {
   const [loggedInUser, setLoggedInUser] = useState(null);
+  const [userReservations, setUserReservations] = useState(null);
 
   const loggedInCheck = async () => {
     let loggedIn = await fetch("/api/v1/users/whoami");
@@ -12,7 +12,14 @@ const UserContextProvider = ({ children }) => {
     loggedIn ? setLoggedInUser(loggedIn) : setLoggedInUser(null);
   };
   // On application render, checks if user saved to session
-  useEffect( () => loggedInCheck(), []);
+  useEffect(() => loggedInCheck(), []);
+
+  // Get all reservations for a logged in user
+  useEffect(() => {
+    if (loggedInUser) {
+      getAllReservationsForUser();
+    }
+  }, [loggedInUser]);
 
   // Registration for new user.
   const register = async (userInformation) => {
@@ -71,14 +78,40 @@ const UserContextProvider = ({ children }) => {
     }
   };
 
-  useEffect( () => login({
-    email: "ch@mail.com",
-    password: "Password123!"
-  }), []);
+  // Log the user out.
+  const logout = async () => {
+    // Checks if user is logged in or not. If user is not logged in, then "return".
+    if (!loggedInUser) return;
+
+    const { status } = await fetch("/api/v1/users/logout");
+
+    // If logout is successful. Set loggedInUser to "null".
+    if (status === 200) {
+      setLoggedInUser(null);
+
+      return true;
+    }
+  };
+
+  const getAllReservationsForUser = async () => {
+    let result = await fetch("/api/v1/reservations/user");
+    result = await result.json();
+    if (result.status !== "error") {
+      setUserReservations(result);
+    }
+  };
 
   return (
     <UserContext.Provider
-      value={{ loggedInUser, setLoggedInUser, register, login }}
+      value={{
+        loggedInUser,
+        userReservations,
+        setLoggedInUser,
+        register,
+        login,
+        logout,
+        getAllReservationsForUser,
+      }}
     >
       {children}
     </UserContext.Provider>
