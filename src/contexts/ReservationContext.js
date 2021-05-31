@@ -33,26 +33,6 @@ const ReservationContextProvider = (props) => {
     }
   };
 
-  // ! For testing purposes. Delete when done testing
-  const { loggedInUser } = useContext(UserContext);
-
-  //! Test booking. Delete when done testing.
-  useEffect(() => {
-    console.log("Want to save reservation", loggedInUser)
-    if (loggedInUser) {
-      saveReservation({
-        screeningId: "60acbc58b7b50656ccec8734",
-        tickets: [
-          {
-            ticketType: "adult",
-            seatNumber: [2, 7],
-          },
-        ],
-        totalPrice: 90,
-      });
-    }
-  }, [loggedInUser]);
-
   const values = {
     saveReservation,
   };
