@@ -1,12 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import styles from "../css/Navbar.module.css";
 import { Link } from "react-router-dom";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
+import { UserContext } from "../contexts/UserContext";
 
 function Navbar1() {
   // Import variable from UserContext here...
-  const userLoggedIn = false;
+  const { loggedInUser, logout } = useContext(UserContext);
 
   return (
     <Navbar className={styles.nav} collapseOnSelect expand="md" variant="dark">
@@ -26,7 +27,7 @@ function Navbar1() {
           <Nav.Link as={Link} to="/about" className={styles.link}>
             OM OSS
           </Nav.Link>
-          {userLoggedIn ? (
+          {loggedInUser ? (
             <Nav.Link as={Link} to="/profile" className={styles.link}>
               MIN PROFIL
             </Nav.Link>
@@ -35,8 +36,10 @@ function Navbar1() {
               REGISTRERA
             </Nav.Link>
           )}
-          {userLoggedIn ? (
-            <Nav.Link className={styles.link}>LOGGA UT</Nav.Link>
+          {loggedInUser ? (
+            <Nav.Link onClick={() => logout()} className={styles.link}>
+              LOGGA UT
+            </Nav.Link>
           ) : (
             <Nav.Link className={styles.link}>LOGGA IN</Nav.Link>
           )}

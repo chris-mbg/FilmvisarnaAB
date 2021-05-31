@@ -12,7 +12,7 @@ const UserContextProvider = ({ children }) => {
     loggedIn ? setLoggedInUser(loggedIn) : setLoggedInUser(null);
   };
   // On application render, checks if user saved to session
-  useEffect( () => loggedInCheck(), []);
+  useEffect(() => loggedInCheck(), []);
 
   // Registration for new user.
   const register = async (userInformation) => {
@@ -71,9 +71,24 @@ const UserContextProvider = ({ children }) => {
     }
   };
 
+  // Log the user out.
+  const logout = async () => {
+    // Checks if user is logged in or not. If user is not logged in, then "return".
+    if (!loggedInUser) return;
+
+    const { status } = await fetch("/api/v1/users/logout");
+
+    // If logout is successful. Set loggedInUser to "null".
+    if (status === 200) {
+      setLoggedInUser(null);
+
+      return true;
+    }
+  };
+
   return (
     <UserContext.Provider
-      value={{ loggedInUser, setLoggedInUser, register, login }}
+      value={{ loggedInUser, setLoggedInUser, register, login, logout }}
     >
       {children}
     </UserContext.Provider>
