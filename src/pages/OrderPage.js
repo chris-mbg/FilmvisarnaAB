@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Row, Col } from "react-bootstrap";
-import { MovieContext } from "../contexts/MovieContext";
+import ScreeningPicker from '../components/ScreeningPicker'
 
 import styles from '../css/OrderPage.module.css';
 import Chair from '../components/order/Chair';
@@ -98,12 +97,8 @@ export default function OrderPage() {
   );
   return (
     <div>
-      <h1>Boka bilijetter</h1>
-      {orderScreenings && currentMovie ? (
-        renderScreenings()
-      ) : (
-        <h2>...loading</h2>
-      )}
+      <h1>Order Page</h1>
+      <ScreeningPicker />
     </div>
   );
 }
