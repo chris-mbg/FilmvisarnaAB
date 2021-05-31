@@ -18,7 +18,6 @@ const ReservationContextProvider = (props) => {
   const [movieScreenings, setMovieScreenings] = useState(null);
 
   // Screenings
-  const [selectedScreening, setSelectedScreening] = useState("default");
   const [screeningToShow, setScreeningToShow] = useState(null);
   const [screeningIdOnOrderPage, setScreeningIdOnOrderPage] = useState(null);
 
@@ -29,6 +28,7 @@ const ReservationContextProvider = (props) => {
     movieOnOrderPage,
     movieScreenings,
     screeningIdOnOrderPage,
+    screeningToShow,
   ]);
 
   const saveReservation = async (reservationInfo) => {
@@ -60,8 +60,6 @@ const ReservationContextProvider = (props) => {
     setScreeningToShow,
     screeningIdOnOrderPage,
     setScreeningIdOnOrderPage,
-    selectedScreening,
-    setSelectedScreening,
     chosenSeats,
     setChosenSeats,
   };

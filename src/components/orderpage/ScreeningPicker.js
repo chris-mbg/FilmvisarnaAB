@@ -1,5 +1,5 @@
 import styles from "../../css/ScreeningPicker.module.css";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Row, Col } from "react-bootstrap";
 import { MovieContext } from "../../contexts/MovieContext";
@@ -8,6 +8,8 @@ import moment from "moment";
 import "moment/locale/sv";
 
 const ScreeningPicker = () => {
+  const [selectedScreening, setSelectedScreening] = useState("default");
+
   // Context
   const { getAllScreeningsForMovie, getMovieById } = useContext(MovieContext);
   const {
@@ -15,13 +17,12 @@ const ScreeningPicker = () => {
     setMovieOnOrderPage,
     movieScreenings,
     setMovieScreenings,
-    setSelectedScreening,
+    setScreeningToShow,
   } = useContext(ReservationContext);
 
   // useParams
   const { movieId } = useParams();
 
-  // Moment.js
   useEffect(() => {
     // Gets all screening for specific movie.
     getAllScreeningsForMovie(movieId).then((data) => {
@@ -34,16 +35,34 @@ const ScreeningPicker = () => {
     });
   }, []);
 
+  useEffect(() => {
+    if (selectedScreening === "default") {
+      setScreeningToShow(null);
+    } else {
+      setScreeningToShow(filterSelectedScreening());
+    }
+  }, [selectedScreening]);
+
   // Handlers
   const handleSelect = (e) => {
     setSelectedScreening(e.target.value);
   };
 
+  // Filter
+  const filterSelectedScreening = () => {
+    return (
+      movieScreenings &&
+      movieScreenings.filter((screening) => {
+        return screening._id === selectedScreening;
+      })
+    );
+  };
+
   const renderScreenings =
     movieScreenings &&
-    movieScreenings.map((screening) => {
+    movieScreenings.map((screening, index) => {
       return (
-        <option key={screening.startTime} value={screening.startTime}>
+        <option key={index} value={screening._id}>
           {moment(screening.startTime).format("LLL")}
         </option>
       );
