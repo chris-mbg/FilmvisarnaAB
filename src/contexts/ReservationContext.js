@@ -25,7 +25,6 @@ const ReservationContextProvider = (props) => {
         setMovieScreenings(await getAllScreeningsForMovie(movieIdOnOrderPage));
       }
     }
-    console.log("movieIdOnOrderPage", movieIdOnOrderPage);
     changeMovie();
   }, [movieIdOnOrderPage]);
 
@@ -37,14 +36,13 @@ const ReservationContextProvider = (props) => {
   useEffect(() => console.log("Seats chosen by user", seatsChosen));
 
 
+  // Better to get this from BE and DB..? But we still need to get all screeenings also, and therefore OK to filter in FE, because we already have the info here...
   useEffect(() => {
-    async function setScreen() {
-      if(screeningIdOnOrderPage && movieScreenings) {
-        console.log("Setting screening to show..")
+      if (screeningIdOnOrderPage === null) {
+        setScreeningToShow(null);
+      } else if (screeningIdOnOrderPage && movieScreenings) {
         setScreeningToShow(movieScreenings.filter(screen => screen._id === screeningIdOnOrderPage));
       }
-    }
-    setScreen();
   }, [screeningIdOnOrderPage, movieScreenings]);
 
   useEffect(() => console.log("movie Screenings", movieScreenings),[movieScreenings]);

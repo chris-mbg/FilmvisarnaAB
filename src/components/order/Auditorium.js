@@ -5,14 +5,13 @@ import Chair from "./Chair";
 // import { Row, Col } from "react-bootstrap";
 
 const Auditorium = () => {
-  const { screeningToShow, screeningIdOnOrderPage, seatsChosen } =
-    useContext(ReservationContext);
-  const [cinemaMatrix, setCinemaMatrix] = useState(null);
+  const { screeningToShow, seatsChosen } = useContext(ReservationContext);
+  const [auditorium, setAuditorium] = useState(null);
 
   const renderCinemaMatrix = () => {
     console.log("render matrix...");
     const cinemaMatrix = [];
-    if (screeningToShow && screeningIdOnOrderPage) {
+    if (screeningToShow) {
       const seats = screeningToShow[0].seats;
 
       for (let row = 0; row < seats.length; row++) {
@@ -46,34 +45,13 @@ const Auditorium = () => {
     }
   };
 
-  useEffect(() => setCinemaMatrix(renderCinemaMatrix()), [screeningToShow]);
-  // const renderScreenings = () => (
-  //   <>
-  //     <Row>
-  //       <Col md={4}> <h3>{currentMovie.title}</h3></Col>
-  //       <Col>
-  //         <select onChange={(e) => getscreeningToShow(e)}>
-  //           {orderScreenings.map((time) => (
-  //             <option key={time.startTime} value={time.startTime}>
-  //               {new Date(time.startTime).toLocaleString("sv-SE").slice(0, 16)}
-  //             </option>
-  //           ))}
-  //         </select>
-  //       </Col>
-  //     </Row>
-  //           <h5>{screeningToShow && screeningToShow[0].auditoriumName}</h5>
-  //     <Row>
-  //       <Col md={8} className={styles.matrixWrapper}>
-  //         {renderCinemaMatrix()}
-  //       </Col>
-  //     </Row>
-  //   </>
-  // );
+  useEffect(() => setAuditorium(renderCinemaMatrix()), [screeningToShow]);
 
   return (
-    <div>
-      {screeningToShow ? cinemaMatrix : <h2>Välj en tid</h2>}
-      <p>Valda platser:</p>
+    <div className="bg-light text-center mt-3">
+      <span className="border-top border-dark"></span>
+      {screeningToShow ? auditorium : null}
+      {/* <p>Valda platser:</p>
       {seatsChosen && (
         <div>
           {seatsChosen.map((seatNr) => (
@@ -82,7 +60,7 @@ const Auditorium = () => {
             </p>
           ))}
         </div>
-      )}
+      )} */}
     </div>
   );
 };
