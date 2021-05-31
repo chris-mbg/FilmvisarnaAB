@@ -13,7 +13,14 @@ const UserContextProvider = ({ children }) => {
     loggedIn ? setLoggedInUser(loggedIn) : setLoggedInUser(null);
   };
   // On application render, checks if user saved to session
-  useEffect( () => loggedInCheck(), []);
+  useEffect(() => loggedInCheck(), []);
+
+  // Get all reservations for a logged in user
+  useEffect(() => {
+    if (loggedInUser) {
+      getAllReservationsForUser();
+    }
+  }, [loggedInUser]);
 
   // Registration for new user.
   const register = async (userInformation) => {
@@ -75,23 +82,22 @@ const UserContextProvider = ({ children }) => {
   const getAllReservationsForUser = async () => {
     let result = await fetch("/api/v1/reservations/user");
     result = await result.json();
-    if(result.status !== "error") {
+    if (result.status !== "error") {
       setUserReservations(result);
     }
   };
-  // Get all reservations for a logged in user
-  useEffect( () => {
-    if(loggedInUser) {
-      getAllReservationsForUser();
-  }}, [loggedInUser]);
-
-  // ! For testing --> delete when done!
-  useEffect( () => console.log("userreservs:", userReservations), [userReservations]);
-  useEffect( () => login({email: "ch@mail.com", password: "Password123!"}), []);
-
 
   return (
-    <UserContext.Provider value={{ loggedInUser, userReservations, setLoggedInUser, register, login, getAllReservationsForUser }}>
+    <UserContext.Provider
+      value={{
+        loggedInUser,
+        userReservations,
+        setLoggedInUser,
+        register,
+        login,
+        getAllReservationsForUser,
+      }}
+    >
       {children}
     </UserContext.Provider>
   );
