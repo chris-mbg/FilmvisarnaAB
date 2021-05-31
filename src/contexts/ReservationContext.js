@@ -13,6 +13,7 @@ const ReservationContextProvider = (props) => {
   const [movieScreenings, setMovieScreenings] = useState(null);
   const [screeningToShow, setScreeningToShow] = useState(null);
 
+  const [seatsChosen, setSeatsChosen] = useState([]);
 
   useEffect(() => {
     async function changeMovie() {
@@ -26,6 +27,14 @@ const ReservationContextProvider = (props) => {
     }
     changeMovie();
   }, [movieOnOrderPage]);
+
+  useEffect(() => {
+    // If change in movie or screening --> reset seatsChosen
+    setSeatsChosen([]);
+  },[screeningIdOnOrderPage, movieOnOrderPage]);
+
+  useEffect(() => console.log("Seats chosen by user", seatsChosen));
+
 
   useEffect(() => {
     async function setScreen() {
@@ -48,6 +57,8 @@ const ReservationContextProvider = (props) => {
     movieScreenings,
     screeningToShow,
     //setScreeningToShow,
+    seatsChosen,
+    setSeatsChosen,
   };
 
   return (

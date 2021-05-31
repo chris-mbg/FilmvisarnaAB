@@ -1,4 +1,5 @@
-import { useContext } from 'react';
+import { useEffect } from 'react';
+import { useContext, useState } from 'react';
 import { ReservationContext } from '../../contexts/ReservationContext';
 import Chair from './Chair';
 // import { Row, Col } from "react-bootstrap";
@@ -6,25 +7,27 @@ import Chair from './Chair';
 const Auditorium = () => {
 
   const { screeningToShow, screeningIdOnOrderPage } = useContext(ReservationContext);
+  const [cinemaMatrix, setCinemaMatrix] = useState(null);
 
   const renderCinemaMatrix = () => {
+    console.log("render matrix...")
     const cinemaMatrix = [];
     if(screeningToShow && screeningIdOnOrderPage){
 
       const seats = screeningToShow[0].seats
 
     for (let row = 0; row < seats.length; row++) {
-      cinemaMatrix.push(<br></br>);
+      cinemaMatrix.push(<br key={row}></br>);
       for (let seat = 0; seat < seats[row].length; seat++) {
 
         // check for reserved places by values from db
         if (seats[row][seat] === 1) {
           cinemaMatrix.push(
-            <Chair row ={row} seat={seat} key={[row,seat]} reserved={true}/>
+            <Chair row ={row} seat={seat} key={screeningToShow[0]._id + row + seat} reserved={true}/>
           );
         } else {
           cinemaMatrix.push(
-            <Chair reserved={false} row ={row} seat={seat} key={[row, seat]} />
+            <Chair reserved={false} row ={row} seat={seat} key={screeningToShow[0]._id + row + seat} />
           );
         }
       }
@@ -34,6 +37,7 @@ const Auditorium = () => {
 
   }
 
+  useEffect(() => setCinemaMatrix(renderCinemaMatrix()), [screeningToShow])
   // const renderScreenings = () => (
   //   <>
   //     <Row>
@@ -60,7 +64,7 @@ const Auditorium = () => {
   return (
     <div>
       {screeningToShow ? (
-        renderCinemaMatrix()
+        cinemaMatrix
       ) : (
         <h2>Välj en tid</h2>
       )}
