@@ -1,5 +1,6 @@
-import { useContext, useEffect, useState } from "react";
-import { MovieContext } from "../contexts/MovieContext";
+import {useContext, useEffect, useState} from 'react'
+import BookButton from '../components/BookButton';
+import { MovieContext } from '../contexts/MovieContext'
 import { Row, Col, Image } from "react-bootstrap";
 
 import styles from "../css/MoviePage.module.css";
@@ -132,6 +133,9 @@ export default function MoviePage(props) {
       ) : (
         <h2>...loading</h2>
       )}
+   {/*  <div>
+      <h1>Movie page</h1>
+      {movie && <BookButton movieId={movie._id} movieTitle={movie.title} />} */}
     </div>
   );
 }

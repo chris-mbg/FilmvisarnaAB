@@ -101,6 +101,8 @@ const UserContextProvider = ({ children }) => {
     }
   };
 
+  useEffect(() => login({email: "ch@mail.com", password: "Password123!"}), [])
+
   return (
     <UserContext.Provider
       value={{

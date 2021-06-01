@@ -10,7 +10,7 @@ export default function MovieWrapper() {
   const renderCards = () => {
     if (allMovies) {
       return allMovies.map((movie, i) => {
-        return <MovieCard key={i} movie={movie} />;
+        return <MovieCard key={movie._id} movie={movie} />;
       });
     } else {
       // todo implement Spinner?
@@ -18,7 +18,9 @@ export default function MovieWrapper() {
     }
   };
   return (
-    <div className={`${styles.wrapper} p-0 d-flex flex-wrap justify-content-around mx-auto`}>
+    <div
+      className={`${styles.wrapper} p-0 d-flex flex-wrap justify-content-around mx-auto`}
+    >
       {renderCards()}
     </div>
   );
