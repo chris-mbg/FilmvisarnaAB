@@ -63,8 +63,6 @@ export const Login = () => {
     <div className={`form-group ${style.modalContainer}`}>
       <h2 className={style.loginHeading}>Logga in</h2>
       <form onSubmit={handleFormSubmit}>
-        {/* <label htmlFor='email' className={style.labelForm}>
-          Email Address */}
         <input
           type='text'
           className={`form-control ${style.input}`}
@@ -74,10 +72,6 @@ export const Login = () => {
           id='email'
           placeholder='E-postadress'
         />
-        {/* </label> */}
-
-        {/* <label htmlFor='password' className={style.labelForm}>
-          Password */}
         <input
           type='password'
           className={`form-control ${style.input}`}
@@ -87,11 +81,8 @@ export const Login = () => {
           id='password'
           placeholder='Lösenord'
         />
-        {/* </label> */}
 
-        {data.errorMessage && (
-          <span className='form-error'>{data.errorMessage}</span>
-        )}
+        {data.errorMessage && <p className='form-error'>{data.errorMessage}</p>}
 
         <button
           className={`btn ${style.loginBtn}`}
@@ -100,6 +91,7 @@ export const Login = () => {
           {data.isSubmitting ? 'Laddar...' : 'Logga in'}
         </button>
       </form>
+      <p className={style.regText}>Inte medlem än? Registrera dig här.</p>
     </div>
   );
 };
