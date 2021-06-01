@@ -2,6 +2,8 @@ import { useEffect } from "react";
 import { useContext, useState } from "react";
 import { ReservationContext } from "../../contexts/ReservationContext";
 import Chair from "./Chair";
+import styles from "./styles/Auditorium.module.css";
+
 // import { Row, Col } from "react-bootstrap";
 
 const Auditorium = () => {
@@ -33,13 +35,14 @@ const Auditorium = () => {
                 reserved={false}
                 row={row}
                 seat={seat}
+                chairsInRow={seats[row].length}
                 key={screeningToShow._id + row + seat}
               />
             );
           }
         }
       }
-      return <div className="container">{cinemaMatrix}</div>;
+      return <div className={styles.chairsWrapper}>{cinemaMatrix}</div>;
     } else {
       return <h2>...loading</h2>;
     }
@@ -48,8 +51,8 @@ const Auditorium = () => {
   useEffect(() => setAuditorium(renderCinemaMatrix()), [screeningToShow]);
 
   return (
-    <div className="bg-light text-center mt-3">
-      <span className="border-top border-dark"></span>
+    <div className={`${styles.wrapper}`}>
+      <span className={styles.screen}></span>
       {screeningToShow ? auditorium : null}
       {/* <p>Valda platser:</p>
       {seatsChosen && (

@@ -1,0 +1,16 @@
+.wrapper{
+  background-color: #F1F1F1;
+  text-align: center;
+}
+
+.chairsWrapper{
+ text-align: center;
+ overflow: hidden;
+}
+.screen{
+  display: inline-block;
+  height: 5px;
+  width: 60%;
+  background-color: black;
+  /* margin: auto; */
+}

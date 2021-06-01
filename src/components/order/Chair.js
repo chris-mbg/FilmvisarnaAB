@@ -1,8 +1,8 @@
 import React, { useEffect, useState, useContext } from "react";
 import { ReservationContext } from "../../contexts/ReservationContext";
-import styles from "./Chair.module.css";
+import styles from "./styles/Chair.module.css";
 
-export default function Chair({ reserved, row, seat }) {
+export default function Chair({ reserved, row, seat, chairsInRow }) {
   const { seatsChosen, setSeatsChosen } = useContext(ReservationContext);
 
   const [isChosen, setIsChosen] = useState(false);
@@ -34,7 +34,7 @@ export default function Chair({ reserved, row, seat }) {
 
   return (
     <>
-      <div
+      <span
         className={
           reserved
             ? `${styles.chairItem}  ${styles.reserved}`
@@ -54,7 +54,7 @@ export default function Chair({ reserved, row, seat }) {
             </span>
           )}
         </span>
-      </div>
+      </span>
     </>
   );
 }

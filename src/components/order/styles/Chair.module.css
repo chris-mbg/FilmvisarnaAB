@@ -1,0 +1,89 @@
+.chairItem{
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  border-radius: 4px;
+  margin: 3px;
+  background-color: black;
+  position: relative;
+  cursor: pointer;
+}
+
+.chairItem .tooltip{
+  visibility: hidden;
+  color: black;
+  max-width: 80px;
+  padding: 2px 0;
+  font-size: 0.7rem;
+  border: 2px solid #E87209;
+  background-color: whitesmoke;
+  text-align: center;
+  border-radius: 5px 5px 5px 0;
+  /* Position the tooltip */
+  position: absolute;
+  top: -10px;
+  right: -70px;
+  z-index: 1;
+}
+
+
+.chairItem:hover  .tooltip{
+  visibility: visible;
+}
+
+ .reserved{
+  background-color: #C4C4C4;
+}
+
+.chairItem.chosen {
+  background-color: #E87209;
+}
+
+@media (min-width: 360px){
+  .chairItem{
+    width: 20px;
+    height: 20px;
+    margin: 4px;
+  }
+}
+
+@media (min-width: 430px){
+  .chairItem{
+    width: 25px;
+    height: 25px;
+  }
+}
+@media (min-width: 500px){
+  .chairItem{
+    width: 30px;
+    height: 30px;
+  }
+}
+@media (min-width: 500px){
+  .chairItem{
+    width: 32px;
+    height: 32px;
+    margin: 6px;
+  }
+}
+@media (min-width: 992px){
+  .chairItem{
+    width: 27px;
+    height: 27px;
+    margin: 5px;
+  }
+}
+@media (min-width: 1100px){
+  .chairItem{
+    width: 30px;
+    height: 30px;
+    margin: 6px;
+  }
+}
+@media (min-width: 1200px){
+  .chairItem{
+    width: 32px;
+    height: 32px;
+    
+  }
+}
