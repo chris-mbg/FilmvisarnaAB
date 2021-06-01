@@ -1,6 +1,8 @@
 import style from '../../css/Login.module.css';
 import React, { useState, useContext } from 'react';
+import { Route, Link, Switch, BrowserRouter } from 'react-router-dom';
 import { AuthContext } from '../../App';
+import { UserContext } from '../../contexts/UserContext';
 
 export const Login = () => {
   const { dispatch } = useContext(AuthContext);
@@ -27,9 +29,9 @@ export const Login = () => {
       isSubmitting: true,
       errorMessage: null,
     });
-    //Add backend here
-    fetch('https://hookedbe.herokuapp.com/api/login', {
-      method: 'post',
+
+    fetch(`/api/v1/users/login`, {
+      method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
@@ -91,7 +93,16 @@ export const Login = () => {
           {data.isSubmitting ? 'Laddar...' : 'Logga in'}
         </button>
       </form>
-      <p className={style.regText}>Inte medlem än? Registrera dig här.</p>
+
+      <p className={style.regText}>
+        <BrowserRouter>
+          <Switch>
+            <Link to='/registration' className={`${style.linkStyle}`}>
+              Inte medlem än? Registrera dig här.
+            </Link>
+          </Switch>
+        </BrowserRouter>
+      </p>
     </div>
   );
 };

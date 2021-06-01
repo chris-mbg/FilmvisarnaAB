@@ -38,3 +38,13 @@
   padding: 0;
   color: #000;
 }
+
+.linkStyle {
+  color: #333333;
+  text-decoration: none;
+}
+
+.linkStyle:hover {
+  color: #E87209;
+  text-decoration: none;
+}
