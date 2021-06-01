@@ -9,7 +9,6 @@ import UserContextProvider from "./contexts/UserContext";
 import MovieContextProvider from "./contexts/MovieContext";
 import "./css/App.css";
 import Navbar from "./components/Navbar";
-import Login from "./components/login/Login";
 
 function App() {
   return (
@@ -24,7 +23,6 @@ function App() {
               <Route exact path="/order" component={OrderPage} />
               <Route exact path="/registration" component={RegistrationPage} />
               <Route exact path="/profile" component={ProfilePage} />
-              <Route exact path="/login" component={Login} />
             </Switch>
           </BrowserRouter>
         </MovieContextProvider>

@@ -1,12 +1,21 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import styles from "../css/Navbar.module.css";
 import { Link } from "react-router-dom";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { UserContext } from "../contexts/UserContext";
+import Login from "../components/login/Login";
+import { Modal } from "react-bootstrap";
 
 function Navbar1() {
   const { loggedInUser } = useContext(UserContext);
+
+  // LoginModal
+  const [showLogin, setShowLogin] = useState(false);
+
+  //  Handlers for LoginModal
+  const handleCloseLoginModal = () => setShowLogin(false);
+  const handleShowLoginModal = () => setShowLogin(true);
 
   return (
     <Navbar className={styles.nav} collapseOnSelect expand="md" variant="dark">
@@ -38,10 +47,21 @@ function Navbar1() {
           {loggedInUser ? (
             <Nav.Link className={styles.link}>LOGGA UT</Nav.Link>
           ) : (
-            <Nav.Link className={styles.link}>LOGGA IN</Nav.Link>
+            <Nav.Link onClick={handleShowLoginModal} className={styles.link}>
+              LOGGA IN
+            </Nav.Link>
           )}
         </Nav>
       </Navbar.Collapse>
+      {/* Modal */}
+      <Modal
+        size={"md"}
+        centered={true}
+        show={showLogin}
+        onHide={handleCloseLoginModal}
+      >
+        <Login setShowLogin={setShowLogin} />
+      </Modal>
     </Navbar>
   );
 }
