@@ -1,30 +1,31 @@
 .modalContainer {
-  background-color: #E5E5E5;
+  background-color: #f0f0f0;
   padding: 30px 40px;
-  width: 400px;
+  width: 100%;
   border-radius: 5px;
   margin: auto;
   text-align: center;
   color: #000;
 }
 .loginHeading {
-  margin-bottom: 20px;
+  margin-bottom: 30px;
   color: #333333;
 }
 .loginBtn {
   background-color: #E87209;
   color: #F3F3F3;
-  margin: 20px;
+  margin: 10px;
 }
 
 .loginBtn:hover {
   background-color: #b55e0c;
   color: #F3F3F3;
-  margin: 20px;
+  margin: 10px;
 }
 
 .input {
-  margin-bottom: 20px;
+  margin: 0 auto 20px auto;
+  width: 80%;
 
 }
 .regText{
@@ -47,4 +48,9 @@
 .linkStyle:hover {
   color: #E87209;
   text-decoration: none;
+}
+
+.modalCloseButton {
+  background-color: #E5E5E5;
+  border-bottom: none;
 }

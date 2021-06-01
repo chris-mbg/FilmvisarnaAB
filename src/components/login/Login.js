@@ -1,11 +1,11 @@
-import style from "../../css/Login.module.css";
-import React, { useState, useContext } from "react";
-import { NavLink, useHistory } from "react-router-dom";
-import { UserContext } from "../../contexts/UserContext"; //?
+import React, { useState, useContext } from 'react';
+import { NavLink, useHistory } from 'react-router-dom';
+import { UserContext } from '../../contexts/UserContext';
+import style from '../../css/Login.module.css';
 
 export const Login = ({ setShowLogin }) => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [invalidLogin, setInvalidLogin] = useState(false);
 
   // Context
@@ -46,24 +46,24 @@ export const Login = ({ setShowLogin }) => {
       <h2 className={style.loginHeading}>Logga in</h2>
       <form onSubmit={handleFormSubmit}>
         <input
-          type="email"
+          type='email'
           className={`form-control ${style.input}`}
           value={email}
           onChange={handleEmail}
-          name="email"
-          id="email"
-          placeholder="E-postadress"
-          autoComplete="off"
+          name='email'
+          id='email'
+          placeholder='E-postadress'
+          autoComplete='off'
         />
         <input
-          type="password"
+          type='password'
           className={`form-control ${style.input}`}
           value={password}
           onChange={handlePassword}
-          name="password"
-          id="password"
-          placeholder="Lösenord"
-          autoComplete="off"
+          name='password'
+          id='password'
+          placeholder='Lösenord'
+          autoComplete='off'
         />
 
         <button className={`btn ${style.loginBtn}`}>Logga in</button>
@@ -73,7 +73,7 @@ export const Login = ({ setShowLogin }) => {
       {invalidLogin && <p>Försök igen!</p>}
 
       <p className={style.regText}>
-        <NavLink to="/registration" className={`${style.linkStyle}`}>
+        <NavLink to='/registration' className={`${style.linkStyle}`}>
           Inte medlem än? Registrera dig här.
         </NavLink>
       </p>

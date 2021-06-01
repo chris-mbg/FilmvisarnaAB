@@ -1,11 +1,13 @@
-import React, { useContext, useState } from "react";
-import styles from "../css/Navbar.module.css";
-import { Link } from "react-router-dom";
-import Nav from "react-bootstrap/Nav";
-import Navbar from "react-bootstrap/Navbar";
-import { UserContext } from "../contexts/UserContext";
-import Login from "../components/login/Login";
-import { Modal } from "react-bootstrap";
+import React, { useContext, useState } from 'react';
+import styles from '../css/Navbar.module.css';
+import { Link } from 'react-router-dom';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
+import { UserContext } from '../contexts/UserContext';
+import Login from '../components/login/Login';
+import { Modal } from 'react-bootstrap';
+import ModalHeader from 'react-bootstrap/ModalHeader';
+import style from '../css/Login.module.css';
 
 function Navbar1() {
   const { loggedInUser } = useContext(UserContext);
@@ -18,29 +20,29 @@ function Navbar1() {
   const handleShowLoginModal = () => setShowLogin(true);
 
   return (
-    <Navbar className={styles.nav} collapseOnSelect expand="md" variant="dark">
-      <Navbar.Brand as={Link} to="/">
+    <Navbar className={styles.nav} collapseOnSelect expand='md' variant='dark'>
+      <Navbar.Brand as={Link} to='/'>
         <span className={styles.font}>Filmvisarna</span>
       </Navbar.Brand>
 
-      <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+      <Navbar.Toggle aria-controls='responsive-navbar-nav' />
       <Navbar.Collapse
-        className="justify-content-end"
-        id="responsive-navbar-nav"
+        className='justify-content-end'
+        id='responsive-navbar-nav'
       >
         <Nav className={styles.nav_links}>
-          <Nav.Link as={Link} to="/" className={styles.link}>
+          <Nav.Link as={Link} to='/' className={styles.link}>
             START
           </Nav.Link>
-          <Nav.Link as={Link} to="/about" className={styles.link}>
+          <Nav.Link as={Link} to='/about' className={styles.link}>
             OM OSS
           </Nav.Link>
           {loggedInUser ? (
-            <Nav.Link as={Link} to="/profile" className={styles.link}>
+            <Nav.Link as={Link} to='/profile' className={styles.link}>
               MIN PROFIL
             </Nav.Link>
           ) : (
-            <Nav.Link as={Link} to="/registration" className={styles.link}>
+            <Nav.Link as={Link} to='/registration' className={styles.link}>
               REGISTRERA
             </Nav.Link>
           )}
@@ -55,11 +57,15 @@ function Navbar1() {
       </Navbar.Collapse>
       {/* Modal */}
       <Modal
-        size={"md"}
+        size={'md'}
         centered={true}
         show={showLogin}
         onHide={handleCloseLoginModal}
       >
+        <ModalHeader
+          className={style.modalCloseButton}
+          closeButton
+        ></ModalHeader>
         <Login setShowLogin={setShowLogin} />
       </Modal>
     </Navbar>
