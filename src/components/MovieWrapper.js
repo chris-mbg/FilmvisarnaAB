@@ -10,7 +10,7 @@ export default function MovieWrapper() {
   const renderCards = () => {
     if (allMovies) {
       return allMovies.map((movie, i) => {
-        return <MovieCard key={i} movie={movie} />;
+        return <MovieCard key={i} movie={movie} screeningId={null} />;
       });
     } else {
       // todo implement Spinner?

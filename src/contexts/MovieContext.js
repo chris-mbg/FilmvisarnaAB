@@ -30,9 +30,21 @@ const MovieContextProvider = (props) => {
     let result = await fetch(`/api/v1/screenings/${movieId}`);
     result = await result.json();
     if (result.status !== "error") {
+      // todo delete
+      console.log("screening result", result);
       return result;
     }
   };
+
+  const getScreeningById = async (screeningId) => {
+    let result = await fetch(`/api/v1/screenings/${screeningId}`)
+    result = await result.json();
+    if (result.status !== "error") {
+      // todo delete
+      console.log("screening result", result);
+      return result;
+    }
+  }
 
   const values = {
     allMovies,
@@ -40,6 +52,7 @@ const MovieContextProvider = (props) => {
     getAllScreeningsForMovie,
     orderScreenings,
     setOrderScreenings,
+    getScreeningById
   };
 
   return (
