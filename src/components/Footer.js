@@ -12,7 +12,7 @@ const Footer = () => {
 
                     </div>
                     <div className="col">
-                            <p>Adressgatan 11
+                            <p className={styles.adresstext}>Adressgatan 11
                             123 45 Staden</p>
                     </div>
                     <div className="col">
@@ -26,7 +26,7 @@ const Footer = () => {
                 </div>
                 <div>
                     <p className={`${styles.copy}`}>
-                    &copy;{new Date().getFullYear()}FILMVISARNA AB   Copyright Vi använder cookies Integritetspolicy
+                    &copy;{new Date().getFullYear()}FILMVISARNA AB | Copyright | Vi använder cookies | Integritetspolicy
                     </p>
                 </div>
         </div>

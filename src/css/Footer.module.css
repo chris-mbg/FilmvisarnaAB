@@ -2,10 +2,15 @@
     background-color: #013220;
     color: #ffffff;
     padding: 2rem;
-    position: absolute;
+    /* position: absolute; */
+    position: relative;
     bottom: 0;
     left: 0;
     right: 0;
+}
+
+.adresstext{
+    text-align: center;
 }
 
 .row{
@@ -23,7 +28,8 @@
 }
 
 .copy{
-    display: flex;
-    justify-self: center;
+    /* display: flex;
+    justify-content: space-around; */
     font-size: x-small;
+    text-align: center;
 }
