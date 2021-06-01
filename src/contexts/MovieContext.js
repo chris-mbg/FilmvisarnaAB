@@ -4,10 +4,8 @@ export const MovieContext = createContext();
 
 const MovieContextProvider = (props) => {
   const [allMovies, setAllMovies] = useState(null);
-  // for render in OrderPage
-  const [orderScreenings, setOrderScreenings] = useState(null);
-  // All movies fetch from DB on render
 
+  // All movies fetch from DB on render
   useEffect(() => fetchAllMovies(), []);
 
   const fetchAllMovies = async () => {
@@ -41,8 +39,6 @@ const MovieContextProvider = (props) => {
     allMovies,
     getMovieById,
     getAllScreeningsForMovie,
-    orderScreenings,
-    setOrderScreenings,
   };
 
   return (

@@ -8,7 +8,7 @@ import "moment/locale/sv";
 
 const Tickets = () => {
   // Context
-  const { seatsChosen, setSeatsChosen, movieOnOrderPage, screeningToShow, userConfirmsReservation } =
+  const { seatsChosen, movieOnOrderPage, screeningToShow, userConfirmsReservation } =
     useContext(ReservationContext);
 
   // Handlers

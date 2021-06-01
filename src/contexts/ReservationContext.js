@@ -43,7 +43,7 @@ const ReservationContextProvider = (props) => {
       if (screeningIdOnOrderPage === null) {
         setScreeningToShow(null);
       } else if (screeningIdOnOrderPage && movieScreenings) {
-        setScreeningToShow(movieScreenings.filter(screen => screen._id === screeningIdOnOrderPage));
+        setScreeningToShow(...movieScreenings.filter(screen => screen._id === screeningIdOnOrderPage));
       }
   }, [screeningIdOnOrderPage, movieScreenings]);
 

@@ -12,7 +12,7 @@ const Auditorium = () => {
     console.log("render matrix...");
     const cinemaMatrix = [];
     if (screeningToShow) {
-      const seats = screeningToShow[0].seats;
+      const seats = screeningToShow.seats;
 
       for (let row = 0; row < seats.length; row++) {
         cinemaMatrix.push(<br key={row}></br>);
@@ -23,7 +23,7 @@ const Auditorium = () => {
               <Chair
                 row={row}
                 seat={seat}
-                key={screeningToShow[0]._id + row + seat}
+                key={screeningToShow._id + row + seat}
                 reserved={true}
               />
             );
@@ -33,7 +33,7 @@ const Auditorium = () => {
                 reserved={false}
                 row={row}
                 seat={seat}
-                key={screeningToShow[0]._id + row + seat}
+                key={screeningToShow._id + row + seat}
               />
             );
           }
