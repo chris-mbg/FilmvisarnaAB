@@ -10,7 +10,6 @@ import MovieContextProvider from './contexts/MovieContext';
 import './css/App.css';
 import Navbar from './components/Navbar';
 import Login from './components/login/Login';
-import Header from './components/Header';
 
 export const AuthContext = React.createContext();
 
@@ -68,7 +67,6 @@ function App() {
         dispatch,
       }}
     >
-      <Header />
       <div className='App'>
         <UserContextProvider>
           <MovieContextProvider>

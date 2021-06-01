@@ -2,7 +2,7 @@ import style from '../../css/Login.module.css';
 import React, { useState, useContext } from 'react';
 import { Route, Link, Switch, BrowserRouter } from 'react-router-dom';
 import { AuthContext } from '../../App';
-import { UserContext } from '../../contexts/UserContext';
+import { UserContext } from '../../contexts/UserContext'; //?
 
 export const Login = () => {
   const { dispatch } = useContext(AuthContext);
@@ -30,7 +30,7 @@ export const Login = () => {
       errorMessage: null,
     });
 
-    fetch(`/api/v1/users/login`, {
+    fetch(`databaslänk`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
