@@ -2,7 +2,7 @@ import styles from "../../css/Cinema.module.css";
 import { useContext } from "react";
 import { ReservationContext } from "../../contexts/ReservationContext";
 // import { Row, Col } from "react-bootstrap";
-import Chair from "./Chair";
+// import Chair from "./Chair";
 
 const Cinema = () => {
   // Context

@@ -8,32 +8,14 @@ import "moment/locale/sv";
 
 const Tickets = () => {
   // Context
-  const { seatsChosen, movieOnOrderPage, screeningToShow, userConfirmsReservation } =
-    useContext(ReservationContext);
+  const {
+    seatsChosen,
+    movieOnOrderPage,
+    screeningToShow,
+    userConfirmsReservation,
+  } = useContext(ReservationContext);
 
-  // Handlers
-  const handleRemoveTicket = (e) => {
-    // Stop event from bubbling.
-    e.stopPropagation();
-
-    // // Get attribute (DOM element)
-    // const rowAttribute = Number(e.target.getAttribute("row"));
-    // const seatAttribute = Number(e.target.getAttribute("seat"));
-
-    // console.log(chosenSeats[rowAttribute][seatAttribute]);
-    // console.log(chosenSeats);
-
-    // // Return all seats stored in chosenSeats except for the current selected.
-    // const newSeats =
-    //   chosenSeats &&
-    //   chosenSeats.filter((seat) => {
-    //     return seat[0][1] !== chosenSeats[rowAttribute][seatAttribute];
-    //   });
-
-    // // setChosenSeats to new list --> "excluding" the current selected to remove.
-    // setChosenSeats(newSeats);
-  };
-
+  // Handler
   const handleConfirmClick = async () => {
     let result = await userConfirmsReservation();
     if (!result) {
@@ -61,14 +43,6 @@ const Tickets = () => {
               </p>
             </Col>
             <Col lg={5}>Vuxen, pensionär, barn</Col>
-            <Col className={styles.icon_wrapper} lg={2}>
-              <i
-                row={seat[0]}
-                seat={seat[1]}
-                onClick={(e) => handleRemoveTicket(e)}
-                className={`${styles.icon} fa fa-trash`}
-              ></i>
-            </Col>
           </Row>
           <Row noGutters={true}>
             <Col>
@@ -99,9 +73,14 @@ const Tickets = () => {
         {/* <div className={styles.button_wrapper}>
           <CustomButton text="Boka" />
         </div> */}
-        {seatsChosen.length > 0 && <div className="text-center mt-4">
-          <CustomButton text="Boka biljetter" clickHandler={handleConfirmClick}/>
-        </div>}
+        {seatsChosen.length > 0 && (
+          <div className="text-center mt-4">
+            <CustomButton
+              text="Boka biljetter"
+              clickHandler={handleConfirmClick}
+            />
+          </div>
+        )}
       </div>
       {/* /ticket_wrapper_bottom */}
     </div>

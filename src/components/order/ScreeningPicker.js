@@ -1,6 +1,8 @@
 import { useContext, useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { ReservationContext } from "../../contexts/ReservationContext";
+import moment from "moment";
+import "moment/locale/sv";
 
 const ScreeningPicker = () => {
   const history = useHistory();
@@ -12,10 +14,8 @@ const ScreeningPicker = () => {
     movieScreenings,
   } = useContext(ReservationContext);
 
-  //useEffect(() => console.log(screeningToShow), [screeningToShow]);
-
-  //const [selectedScreening, setSelectedScreening] = useState(screeningIdOnOrderPage || "");
   const [selectedScreening, setSelectedScreening] = useState("");
+
   useEffect(() => {
     if (screeningIdOnOrderPage !== null) {
       setSelectedScreening(screeningIdOnOrderPage);
@@ -43,7 +43,7 @@ const ScreeningPicker = () => {
         {movieScreenings &&
           movieScreenings.map((screen) => (
             <option key={screen._id} value={screen._id}>
-              {screen.startTime.toLocaleString()}
+              {moment(screen.startTime).locale("sv").format("lll")}
             </option>
           ))}
       </select>
