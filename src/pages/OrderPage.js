@@ -6,8 +6,6 @@ import ScreeningPicker from "../components/order/ScreeningPicker";
 import CustomButton from "../components/CustomButton";
 import styles from "../css/OrderPage.module.css";
 import { Container, Row, Col } from "react-bootstrap";
-
-import styles from "../css/OrderPage.module.css";
 import Tickets from "../components/order/Tickets";
 
 // For this page is necessarily (otherwise page not be loaded) to click the "BOOK" button, Because screening id  is needed for to find  the desired movie !!!!!
@@ -25,14 +23,7 @@ export default function OrderPage() {
   //   };
   // });
 
-  const handleConfirmClick = async () => {
-    let result = await userConfirmsReservation();
-    if (!result) {
-      console.log("Something went wrong, error with booking tickets");
-    } else {
-      alert("Tickets booked", result);
-    }
-  }
+
 
   return (
     <Container className="mt-5" fluid>
@@ -40,9 +31,7 @@ export default function OrderPage() {
       <ScreeningPicker />
       <Auditorium />
       <Tickets />
-      <div className="text-center mt-4">
-        <CustomButton text="Boka biljetter" clickHandler={handleConfirmClick}/>
-      </div>
+
     </Container>
   );
 }

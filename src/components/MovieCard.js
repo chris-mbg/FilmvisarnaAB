@@ -3,8 +3,6 @@ import { MovieContext } from "../contexts/MovieContext";
 import { useHistory } from "react-router-dom";
 import { Card } from "react-bootstrap";
 import styles from "../css/MovieCard.module.css";
-import { useContext } from "react";
-import { useHistory } from "react-router-dom";
 import CustomButton from "./CustomButton";
 import BookButton from "./BookButton";
 

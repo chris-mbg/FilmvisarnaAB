@@ -8,7 +8,7 @@ import "moment/locale/sv";
 
 const Tickets = () => {
   // Context
-  const { chosenSeats, setChosenSeats, movieOnOrderPage, screeningToShow } =
+  const { seatsChosen, setSeatsChosen, movieOnOrderPage, screeningToShow, userConfirmsReservation } =
     useContext(ReservationContext);
 
   // Handlers
@@ -34,10 +34,19 @@ const Tickets = () => {
     // setChosenSeats(newSeats);
   };
 
+  const handleConfirmClick = async () => {
+    let result = await userConfirmsReservation();
+    if (!result) {
+      console.log("Something went wrong, error with booking tickets");
+    } else {
+      alert("Tickets booked", result);
+    }
+  };
+
   // Renders each ticket that the user has selected from screening.
   const ticket =
-    chosenSeats &&
-    chosenSeats.map((seat) => {
+    seatsChosen &&
+    seatsChosen.map((seat) => {
       return (
         <Container className={styles.ticket_container} fluid>
           <Row noGutters={true}>
@@ -87,9 +96,12 @@ const Tickets = () => {
         <p className={styles.price}>
           Total pris (SEK) : <span></span>{" "}
         </p>
-        <div className={styles.button_wrapper}>
+        {/* <div className={styles.button_wrapper}>
           <CustomButton text="Boka" />
-        </div>
+        </div> */}
+        {seatsChosen.length > 0 && <div className="text-center mt-4">
+          <CustomButton text="Boka biljetter" clickHandler={handleConfirmClick}/>
+        </div>}
       </div>
       {/* /ticket_wrapper_bottom */}
     </div>

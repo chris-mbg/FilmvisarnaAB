@@ -51,7 +51,7 @@ const ReservationContextProvider = (props) => {
   useEffect(() => console.log("one screening", screeningToShow),[screeningToShow]);
 
   useEffect(() => {}, [
-    movieOnOrderPage,
+    movieIdOnOrderPage,
     movieScreenings,
     screeningIdOnOrderPage,
     screeningToShow,
