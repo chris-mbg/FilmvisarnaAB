@@ -1,8 +1,8 @@
 import styles from "../css/OrderPage.module.css";
 import { Container, Row, Col } from "react-bootstrap";
-import ScreeningPicker from "../components/orderpage/ScreeningPicker";
-import Cinema from "../components/orderpage/Cinema";
-import Tickets from "../components/orderpage/Tickets";
+import ScreeningPicker from "../components/order/ScreeningPicker";
+import Cinema from "../components/order/Cinema";
+import Tickets from "../components/order/Tickets";
 
 export default function OrderPage() {
   return (
