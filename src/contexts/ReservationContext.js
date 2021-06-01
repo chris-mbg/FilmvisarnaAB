@@ -87,9 +87,9 @@ const ReservationContextProvider = (props) => {
 
   const userConfirmsReservation = async () => {
     let result = await saveReservation({
-      screeningId: screeningToShow[0]._id,
+      screeningId: screeningToShow._id,
       tickets: getTickets(),
-      totalPrice: seatsChosen.length * screeningToShow[0].price
+      totalPrice: seatsChosen.length * screeningToShow.price
     });
     return result;
   }
