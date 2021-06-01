@@ -21,6 +21,7 @@ export const Login = ({ setShowLogin }) => {
 
     // Login
     login({ email, password }).then((data) => {
+      console.log(data);
       // If login information is "incorrect"
       if (data === false) {
         setInvalidLogin(true);
@@ -54,6 +55,7 @@ export const Login = ({ setShowLogin }) => {
           id='email'
           placeholder='E-postadress'
           autoComplete='off'
+          required
         />
         <input
           type='password'
@@ -64,6 +66,7 @@ export const Login = ({ setShowLogin }) => {
           id='password'
           placeholder='Lösenord'
           autoComplete='off'
+          required
         />
 
         <button className={`btn ${style.loginBtn}`}>Logga in</button>
