@@ -1,6 +1,6 @@
 import { useContext, useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import { ReservationContext } from "../contexts/ReservationContext";
+import { ReservationContext } from "../../contexts/ReservationContext";
 
 const ScreeningPicker = () => {
   const history = useHistory();

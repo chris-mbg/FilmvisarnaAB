@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { ReservationContext } from "../contexts/ReservationContext";
 import Auditorium from "../components/order/Auditorium";
-import ScreeningPicker from "../components/ScreeningPicker";
+import ScreeningPicker from "../components/order/ScreeningPicker";
 import CustomButton from "../components/CustomButton";
 
 import styles from "../css/OrderPage.module.css";
