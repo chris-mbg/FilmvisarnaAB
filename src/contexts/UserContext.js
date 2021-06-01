@@ -1,9 +1,11 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 
 export const UserContext = createContext();
 
 const UserContextProvider = ({ children }) => {
   const [loggedInUser, setLoggedInUser] = useState(null);
+
+  useEffect(() => {}, [loggedInUser]);
 
   // Registration for new user.
   const register = async (userInformation) => {
@@ -44,6 +46,7 @@ const UserContextProvider = ({ children }) => {
   };
 
   const login = async (userInformation) => {
+    console.log("userInformation:", userInformation);
     const response = await fetch(`/api/v1/users/login`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -54,6 +57,7 @@ const UserContextProvider = ({ children }) => {
     });
     const result = await response.json();
 
+    console.log("result");
     if (result.status === "error") {
       return false;
     } else {
