@@ -85,7 +85,7 @@ const ScreeningPicker = () => {
         <Col lg={9}>
           <select onChange={(e) => handleSelect(e)}>
             <option key="default" value="default">
-              Välj din visning
+              Välj din tid
             </option>
             {renderScreenings}
           </select>
