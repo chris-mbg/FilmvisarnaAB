@@ -3,23 +3,16 @@ import { MovieContext } from "../contexts/MovieContext";
 import { useHistory } from "react-router-dom";
 import { Card } from "react-bootstrap";
 import styles from "../css/MovieCard.module.css";
+import { useContext } from "react";
+import { useHistory } from "react-router-dom";
 import CustomButton from "./CustomButton";
 import BookButton from "./BookButton";
 
 export default function MovieCard({ movie }) {
-  const { getAllScreeningsForMovie, setOrderScreenings } = useContext(MovieContext);
   const history = useHistory();
 
   const handleInfoClick = () => history.push(`/movies/${movie._id}`);
-
- /*  const handleOrderClick = async (id) => {
-    // ** to go to the order page for a specific movie.
-    // ** I find   ??THE FIRST ??? closest screening based on the film id
-    let screenings = await getAllScreeningsForMovie(id);
-    setOrderScreenings(screenings)
-    const screeningId = screenings[0]._id;
-    history.push(`/order/${screeningId}`);
-  }; */
+  const handleOrderClick = () => history.push("/order");
 
   return (
     <Card className={`${styles.cardWrapper} mb-2 col-md-6 col-lg-4 `}>

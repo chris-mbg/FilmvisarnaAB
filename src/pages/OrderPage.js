@@ -4,6 +4,8 @@ import { ReservationContext } from "../contexts/ReservationContext";
 import Auditorium from "../components/order/Auditorium";
 import ScreeningPicker from "../components/order/ScreeningPicker";
 import CustomButton from "../components/CustomButton";
+import styles from "../css/OrderPage.module.css";
+import { Container, Row, Col } from "react-bootstrap";
 
 import styles from "../css/OrderPage.module.css";
 import Tickets from "../components/order/Tickets";
@@ -33,14 +35,14 @@ export default function OrderPage() {
   }
 
   return (
-    <div className="container">
-      {/* <h1>Boka biljetter</h1> */}
+    <Container className="mt-5" fluid>
+      <h2>Boka biljetter</h2>
       <ScreeningPicker />
       <Auditorium />
       <Tickets />
       <div className="text-center mt-4">
         <CustomButton text="Boka biljetter" clickHandler={handleConfirmClick}/>
       </div>
-    </div>
+    </Container>
   );
 }

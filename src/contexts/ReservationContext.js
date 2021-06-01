@@ -50,6 +50,13 @@ const ReservationContextProvider = (props) => {
   useEffect(() => console.log("movie Screenings", movieScreenings),[movieScreenings]);
   useEffect(() => console.log("one screening", screeningToShow),[screeningToShow]);
 
+  useEffect(() => {}, [
+    movieOnOrderPage,
+    movieScreenings,
+    screeningIdOnOrderPage,
+    screeningToShow,
+  ]);
+
   const saveReservation = async (reservationInfo) => {
     console.log(reservationInfo);
     let result = await fetch("/api/v1/reservations/", {
