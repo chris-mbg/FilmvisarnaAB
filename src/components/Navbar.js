@@ -10,7 +10,7 @@ import ModalHeader from 'react-bootstrap/ModalHeader';
 import style from '../css/Login.module.css';
 
 function Navbar1() {
-  const { loggedInUser } = useContext(UserContext);
+  const { loggedInUser, logout } = useContext(UserContext);
 
   // LoginModal
   const [showLogin, setShowLogin] = useState(false);
@@ -47,7 +47,9 @@ function Navbar1() {
             </Nav.Link>
           )}
           {loggedInUser ? (
-            <Nav.Link className={styles.link}>LOGGA UT</Nav.Link>
+            <Nav.Link onClick={() => logout()} className={styles.link}>
+              LOGGA UT
+            </Nav.Link>
           ) : (
             <Nav.Link onClick={handleShowLoginModal} className={styles.link}>
               LOGGA IN

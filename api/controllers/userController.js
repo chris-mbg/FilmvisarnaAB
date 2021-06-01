@@ -10,6 +10,20 @@ const whoami = (req, res) => {
   return res.json(req.session.user || null);
 };
 
+// GET - log the user out.
+const logout = async (req, res) => {
+  try {
+    // Logs the user out by deleting "req.session.user".
+    delete req.session.user;
+
+    // If successful, return status code: 200
+    res.status(200).end();
+  } catch (error) {
+    // If unsuccessful, return status code: 500
+    res.status(500).end();
+  }
+};
+
 // POST - register a new user
 const register = async (req, res) => {
   try {
@@ -96,4 +110,5 @@ module.exports = {
   whoami,
   register,
   login,
+  logout,
 };

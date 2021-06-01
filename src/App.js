@@ -9,22 +9,25 @@ import UserContextProvider from "./contexts/UserContext";
 import MovieContextProvider from "./contexts/MovieContext";
 import "./css/App.css";
 import Navbar from "./components/Navbar";
+import ReservationContextProvider from "./contexts/ReservationContext";
 
 function App() {
   return (
     <div className="App">
       <UserContextProvider>
         <MovieContextProvider>
-          <BrowserRouter>
-            <Navbar />
-            <Switch>
-              <Route exact path="/" component={HomePage} />
-              <Route exact path="/movies/:movieId" component={MoviePage} />
-              <Route exact path="/order" component={OrderPage} />
-              <Route exact path="/registration" component={RegistrationPage} />
-              <Route exact path="/profile" component={ProfilePage} />
-            </Switch>
-          </BrowserRouter>
+          <ReservationContextProvider>
+            <BrowserRouter>
+              <Navbar />
+              <Switch>
+                <Route exact path="/" component={HomePage} />
+                <Route exact path="/movies/:movieId" component={MoviePage} />
+                <Route exact path="/order/:movieId/:screeningId?" component={OrderPage} />
+                <Route exact path="/registration" component={RegistrationPage} />
+                <Route exact path="/profile" component={ProfilePage} />
+              </Switch>
+            </BrowserRouter>
+          </ReservationContextProvider>
         </MovieContextProvider>
       </UserContextProvider>
     </div>

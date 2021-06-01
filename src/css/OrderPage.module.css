@@ -1,9 +1,20 @@
-#profile_information_wrapper {
+.matrixWrapper{
+  /* width: 50%; */
+  /* margin: 0 auto; */
+  background-color: #F1F1F1;
+  text-align: center;
+  margin-top: 30px;
+}
+
+.active{
+  background-color: #E87209;
+}
+#cinema_wrapper {
   display: inline-flex;
   width: 50%;
 }
 
-#profile_reservation_wrapper {
+#tickets_wrapper {
   display: inline-flex;
   width: 50%;
 }
@@ -14,13 +25,13 @@
 *** Mobile Screen
 **/
 @media (max-width: 768px) {
-  #profile_information_wrapper {
+  #cinema_wrapper {
     /* display: inline-flex; */
     width: 100%;
   }
 
-  #profile_reservation_wrapper {
-    display: inline-flex;
+  #tickets_wrapper {
+    /* display: inline-flex; */
     width: 100%;
   }
 }
