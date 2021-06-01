@@ -13,6 +13,8 @@ const ScreeningPicker = () => {
   // Context
   const { getAllScreeningsForMovie, getMovieById } = useContext(MovieContext);
   const {
+    choseSeats,
+    setChosenSeats,
     movieOnOrderPage,
     setMovieOnOrderPage,
     movieScreenings,
@@ -39,8 +41,14 @@ const ScreeningPicker = () => {
   useEffect(() => {
     // Sets screeningToShow - based on user's selected "screening time".
     if (selectedScreening === "default") {
+      // Resets chosenSeats to empty array: []
+      setChosenSeats([]);
+
       setScreeningToShow(null);
     } else {
+      // Resets chosenSeats to empty array: []
+      setChosenSeats([]);
+
       setScreeningToShow(...filterSelectedScreening());
     }
   }, [selectedScreening]);
@@ -85,7 +93,9 @@ const ScreeningPicker = () => {
       </Row>
       <Row className="my-2">
         <Col>
-          <p>Salongsnamn: {screeningToShow && screeningToShow.auditoriumName}</p>
+          <p>
+            Salongsnamn: {screeningToShow && screeningToShow.auditoriumName}
+          </p>
         </Col>
       </Row>
     </div>
