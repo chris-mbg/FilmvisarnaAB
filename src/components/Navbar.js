@@ -8,7 +8,7 @@ import Login from "../components/login/Login";
 import { Modal } from "react-bootstrap";
 
 function Navbar1() {
-  const { loggedInUser } = useContext(UserContext);
+  const { loggedInUser, logout } = useContext(UserContext);
 
   // LoginModal
   const [showLogin, setShowLogin] = useState(false);
