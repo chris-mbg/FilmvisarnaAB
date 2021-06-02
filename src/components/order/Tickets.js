@@ -33,7 +33,7 @@ const Tickets = () => {
           <Row noGutters={true}>
             <Col lg={5}>
               <p>
-                <span style={{border: "1px solid red"}}>{movieOnOrderPage && movieOnOrderPage.title} </span>
+                <span>{screeningToShow && screeningToShow.movieId.title} </span>
                 <br />
                 <span>
                   {screeningToShow &&

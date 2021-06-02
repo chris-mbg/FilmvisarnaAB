@@ -37,7 +37,7 @@ const ScreeningPicker = () => {
     <>
     <Row className="my-4 ">
       <Col sm={12} md={6}>
-        {movieScreenings && <h3>{movieScreenings[0].movieId.title}</h3>}
+        {movieScreenings && <h4>{movieScreenings[0].movieId.title}</h4>}
       </Col>
       <Col className="text-md-right">
         <select className={styles.select} onChange={handleSelectChange} value={selectedScreening}>
