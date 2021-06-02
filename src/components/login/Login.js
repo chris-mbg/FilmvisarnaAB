@@ -34,6 +34,11 @@ export const Login = ({ setShowLogin }) => {
     });
   };
 
+  const handleRoute = () => {
+    // Close modal when redirected to registration page
+    setShowLogin(false);
+  };
+
   const handleEmail = (e) => {
     setEmail(e.target.value);
   };
@@ -76,7 +81,11 @@ export const Login = ({ setShowLogin }) => {
       {invalidLogin && <p>Försök igen!</p>}
 
       <p className={style.regText}>
-        <NavLink to='/registration' className={`${style.linkStyle}`}>
+        <NavLink
+          onClick={handleRoute}
+          to='/registration'
+          className={`${style.linkStyle}`}
+        >
           Inte medlem än? Registrera dig här.
         </NavLink>
       </p>
