@@ -18,6 +18,6 @@ export default function CustomButton({text, clickHandler}) {
   return (
     <div className={styles.wrapper}>
       <div className={defineClass(text)} onClick={clickHandler}>{text}</div>
-    </div>
+   </div>
   )
 }
