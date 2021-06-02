@@ -14,6 +14,7 @@ const db = mongoose.connection;
 // Import routes
 const movieRoutes = require("./routes/movieRoutes");
 const screeningRoutes = require("./routes/screeningRoutes");
+const reservationRoutes = require("./routes/reservationRoutes");
 const userRoutes = require("./routes/userRoutes");
 
 // Middleware that parses JSON
@@ -32,6 +33,7 @@ app.use(
 // Middlewares
 app.use("/api/v1/movies", movieRoutes);
 app.use("/api/v1/screenings", screeningRoutes);
+app.use("/api/v1/reservations", reservationRoutes);
 app.use("/api/v1/users", userRoutes);
 
 // Server

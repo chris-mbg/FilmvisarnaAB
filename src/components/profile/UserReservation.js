@@ -20,15 +20,15 @@ const UserReservation = ({ reservation }) => {
     <Accordion
       style={{
         backgroundColor:
-          reservation.screening.startTime <= now ? "#C4C4C4" : "#fff",
+          reservation?.screening?.startTime <= now ? "#C4C4C4" : "#fff",
       }}
       className={styles.reservation}
     >
       <Row className={styles.header_wrapper} noGutters={true}>
         <Col xs={10} sm={10} md={10} lg={10}>
           <p className={styles.header_information}>
-            {reservation.movie.title} <br />
-            {moment(reservation.screening.startTime).locale("sv").format("LLL")}
+            {reservation?.movie?.title} <br />
+            {moment(reservation?.screening?.startTime).locale("sv").format("LLL")}
           </p>
         </Col>
         <Col
@@ -83,7 +83,7 @@ const UserReservation = ({ reservation }) => {
               <p className={styles.auditoria_information}>
                 Salong: <br />
                 <span className={styles.sub_information}>
-                  {reservation.screening.auditoriaName}
+                  {reservation?.screening?.auditoriaName}
                 </span>
               </p>
             </Col>
@@ -106,13 +106,13 @@ const UserReservation = ({ reservation }) => {
               <p className={styles.summary_information}>
                 Antal personer:{" "}
                 <span className={styles.sub_information}>
-                  {reservation.tickets.map((ticket, index) => index + 1)}
+                  {reservation?.tickets.map((ticket, index) => index + 1)}
                 </span>
               </p>
               <p className={styles.summary_information}>
                 Totalpris (SEK) :{" "}
                 <span className={styles.sub_information}>
-                  {reservation.totalPrice}
+                  {reservation?.totalPrice}
                 </span>
               </p>
             </Col>
@@ -120,7 +120,7 @@ const UserReservation = ({ reservation }) => {
               <p className={styles.order_information}>
                 Order:{" "}
                 <span className={styles.sub_information}>
-                  #{reservation._id}
+                  #{reservation?._id}
                 </span>
               </p>
             </Col>
