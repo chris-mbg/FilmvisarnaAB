@@ -21,6 +21,15 @@ const UserContextProvider = ({ children }) => {
     }
   }, [loggedInUser]);
 
+  useEffect(() => {}, [loggedInUser]);
+
+  // LoginModal
+  const [showLogin, setShowLogin] = useState(false);
+
+  //  Handlers for LoginModal
+  const handleCloseLoginModal = () => setShowLogin(false);
+  const handleShowLoginModal = () => setShowLogin(true);
+
   // Registration for new user.
   const register = async (userInformation) => {
     try {
@@ -60,6 +69,7 @@ const UserContextProvider = ({ children }) => {
   };
 
   const login = async (userInformation) => {
+    console.log("userInformation:", userInformation);
     const response = await fetch(`/api/v1/users/login`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -70,6 +80,7 @@ const UserContextProvider = ({ children }) => {
     });
     const result = await response.json();
 
+    console.log("result", result);
     if (result.status === "error") {
       return false;
     } else {
@@ -101,8 +112,6 @@ const UserContextProvider = ({ children }) => {
     }
   };
 
-  useEffect(() => login({email: "ch@mail.com", password: "Password123!"}), [])
-
   return (
     <UserContext.Provider
       value={{
@@ -113,6 +122,10 @@ const UserContextProvider = ({ children }) => {
         login,
         logout,
         getAllReservationsForUser,
+        setShowLogin,
+        showLogin,
+        handleCloseLoginModal,
+        handleShowLoginModal,
       }}
     >
       {children}
