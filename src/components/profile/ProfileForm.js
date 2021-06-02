@@ -1,5 +1,5 @@
 import styles from "../../css/ProfileForm.module.css";
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import { Col, Row } from "react-bootstrap";
 import { UserContext } from "../../contexts/UserContext";
 
@@ -18,6 +18,13 @@ const ProfileForm = () => {
   const [phoneDisabled, setPhoneDisabled] = useState(true);
   const [emailDisabled, setEmailDisabled] = useState(true);
   const [passwordDisabled, setPasswordDisabled] = useState(true);
+
+  useEffect(() => {
+    setFirstName(loggedInUser?.firstName);
+    setLastName(loggedInUser?.lastName);
+    setPhone(loggedInUser?.phoneNumber);
+    setEmail(loggedInUser?.email);
+  },[loggedInUser]);
 
   const handlePhone = (e) => {
     // Only allows numbers - input
