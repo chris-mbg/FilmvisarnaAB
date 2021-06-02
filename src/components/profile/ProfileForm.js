@@ -1,22 +1,17 @@
 import styles from "../../css/ProfileForm.module.css";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Col, Row } from "react-bootstrap";
+import { UserContext } from "../../contexts/UserContext";
 
 const ProfileForm = () => {
-  // Import variable from UserContext here ...
-  const user = {
-    firstName: "Lorem",
-    lastName: "Ipsum",
-    phoneNumber: "0700000000",
-    email: "admin@mail.com",
-    password: "123456789",
-  }; // Dummy data
+  // Context
+  const { loggedInUser } = useContext(UserContext);
 
-  const [firstName, setFirstName] = useState(user.firstName); // Placeholder data
-  const [lastName, setLastName] = useState(user.lastName); // Placeholder data
-  const [phone, setPhone] = useState(user.phoneNumber); // Placeholder data
-  const [email, setEmail] = useState(user.email); // Placeholder data
-  const [password, setPassword] = useState(user.password); // Placeholder data
+  const [firstName, setFirstName] = useState(loggedInUser.firstName);
+  const [lastName, setLastName] = useState(loggedInUser.lastName);
+  const [phone, setPhone] = useState(loggedInUser.phoneNumber);
+  const [email, setEmail] = useState(loggedInUser.email);
+  const [password, setPassword] = useState("");
 
   const [firstNameDisabled, setFirstNameDisabled] = useState(true);
   const [lastNameDisabled, setLastNameDisabled] = useState(true);
@@ -83,7 +78,7 @@ const ProfileForm = () => {
           md={2}
           lg={1}
         >
-          {firstNameDisabled ? (
+          {/* {firstNameDisabled ? (
             <i
               onClick={(e) => setFirstNameDisabled(false)}
               className={`${styles.icon} fas fa-edit`}
@@ -93,7 +88,7 @@ const ProfileForm = () => {
               onClick={handleFirstNameEdit}
               className={`${styles.icon} fas fa-check`}
             ></i>
-          )}
+          )} */}
         </Col>
       </Row>
 
@@ -124,7 +119,7 @@ const ProfileForm = () => {
           md={2}
           lg={1}
         >
-          {lastNameDisabled ? (
+          {/* {lastNameDisabled ? (
             <i
               onClick={(e) => setLastNameDisabled(false)}
               className={`${styles.icon} fas fa-edit`}
@@ -134,7 +129,7 @@ const ProfileForm = () => {
               onClick={handleLastNameEdit}
               className={`${styles.icon} fas fa-check`}
             ></i>
-          )}
+          )} */}
         </Col>
       </Row>
 
@@ -165,7 +160,7 @@ const ProfileForm = () => {
           md={2}
           lg={1}
         >
-          {phoneDisabled ? (
+          {/* {phoneDisabled ? (
             <i
               onClick={(e) => setPhoneDisabled(false)}
               className={`${styles.icon} fas fa-edit`}
@@ -175,7 +170,7 @@ const ProfileForm = () => {
               onClick={handlePhoneEdit}
               className={`${styles.icon} fas fa-check`}
             ></i>
-          )}
+          )} */}
         </Col>
       </Row>
 
@@ -206,7 +201,7 @@ const ProfileForm = () => {
           md={2}
           lg={1}
         >
-          {emailDisabled ? (
+          {/* {emailDisabled ? (
             <i
               onClick={(e) => setEmailDisabled(false)}
               className={`${styles.icon} fas fa-edit`}
@@ -216,11 +211,12 @@ const ProfileForm = () => {
               onClick={handleEmailEdit}
               className={`${styles.icon} fas fa-check`}
             ></i>
-          )}
+          )} */}
         </Col>
       </Row>
 
-      <Row noGutters>
+      {/* Password input */}
+      {/* <Row noGutters>
         <Col xs={11} sm={11} md={10} lg={11}>
           <div className="form-group">
             <label className="pl-2" htmlFor="password">
@@ -259,7 +255,8 @@ const ProfileForm = () => {
             ></i>
           )}
         </Col>
-      </Row>
+      </Row> */}
+      {/* /password input */}
     </form>
   );
 };
