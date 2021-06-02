@@ -1,4 +1,4 @@
-import styles from "../../css/Tickets.module.css";
+import styles from "./styles/Tickets.module.css";
 import { useContext } from "react";
 import { ReservationContext } from "../../contexts/ReservationContext";
 import { Container, Row, Col } from "react-bootstrap";
@@ -14,7 +14,6 @@ const Tickets = () => {
     screeningToShow,
     userConfirmsReservation,
   } = useContext(ReservationContext);
-
   // Handler
   const handleConfirmClick = async () => {
     let result = await userConfirmsReservation();
@@ -34,7 +33,7 @@ const Tickets = () => {
           <Row noGutters={true}>
             <Col lg={5}>
               <p>
-                <span>{movieOnOrderPage && movieOnOrderPage.title} </span>
+                <span style={{border: "1px solid red"}}>{movieOnOrderPage && movieOnOrderPage.title} </span>
                 <br />
                 <span>
                   {screeningToShow &&
@@ -42,7 +41,7 @@ const Tickets = () => {
                 </span>
               </p>
             </Col>
-            <Col lg={5}>Vuxen, pensionär, barn</Col>
+            {/* <Col lg={5}>Vuxen, pensionär, barn</Col> */}
           </Row>
           <Row noGutters={true}>
             <Col>
@@ -52,7 +51,8 @@ const Tickets = () => {
                 </li>
               </ul>
             </Col>
-            <Col>Pris: {screeningToShow && screeningToShow.price} :-</Col>
+            <Col>
+            Pris: {screeningToShow && screeningToShow.price} :-</Col>
           </Row>
         </Container>
       );

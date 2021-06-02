@@ -20,7 +20,7 @@ export default function OrderPage() {
   useEffect(() => setMovieIdOnOrderPage(movieId), [movieId]);
 
   return (
-    <Container className="mt-5" fluid>
+    <div className="mx-3 py-5">
       <Row>
         <Col lg={6}>
           <h2 className={styles.pageHeader}>Boka biljetter</h2>
@@ -35,6 +35,6 @@ export default function OrderPage() {
           <Tickets />
         </Col>
       </Row>
-    </Container>
+    </div>
   );
 }

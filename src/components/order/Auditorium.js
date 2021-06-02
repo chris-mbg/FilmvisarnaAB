@@ -54,6 +54,11 @@ const Auditorium = () => {
     <div className={`${styles.wrapper}`}>
       <span className={styles.screen}></span>
       {screeningToShow ? auditorium : null}
+      <div className={styles.details}>
+        <Chair detailsSelectedChair={true}/>
+        <Chair deailsOrderedChair={true}/>
+
+      </div>
       {/* <p>Valda platser:</p>
       {seatsChosen && (
         <div>
