@@ -97,27 +97,22 @@ export default function MoviePage(props) {
         <div className={styles.scheduleWrapper}>
           <h2>Föreställningar</h2>
           <Row
-            className={`${styles.scheduleItem} d-flex align-items-md-center`}
+            className={`border-bottom border-white pb-2 ${styles.scheduleItem}`}
           >
-            <Col sm={3} md={3} className={`${styles.detailWrapper}`}>
-              <div className={`${styles.scheduleDetails}`}>
-                <h5>Datum</h5>
-              </div>
+            <Col xs={4} sm={3} className={`${styles.scheduleHeading}`}>
+                <h3>Datum</h3>
             </Col>
-            <Col sm={2} md={2} >
-              <div className={`${styles.scheduleDetails}`}>
-                <h5>Tid</h5>
-              </div>
+            <Col xs={2} sm={2} className={`text-center ${styles.scheduleHeading}`}>
+                <h3>Tid</h3>
             </Col>
-            <Col sm={3} md={3} >
-              <div className={`${styles.scheduleDetails}`}>
-                <h5>Platser kvar</h5>
-              </div>
+            <Col xs={2} sm={2} className={`text-center ${styles.scheduleHeading}`} >
+                <h3>Platser kvar</h3>
             </Col>
-            <Col sm={3} md={3} >
-              <div className={`${styles.scheduleDetails}`}>
-                <h5>Salong</h5>
-              </div>
+            <Col xs={0} sm={3} className={`d-none d-sm-block text-right ${styles.scheduleHeading}`}>
+                <h3>Salong</h3>
+            </Col>
+            <Col xs={3} sm={2} >
+              {/* Col for button */}
             </Col>
           </Row>
           {screenings.map((screen) => (

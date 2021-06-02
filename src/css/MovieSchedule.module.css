@@ -5,19 +5,31 @@
   padding-bottom: 0.6rem;
 }
 
+
 .scheduleDetails{
   color: #333;
 }
 
 .scheduleDetails > h5 {
-font-size: 1em;
+/* font-size: 1em; */
 font-weight: 600;
 }
 .scheduleDetails > p{
-  font-size: 1rem;
+  font-size: 0.7rem;
   font-weight: 300;
 }
+.scheduleButtonWrapper {
 
+}
+div.scheduleButtonWrapper div.bookButtonContainer div.bookButton {
+  padding: 4px 8px;
+}
+
+@media screen and (min-width: 576px) {
+  .scheduleDetails > p{
+    font-size: 0.9rem;
+  }
+}
 @media only screen and (min-width: 958px) {
   .scheduleWrapper{
     max-width: 930px;

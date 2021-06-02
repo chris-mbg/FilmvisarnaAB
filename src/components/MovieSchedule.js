@@ -16,23 +16,24 @@ export default function MovieSchedule({
   screeningId
 }) {
   return (
-
       <>
-      <Row className={`${styles.scheduleItem} d-flex align-items-md-center`}>
-        <Col
-          sm={12}
-          md={10}
-          className={`${styles.detailWrapper} d-flex justify-content-between`}
+      <Row className={`${styles.scheduleItem} d-flex align-items-center`}>
+        <Col xs={4}
+          sm={3}
+          className={`${styles.detailWrapper}`}
         >
           {date && (
             <div className={styles.scheduleDetails}>
               <p>{date}</p>
             </div>
           )}
-
+        </Col>
+        <Col xs={2} sm={2} className="text-center">
           <div className={isHomePage ? `col-2 ${styles.scheduleDetails}`: styles.scheduleDetails}>
             <p>{time}</p>
           </div>
+        </Col>
+        <Col xs={2} sm={2} className="text-center">
           {totalPlaces ? (
             <div className={styles.scheduleDetails}>
               <p>
@@ -41,16 +42,17 @@ export default function MovieSchedule({
               </p>
             </div>
           ) : (
-            <div className={isHomePage ? `col-8 ${styles.scheduleDetails}`: styles.scheduleDetails}>
+            <div className={isHomePage ? `${styles.scheduleDetails}`: styles.scheduleDetails}>
               <p>{title}</p>
             </div>
           )}
+        </Col>
+        <Col xs={0} sm={3} className="text-right d-none d-sm-block">
           <div className={isHomePage ? ` ${styles.scheduleDetails}`: styles.scheduleDetails}>
             <p>{auditorium}</p>
           </div>
         </Col>
-        <Col
-          className={`${styles.btnWrapper} d-flex justify-content-end p-0 mt-3 mt-md-0`}
+        <Col xs={3} sm={2} className={`d-flex justify-content-end align-items-center ${styles.scheduleButtonWrapper}`}
         >
           <BookButton movieId={movieId} screeningId={screeningId} />
         </Col>

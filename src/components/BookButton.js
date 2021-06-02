@@ -16,7 +16,7 @@ const BookButton = ({ movieId, screeningId = null }) => {
   }
 
   return (
-    <div className={loggedInUser ? `${styles.bookButton}` : `${styles.bookButton} ${styles.tooltip} ${styles.disabled}`}>
+    <div className={loggedInUser ? `${styles.bookButtonContainer}` : `${styles.bookButtonContainer} ${styles.tooltip} ${styles.disabled}`}>
       <CustomButton text={"Boka"} clickHandler={bookButtonClick}/>
       {!loggedInUser && <span className={styles.tooltiptext}>Logga in för att boka biljetter!</span>}
     </div>
