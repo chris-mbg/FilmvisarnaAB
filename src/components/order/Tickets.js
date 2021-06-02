@@ -29,8 +29,6 @@ const Tickets = () => {
     if (!result) {
       console.log("Something went wrong, error with booking tickets");
     } else {
-      // alert("Tickets booked", result);
-
       // If booking is confirmed, show ConfirmModal.
       setShowConfirmModal(true);
     }
