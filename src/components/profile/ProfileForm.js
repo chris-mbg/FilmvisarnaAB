@@ -7,10 +7,10 @@ const ProfileForm = () => {
   // Context
   const { loggedInUser } = useContext(UserContext);
 
-  const [firstName, setFirstName] = useState(loggedInUser.firstName);
-  const [lastName, setLastName] = useState(loggedInUser.lastName);
-  const [phone, setPhone] = useState(loggedInUser.phoneNumber);
-  const [email, setEmail] = useState(loggedInUser.email);
+  const [firstName, setFirstName] = useState(loggedInUser?.firstName);
+  const [lastName, setLastName] = useState(loggedInUser?.lastName);
+  const [phone, setPhone] = useState(loggedInUser?.phoneNumber);
+  const [email, setEmail] = useState(loggedInUser?.email);
   const [password, setPassword] = useState("");
 
   const [firstNameDisabled, setFirstNameDisabled] = useState(true);
