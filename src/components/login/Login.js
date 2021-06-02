@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { NavLink, useHistory } from 'react-router-dom';
+import { NavLink, useHistory, useLocation } from 'react-router-dom';
 import { UserContext } from '../../contexts/UserContext';
 import style from '../../css/Login.module.css';
 
@@ -13,6 +13,9 @@ export const Login = () => {
 
   // useHistory
   const history = useHistory();
+
+  // useLocation
+  const location = useLocation();
 
   // Handlers
   const handleFormSubmit = (e) => {
@@ -30,6 +33,10 @@ export const Login = () => {
       if (data === true) {
         // Closes login modal after successful login.
         setShowLogin(false);
+        // Checks if user is on registration page, if true redirect user to start page
+        if (location.pathname === '/registration') {
+          history.push('/');
+        }
       }
     });
   };
