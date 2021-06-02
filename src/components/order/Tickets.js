@@ -29,7 +29,7 @@ const Tickets = () => {
     seatsChosen &&
     seatsChosen.map((seat) => {
       return (
-        <Container className={styles.ticket_container} fluid>
+        <Container className={styles.ticket_container} fluid key={seat}>
           <Row noGutters={true}>
             <Col lg={5}>
               <p>
