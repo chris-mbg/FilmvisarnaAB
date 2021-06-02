@@ -5,7 +5,7 @@ import styles from "../css/HomePage.module.css"
 
 const HomePage = () => {
   return (
-    <div className="homePage">
+    <div className='homePage'>
       <ImgCarousel />
       <MovieWrapper/>
       
@@ -27,6 +27,6 @@ const HomePage = () => {
     </div>
     
   );
-}
+};
 
 export default HomePage;
