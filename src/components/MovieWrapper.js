@@ -27,7 +27,7 @@ export default function MovieWrapper() {
   };
   return (
     <div className="mt-3">
-      <h2 className="text-center">{ showAllMovies ? "Alla filmer" : "Mest sedda filmer"}</h2>
+      <h2 className={styles.heading}>{ showAllMovies ? "Alla filmer" : "Mest sedda filmer"} </h2>
       <div
         className={`${styles.wrapper} p-0 my-4 d-flex flex-wrap justify-content-around mx-auto`}
       >
