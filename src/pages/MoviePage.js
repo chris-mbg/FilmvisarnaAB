@@ -102,13 +102,13 @@ export default function MoviePage(props) {
             <Col xs={4} sm={3} className={`${styles.scheduleHeading}`}>
                 <h3>Datum</h3>
             </Col>
-            <Col xs={2} sm={2} className={`text-center ${styles.scheduleHeading}`}>
+            <Col xs={2} sm={2} className={`text-left ${styles.scheduleHeading}`}>
                 <h3>Tid</h3>
             </Col>
             <Col xs={2} sm={2} className={`text-center ${styles.scheduleHeading}`} >
                 <h3>Platser kvar</h3>
             </Col>
-            <Col xs={0} sm={3} className={`d-none d-sm-block text-right ${styles.scheduleHeading}`}>
+            <Col xs={0} sm={3} className={`text-right d-none d-sm-block ${styles.scheduleHeading}`}>
                 <h3>Salong</h3>
             </Col>
             <Col xs={3} sm={2} >

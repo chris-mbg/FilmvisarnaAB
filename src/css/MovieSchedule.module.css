@@ -18,12 +18,7 @@ font-weight: 600;
   font-size: 0.7rem;
   font-weight: 300;
 }
-.scheduleButtonWrapper {
 
-}
-div.scheduleButtonWrapper div.bookButtonContainer div.bookButton {
-  padding: 4px 8px;
-}
 
 @media screen and (min-width: 576px) {
   .scheduleDetails > p{

@@ -41,6 +41,22 @@
   font-weight: 600;
 }
 
+@media only screen and (min-width:576px) {
+  .scheduleHeading h3{
+    font-size: 1rem;
+  }
+}
+@media only screen and (min-width: 768px) {
+  .description {
+    padding-right: 3rem;
+  }
+  .description > h1{
+    text-align: start;
+  }
+  .scheduleHeading h3{
+    font-size: 1.1rem;
+  }
+}
 @media only screen and (min-width: 958px) {
   .scheduleWrapper{
     max-width: 930px;
@@ -51,13 +67,4 @@
     font-size: 1.8rem;
   }
 
-}
-
-@media only screen and (min-width: 768px) {
-  .description {
-    padding-right: 3rem;
-  }
-  .description > h1{
-    text-align: start;
-  }
 }

@@ -28,8 +28,8 @@ export default function MovieSchedule({
             </div>
           )}
         </Col>
-        <Col xs={2} sm={2} className="text-center">
-          <div className={isHomePage ? `col-2 ${styles.scheduleDetails}`: styles.scheduleDetails}>
+        <Col xs={2} sm={2} className="text-left">
+          <div className={isHomePage ? `${styles.scheduleDetails}`: styles.scheduleDetails}>
             <p>{time}</p>
           </div>
         </Col>
