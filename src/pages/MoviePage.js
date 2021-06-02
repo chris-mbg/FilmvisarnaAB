@@ -1,10 +1,8 @@
 import {useContext, useEffect, useState} from 'react'
-import BookButton from '../components/BookButton';
 import { MovieContext } from '../contexts/MovieContext'
 import { Row, Col, Image } from "react-bootstrap";
 
 import styles from "../css/MoviePage.module.css";
-import CustomButton from "../components/CustomButton";
 import MovieSchedule from "../components/MovieSchedule";
 
 export default function MoviePage(props) {
@@ -15,15 +13,14 @@ export default function MoviePage(props) {
   const { getMovieById, getAllScreeningsForMovie } = useContext(MovieContext);
 
   useEffect(async () => {
-    let response = await getMovieById(movieId);
-    setMovie(response);
-    // todo delete after test
-    console.log("movie", response);
+    async function getMovieAndSchedule() {
+      let response = await getMovieById(movieId);
+      setMovie(response);
 
-    let schedule = await getAllScreeningsForMovie(response._id);
-    setScreening(schedule);
-    // todo delete after test
-    console.log(schedule);
+      let schedule = await getAllScreeningsForMovie(response._id);
+      setScreening(schedule);
+    }
+    getMovieAndSchedule();
   }, []);
 
 
@@ -40,9 +37,9 @@ export default function MoviePage(props) {
   };
 
   // todo connect trailer
-  const seeTrailer = () => {
-    console.log("this is a wonderful trailer...");
-  };
+  // const seeTrailer = () => {
+  //   console.log("this is a wonderful trailer...");
+  // };
 
   const renderMovieDescription = () => (
     <section className={styles.movieContainer}>
@@ -117,25 +114,24 @@ export default function MoviePage(props) {
        { screenings.map((screen) => (
           <MovieSchedule
             isMoviePage={true}
-            date={new Date(screen.startTime)
+            date={(screen.startTime)
               .toLocaleString("sv-SE")
               .slice(0, 11)}
-            time={new Date(screen.startTime)
+            time={(screen.startTime)
               .toLocaleString("sv-SE")
               .slice(11, 16)}
             // flat() returns a new array in which all the elements of the nested subarrays have been recursively "hoisted"
             totalPlaces={screen.seats.flat(Infinity).length}
             reservedPlaces={getReservedPlaces(screen.seats)}
             auditorium={screen.auditoriumName}
+            screeningId={screen._id}
+            movieId={movieId}
           />
         ))}
         </div>
       ) : (
         <h2>...loading</h2>
       )}
-   {/*  <div>
-      <h1>Movie page</h1>
-      {movie && <BookButton movieId={movie._id} movieTitle={movie.title} />} */}
     </div>
   );
 }
