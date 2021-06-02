@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from 'react';
+import { createContext, useEffect, useState } from "react";
 
 export const UserContext = createContext();
 
@@ -7,7 +7,7 @@ const UserContextProvider = ({ children }) => {
   const [userReservations, setUserReservations] = useState(null);
 
   const loggedInCheck = async () => {
-    let loggedIn = await fetch('/api/v1/users/whoami');
+    let loggedIn = await fetch("/api/v1/users/whoami");
     loggedIn = await loggedIn.json();
     loggedIn ? setLoggedInUser(loggedIn) : setLoggedInUser(null);
   };
@@ -34,8 +34,8 @@ const UserContextProvider = ({ children }) => {
   const register = async (userInformation) => {
     try {
       const response = await fetch(`/api/v1/users/register`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           firstName: userInformation.firstName,
           lastName: userInformation.lastName,
@@ -52,12 +52,12 @@ const UserContextProvider = ({ children }) => {
       const data = await response.json();
 
       // If registration was not successful, then throw new error.
-      if (data.status === 'error') {
+      if (data.status === "error") {
         throw new Error();
       }
 
       // Return true, if registration was successful.
-      if (data.status === 'success') {
+      if (data.status === "success") {
         // Registration - logs user in after registration is completed.
         setLoggedInUser(data.data);
 
@@ -69,10 +69,10 @@ const UserContextProvider = ({ children }) => {
   };
 
   const login = async (userInformation) => {
-    console.log('userInformation:', userInformation);
+    console.log("userInformation:", userInformation);
     const response = await fetch(`/api/v1/users/login`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         email: userInformation.email,
         password: userInformation.password,
@@ -80,8 +80,8 @@ const UserContextProvider = ({ children }) => {
     });
     const result = await response.json();
 
-    console.log('result', result);
-    if (result.status === 'error') {
+    console.log("result", result);
+    if (result.status === "error") {
       return false;
     } else {
       setLoggedInUser(result.loggedInUser);
@@ -94,7 +94,7 @@ const UserContextProvider = ({ children }) => {
     // Checks if user is logged in or not. If user is not logged in, then "return".
     if (!loggedInUser) return;
 
-    const { status } = await fetch('/api/v1/users/logout');
+    const { status } = await fetch("/api/v1/users/logout");
 
     // If logout is successful. Set loggedInUser to "null".
     if (status === 200) {
@@ -105,17 +105,12 @@ const UserContextProvider = ({ children }) => {
   };
 
   const getAllReservationsForUser = async () => {
-    let result = await fetch('/api/v1/reservations/user');
+    let result = await fetch("/api/v1/reservations/user");
     result = await result.json();
-    if (result.status !== 'error') {
+    if (result.status !== "error") {
       setUserReservations(result);
     }
   };
-
-  useEffect(
-    () => login({ email: 'ch@mail.com', password: 'Password123!' }),
-    []
-  );
 
   return (
     <UserContext.Provider
