@@ -23,6 +23,13 @@ const UserContextProvider = ({ children }) => {
 
   useEffect(() => {}, [loggedInUser]);
 
+  // LoginModal
+  const [showLogin, setShowLogin] = useState(false);
+
+  //  Handlers for LoginModal
+  const handleCloseLoginModal = () => setShowLogin(false);
+  const handleShowLoginModal = () => setShowLogin(true);
+
   // Registration for new user.
   const register = async (userInformation) => {
     try {
@@ -120,6 +127,10 @@ const UserContextProvider = ({ children }) => {
         login,
         logout,
         getAllReservationsForUser,
+        setShowLogin,
+        showLogin,
+        handleCloseLoginModal,
+        handleShowLoginModal,
       }}
     >
       {children}

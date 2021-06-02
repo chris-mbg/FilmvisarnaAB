@@ -10,14 +10,13 @@ import ModalHeader from 'react-bootstrap/ModalHeader';
 import style from '../css/Login.module.css';
 
 function Navbar1() {
-  const { loggedInUser, logout } = useContext(UserContext);
-
-  // LoginModal
-  const [showLogin, setShowLogin] = useState(false);
-
-  //  Handlers for LoginModal
-  const handleCloseLoginModal = () => setShowLogin(false);
-  const handleShowLoginModal = () => setShowLogin(true);
+  const {
+    handleCloseLoginModal,
+    handleShowLoginModal,
+    showLogin,
+    loggedInUser,
+    logout,
+  } = useContext(UserContext);
 
   return (
     <Navbar className={styles.nav} collapseOnSelect expand='md' variant='dark'>
@@ -68,7 +67,7 @@ function Navbar1() {
           className={style.modalCloseButton}
           closeButton
         ></ModalHeader>
-        <Login setShowLogin={setShowLogin} />
+        <Login />
       </Modal>
     </Navbar>
   );

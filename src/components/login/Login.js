@@ -3,13 +3,13 @@ import { NavLink, useHistory } from 'react-router-dom';
 import { UserContext } from '../../contexts/UserContext';
 import style from '../../css/Login.module.css';
 
-export const Login = ({ setShowLogin }) => {
+export const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [invalidLogin, setInvalidLogin] = useState(false);
 
   // Context
-  const { login } = useContext(UserContext);
+  const { setShowLogin, login } = useContext(UserContext);
 
   // useHistory
   const history = useHistory();
