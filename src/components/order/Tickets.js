@@ -17,11 +17,10 @@ const Tickets = () => {
   } = useContext(ReservationContext);
 
   // LoginModal
-  const [showConfirmModal, setShowConfirmModal] = useState(false);
+  const [showConfirmModal, setShowConfirmModal] = useState(true);
 
   //  Handlers for LoginModal
   const handleCloseConfirmModal = () => setShowConfirmModal(false);
-  const handleShowConfirmModal = () => setShowConfirmModal(true);
 
   // Handler
 
@@ -31,13 +30,9 @@ const Tickets = () => {
       console.log("Something went wrong, error with booking tickets");
     } else {
       // alert("Tickets booked", result);
-     return  (
-     <Modal 
-     show={showConfirmModal}
-     onHide={handleCloseConfirmModal}>
-     <ConfirmModal />
-   </Modal>
-   )
+
+      // If booking is confirmed, show ConfirmModal.
+      setShowConfirmModal(true);
     }
   };
 
@@ -99,6 +94,10 @@ const Tickets = () => {
         )}
       </div>
       {/* /ticket_wrapper_bottom */}
+      <Modal show={showConfirmModal} onHide={handleCloseConfirmModal}>
+        <ConfirmModal />
+      </Modal>
+      ;
     </div>
   );
 };
