@@ -1,5 +1,4 @@
-import { useEffect } from "react";
-import { createContext, useContext, useState } from "react";
+import { createContext, useEffect, useContext, useState } from "react";
 import { MovieContext } from "./MovieContext";
 import { UserContext } from "./UserContext";
 
@@ -96,14 +95,14 @@ const ReservationContextProvider = (props) => {
 
 
   const values = {
-    saveReservation,
+    //saveReservation,
     movieIdOnOrderPage,
     setMovieIdOnOrderPage,
     screeningIdOnOrderPage,
     setScreeningIdOnOrderPage,
     movieScreenings,
     screeningToShow,
-    //setScreeningToShow,
+    setScreeningToShow,
     seatsChosen,
     setSeatsChosen,
     userConfirmsReservation

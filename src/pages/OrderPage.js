@@ -10,12 +10,21 @@ import Tickets from "../components/order/Tickets";
 
 // For this page is necessarily (otherwise page not be loaded) to click the "BOOK" button, Because screening id  is needed for to find  the desired movie !!!!!
 export default function OrderPage() {
-  const { setMovieIdOnOrderPage, setScreeningIdOnOrderPage } =
+  const { setMovieIdOnOrderPage, setScreeningIdOnOrderPage, setScreeningToShow } =
     useContext(ReservationContext);
   const { movieId, screeningId } = useParams();
 
   useEffect(() => setScreeningIdOnOrderPage(screeningId), [screeningId]);
   useEffect(() => setMovieIdOnOrderPage(movieId), [movieId]);
+
+  // Fix for reseting screeningtoshow and screeningId if user leaves order page. 
+  useEffect(() => {
+    return () => {
+      console.log("In return..");
+      setScreeningToShow(null);
+      setScreeningIdOnOrderPage(null);
+    };
+  }, []);
 
   return (
     <Container className="mt-5" fluid>

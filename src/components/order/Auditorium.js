@@ -1,11 +1,10 @@
-import { useEffect } from "react";
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import { ReservationContext } from "../../contexts/ReservationContext";
 import Chair from "./Chair";
 // import { Row, Col } from "react-bootstrap";
 
 const Auditorium = () => {
-  const { screeningToShow, seatsChosen } = useContext(ReservationContext);
+  const { screeningToShow, setScreeningToShow, seatsChosen } = useContext(ReservationContext);
   const [auditorium, setAuditorium] = useState(null);
 
   const renderCinemaMatrix = () => {
