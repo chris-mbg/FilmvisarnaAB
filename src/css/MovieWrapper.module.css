@@ -1,4 +1,19 @@
 .wrapper{
   max-width: 880px;
+  border-top: 0.5px solid #F3F3F3;
   border-bottom: 0.5px solid #F3F3F3;
+}
+
+.showAllBtnContainer {
+  text-align: right;
+  margin: 1rem;
+}
+.showAllBtn {
+  text-align: center;
+  border:none;
+  background-color: rgba(51, 51, 51, 0.774);
+  color: #F3F3F3;
+  border: 1px solid #F3F3F3;
+  border-radius: 2px;
+  padding: 0.3rem 0.8rem;
 }
