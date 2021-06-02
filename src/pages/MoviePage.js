@@ -1,7 +1,6 @@
-import {useContext, useEffect, useState} from 'react'
-import { MovieContext } from '../contexts/MovieContext'
+import { useContext, useEffect, useState } from "react";
+import { MovieContext } from "../contexts/MovieContext";
 import { Row, Col, Image } from "react-bootstrap";
-
 import styles from "../css/MoviePage.module.css";
 import MovieSchedule from "../components/MovieSchedule";
 
@@ -12,17 +11,16 @@ export default function MoviePage(props) {
 
   const { getMovieById, getAllScreeningsForMovie } = useContext(MovieContext);
 
-  useEffect(async () => {
-    async function getMovieAndSchedule() {
+  useEffect(() => {
+    async function getMovieAndScreenings() {
       let response = await getMovieById(movieId);
       setMovie(response);
 
       let schedule = await getAllScreeningsForMovie(response._id);
       setScreening(schedule);
     }
-    getMovieAndSchedule();
+    getMovieAndScreenings();
   }, []);
-
 
   /*
    **{params} = multidimensional array
@@ -53,25 +51,32 @@ export default function MoviePage(props) {
               <h1>{movie.title}</h1>
               <p>{movie.description}</p>
               <hr></hr>
-              <p>Åldersgräns: {movie.ageLimit.slice(-2)} år</p>
+              <p>
+                Åldersgräns: {movie.ageLimit.slice(3, movie.ageLimit.length)} år
+              </p>
               <p>Direktör: {movie.director} </p>
               <p>
                 Skådespelare:{" "}
-                {movie.actors.map((actor) => (
-                  <span>{actor} &#183; </span>
+                {movie.actors.map((actor, index) => (
+                  <span key={index}>{actor} &#183; </span>
                 ))}
               </p>
               <p>Språk: {movie.language}</p>
-              <p>Produktionsår:{" "} {movie.productionYear}
+              <p>
+                Produktionsår: {movie.productionYear}
                 {/* {movie.productionCountries.map((country) => (
                   <span>{country}</span>
                 ))} */}
               </p>
-              <p> Längd: <span>{movie.length}</span>
+              <p>
+                {" "}
+                Längd: <span>{movie.length}</span>
                 {/* Sammanfattning: <span>{movie.productionYear}</span>
                 &#183;<span>{movie.length}</span> */}
               </p>
-              <p>Genre:{""} {movie.genre}</p>
+              <p>
+                Genre:{""} {movie.genre}
+              </p>
             </div>
             {/* Needed when possibility to see trailer is implemented! */}
             {/* <CustomButton
@@ -91,43 +96,43 @@ export default function MoviePage(props) {
       {screenings ? (
         <div className={styles.scheduleWrapper}>
           <h2>Föreställningar</h2>
-          <Row className={`${styles.scheduleItem} d-flex align-items-md-center`}>
-          <Col
-            sm={12}
-            md={10}
-            className={`${styles.detailWrapper} d-flex justify-content-between`}
+          <Row
+            className={`${styles.scheduleItem} d-flex align-items-md-center`}
           >
-            <div className={styles.scheduleDetails}>
-              <h5>Datum</h5>
-            </div>
-            <div className={styles.scheduleDetails}>
-              <h5>Tid</h5>
-            </div>
-            <div className={styles.scheduleDetails}>
-              <h5>Platser kvar</h5>
-            </div>
-            <div className={styles.scheduleDetails}>
-              <h5>Salong</h5>
-            </div>
-          </Col>
-        </Row>
-       { screenings.map((screen) => (
-          <MovieSchedule
-            isMoviePage={true}
-            date={(screen.startTime)
-              .toLocaleString("sv-SE")
-              .slice(0, 11)}
-            time={(screen.startTime)
-              .toLocaleString("sv-SE")
-              .slice(11, 16)}
-            // flat() returns a new array in which all the elements of the nested subarrays have been recursively "hoisted"
-            totalPlaces={screen.seats.flat(Infinity).length}
-            reservedPlaces={getReservedPlaces(screen.seats)}
-            auditorium={screen.auditoriumName}
-            screeningId={screen._id}
-            movieId={movieId}
-          />
-        ))}
+            <Col sm={3} md={3} className={`${styles.detailWrapper}`}>
+              <div className={`${styles.scheduleDetails}`}>
+                <h5>Datum</h5>
+              </div>
+            </Col>
+            <Col sm={2} md={2} >
+              <div className={`${styles.scheduleDetails}`}>
+                <h5>Tid</h5>
+              </div>
+            </Col>
+            <Col sm={3} md={3} >
+              <div className={`${styles.scheduleDetails}`}>
+                <h5>Platser kvar</h5>
+              </div>
+            </Col>
+            <Col sm={3} md={3} >
+              <div className={`${styles.scheduleDetails}`}>
+                <h5>Salong</h5>
+              </div>
+            </Col>
+          </Row>
+          {screenings.map((screen) => (
+            <MovieSchedule
+              isMoviePage={true}
+              date={screen.startTime.toLocaleString("sv-SE").slice(0, 11)}
+              time={screen.startTime.toLocaleString("sv-SE").slice(11, 16)}
+              // flat() returns a new array in which all the elements of the nested subarrays have been recursively "hoisted"
+              totalPlaces={screen.seats.flat(Infinity).length}
+              reservedPlaces={getReservedPlaces(screen.seats)}
+              auditorium={screen.auditoriumName}
+              screeningId={screen._id}
+              movieId={movieId}
+            />
+          ))}
         </div>
       ) : (
         <h2>...loading</h2>
