@@ -1,10 +1,11 @@
 import styles from "../../css/Tickets.module.css";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { ReservationContext } from "../../contexts/ReservationContext";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, Modal } from "react-bootstrap";
 import CustomButton from "../CustomButton";
 import moment from "moment";
 import "moment/locale/sv";
+import ConfirmModal from "./ConfirmModal";
 
 const Tickets = () => {
   // Context
@@ -15,13 +16,28 @@ const Tickets = () => {
     userConfirmsReservation,
   } = useContext(ReservationContext);
 
+  // LoginModal
+  const [showConfirmModal, setShowConfirmModal] = useState(false);
+
+  //  Handlers for LoginModal
+  const handleCloseConfirmModal = () => setShowConfirmModal(false);
+  const handleShowConfirmModal = () => setShowConfirmModal(true);
+
   // Handler
+
   const handleConfirmClick = async () => {
     let result = await userConfirmsReservation();
     if (!result) {
       console.log("Something went wrong, error with booking tickets");
     } else {
-      alert("Tickets booked", result);
+      // alert("Tickets booked", result);
+     return  (
+     <Modal 
+     show={showConfirmModal}
+     onHide={handleCloseConfirmModal}>
+     <ConfirmModal />
+   </Modal>
+   )
     }
   };
 
