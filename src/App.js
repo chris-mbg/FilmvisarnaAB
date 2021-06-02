@@ -10,6 +10,7 @@ import MovieContextProvider from './contexts/MovieContext';
 import './css/App.css';
 import Navbar from './components/Navbar';
 import ReservationContextProvider from './contexts/ReservationContext';
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -38,6 +39,7 @@ function App() {
           </ReservationContextProvider>
         </MovieContextProvider>
       </UserContextProvider>
+      <Footer />
     </div>
   );
 }
