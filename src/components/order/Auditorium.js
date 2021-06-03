@@ -4,7 +4,6 @@ import { ReservationContext } from "../../contexts/ReservationContext";
 import Chair from "./Chair";
 import styles from "./styles/Auditorium.module.css";
 
-// import { Row, Col } from "react-bootstrap";
 
 const Auditorium = () => {
   const { screeningToShow, seatsChosen } = useContext(ReservationContext);
@@ -51,25 +50,18 @@ const Auditorium = () => {
   useEffect(() => setAuditorium(renderCinemaMatrix()), [screeningToShow]);
 
   return (
-    <div className={`${styles.wrapper}`}>
-      <span className={styles.screen}></span>
-      {screeningToShow ? auditorium : null}
-      <div className={styles.details}>
-        <Chair detailsSelectedChair={true}/>
-        <Chair deailsOrderedChair={true}/>
-
-      </div>
-      {/* <p>Valda platser:</p>
-      {seatsChosen && (
-        <div>
-          {seatsChosen.map((seatNr) => (
-            <p>
-              Rad: {seatNr[0]} Plats: {seatNr[1]}
-            </p>
-          ))}
+    <>
+    {screeningToShow && (
+      <div className={`${styles.wrapper}`}>
+       <span className={styles.screen}></span>
+       {auditorium}
+        <div className={styles.details}>
+          <Chair detailsSelectedChair={true} />
+          <Chair deailsOrderedChair={true} />
         </div>
-      )} */}
-    </div>
+        </div>
+    )}
+    </>
   );
 };
 

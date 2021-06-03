@@ -51,10 +51,6 @@ const ScreeningPicker = () => {
         </select>
       </Col>
     </Row>
-    <Col>
-      {movieIdOnOrderPage && <p>Movie Id: {movieIdOnOrderPage}</p>}
-      {screeningIdOnOrderPage && <p>Screening Id: {screeningIdOnOrderPage}</p>}
-    </Col>
     </>
   );
 };
