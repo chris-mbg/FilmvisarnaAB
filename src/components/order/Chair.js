@@ -64,7 +64,7 @@ export default function Chair({
             className="d-flex align-items-center justify-content-center justify-content-md-end"
           >
             <div className={`${styles.chairItem}  ${styles.reserved}`}></div>
-            <span className={styles.spanDescrittions}>Bokat plats</span>
+            <span className={styles.spanDescrittions}>Bokad plats</span>
           </Col>
         </Row>
       )}

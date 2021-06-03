@@ -110,9 +110,9 @@ const UserReservation = ({ reservation }) => {
                 </span>
               </p>
               <p className={styles.summary_information}>
-                Totalpris (SEK) :{" "}
+                Totalpris:{" "}
                 <span className={styles.sub_information}>
-                  {reservation.totalPrice}
+                  {reservation.totalPrice} kr
                 </span>
               </p>
             </Col>

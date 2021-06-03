@@ -43,11 +43,11 @@ const Tickets = () => {
               <Col>
                 <ul className={styles.ul}>
                   <li>
-                    Rad: {seat[0] + 1}, Stol: {seat[1] + 1}
+                    Rad: {seat[0] + 1}, Plats: {seat[1] + 1}
                   </li>
                 </ul>
               </Col>
-              <Col>Pris: {screeningToShow.price} :-</Col>
+              <Col>Pris: {screeningToShow.price} kr</Col>
             </Row>
           </Container>
         </>
@@ -65,9 +65,9 @@ const Tickets = () => {
           {/* ticket_wrapper_upper */}
           <hr className={styles.hr} />
           <div className={styles.ticket_wrapper_bottom}>
-            <p className={styles.price}>
-              Total pris (SEK) : <span></span>{" "}
-            </p>
+            {seatsChosen.length > 0 && <p className={styles.price}>
+              Total pris: <span>{seatsChosen.length * screeningToShow.price}</span>{" "}kr
+            </p>}
             {/* <div className={styles.button_wrapper}>
               <CustomButton text="Boka" />
               </div> */}
