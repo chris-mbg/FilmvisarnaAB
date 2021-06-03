@@ -1,12 +1,7 @@
 import styles from "../../css/ConfirmModal.module.css";
-import { useContext } from "react";
 import { Container, Row, Col } from "react-bootstrap";
-import { UserContext } from "../../contexts/UserContext";
 
-const ConfirmModal = ({ handleCloseConfirmModal }) => {
-  // Context
-  const { userReservations } = useContext(UserContext);
-
+const ConfirmModal = ({ handleCloseConfirmModal, userConfirmationInfo }) => {
   const reservation = (
     <Container fluid className={styles.reservation}>
       <Row className={styles.reservation_header_wrapper} noGutters={true}>
