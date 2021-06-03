@@ -53,8 +53,8 @@ const Auditorium = () => {
     <>
     {screeningToShow && (
       <div className={`${styles.wrapper}`}>
-       <span className={styles.screen}></span>
-       {auditorium}
+      <span className={styles.screen}></span>
+      {auditorium}
         <div className={styles.details}>
           <Chair detailsSelectedChair={true} />
           <Chair deailsOrderedChair={true} />
