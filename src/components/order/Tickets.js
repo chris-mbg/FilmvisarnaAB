@@ -6,6 +6,7 @@ import CustomButton from "../CustomButton";
 import moment from "moment";
 import "moment/locale/sv";
 import ConfirmModal from "./ConfirmModal";
+import { useHistory } from "react-router-dom";
 
 const Tickets = () => {
   // Context
@@ -16,14 +17,21 @@ const Tickets = () => {
     userConfirmsReservation,
   } = useContext(ReservationContext);
 
+  const history = useHistory();
+
   // LoginModal
   const [showConfirmModal, setShowConfirmModal] = useState(true);
 
   //  Handlers for LoginModal
-  const handleCloseConfirmModal = () => setShowConfirmModal(false);
+  const handleCloseConfirmModal = () => {
+    // When user click on OK button, ConfirmModal will close.
+    setShowConfirmModal(false);
+
+    //  Re-directs user to start page after closing ConfirmModal.
+    history.push("/");
+  };
 
   // Handler
-
   const handleConfirmClick = async () => {
     let result = await userConfirmsReservation();
     if (!result) {
@@ -98,7 +106,7 @@ const Tickets = () => {
         show={showConfirmModal}
         onHide={handleCloseConfirmModal}
       >
-        <ConfirmModal />
+        <ConfirmModal handleCloseConfirmModal={handleCloseConfirmModal} />
       </Modal>
       ;
     </div>

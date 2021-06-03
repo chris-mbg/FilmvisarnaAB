@@ -1,11 +1,12 @@
 import styles from "../../css/ConfirmModal.module.css";
 import { useContext } from "react";
 import { Container, Row, Col } from "react-bootstrap";
-import { ReservationContext } from "../../contexts/ReservationContext";
+import { UserContext } from "../../contexts/UserContext";
 
-const ConfirmModal = () => {
+const ConfirmModal = ({ handleCloseConfirmModal }) => {
+  console.log("handleCloseConfirmModal", handleCloseConfirmModal);
   // Context
-  const { userReservations } = useContext(ReservationContext);
+  const { userReservations } = useContext(UserContext);
 
   const reservation = (
     <Container fluid className={styles.reservation}>
@@ -64,7 +65,12 @@ const ConfirmModal = () => {
       <h2 className={styles.header}>Biljetter bokade!</h2>
       {reservation}
       <div className={styles.button_confirm_wrapper}>
-        <button className={`${styles.button_confirm} btn`}>OK</button>
+        <button
+          onClick={handleCloseConfirmModal}
+          className={`${styles.button_confirm} btn`}
+        >
+          OK
+        </button>
       </div>
       {/* /.button_wrapper */}
     </div>
