@@ -1,0 +1,19 @@
+.modal_container {
+}
+
+.header {
+  text-align: center;
+}
+
+/* Button */
+
+.button_confirm {
+  background-color: #e87209;
+  color: #f3f3f3;
+  margin: 20px;
+}
+
+.button_confirm_wrapper {
+  display: flex;
+  justify-content: center;
+}
