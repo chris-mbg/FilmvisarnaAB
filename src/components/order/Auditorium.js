@@ -14,6 +14,7 @@ const Auditorium = () => {
     const cinemaMatrix = [];
     if (screeningToShow) {
       const seats = screeningToShow.seats;
+      console.log( 'screeningToShow', screeningToShow)
 
       for (let row = 0; row < seats.length; row++) {
         cinemaMatrix.push(<br key={row}></br>);

@@ -4,7 +4,7 @@ import { Col, Row } from "react-bootstrap";
 import { ReservationContext } from "../../contexts/ReservationContext";
 import moment from "moment";
 import "moment/locale/sv";
-import styles from "./styles/ScreeningPicker.module.css"
+import styles from "./styles/ScreeningPicker.module.css";
 
 const ScreeningPicker = () => {
   const history = useHistory();
@@ -14,6 +14,7 @@ const ScreeningPicker = () => {
     screeningIdOnOrderPage,
     setScreeningIdOnOrderPage,
     movieScreenings,
+    screeningToShow
   } = useContext(ReservationContext);
 
   const [selectedScreening, setSelectedScreening] = useState("");
@@ -33,24 +34,35 @@ const ScreeningPicker = () => {
     //setScreeningIdOnOrderPage(e.target.value);
   };
 
+  console.log("selectedScreening", selectedScreening)
   return (
     <>
-    <Row className="my-4 ">
-      <Col sm={12} md={6}>
-        {movieScreenings && <h4>{movieScreenings[0].movieId.title}</h4>}
-      </Col>
-      <Col className="text-md-right">
-        <select className={styles.select} onChange={handleSelectChange} value={selectedScreening}>
-          <option value="">Välj en tid</option>
-          {movieScreenings &&
-            movieScreenings.map((screen) => (
-              <option key={screen._id} value={screen._id}>
-                {moment(screen.startTime).locale("sv").format("lll")}
-              </option>
-            ))}
-        </select>
-      </Col>
-    </Row>
+      <Row className="my-4 ">
+        <Col sm={12} md={6}>
+          {movieScreenings && <h4>{movieScreenings[0].movieId.title}</h4>}
+        </Col>
+        <Col className="text-md-right">
+          <select
+            className={styles.select}
+            onChange={handleSelectChange}
+            value={selectedScreening}
+          >
+            <option value="">Välj en tid</option>
+            {movieScreenings &&
+              movieScreenings.map((screen) => (
+                <option key={screen._id} value={screen._id}>
+                  {moment(screen.startTime).locale("sv").format("lll")}
+                </option>
+              ))}
+          </select>
+        </Col>
+      </Row>
+      <Row>
+        {/* todo */}
+        <Col sm={12} md={6}>
+        {screeningToShow && <h4>{screeningToShow.auditoriumName}</h4>}
+        </Col>
+      </Row>
     </>
   );
 };

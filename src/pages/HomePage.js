@@ -4,6 +4,7 @@ import MovieSchedule from "../components/MovieSchedule"
 import styles from "../css/HomePage.module.css"
 
 const HomePage = () => {
+ 
   return (
     <div className="homePage">
       <ImgCarousel />
