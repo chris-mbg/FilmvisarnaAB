@@ -1,12 +1,17 @@
 import styles from "../../css/Tickets.module.css";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { ReservationContext } from "../../contexts/ReservationContext";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, Modal } from "react-bootstrap";
 import CustomButton from "../CustomButton";
 import moment from "moment";
 import "moment/locale/sv";
+import ConfirmModal from "./ConfirmModal";
+import { useHistory } from "react-router-dom";
 
 const Tickets = () => {
+  const [userConfirmationInfo, setUserConfirmationInfo] = useState("");
+  const [showConfirmModal, setShowConfirmModal] = useState(false);
+
   // Context
   const {
     seatsChosen,
@@ -15,13 +20,29 @@ const Tickets = () => {
     userConfirmsReservation,
   } = useContext(ReservationContext);
 
-  // Handler
+  const history = useHistory();
+
+  useEffect(() => {}, [userConfirmationInfo]);
+
+  const handleCloseConfirmModal = () => {
+    // When user click on OK button, ConfirmModal will close.
+    setShowConfirmModal(false);
+
+    //  Re-directs user to start page after closing ConfirmModal.
+    history.push("/");
+  };
+
   const handleConfirmClick = async () => {
     let result = await userConfirmsReservation();
     if (!result) {
       console.log("Something went wrong, error with booking tickets");
     } else {
-      alert("Tickets booked", result);
+      console.log("result", result);
+      // Saves user recent reservation inside state variable: userConfirmationInfo
+      setUserConfirmationInfo(result);
+
+      // If booking is confirmed, show ConfirmModal.
+      setShowConfirmModal(true);
     }
   };
 
@@ -83,6 +104,18 @@ const Tickets = () => {
         )}
       </div>
       {/* /ticket_wrapper_bottom */}
+      <Modal
+        centered={true}
+        size={"lg"}
+        show={showConfirmModal}
+        onHide={handleCloseConfirmModal}
+      >
+        <ConfirmModal
+          userConfirmationInfo={userConfirmationInfo}
+          handleCloseConfirmModal={handleCloseConfirmModal}
+        />
+      </Modal>
+      ;
     </div>
   );
 };

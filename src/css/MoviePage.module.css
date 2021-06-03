@@ -22,7 +22,6 @@
   margin: 1rem;
   margin-bottom: 2rem;
   padding: 0.9rem 1.8rem;
-  /* text-align: left; */
 }
 .scheduleWrapper > h2{
   color: #333;
@@ -31,11 +30,33 @@
 }
 .scheduleWrapper h5{
   color: #333;
-  text-align: left;
+  /* text-align: left; */
+  font-weight: 600;
   /* font-size: 1.25rem; */
   /* margin-bottom: 1.8rem; */
 }
+.scheduleHeading h3{
+  color: #333;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
 
+@media only screen and (min-width:576px) {
+  .scheduleHeading h3{
+    font-size: 1rem;
+  }
+}
+@media only screen and (min-width: 768px) {
+  .description {
+    padding-right: 3rem;
+  }
+  .description > h1{
+    text-align: start;
+  }
+  .scheduleHeading h3{
+    font-size: 1.1rem;
+  }
+}
 @media only screen and (min-width: 958px) {
   .scheduleWrapper{
     max-width: 930px;
@@ -46,13 +67,4 @@
     font-size: 1.8rem;
   }
 
-}
-
-@media only screen and (min-width: 768px) {
-  .description {
-    padding-right: 3rem;
-  }
-  .description > h1{
-    text-align: start;
-  }
 }

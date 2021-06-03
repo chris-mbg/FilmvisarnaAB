@@ -1,10 +1,7 @@
-import {useContext, useEffect, useState} from 'react'
-import BookButton from '../components/BookButton';
-import { MovieContext } from '../contexts/MovieContext'
+import { useContext, useEffect, useState } from "react";
+import { MovieContext } from "../contexts/MovieContext";
 import { Row, Col, Image } from "react-bootstrap";
-
 import styles from "../css/MoviePage.module.css";
-import CustomButton from "../components/CustomButton";
 import MovieSchedule from "../components/MovieSchedule";
 
 export default function MoviePage(props) {
@@ -14,18 +11,16 @@ export default function MoviePage(props) {
 
   const { getMovieById, getAllScreeningsForMovie } = useContext(MovieContext);
 
-  useEffect(async () => {
-    let response = await getMovieById(movieId);
-    setMovie(response);
-    // todo delete after test
-    console.log("movie", response);
+  useEffect(() => {
+    async function getMovieAndScreenings() {
+      let response = await getMovieById(movieId);
+      setMovie(response);
 
-    let schedule = await getAllScreeningsForMovie(response._id);
-    setScreening(schedule);
-    // todo delete after test
-    console.log(schedule);
+      let schedule = await getAllScreeningsForMovie(response._id);
+      setScreening(schedule);
+    }
+    getMovieAndScreenings();
   }, []);
-
 
   /*
    **{params} = multidimensional array
@@ -40,9 +35,9 @@ export default function MoviePage(props) {
   };
 
   // todo connect trailer
-  const seeTrailer = () => {
-    console.log("this is a wonderful trailer...");
-  };
+  // const seeTrailer = () => {
+  //   console.log("this is a wonderful trailer...");
+  // };
 
   const renderMovieDescription = () => (
     <section className={styles.movieContainer}>
@@ -56,25 +51,32 @@ export default function MoviePage(props) {
               <h1>{movie.title}</h1>
               <p>{movie.description}</p>
               <hr></hr>
-              <p>Åldersgräns: {movie.ageLimit.slice(-2)} år</p>
+              <p>
+                Åldersgräns: {movie.ageLimit.slice(3, movie.ageLimit.length)} år
+              </p>
               <p>Direktör: {movie.director} </p>
               <p>
                 Skådespelare:{" "}
-                {movie.actors.map((actor) => (
-                  <span>{actor} &#183; </span>
+                {movie.actors.map((actor, index) => (
+                  <span key={index}>{actor} &#183; </span>
                 ))}
               </p>
               <p>Språk: {movie.language}</p>
-              <p>Produktionsår:{" "} {movie.productionYear}
+              <p>
+                Produktionsår: {movie.productionYear}
                 {/* {movie.productionCountries.map((country) => (
                   <span>{country}</span>
                 ))} */}
               </p>
-              <p> Längd: <span>{movie.length}</span>
+              <p>
+                {" "}
+                Längd: <span>{movie.length}</span>
                 {/* Sammanfattning: <span>{movie.productionYear}</span>
                 &#183;<span>{movie.length}</span> */}
               </p>
-              <p>Genre:{""} {movie.genre}</p>
+              <p>
+                Genre:{""} {movie.genre}
+              </p>
             </div>
             {/* Needed when possibility to see trailer is implemented! */}
             {/* <CustomButton
@@ -94,48 +96,42 @@ export default function MoviePage(props) {
       {screenings ? (
         <div className={styles.scheduleWrapper}>
           <h2>Föreställningar</h2>
-          <Row className={`${styles.scheduleItem} d-flex align-items-md-center`}>
-          <Col
-            sm={12}
-            md={10}
-            className={`${styles.detailWrapper} d-flex justify-content-between`}
+          <Row
+            className={`border-bottom border-white pb-2 ${styles.scheduleItem}`}
           >
-            <div className={styles.scheduleDetails}>
-              <h5>Datum</h5>
-            </div>
-            <div className={styles.scheduleDetails}>
-              <h5>Tid</h5>
-            </div>
-            <div className={styles.scheduleDetails}>
-              <h5>Platser kvar</h5>
-            </div>
-            <div className={styles.scheduleDetails}>
-              <h5>Salong</h5>
-            </div>
-          </Col>
-        </Row>
-       { screenings.map((screen) => (
-          <MovieSchedule
-            isMoviePage={true}
-            date={new Date(screen.startTime)
-              .toLocaleString("sv-SE")
-              .slice(0, 11)}
-            time={new Date(screen.startTime)
-              .toLocaleString("sv-SE")
-              .slice(11, 16)}
-            // flat() returns a new array in which all the elements of the nested subarrays have been recursively "hoisted"
-            totalPlaces={screen.seats.flat(Infinity).length}
-            reservedPlaces={getReservedPlaces(screen.seats)}
-            auditorium={screen.auditoriumName}
-          />
-        ))}
+            <Col xs={4} sm={3} className={`${styles.scheduleHeading}`}>
+                <h3>Datum</h3>
+            </Col>
+            <Col xs={2} sm={2} className={`text-left ${styles.scheduleHeading}`}>
+                <h3>Tid</h3>
+            </Col>
+            <Col xs={2} sm={2} className={`text-center ${styles.scheduleHeading}`} >
+                <h3>Platser kvar</h3>
+            </Col>
+            <Col xs={0} sm={3} className={`text-right d-none d-sm-block ${styles.scheduleHeading}`}>
+                <h3>Salong</h3>
+            </Col>
+            <Col xs={3} sm={2} >
+              {/* Col for button */}
+            </Col>
+          </Row>
+          {screenings.map((screen) => (
+            <MovieSchedule
+              isMoviePage={true}
+              date={screen.startTime.toLocaleString("sv-SE").slice(0, 11)}
+              time={screen.startTime.toLocaleString("sv-SE").slice(11, 16)}
+              // flat() returns a new array in which all the elements of the nested subarrays have been recursively "hoisted"
+              totalPlaces={screen.seats.flat(Infinity).length}
+              reservedPlaces={getReservedPlaces(screen.seats)}
+              auditorium={screen.auditoriumName}
+              screeningId={screen._id}
+              movieId={movieId}
+            />
+          ))}
         </div>
       ) : (
         <h2>...loading</h2>
       )}
-   {/*  <div>
-      <h1>Movie page</h1>
-      {movie && <BookButton movieId={movie._id} movieTitle={movie.title} />} */}
     </div>
   );
 }
