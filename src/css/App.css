@@ -13,6 +13,9 @@
 ::-webkit-scrollbar {
   display: none;
 }
+/* * {
+  outline: 1px solid red;
+  } */
 
 @media screen and (min-width:576px) {
   .App {

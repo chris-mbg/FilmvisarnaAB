@@ -1,8 +1,15 @@
 import React, { useEffect, useState, useContext } from "react";
 import { ReservationContext } from "../../contexts/ReservationContext";
-import styles from "./Chair.module.css";
+import { Row, Col } from "react-bootstrap";
+import styles from "./styles/Chair.module.css";
 
-export default function Chair({ reserved, row, seat }) {
+export default function Chair({
+  reserved,
+  row,
+  seat,
+  detailsSelectedChair,
+  deailsOrderedChair,
+}) {
   const { seatsChosen, setSeatsChosen } = useContext(ReservationContext);
 
   const [isChosen, setIsChosen] = useState(false);
@@ -34,27 +41,56 @@ export default function Chair({ reserved, row, seat }) {
 
   return (
     <>
-      <div
-        className={
-          reserved
-            ? `${styles.chairItem}  ${styles.reserved}`
-            : isChosen
-            ? `${styles.chairItem}  ${styles.chosen}`
-            : `${styles.chairItem}`
-        }
-        onClick={() => handleChairClick([row, seat])}
-      >
-        <span className={styles.tooltip}>
-          {reserved ? (
-            <span>Redan bokad! </span>
-          ) : (
-            <span>
-              Rad: <strong>{row + 1}</strong> {""}
-              Plats: <strong>{seat + 1} </strong>{" "}
-            </span>
-          )}
-        </span>
-      </div>
+      {detailsSelectedChair && (
+        <>
+        <Row>
+          <Col
+            sm={12}
+            md={6}
+            className="d-flex align-items-center justify-content-center justify-content-md-end"
+          >
+            <div className={`${styles.chairItem}  ${styles.chosen}`}></div>
+            <span className={styles.spanDescrittions}>Vald plats</span>
+          </Col>
+        </Row>
+        </>
+      )}
+
+      {deailsOrderedChair && (
+        <Row>
+          <Col
+            sm={12}
+            md={6}
+            className="d-flex align-items-center justify-content-center justify-content-md-end"
+          >
+            <div className={`${styles.chairItem}  ${styles.reserved}`}></div>
+            <span className={styles.spanDescrittions}>Bokad plats</span>
+          </Col>
+        </Row>
+      )}
+      {!detailsSelectedChair && !deailsOrderedChair && (
+        <div
+          className={
+            reserved
+              ? `${styles.chairItem}  ${styles.reserved}`
+              : isChosen
+              ? `${styles.chairItem}  ${styles.chosen}`
+              : `${styles.chairItem}`
+          }
+          onClick={() => handleChairClick([row, seat])}
+        >
+          <span className={styles.tooltip}>
+            {reserved ? (
+              <span>Redan bokad! </span>
+            ) : (
+              <span>
+                Rad: <strong>{row + 1}</strong> {""}
+                Plats: <strong>{seat + 1} </strong>{" "}
+              </span>
+            )}
+          </span>
+        </div>
+      )}
     </>
   );
 }

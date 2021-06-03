@@ -1,8 +1,10 @@
 import { useContext, useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
+import { Col, Row } from "react-bootstrap";
 import { ReservationContext } from "../../contexts/ReservationContext";
 import moment from "moment";
 import "moment/locale/sv";
+import styles from "./styles/ScreeningPicker.module.css";
 
 const ScreeningPicker = () => {
   const history = useHistory();
@@ -12,6 +14,7 @@ const ScreeningPicker = () => {
     screeningIdOnOrderPage,
     setScreeningIdOnOrderPage,
     movieScreenings,
+    screeningToShow
   } = useContext(ReservationContext);
 
   const [selectedScreening, setSelectedScreening] = useState("");
@@ -31,23 +34,35 @@ const ScreeningPicker = () => {
     //setScreeningIdOnOrderPage(e.target.value);
   };
 
+  console.log("selectedScreening", selectedScreening)
   return (
-    <div className="my-4 text-center">
-      {movieScreenings && (
-        <h1>Boka dina biljetter till {movieScreenings[0].movieId.title}</h1>
-      )}
-      {movieIdOnOrderPage && <p>Movie Id: {movieIdOnOrderPage}</p>}
-      {screeningIdOnOrderPage && <p>Screening Id: {screeningIdOnOrderPage}</p>}
-      <select onChange={handleSelectChange} value={selectedScreening}>
-        <option value="">Välj en tid</option>
-        {movieScreenings &&
-          movieScreenings.map((screen) => (
-            <option key={screen._id} value={screen._id}>
-              {moment(screen.startTime).locale("sv").format("lll")}
-            </option>
-          ))}
-      </select>
-    </div>
+    <>
+      <Row className="my-4 ">
+        <Col sm={12} md={6}>
+          {movieScreenings && <h4>{movieScreenings[0].movieId.title}</h4>}
+        </Col>
+        <Col className="text-md-right">
+          <select
+            className={styles.select}
+            onChange={handleSelectChange}
+            value={selectedScreening}
+          >
+            <option value="">Välj en tid</option>
+            {movieScreenings &&
+              movieScreenings.map((screen) => (
+                <option key={screen._id} value={screen._id}>
+                  {moment(screen.startTime).locale("sv").format("lll")}
+                </option>
+              ))}
+          </select>
+        </Col>
+      </Row>
+      <Row>
+        <Col sm={12} md={6}>
+        {screeningToShow && <h4>{screeningToShow.auditoriumName}</h4>}
+        </Col>
+      </Row>
+    </>
   );
 };
 

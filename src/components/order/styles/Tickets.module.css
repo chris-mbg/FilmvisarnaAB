@@ -10,26 +10,28 @@
 }
 
 .tickets_wrapper {
-  background-color: #e0e0e0;
+  background-color: #f2f2f2;
   color: #000;
   border-radius: 0.5%;
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 2rem;
-  height: 450px;
-  width: 80%;
+  margin-top: 2rem;
+  min-height: 400px;
+  /* max-height: 600px; */
 }
 
 .ticket_wrapper_upper {
-  overflow-y: scroll;
-  height: 70%;
+  /* overflow-y: scroll; */
+  /* height: 70%; */
   /* Hides scroll bar for: Internet Explorer, Edge, Firefox  */
+  min-height: 260px;
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
 
 .ticket_wrapper_bottom {
-  height: 30%;
+  height: 100px;
 }
 
 /* Button */
@@ -40,6 +42,8 @@
 
 /* Ticket wrapper upper */
 .title {
+  font-weight: 600;
+  font-size: 28px;
   padding-top: 1rem;
   padding-bottom: 1rem;
   padding-left: 2rem;
@@ -53,8 +57,11 @@
 
 /* Ticket */
 .ticket_container {
+  font-size: 14px !important;
+  font-weight: 600;
   background-color: #fff;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.19), 0 3px 6px rgba(0, 0, 0, 0.23);
+  /* border: 1px solid black; */
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 1rem;
@@ -80,12 +87,12 @@
 
 /* Media Queries */
 
-/** 
+/**
 *** Mobile Screen
 **/
-@media (max-width: 768px) {
+@media (min-width: 991px) {
   .tickets_wrapper {
-    margin-top: 2rem;
-    width: 100%;
+    margin-top: 0;
+    height: 100%;
   }
 }
