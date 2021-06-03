@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import styles from "../css/Navbar.module.css";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useHistory, useLocation } from "react-router-dom";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { UserContext } from "../contexts/UserContext";
@@ -19,13 +19,20 @@ function Navbar1() {
   } = useContext(UserContext);
 
   const history = useHistory();
+  const location = useLocation();
 
   const handleLogout = () => {
     logout().then((data) => {
       // If logout is successful.
       if (data === true) {
-        // Re-directs user to start page if logout is successful
-        history.push("/");
+        // Re-directs user to start page if logout is successful (on order and profile pages)
+        console.log("location pathname", location.pathname);
+        if (
+          location.pathname === "/profile" ||
+          location.pathname.includes("/order/")
+        ) {
+          history.push("/");
+        }
       }
     });
   };
