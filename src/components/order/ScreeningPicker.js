@@ -58,7 +58,6 @@ const ScreeningPicker = () => {
         </Col>
       </Row>
       <Row>
-        {/* todo */}
         <Col sm={12} md={6}>
         {screeningToShow && <h4>{screeningToShow.auditoriumName}</h4>}
         </Col>
