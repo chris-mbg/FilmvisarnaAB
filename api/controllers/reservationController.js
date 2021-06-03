@@ -4,16 +4,21 @@ const Screening = require("../models/Screening");
 const User = require("../models/User");
 
 const getReservationsForUser = async (req, res) => {
-  if(!req.session.user) {
-    return res.status(401).json({status: "error", message: "No user logged in"});
+  if (!req.session.user) {
+    return res
+      .status(401)
+      .json({ status: "error", message: "No user logged in" });
   }
   try {
-    let reservations = await Reservation.find({userId: req.session.user._id});
+    let reservations = await Reservation.find({
+      userId: req.session.user._id,
+    }).sort({ "screening.startTime": "desc" });
+
     return res.json(reservations);
   } catch (error) {
-    res.status(400).json({status: "error", message: error.message});
+    res.status(400).json({ status: "error", message: error.message });
   }
-}
+};
 
 const createNewReservation = async (req, res) => {
   /*

@@ -18,7 +18,17 @@
   font-family: "Open Sans";
   background-color: #E87209;
   cursor: pointer;
-  display: inline-block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.bookButton {
+  max-width: 100%;
+  font-size: inherit;
+}
+div.scheduleButtonWrapper div.bookButtonContainer div.bookButton {
+  padding: 4px 8px;
 }
 
 .infoButton, .okButton, .trailerButton{
@@ -64,4 +74,10 @@ font-size: 16px;
 
 .infoButton:hover, .okButton:hover, .trailerButton:hover{
   background-color:#525050 !important;
+}
+
+@media screen and (min-width: 576px) {
+  /* .bookButton {
+    padding: 5px 35px;
+  } */
 }
