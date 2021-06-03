@@ -13,9 +13,8 @@ const Tickets = () => {
   const [showConfirmModal, setShowConfirmModal] = useState(false);
 
   // Context
-  const { seatsChosen, screeningToShow, userConfirmsReservation } = useContext(
-    ReservationContext
-  );
+  const { seatsChosen, screeningToShow, userConfirmsReservation } =
+    useContext(ReservationContext);
 
   const history = useHistory();
 
@@ -86,9 +85,12 @@ const Tickets = () => {
           {/* ticket_wrapper_upper */}
           <hr className={styles.hr} />
           <div className={styles.ticket_wrapper_bottom}>
-            {seatsChosen.length > 0 && <p className={styles.price}>
-              Total pris: <span>{seatsChosen.length * screeningToShow.price}</span>{" "}kr
-            </p>}
+            {seatsChosen.length > 0 && (
+              <p className={styles.price}>
+                Total pris:{" "}
+                <span>{seatsChosen.length * screeningToShow.price}</span> kr
+              </p>
+            )}
             {/* <div className={styles.button_wrapper}>
               <CustomButton text="Boka" />
               </div> */}
@@ -102,20 +104,21 @@ const Tickets = () => {
             )}
           </div>
           {/* /ticket_wrapper_bottom */}
-      <Modal
-        centered={true}
-        size={"lg"}
-        show={showConfirmModal}
-        onHide={handleCloseConfirmModal}
-      >
-        <ConfirmModal
-          userConfirmationInfo={userConfirmationInfo}
-          handleCloseConfirmModal={handleCloseConfirmModal}
-        />
-      </Modal>
+          <Modal
+            centered={true}
+            size={"lg"}
+            show={showConfirmModal}
+            onHide={handleCloseConfirmModal}
+          >
+            <ConfirmModal
+              userConfirmationInfo={userConfirmationInfo}
+              handleCloseConfirmModal={handleCloseConfirmModal}
+            />
+          </Modal>
+        </div>
+      )}
       ;
-    </div>
+    </>
   );
 };
-
 export default Tickets;
