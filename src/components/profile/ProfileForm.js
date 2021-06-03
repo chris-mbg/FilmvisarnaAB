@@ -36,25 +36,25 @@ const ProfileForm = () => {
   };
 
   // Handlers - edit
-  const handleFirstNameEdit = () => {
-    setFirstNameDisabled(true);
-  };
+  // const handleFirstNameEdit = () => {
+  //   setFirstNameDisabled(true);
+  // };
 
-  const handleLastNameEdit = () => {
-    setLastNameDisabled(true);
-  };
+  // const handleLastNameEdit = () => {
+  //   setLastNameDisabled(true);
+  // };
 
-  const handlePhoneEdit = () => {
-    setPhoneDisabled(true);
-  };
+  // const handlePhoneEdit = () => {
+  //   setPhoneDisabled(true);
+  // };
 
   // const handlePasswordEdit = () => {
   //   setPasswordDisabled(true);
   // };
 
-  const handleEmailEdit = () => {
-    setEmailDisabled(true);
-  };
+  // const handleEmailEdit = () => {
+  //   setEmailDisabled(true);
+  // };
 
   return (
     <form className={styles.form}>
