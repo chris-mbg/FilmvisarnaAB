@@ -92,7 +92,12 @@ const Tickets = () => {
         )}
       </div>
       {/* /ticket_wrapper_bottom */}
-      <Modal show={showConfirmModal} onHide={handleCloseConfirmModal}>
+      <Modal
+        centered={true}
+        size={"lg"}
+        show={showConfirmModal}
+        onHide={handleCloseConfirmModal}
+      >
         <ConfirmModal />
       </Modal>
       ;
