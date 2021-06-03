@@ -1,5 +1,7 @@
 import styles from "../../css/ConfirmModal.module.css";
 import { Container, Row, Col } from "react-bootstrap";
+import moment from "moment";
+import "moment/locale/sv";
 
 const ConfirmModal = ({ handleCloseConfirmModal, userConfirmationInfo }) => {
   const reservation = (
@@ -7,8 +9,11 @@ const ConfirmModal = ({ handleCloseConfirmModal, userConfirmationInfo }) => {
       <Row className={styles.reservation_header_wrapper} noGutters={true}>
         <Col>
           <p className={styles.reservation_header_information}>
-            Filmtitel <br />
-            2021-07-21
+            {userConfirmationInfo.movie.title}
+            <br />
+            {moment(userConfirmationInfo.screening.startTime)
+              .locale("sv")
+              .format("LLL")}
           </p>
         </Col>
       </Row>
@@ -19,7 +24,9 @@ const ConfirmModal = ({ handleCloseConfirmModal, userConfirmationInfo }) => {
         <Col>
           <p className={styles.auditoria_information}>
             Salong: <br />
-            <span className={styles.sub_information}>Stora salongen</span>
+            <span className={styles.sub_information}>
+              {userConfirmationInfo.screening.auditoriumName}
+            </span>
           </p>
         </Col>
         <Col>
@@ -27,7 +34,11 @@ const ConfirmModal = ({ handleCloseConfirmModal, userConfirmationInfo }) => {
             Rad och platsnummer
           </p>
           <ul className={styles.ul}>
-            <li>Rad: 1, Plats: 2</li>
+            {userConfirmationInfo.tickets.map((ticket, i) => (
+              <li key={i}>
+                Rad {ticket.seatNumber[0] + 1}, Plats {ticket.seatNumber[1] + 1}
+              </li>
+            ))}
           </ul>
         </Col>
       </Row>
@@ -37,16 +48,24 @@ const ConfirmModal = ({ handleCloseConfirmModal, userConfirmationInfo }) => {
       <Row className={styles.summary_wrapper} noGutters={true}>
         <Col>
           <p className={styles.summary_information}>
-            Antal biljetter: <span className={styles.sub_information}>3st</span>
+            Antal biljetter:{" "}
+            <span className={styles.sub_information}>
+              {userConfirmationInfo.tickets.length} st
+            </span>
           </p>
           <p className={styles.summary_information}>
-            Totalpris (SEK) :{" "}
-            <span className={styles.sub_information}>220:-</span>
+            Totalpris (SEK):{" "}
+            <span className={styles.sub_information}>
+              {Number(userConfirmationInfo.totalPrice)}:-
+            </span>
           </p>
         </Col>
         <Col>
           <p className={styles.order_information}>
-            Order: <span className={styles.sub_information}>#123231</span>
+            Order:{" "}
+            <span className={styles.sub_information}>
+              # {userConfirmationInfo._id}
+            </span>
           </p>
         </Col>
       </Row>
