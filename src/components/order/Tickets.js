@@ -83,8 +83,8 @@ const Tickets = () => {
             {ticket}
           </div>
           {/* ticket_wrapper_upper */}
-          <hr className={styles.hr} />
           <div className={styles.ticket_wrapper_bottom}>
+            <hr className={styles.hr} />
             {seatsChosen.length > 0 && (
               <p className={styles.price}>
                 Total pris:{" "}
