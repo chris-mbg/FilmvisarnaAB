@@ -4,7 +4,6 @@ import { Container, Row, Col } from "react-bootstrap";
 import { UserContext } from "../../contexts/UserContext";
 
 const ConfirmModal = ({ handleCloseConfirmModal }) => {
-  console.log("handleCloseConfirmModal", handleCloseConfirmModal);
   // Context
   const { userReservations } = useContext(UserContext);
 
