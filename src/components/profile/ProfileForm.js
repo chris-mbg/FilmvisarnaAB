@@ -7,17 +7,17 @@ const ProfileForm = () => {
   // Context
   const { loggedInUser } = useContext(UserContext);
 
-  const [firstName, setFirstName] = useState(loggedInUser?.firstName);
-  const [lastName, setLastName] = useState(loggedInUser?.lastName);
-  const [phone, setPhone] = useState(loggedInUser?.phoneNumber);
-  const [email, setEmail] = useState(loggedInUser?.email);
-  const [password, setPassword] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
+  // const [password, setPassword] = useState("");
 
   const [firstNameDisabled, setFirstNameDisabled] = useState(true);
   const [lastNameDisabled, setLastNameDisabled] = useState(true);
   const [phoneDisabled, setPhoneDisabled] = useState(true);
   const [emailDisabled, setEmailDisabled] = useState(true);
-  const [passwordDisabled, setPasswordDisabled] = useState(true);
+  // const [passwordDisabled, setPasswordDisabled] = useState(true);
 
   useEffect(() => {
     setFirstName(loggedInUser?.firstName);
@@ -48,9 +48,9 @@ const ProfileForm = () => {
     setPhoneDisabled(true);
   };
 
-  const handlePasswordEdit = () => {
-    setPasswordDisabled(true);
-  };
+  // const handlePasswordEdit = () => {
+  //   setPasswordDisabled(true);
+  // };
 
   const handleEmailEdit = () => {
     setEmailDisabled(true);
