@@ -69,7 +69,6 @@ const UserContextProvider = ({ children }) => {
   };
 
   const login = async (userInformation) => {
-    console.log("userInformation:", userInformation);
     const response = await fetch(`/api/v1/users/login`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -80,7 +79,6 @@ const UserContextProvider = ({ children }) => {
     });
     const result = await response.json();
 
-    console.log("result", result);
     if (result.status === "error") {
       return false;
     } else {
