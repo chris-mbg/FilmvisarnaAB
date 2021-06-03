@@ -28,7 +28,9 @@ const UserReservation = ({ reservation }) => {
         <Col xs={10} sm={10} md={10} lg={10}>
           <p className={styles.header_information}>
             {reservation?.movie?.title} <br />
-            {moment(reservation?.screening?.startTime).locale("sv").format("LLL")}
+            {moment(reservation?.screening?.startTime)
+              .locale("sv")
+              .format("LLL")}
           </p>
         </Col>
         <Col
@@ -83,18 +85,20 @@ const UserReservation = ({ reservation }) => {
               <p className={styles.auditoria_information}>
                 Salong: <br />
                 <span className={styles.sub_information}>
-                  {reservation?.screening?.auditoriaName}
+                  {reservation?.screening?.auditoriumName}
                 </span>
               </p>
             </Col>
             <Col>
               <p className={styles.auditoria_seats_information}>
-                Rad och stolsnummer
+                Rad och platsnummer
               </p>
               <ul className={styles.ul}>
-                <li>Rad 2, Stol 3</li>
-                <li>Rad 2, Stol 4</li>
-                <li>Rad 2, Stol 5</li>
+              {reservation?.tickets.map((ticket, i) => (
+                <li key={i}>
+                  Rad {ticket.seatNumber[0] + 1}, Plats {ticket.seatNumber[1] + 1}
+                </li>
+              ))}
               </ul>
             </Col>
           </Row>
@@ -104,9 +108,9 @@ const UserReservation = ({ reservation }) => {
           <Row className={styles.summary_wrapper} noGutters={true}>
             <Col>
               <p className={styles.summary_information}>
-                Antal personer:{" "}
+                Antal biljetter:{" "}
                 <span className={styles.sub_information}>
-                  {reservation?.tickets.map((ticket, index) => index + 1)}
+                  {reservation?.tickets.length}
                 </span>
               </p>
               <p className={styles.summary_information}>
