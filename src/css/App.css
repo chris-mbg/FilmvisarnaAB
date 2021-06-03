@@ -4,11 +4,9 @@
   background-color: #333333;
   color: #e1e1e1;
   font-family: "Open Sans", sans-serif;
-  /* position: relative; */
-  /* min-height: 100vh; */
-  min-width: 90%;
+  position: relative;
+  min-height: 100vh;
   margin: auto;
-  border: 1px solid red;
 }
 
 /* Hides scrollbar for Chrome - but still enable scrolling */
