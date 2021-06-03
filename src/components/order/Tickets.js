@@ -95,7 +95,7 @@ const Tickets = () => {
               <CustomButton text="Boka" />
               </div> */}
             {seatsChosen.length > 0 && (
-              <div className="text-center mt-4">
+              <div className="d-flex justify-content-center mt-4">
                 <CustomButton
                   text="Boka biljetter"
                   clickHandler={handleConfirmClick}
@@ -117,7 +117,6 @@ const Tickets = () => {
           </Modal>
         </div>
       )}
-      ;
     </>
   );
 };
