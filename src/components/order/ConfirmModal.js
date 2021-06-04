@@ -50,13 +50,13 @@ const ConfirmModal = ({ handleCloseConfirmModal, userConfirmationInfo }) => {
           <p className={styles.summary_information}>
             Antal biljetter:{" "}
             <span className={styles.sub_information}>
-              {userConfirmationInfo.tickets.length} st
+              {userConfirmationInfo.tickets.length}st
             </span>
           </p>
           <p className={styles.summary_information}>
-            Totalpris (SEK):{" "}
+            Totalpris:{" "}
             <span className={styles.sub_information}>
-              {Number(userConfirmationInfo.totalPrice)}:-
+              {Number(userConfirmationInfo.totalPrice)} kr
             </span>
           </p>
         </Col>
