@@ -9,7 +9,7 @@ import BookButton from "./BookButton";
 export default function MovieCard({ movie }) {
   const history = useHistory();
 
-  const handleInfoClick = () => history.push(`/movies/${movie._id}`);
+  const handleInfoClick = () => history.push(`/movies/movie/${movie._id}`);
   const handleOrderClick = () => history.push("/order");
 
   return (

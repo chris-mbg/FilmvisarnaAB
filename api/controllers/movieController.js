@@ -20,9 +20,14 @@ const getMovieById = async (req, res) => {
 };
 
 const getFilteredMovies = async (req, res) => {
-  console.log("QUERY", req.query);
+  // gets a JSON string from the frontend, destructure it
+  const { request } = req.params;
 
-  if (Object.keys(req.query).length === 0) {
+  // parse the JSON string => get the object
+  const userQuery = JSON.parse(request);
+
+  // checked the object for the presence of values, if there are none, I get all the movies 
+  if (Object.keys(userQuery).length === 0) {
     try {
       let movies = await Movie.find().exec();
       return res.json(movies);
@@ -31,27 +36,47 @@ const getFilteredMovies = async (req, res) => {
       throw error;
     }
   } else {
+    /**
+     * get a specific movies, depending on the request (userQuery === object)
+     * { ageLimit: 'PG-11',
+     *   director: 'Don Hall',
+     *   language: 'Engelska'
+     *  }
+     */
     try {
-      const obj = {
-        // ageLimit: "PG-11",
-        director: "Don Hall",
-        language: "Engelska",
-        // length: "123",
-      };
-
+      //  create an array where each key-value pair is stored in a separate object
       const queryObj = [];
 
-      for (let key in obj) {
-        if (obj.hasOwnProperty(key)) {
+      for (let key in userQuery) {
+        if (userQuery.hasOwnProperty(key)) {
           let object = {};
-          object[key] = obj[key]
-          queryObj.push(object)
+          object[key] = userQuery[key];
+          queryObj.push(object);
         }
       }
 
       console.log("::queryObj:::", queryObj, typeof queryObj);
 
-      let movies = await Movie.find({$or: queryObj}).exec();
+      /**
+       *
+       * let movies = await Movie.find({ $or: [
+       *                                          { ageLimit: 'PG-11' },
+       *                                          { director: 'Don Hall' },
+       *                                          { language: 'Engelska' },
+       *                                        ]
+       * }).exec();
+       */
+
+      /**
+       * examle of queryObj
+       * ::queryObj:::[
+       * { ageLimit: 'PG-11' },
+       * { director: 'Don Hall' },
+       * { language: 'Engelska' },
+       * ]
+       * */
+
+      let movies = await Movie.find({ $or: queryObj }).exec();
       return res.json(movies);
     } catch (error) {
       res.status(500).json({ status: "error", message: error.message });
