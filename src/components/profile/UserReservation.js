@@ -94,11 +94,12 @@ const UserReservation = ({ reservation }) => {
                 Rad och platsnummer
               </p>
               <ul className={styles.ul}>
-              {reservation?.tickets.map((ticket, i) => (
-                <li key={i}>
-                  Rad {ticket.seatNumber[0] + 1}, Plats {ticket.seatNumber[1] + 1}
-                </li>
-              ))}
+                {reservation?.tickets.map((ticket, i) => (
+                  <li key={i}>
+                    Rad {ticket.seatNumber[0] + 1}, Plats{" "}
+                    {ticket.seatNumber[1] + 1}
+                  </li>
+                ))}
               </ul>
             </Col>
           </Row>
@@ -133,7 +134,9 @@ const UserReservation = ({ reservation }) => {
 
           <Row noGutters={true}>
             <Col className={styles.button_wrapper}>
-              {/* <button className="cancelButton">Avboka</button> */}
+              {now <= reservation?.screening?.startTime && (
+                <button className="cancelButton">Avboka</button>
+              )}
             </Col>
             {/* /.button_wrapper */}
           </Row>
