@@ -96,7 +96,39 @@ const createNewReservation = async (req, res) => {
   }
 };
 
+const cancelReservation = async () => {
+  const { reservationId } = req.params;
+  console.log("ReservationId", reservationId);
+
+  if (!req.session.user) {
+    return res
+      .status(401)
+      .json({ status: "error", message: "No user logged in" });
+  }
+
+  try {
+    let reservationToCancel = await Reservation.findById(reservationId);
+    // Check if the user logged in is the one who has made the reservationToCancel
+    if (req.session.user._id !== reservationToCancel.userId) {
+      return res.status(401).json({status: "error", message: "Reservation made by other user"})
+    }
+    
+
+
+
+  } catch (error) {
+    res.status(400).json({ status: "error", message: error.message });
+  }
+
+
+
+
+
+
+};
+
 module.exports = {
   getReservationsForUser,
   createNewReservation,
+  cancelReservation
 };
