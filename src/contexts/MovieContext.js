@@ -5,7 +5,9 @@ export const MovieContext = createContext();
 const MovieContextProvider = (props) => {
   const [allMovies, setAllMovies] = useState(null);
 
-// todo request example IMPLEMENT REGEX
+/**
+ *  request example
+ */ 
   const userRequest = {
     actors: "Chris Pratt",
     // productionCountries: "United States",
@@ -15,7 +17,8 @@ const MovieContextProvider = (props) => {
     // language: "Engelska",
     // length: "136 min",
     // productionYear: "2017",
-    // title: "Guardians of the Galaxy Vol. 2",
+    title: "Gu",
+    
   };
 
    // All movies fetch from DB on render

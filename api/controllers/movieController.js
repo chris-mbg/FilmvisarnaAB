@@ -22,7 +22,8 @@ const getMovieById = async (req, res) => {
 const getFilteredMovies = async (req, res) => {
   // gets a JSON string from the frontend, destructure it
   const { request } = req.params;
-
+  
+  console.log("REQUEST", request)
   // parse the JSON string => get the object
   const userQuery = JSON.parse(request);
 
@@ -50,7 +51,8 @@ const getFilteredMovies = async (req, res) => {
       for (let key in userQuery) {
         if (userQuery.hasOwnProperty(key)) {
           let object = {};
-          object[key] = userQuery[key];
+          let queryName = new RegExp(`^${userQuery[key]}\\w*`,"gi");
+          object[key] = queryName;
           queryObj.push(object);
         }
       }
