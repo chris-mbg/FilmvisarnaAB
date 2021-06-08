@@ -151,6 +151,7 @@ const UserReservation = ({ reservation }) => {
       </Accordion.Collapse>
       <Modal size={"md"} centered={"true"} show={showCancelBookingModal}>
         <CancelBookingModal
+          reservation={reservation}
           setShowCancelBookingModal={setShowCancelBookingModal}
         />
       </Modal>
