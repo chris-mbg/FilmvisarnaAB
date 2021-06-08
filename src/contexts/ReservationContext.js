@@ -125,7 +125,7 @@ const ReservationContextProvider = (props) => {
     let result = await saveReservation({
       screeningId: screeningToShow._id,
       tickets: ticketsChosen,
-      totalPrice: ticketsChosen.length * screeningToShow.price,
+      totalPrice: getTotalPrice(ticketsChosen, screeningToShow.price),
     });
     return result;
   };
