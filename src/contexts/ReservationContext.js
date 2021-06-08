@@ -115,9 +115,7 @@ const ReservationContextProvider = (props) => {
       });
 
       // If HTTP request (delete) was successful - return true.
-      if (response.status === "success") {
-        console.log("response.status:", response.status);
-
+      if (response.status === 200) {
         // Updates user's reservation list/array.
         getAllReservationsForUser();
 

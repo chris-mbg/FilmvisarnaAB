@@ -1,9 +1,22 @@
 import styles from "../../css/CancelBookingModal.module.css";
+import { useContext } from "react";
+import { ReservationContext } from "../../contexts/ReservationContext";
 import { Modal } from "react-bootstrap";
 import moment from "moment";
 import "moment/locale/sv";
 
 const CancelBookingModal = ({ reservation, setShowCancelBookingModal }) => {
+  const { userCancelsReservation } = useContext(ReservationContext);
+
+  const handleConfirmCancellation = () => {
+    userCancelsReservation(reservation?._id).then((data) => {
+      // If cancellation was successful, then close down the modal.
+      if (data === true) {
+        setShowCancelBookingModal(false);
+      }
+    });
+  };
+
   return (
     <div className={`${styles.cancel_reservation_modal} rounded`}>
       <h2 className={styles.modal_header}>
@@ -20,12 +33,17 @@ const CancelBookingModal = ({ reservation, setShowCancelBookingModal }) => {
       </Modal.Body>
       <Modal.Footer className={styles.modal_footer}>
         <button
-          className={`${styles.cancel_button} btn`}
           onClick={() => setShowCancelBookingModal(false)}
+          className={`${styles.cancel_button} btn`}
         >
           Avbryt
         </button>
-        <button className={`${styles.confirm_button} btn`}>Bekräfta</button>
+        <button
+          onClick={() => handleConfirmCancellation()}
+          className={`${styles.confirm_button} btn`}
+        >
+          Bekräfta
+        </button>
       </Modal.Footer>
     </div>
   );
