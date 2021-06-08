@@ -70,6 +70,37 @@ const ReservationContextProvider = (props) => {
     screeningToShow,
   ]);
 
+  const getTotalPrice = (ticketsArray, fullPrice) => {
+    return ticketsArray.reduce((totalPrice, currVal) => {
+      let ticketPrice =
+        currVal.ticketType === "adult"
+          ? fullPrice
+          : currVal.ticketType === "senior"
+          ? 0.8 * fullPrice
+          : 0.7 * fullPrice; // The ticketType is "child"
+      totalPrice += ticketPrice;
+      return totalPrice;
+    }, 0);
+  };
+
+  // ! Test variable to be deleted when test is done
+  let testTickets = [
+    {
+      ticketType: "child",
+      seatNumber: [0, 0],
+    },
+    {
+      ticketType: "senior",
+      seatNumber: [0, 1],
+    },
+    {
+      ticketType: "adult",
+      seatNumber: [0, 2],
+    },
+  ];
+  // ! Test case to be deleted when test is done
+  console.log("total price test", getTotalPrice(testTickets, 100));
+
   const saveReservation = async (reservationInfo) => {
     console.log(reservationInfo);
     let result = await fetch("/api/v1/reservations/", {
@@ -107,10 +138,10 @@ const ReservationContextProvider = (props) => {
     setScreeningIdOnOrderPage,
     movieScreenings,
     screeningToShow,
-    //setScreeningToShow,
     ticketsChosen,
     setTicketsChosen,
     userConfirmsReservation,
+    getTotalPrice,
   };
 
   return (

@@ -13,8 +13,12 @@ const Tickets = () => {
   const [showConfirmModal, setShowConfirmModal] = useState(false);
 
   // Context
-  const { ticketsChosen, screeningToShow, userConfirmsReservation } =
-    useContext(ReservationContext);
+  const {
+    ticketsChosen,
+    screeningToShow,
+    userConfirmsReservation,
+    getTotalPrice,
+  } = useContext(ReservationContext);
 
   const history = useHistory();
 
@@ -45,7 +49,7 @@ const Tickets = () => {
   // Renders each ticket that the user has selected from screening.
   const ticket =
     ticketsChosen &&
-    ticketsChosen.map((ticket,index) => {
+    ticketsChosen.map((ticket, index) => {
       return (
         <>
           <Container className={styles.ticket_container} fluid key={index}>
@@ -63,11 +67,20 @@ const Tickets = () => {
               <Col>
                 <ul className={styles.ul}>
                   <li>
-                    Rad: {ticket.seatNumber[0] + 1}, Plats: {ticket.seatNumber[1] + 1}
+                    Rad: {ticket.seatNumber[0] + 1}, Plats:{" "}
+                    {ticket.seatNumber[1] + 1}
                   </li>
                 </ul>
               </Col>
-              <Col>Pris: {screeningToShow.price} kr</Col>
+              <Col>
+                Pris:{" "}
+                {ticket.ticketType === "adult"
+                  ? screeningToShow.price
+                  : ticket.ticketType === "senior"
+                  ? screeningToShow.price * 0.8
+                  : screeningToShow.price * 0.7}{" "}
+                kr
+              </Col>
             </Row>
           </Container>
         </>
@@ -88,7 +101,10 @@ const Tickets = () => {
             {ticketsChosen.length > 0 && (
               <p className={styles.price}>
                 Total pris:{" "}
-                <span>{ticketsChosen.length * screeningToShow.price}</span> kr
+                <span>
+                  {getTotalPrice(ticketsChosen, screeningToShow.price)}
+                </span>{" "}
+                kr
               </p>
             )}
             {/* <div className={styles.button_wrapper}>
