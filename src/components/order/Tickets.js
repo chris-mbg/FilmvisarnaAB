@@ -13,7 +13,7 @@ const Tickets = () => {
   const [showConfirmModal, setShowConfirmModal] = useState(false);
 
   // Context
-  const { seatsChosen, screeningToShow, userConfirmsReservation } =
+  const { ticketsChosen, screeningToShow, userConfirmsReservation } =
     useContext(ReservationContext);
 
   const history = useHistory();
@@ -44,11 +44,11 @@ const Tickets = () => {
 
   // Renders each ticket that the user has selected from screening.
   const ticket =
-    seatsChosen &&
-    seatsChosen.map((seat) => {
+    ticketsChosen &&
+    ticketsChosen.map((ticket,index) => {
       return (
         <>
-          <Container className={styles.ticket_container} fluid key={seat}>
+          <Container className={styles.ticket_container} fluid key={index}>
             <Row noGutters={true}>
               <Col lg={5}>
                 <p>
@@ -63,7 +63,7 @@ const Tickets = () => {
               <Col>
                 <ul className={styles.ul}>
                   <li>
-                    Rad: {seat[0] + 1}, Plats: {seat[1] + 1}
+                    Rad: {ticket.seatNumber[0] + 1}, Plats: {ticket.seatNumber[1] + 1}
                   </li>
                 </ul>
               </Col>
@@ -85,16 +85,16 @@ const Tickets = () => {
           {/* ticket_wrapper_upper */}
           <div className={styles.ticket_wrapper_bottom}>
             <hr className={styles.hr} />
-            {seatsChosen.length > 0 && (
+            {ticketsChosen.length > 0 && (
               <p className={styles.price}>
                 Total pris:{" "}
-                <span>{seatsChosen.length * screeningToShow.price}</span> kr
+                <span>{ticketsChosen.length * screeningToShow.price}</span> kr
               </p>
             )}
             {/* <div className={styles.button_wrapper}>
               <CustomButton text="Boka" />
               </div> */}
-            {seatsChosen.length > 0 && (
+            {ticketsChosen.length > 0 && (
               <div className="d-flex justify-content-center mt-4">
                 <CustomButton
                   text="Boka biljetter"
