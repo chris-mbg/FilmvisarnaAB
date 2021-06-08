@@ -111,11 +111,15 @@ const cancelReservation = async (req, res) => {
 
     // Check if the user logged in is the one who has made the reservationToCancel
     if (req.session.user._id !== String(reservationToCancel.userId)) {
-      return res.status(401).json({status: "error", message: "Reservation made by other user"})
+      return res
+        .status(401)
+        .json({ status: "error", message: "Reservation made by other user" });
     }
 
     // Find the screening connected to the reservation
-    let screening = await Screening.findById(reservationToCancel.screening.screeningId);
+    let screening = await Screening.findById(
+      reservationToCancel.screening.screeningId
+    );
 
     // ...and change the seats in the screening from booked to unbooked.
     reservationToCancel.tickets.forEach((ticket, i) => {
@@ -130,12 +134,17 @@ const cancelReservation = async (req, res) => {
     // When the seats are changed and the screening saved to the DB, delete reservation and send success msg to FE.
     reservationToCancel.deleteOne((err, result) => {
       if (err) {
-        res.status(500).json({status: "error", message: err.message});
+        res.status(500).json({ status: "error", message: err.message });
       } else {
-        res.json({status: "Success", message: `Reservation with ordernr ${reservationId} is now cancelled`, cancelledReservation: result});
+        res
+          .status(200)
+          .json({
+            status: "success",
+            message: `Reservation with ordernr ${reservationId} is now cancelled`,
+            cancelledReservation: result,
+          });
       }
     });
-    
   } catch (error) {
     res.status(400).json({ status: "error", message: error.message });
   }
@@ -144,5 +153,5 @@ const cancelReservation = async (req, res) => {
 module.exports = {
   getReservationsForUser,
   createNewReservation,
-  cancelReservation
+  cancelReservation,
 };
