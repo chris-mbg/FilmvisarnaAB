@@ -16,15 +16,15 @@ import GuardedRoute from './components/GuardedRoute';
 function App() {
   const [isAuthenticated, setisAuthenticated] = useState(false);
 
-  function login() {
-    setisAuthenticated(true);
-    console.log('loggedInUser:' + isAuthenticated);
-  }
+  // function login() {
+  //   setisAuthenticated(true);
+  //   console.log('loggedInUser:' + isAuthenticated);
+  // }
 
-  function logout() {
-    setisAuthenticated(false);
-    console.log('loggedInUser:' + isAuthenticated);
-  }
+  // function logout() {
+  //   setisAuthenticated(false);
+  //   console.log('loggedInUser:' + isAuthenticated);
+  // }
 
   return (
     <div className='App'>
