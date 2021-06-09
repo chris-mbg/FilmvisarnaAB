@@ -42,7 +42,7 @@ const CancelBookingModal = ({ reservation, setShowCancelBookingModal }) => {
           onClick={() => handleConfirmCancellation()}
           className={`${styles.confirm_button} btn`}
         >
-          Bekräfta
+          Avboka
         </button>
       </Modal.Footer>
     </div>
