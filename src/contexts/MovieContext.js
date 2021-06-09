@@ -11,9 +11,9 @@ const MovieContextProvider = (props) => {
   const userRequest = {
     actors: "Chris Pratt",
     // productionCountries: "United States",
-    // ageLimit: "PG-11",
-    // director: "James Gunn",
-    // genre: "Äventyr",
+    ageLimit: "PG-11",
+    // director: " ",
+    genre: "Äventyr",
     // language: "Engelska",
     // length: "136 min",
     // productionYear: "2017",
