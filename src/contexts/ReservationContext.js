@@ -19,11 +19,15 @@ const ReservationContextProvider = (props) => {
 
   useEffect(() => {
     async function changeMovie() {
-      if(movieIdOnOrderPage && movieScreenings && (movieIdOnOrderPage !== movieScreenings[0].movieId)) {
+      if (
+        movieIdOnOrderPage &&
+        movieScreenings &&
+        movieIdOnOrderPage !== movieScreenings[0].movieId
+      ) {
         setMovieScreenings(null);
-        setScreeningToShow(null)
+        setScreeningToShow(null);
       }
-      if(movieIdOnOrderPage) {
+      if (movieIdOnOrderPage) {
         setMovieScreenings(await getAllScreeningsForMovie(movieIdOnOrderPage));
       }
     }
@@ -33,22 +37,31 @@ const ReservationContextProvider = (props) => {
   useEffect(() => {
     // If change in movie or screening --> reset seatsChosen
     setSeatsChosen([]);
-  },[screeningIdOnOrderPage, movieIdOnOrderPage]);
+  }, [screeningIdOnOrderPage, movieIdOnOrderPage]);
 
   useEffect(() => console.log("Seats chosen by user", seatsChosen));
 
-
   // Better to get this from BE and DB..? But we still need to get all screeenings also, and therefore OK to filter in FE, because we already have the info here...
   useEffect(() => {
-      if (screeningIdOnOrderPage === null) {
-        setScreeningToShow(null);
-      } else if (screeningIdOnOrderPage && movieScreenings) {
-        setScreeningToShow(...movieScreenings.filter(screen => screen._id === screeningIdOnOrderPage));
-      }
+    if (screeningIdOnOrderPage === null) {
+      setScreeningToShow(null);
+    } else if (screeningIdOnOrderPage && movieScreenings) {
+      setScreeningToShow(
+        ...movieScreenings.filter(
+          (screen) => screen._id === screeningIdOnOrderPage
+        )
+      );
+    }
   }, [screeningIdOnOrderPage, movieScreenings]);
 
-  useEffect(() => console.log("movie Screenings", movieScreenings),[movieScreenings]);
-  useEffect(() => console.log("one screening", screeningToShow),[screeningToShow]);
+  useEffect(
+    () => console.log("movie Screenings", movieScreenings),
+    [movieScreenings]
+  );
+  useEffect(
+    () => console.log("one screening", screeningToShow),
+    [screeningToShow]
+  );
 
   useEffect(() => {}, [
     movieIdOnOrderPage,
@@ -79,21 +92,42 @@ const ReservationContextProvider = (props) => {
 
   const getTickets = () => {
     const tickets = [];
-    for(let i = 0; i < seatsChosen.length; i++) {
-      tickets.push({ ticketType: "adult", seatNumber: seatsChosen[i]});
+    for (let i = 0; i < seatsChosen.length; i++) {
+      tickets.push({ ticketType: "adult", seatNumber: seatsChosen[i] });
     }
     return tickets;
-  }
+  };
 
   const userConfirmsReservation = async () => {
     let result = await saveReservation({
       screeningId: screeningToShow._id,
       tickets: getTickets(),
-      totalPrice: seatsChosen.length * screeningToShow.price
+      totalPrice: seatsChosen.length * screeningToShow.price,
     });
     return result;
-  }
+  };
 
+  const userCancelsReservation = async (reservationId) => {
+    try {
+      const response = await fetch(`/api/v1/reservations/${reservationId}`, {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+      });
+
+      // If HTTP request (delete) was successful - return true.
+      if (response.status === 200) {
+        // Updates user's reservation list/array.
+        getAllReservationsForUser();
+
+        return true;
+      } else {
+        // If HTTP request (delete) was unsuccessful - throw new Error.
+        throw new Error();
+      }
+    } catch (error) {
+      return false;
+    }
+  };
 
   const values = {
     saveReservation,
@@ -106,7 +140,8 @@ const ReservationContextProvider = (props) => {
     //setScreeningToShow,
     seatsChosen,
     setSeatsChosen,
-    userConfirmsReservation
+    userConfirmsReservation,
+    userCancelsReservation,
   };
 
   return (
@@ -118,13 +153,12 @@ const ReservationContextProvider = (props) => {
 
 export default ReservationContextProvider;
 
-
-  //     reservationInfo needs to look like following for func to work
-  //     {
-  //       screeningId: "ObjectId",
-  //       tickets: [{
-  //         ticketType: "adult",
-  //         seatNumber: [y,x]
-  //       }]
-  //       totalPrice: Number,
-  //     }
+//     reservationInfo needs to look like following for func to work
+//     {
+//       screeningId: "ObjectId",
+//       tickets: [{
+//         ticketType: "adult",
+//         seatNumber: [y,x]
+//       }]
+//       totalPrice: Number,
+//     }
