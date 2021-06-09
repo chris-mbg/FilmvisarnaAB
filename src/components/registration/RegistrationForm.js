@@ -1,17 +1,17 @@
-import styles from '../../css/RegistrationForm.module.css';
-import { useContext, useState } from 'react';
-import { NavLink, useHistory } from 'react-router-dom';
-import { UserContext } from '../../contexts/UserContext';
-import { Alert } from 'react-bootstrap';
-import { checkPassword } from '../../utilities/utilities';
+import styles from "../../css/RegistrationForm.module.css";
+import { useContext, useState } from "react";
+import { NavLink, useHistory } from "react-router-dom";
+import { UserContext } from "../../contexts/UserContext";
+import { Alert } from "react-bootstrap";
+import { checkPassword } from "../../utilities/utilities";
 
 const RegistrationForm = () => {
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [phone, setPhone] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [alertPassword, setAlertPassword] = useState(false);
   const [alertConfirmPassword, setAlertConfirmPassword] = useState(false);
   const [alertEmail, setAlertEmail] = useState(false);
@@ -26,27 +26,16 @@ const RegistrationForm = () => {
   const handleRegister = (e) => {
     e.preventDefault();
 
-    // If password and confirmPassword does NOT matches with each other, set "AlertConfirmPassword" to true.
-    if (
-      !password.includes(confirmPassword) ||
-      !confirmPassword.includes(password)
-    ) {
-      setAlertConfirmPassword(true);
-
-      return;
-    }
-
-    if (checkPassword(password)) {
+    // If both password and confirmPassword is valid and matches with each other ...
+    if (checkPassword(password) && confirmPassword.includes(password)) {
       register({ firstName, lastName, phone, email, password }).then((data) => {
         if (data === true) {
-          // Registration - logs user in after registration is completed.
-
           // Resets form
-          setFirstName('');
-          setLastName('');
-          setPhone('');
-          setEmail('');
-          setPassword('');
+          setFirstName("");
+          setLastName("");
+          setPhone("");
+          setEmail("");
+          setPassword("");
 
           // Reset alerts
           setAlertPassword(false);
@@ -54,16 +43,35 @@ const RegistrationForm = () => {
           setAlertEmail(false);
 
           // Re-directs to:
-          history.push('/');
+          history.push("/");
         }
+
+        // If status code is 409(Conflict) - meaning e-mail already exists in database. Set alert for e-mail to: "true".
         if (data.status === 409) {
           setAlertEmail(true);
+
+          return;
         }
       });
     }
 
+    // If password does NOT fulfills following requirements:
+    // 8 characters, at least one uppercase letter, at least one lowercase letter, one number and one special character.
+    // set alertPassword to: true.
     if (!checkPassword(password)) {
       setAlertPassword(true);
+
+      return;
+    }
+
+    // If password and confirmPassword does NOT matches with each other, set "alertConfirmPassword" to true.
+    if (
+      !password.includes(confirmPassword) ||
+      !confirmPassword.includes(password)
+    ) {
+      setAlertConfirmPassword(true);
+
+      return;
     }
   };
 
@@ -102,7 +110,7 @@ const RegistrationForm = () => {
 
   // Alert boxes
   const alertPasswordBox = alertPassword && (
-    <Alert variant='dark' onClose={() => setAlertPassword(false)} dismissible>
+    <Alert variant="dark" onClose={() => setAlertPassword(false)} dismissible>
       <p>
         Försök igen! <br />
         Ditt lösenord måste innehålla minst 8 tecken, varav en stor bokstav, en
@@ -113,7 +121,7 @@ const RegistrationForm = () => {
 
   const alertConfirmPasswordBox = alertConfirmPassword && (
     <Alert
-      variant='dark'
+      variant="dark"
       onClose={() => setAlertConfirmPassword(false)}
       dismissible
     >
@@ -125,7 +133,7 @@ const RegistrationForm = () => {
   );
 
   const alertEmailBox = alertEmail && (
-    <Alert variant='dark' onClose={() => setAlertEmail(false)} dismissible>
+    <Alert variant="dark" onClose={() => setAlertEmail(false)} dismissible>
       <p>Välj en annan e-post!</p>
     </Alert>
   );
@@ -135,99 +143,99 @@ const RegistrationForm = () => {
       <h2 className={styles.title}>Registrering</h2>
 
       <form onSubmit={(e) => handleRegister(e)} className={`${styles.form}`}>
-        <div className='form-group'>
+        <div className="form-group">
           <input
             value={firstName}
             onChange={(e) => handleFirstName(e)}
-            autoComplete='off'
+            autoComplete="off"
             required
             className={`${styles.input} form-control`}
-            type='text'
-            id='firstname'
-            placeholder='Förnamn'
+            type="text"
+            id="firstname"
+            placeholder="Förnamn"
           />
         </div>
 
-        <div className='form-group'>
+        <div className="form-group">
           <input
             value={lastName}
             onChange={(e) => handleLastName(e)}
-            autoComplete='off'
+            autoComplete="off"
             required
             className={`${styles.input} form-control`}
-            type='text'
-            id='lastname'
-            placeholder='Efternamn'
+            type="text"
+            id="lastname"
+            placeholder="Efternamn"
           />
         </div>
 
-        <div className='form-group'>
+        <div className="form-group">
           <input
             value={phone}
             onChange={(e) => handlePhone(e)}
-            autoComplete='off'
+            autoComplete="off"
             required
             className={`${styles.input} form-control`}
-            type='tel'
-            id='phone'
-            placeholder='Telefonnummer'
+            type="tel"
+            id="phone"
+            placeholder="Telefonnummer"
           />
         </div>
 
-        <div className='form-group'>
+        <div className="form-group">
           <input
             value={email}
             onChange={(e) => handleEmail(e)}
-            autoComplete='off'
+            autoComplete="off"
             required
             className={`${styles.input} form-control`}
-            type='email'
-            id='email'
-            placeholder='E-post'
+            type="email"
+            id="email"
+            placeholder="E-post"
           />
         </div>
 
-        <div className='form-group'>
+        <div className="form-group">
           <input
             value={password}
             onChange={(e) => handlePassword(e)}
-            autoComplete='off'
+            autoComplete="off"
             required
             className={`${styles.input} form-control`}
-            type='password'
-            id='password'
-            placeholder='Lösenord'
+            type="password"
+            id="password"
+            placeholder="Lösenord"
           />
         </div>
 
-        <div className='form-group'>
+        <div className="form-group">
           <input
             value={confirmPassword}
             onChange={(e) => handleConfirmPassword(e)}
-            autoComplete='off'
+            autoComplete="off"
             required
             className={`${styles.input} form-control`}
-            type='password'
-            id='confirmpassword'
-            placeholder='Bekräfta lösenord'
+            type="password"
+            id="confirmpassword"
+            placeholder="Bekräfta lösenord"
           />
         </div>
         {alertConfirmPasswordBox}
         {alertPasswordBox}
         {alertEmailBox}
 
-        <div className='d-flex justify-content-center'>
-          <button type='submit' className={`${styles.button} btn`}>
+        <div className="d-flex justify-content-center">
+          <button type="submit" className={`${styles.button} btn`}>
             Registrera
           </button>
         </div>
 
         <p className={styles.cta}>
-          Medlem?{' '}
+          Medlem?{" "}
           <NavLink
             className={styles.login_link}
             exact
-            to='#'
+            to="#"
             onClick={handleLoginModal}
           >
             Logga in här
