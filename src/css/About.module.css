@@ -12,6 +12,7 @@
 
 .filmrulle_wrapper {
   width: 30%;
+  display: inline-flex;
 }
 
 .about_text_wrapper {
@@ -22,6 +23,7 @@
 .lower_wrapper {
   display: flex;
   flex-direction: row;
+  margin-top: 2rem;
 }
 
 .days_wrapper {
@@ -45,7 +47,7 @@
 .map {
   width: 100%;
 }
-@media screen and (max-width: 576px) {
+@media screen and (max-width: 768px) {
 
     .upper_wrapper {
       display: block;
