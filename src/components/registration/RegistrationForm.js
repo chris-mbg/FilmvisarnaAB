@@ -75,14 +75,6 @@ const RegistrationForm = () => {
     }
   };
 
-  const handleFirstName = (e) => {
-    setFirstName(e.target.value);
-  };
-
-  const handleLastName = (e) => {
-    setLastName(e.target.value);
-  };
-
   const handlePhone = (e) => {
     // Only allows numbers - input
     const checkNumber = /^[0-9]*$/g;
@@ -90,22 +82,6 @@ const RegistrationForm = () => {
     if (checkNumber.test(e.target.value)) {
       setPhone(e.target.value);
     }
-  };
-
-  const handleEmail = (e) => {
-    setEmail(e.target.value);
-  };
-
-  const handlePassword = (e) => {
-    setPassword(e.target.value);
-  };
-
-  const handleConfirmPassword = (e) => {
-    setConfirmPassword(e.target.value);
-  };
-
-  const handleLoginModal = () => {
-    setShowLogin(true);
   };
 
   // Alert boxes
@@ -146,7 +122,7 @@ const RegistrationForm = () => {
         <div className="form-group">
           <input
             value={firstName}
-            onChange={(e) => handleFirstName(e)}
+            onChange={(e) => setFirstName(e.target.value)}
             autoComplete="off"
             required
             className={`${styles.input} form-control`}
@@ -159,7 +135,7 @@ const RegistrationForm = () => {
         <div className="form-group">
           <input
             value={lastName}
-            onChange={(e) => handleLastName(e)}
+            onChange={(e) => setLastName(e.target.value)}
             autoComplete="off"
             required
             className={`${styles.input} form-control`}
@@ -185,7 +161,7 @@ const RegistrationForm = () => {
         <div className="form-group">
           <input
             value={email}
-            onChange={(e) => handleEmail(e)}
+            onChange={(e) => setEmail(e.target.value)}
             autoComplete="off"
             required
             className={`${styles.input} form-control`}
@@ -198,7 +174,7 @@ const RegistrationForm = () => {
         <div className="form-group">
           <input
             value={password}
-            onChange={(e) => handlePassword(e)}
+            onChange={(e) => setPassword(e.target.value)}
             autoComplete="off"
             required
             className={`${styles.input} form-control`}
@@ -211,7 +187,7 @@ const RegistrationForm = () => {
         <div className="form-group">
           <input
             value={confirmPassword}
-            onChange={(e) => handleConfirmPassword(e)}
+            onChange={(e) => setConfirmPassword(e.target.value)}
             autoComplete="off"
             required
             className={`${styles.input} form-control`}
@@ -236,7 +212,7 @@ const RegistrationForm = () => {
             className={styles.login_link}
             exact
             to="#"
-            onClick={handleLoginModal}
+            onClick={() => setShowLogin(true)}
           >
             Logga in här
           </NavLink>
