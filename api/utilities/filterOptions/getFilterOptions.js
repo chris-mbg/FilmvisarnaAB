@@ -64,6 +64,6 @@ async function getAllMoviesAndScreenings() {
 
 
   let data = JSON.stringify(filterOptions);
-  fs.writeFileSync('filterOptions.json', data);
+  fs.writeFileSync('../../../src/utilities/filterOptions/filterOptions.json', data);
 
 }

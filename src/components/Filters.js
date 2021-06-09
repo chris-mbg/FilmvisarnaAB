@@ -11,6 +11,7 @@ Språk: Select/options
 
 */
 
+import filteralts from "../utilities/filterOptions/filterOptions.json";
 
 const Filters = () => {
   return (
@@ -38,7 +39,7 @@ const Filters = () => {
       <input type="text" />
       <p>Språk</p>
       <select></select>
-      <p>Åldersgråns</p>
+      <p>Åldersgräns</p>
       <input type="checkbox" />
     </div>
   );
