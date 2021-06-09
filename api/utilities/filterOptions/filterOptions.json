@@ -1,0 +1,39 @@
+{
+  "priceOptions": [90, 100, 110, 120],
+  "movieAgeLimits": ["PG-11", "PG-7", "PG-15", " PG-11"],
+  "movieGenres": [
+    "Äventyr",
+    "Disney",
+    "Fantasy",
+    "Action",
+    "Komedi",
+    "Science Fiction",
+    "Crime",
+    "Romantik",
+    "Biografi",
+    "Thriller",
+    "Klassiker",
+    "Universal",
+    "Drama"
+  ],
+  "movieLanguages": ["Engelska", "Svenska", "Franska"],
+  "movieLengths": [
+    "136 min",
+    "119 min",
+    "107 min",
+    "152 min",
+    "142 min",
+    "85 min",
+    "147 min",
+    "113 min",
+    "93 min",
+    "97 min",
+    "126 min",
+    "110 min",
+    "124 min",
+    "123 min",
+    "102 min",
+    "112 min",
+    "193 min"
+  ]
+}

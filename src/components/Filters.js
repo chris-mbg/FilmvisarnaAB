@@ -12,10 +12,9 @@ Språk: Select/options
 */
 
 
-
 const Filters = () => {
   return (
-    <div className="p-1">
+    <div className="p-2">
       <h2>Filter</h2>
       <p>Pris</p>
       <label>Min</label>

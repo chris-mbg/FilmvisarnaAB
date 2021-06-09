@@ -11,20 +11,22 @@ const HomePage = () => {
     <div className="homePage">
       <ImgCarousel />
       <Row className="mt-4" noGutters={true}>
-        <Col xs={12} sm={12} md={12} lg={9} xl={8}>
+        <Col xs={12} sm={12} md={12} lg={{ span: 9, offset: 3 }} xl={{ span: 8, offset: 4 }}>
           {/* Searchbar component placeholder */}
           <input type="text" placeholder="Sök..." style={{ width: "100%" }} />
         </Col>
-        <Col
-          xs={12}
-          lg={{ order: "first", span: 3 }}
-          xl={{ order: "first", span: 4 }}
-        >
-          <Filters />
-        </Col>
-        <Col xs={12} lg={{ span: 9, offset: 3 }} xl={{ span: 8, offset: 4 }}>
-          <MovieWrapper />
-        </Col>
+        </Row>
+        <Row noGutters={true}>
+          <Col
+            xs={12}
+            lg={3}
+            xl={4}
+          >
+            <Filters />
+          </Col>
+          <Col xs={12} lg={9} xl={8}>
+            <MovieWrapper />
+          </Col>
       </Row>
 
       {/* "Visas idag" goes here */}
