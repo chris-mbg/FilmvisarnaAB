@@ -4,7 +4,7 @@ import MovieSchedule from "../components/MovieSchedule";
 import styles from "../css/HomePage.module.css";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import Filters from "../components/Filters";
+import FilterWrapper from "../components/search/FilterWrapper";
 
 const HomePage = () => {
   return (
@@ -13,7 +13,7 @@ const HomePage = () => {
       <Row className="mt-4" noGutters={true}>
         <Col xs={12} sm={12} md={12} lg={{ span: 9, offset: 3 }} xl={{ span: 8, offset: 4 }}>
           {/* Searchbar component placeholder */}
-          <input type="text" placeholder="Sök..." style={{ width: "100%" }} />
+          <input type="text" placeholder="Sök..." style={{ width: "90%"}} className="mx-4 my-2" />
         </Col>
         </Row>
         <Row noGutters={true}>
@@ -22,7 +22,7 @@ const HomePage = () => {
             lg={3}
             xl={4}
           >
-            <Filters />
+            <FilterWrapper />
           </Col>
           <Col xs={12} lg={9} xl={8}>
             <MovieWrapper />
