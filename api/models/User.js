@@ -9,7 +9,6 @@ const userSchema = new Schema({
   firstName: { type: String, required: true, trim: true },
   lastName: { type: String, required: true, trim: true },
   phoneNumber: String,
-  reservations: [{ type: Schema.Types.ObjectId, ref: "Reservation" }],
 });
 
 // Hashes the password before saving it to the DB
