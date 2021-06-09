@@ -21,8 +21,8 @@ function App() {
             <BrowserRouter>
               <Navbar />
               <Switch>
-                <Route exact path='/:request?' component={HomePage} />
-                <Route exact path='/movies/movie/:movieId' component={MoviePage} />
+                <Route exact path='/' component={HomePage} />
+                <Route exact path='/movies/:movieId' component={MoviePage} />
                 <Route
                   exact
                   path='/order/:movieId/:screeningId?'

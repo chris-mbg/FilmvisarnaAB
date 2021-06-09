@@ -9,15 +9,18 @@ const MovieContextProvider = (props) => {
    *  request example
    */
   const userRequest = {
-    actors: "Chris Pratt",
+    // actors: "ChrisPratt",
     // productionCountries: "United States",
     ageLimit: "PG-11",
-    // director: " ",
-    genre: "Äventyr",
+    // director: "",
+    // genre: "Äventyr",
     // language: "Engelska",
     // length: "136 min",
     // productionYear: "2017",
-    title: "Gu",
+    // title: "gu",
+    // price
+    // date
+    // salong
   };
 
   // All movies fetch from DB on render
@@ -28,47 +31,41 @@ const MovieContextProvider = (props) => {
    * if the object contains request fields - returns specific movie items
    * @param {object} request
    */
-  const fetchFilteredMovies = async (request) => {
-    // should stringify for pass through URL
-    request = JSON.stringify(request);
+  const fetchFilteredMovies = async (userRequest) => {
+    let result = null;
 
-    if (!request) {
-      let result = await fetch("/api/v1/movies/");
-      result = await result.json();
-      if (result.status !== "error") {
-        setAllMovies(result);
-      }
+    if (Object.keys(userRequest).length === 0) {
+      result = await fetch("/api/v1/movies/");
+
     } else {
-      let result = await fetch(`/api/v1/movies/${request}`);
-      result = await result.json();
+      let queryString = "";
+
+      for (let key in userRequest) {
+        // delete empty key
+        if (userRequest[key] === "") {
+          delete userRequest[key]
+        }else{
+          queryString += `${key}=${userRequest[key]}&`;
+        }
+      }
+
+      // delete last "&"
+      queryString = queryString.slice(0, -1);
+      // todo delete
+      console.log("::queryString:::", queryString, typeof queryString);
+
+      result = await fetch(`/api/v1/movies/?${queryString}`);
+    }
+
+    result = await result.json();
       if (result.status !== "error") {
         setAllMovies(result);
+        console.log(result)
       }
-    }
   };
 
-  /* GLÖM INTE ATT TA BORT */
-  // GET - search for posts
-  // const search = async (filter) => {
-  //   const response = await fetch(`/api/v1/posts/search/?${filter}`);
-
-  //   const data = await response.json();
-
-  //   setFilterPosts(data);
-  // };
-
-  /* GLÖM INTE ATT TA BORT */
-
-  // const fetchAllMovies = async () => {
-  //   let result = await fetch("/api/v1/movies/");
-  //   result = await result.json();
-  //   if (result.status !== "error") {
-  //     setAllMovies(result);
-  //   }
-  // };
-
   const getMovieById = async (movieId) => {
-    let result = await fetch(`/api/v1/movies/movie/${movieId}`);
+    let result = await fetch(`/api/v1/movies/${movieId}`);
     result = await result.json();
 
     if (result.status !== "error") {

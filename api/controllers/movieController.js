@@ -20,12 +20,9 @@ const getMovieById = async (req, res) => {
 };
 
 const getFilteredMovies = async (req, res) => {
-  // gets a JSON string from the frontend, destructure it
-  const { request } = req.params;
-
-  console.log("REQUEST", request);
-  // parse the JSON string => get the object
-  const userQuery = JSON.parse(request);
+  const userQuery = req.query;
+  // todo delete
+  console.log("req.query", req.query, typeof req.query);
 
   // checked the object for the presence of values, if there are none, I get all the movies
   if (Object.keys(userQuery).length === 0) {
@@ -56,7 +53,7 @@ const getFilteredMovies = async (req, res) => {
           queryObj.push(object);
         }
       }
-
+      // todo delete
       console.log("::queryObj:::", queryObj, typeof queryObj);
 
       /**
@@ -86,43 +83,6 @@ const getFilteredMovies = async (req, res) => {
     }
   }
 };
-
-/* GLÖM INTE ATT TA BORT */
-
-// GET - search for posts - /search
-// const search_get = async (req, res) => {
-//   // Filters
-//   const category = req.query.category || "all";
-//   const sort = req.query.sort || "asc"; // Set default to "ascending"
-//   const minDate = req.query.min_date || "2020-01"; // Set default to: "2020-01"
-//   const maxDate = req.query.max_date || "2021-12"; // set default to: "2021-12"
-
-//   await Post.find({
-//     $and: [
-//       { updatedAt: { $gte: minDate, $lte: maxDate } },
-//       req.query.category ? {} : { category: category },
-//       req.query.text
-//         ? {}
-//         : {
-//             $or: [{ title: req.query.title }, { content: req.query.content }],
-//           },
-//     ],
-//   })
-//     .sort({ updatedAt: sort })
-//     .exec(function (error, result) {
-//       if (error) {
-//         return res.sendStatus(404);
-//       } else {
-//         return res.status(200).json({
-//           status: "success",
-//           message: "Successfully retrieved list of all posts.",
-//           data: { result },
-//         });
-//       }
-//     });
-// };
-
-/* GLÖM INTE ATT TA BORT */
 
 module.exports = {
   getAllMovies,
