@@ -11,18 +11,20 @@ Språk: Select/options
 
 */
 
-import filteralts from "../utilities/filterOptions/filterOptions.json";
-
 const Filters = () => {
+
+  const filterOptions = require("../utilities/filterOptions/filterOptions.json");
+
   return (
     <div className="p-2">
       <h2>Filter</h2>
       <p>Pris</p>
-      <label>Min</label>
-      <input type="range" />
-      <br></br>
-      <label>Max</label>
-      <input type="range" />
+      <select>
+        <option value="">Pris</option>
+          {filterOptions.priceOptions.map((num, i) => (
+            <option key={i} value={num}>{num} kr</option>
+          ))}
+        </select>
       <p>Längd</p>
       <label>Min</label>
       <input type="range" />
@@ -30,7 +32,12 @@ const Filters = () => {
       <label>Max</label>
       <input type="range" />
       <p>Genre</p>
-      <select></select>
+        <select>
+          <option value="">Välj en genre</option>
+          {filterOptions.movieGenres.map((genre, i) => (
+            <option key={i} value={genre}>{genre}</option>
+          ))}
+        </select>
       <p>Datum</p>
       <input type="date" />
       <p>Skådespelare</p>
@@ -38,9 +45,19 @@ const Filters = () => {
       <p>Regissör</p>
       <input type="text" />
       <p>Språk</p>
-      <select></select>
+      <select>
+          <option>Hitta film efter språk</option>
+          {filterOptions.movieLanguages.map((lang, i) => (
+            <option key={i} value={lang}>{lang}</option>
+          ))}
+        </select>
       <p>Åldersgräns</p>
-      <input type="checkbox" />
+      {filterOptions.movieAgeLimits.map((limit, i) => (
+        <div>
+          <label for={limit}>{limit.slice()}</label>
+          <input type="checkbox" value={limit} name={limit} />
+        </div>
+      ))}
     </div>
   );
 }

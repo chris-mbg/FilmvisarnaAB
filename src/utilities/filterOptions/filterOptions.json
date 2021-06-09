@@ -1,6 +1,6 @@
 {
   "priceOptions": [90, 100, 110, 120],
-  "movieAgeLimits": ["PG-11", "PG-7", "PG-15", " PG-11"],
+  "movieAgeLimits": ["PG-11", "PG-7", "PG-15"],
   "movieGenres": [
     "Äventyr",
     "Disney",
