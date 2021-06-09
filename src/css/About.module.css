@@ -1,19 +1,30 @@
 .aboutContainer {
-    margin: 0 1rem;
-    display: flex;
-    flex-direction: column;     
+  margin: 0 1rem;
+  display: flex;
+  flex-direction: column;
 }
 
-.upper_wrapper {}
+.upper_wrapper {
+  display: flex;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
 
-.filmrulle_wrapper {}
+.filmrulle_wrapper {
+  width: 30%;
+}
 
-.aboutText {
-    
+.about_text_wrapper {
+  padding-left: 1rem;
+  width: 70%;
 }
 
 /* Image */
-.map {
-    width: 100%;
+
+.filmrulle_image {
+  max-width: 100%;
 }
 
+.map {
+  width: 100%;
+}
