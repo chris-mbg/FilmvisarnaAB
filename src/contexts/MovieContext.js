@@ -5,9 +5,9 @@ export const MovieContext = createContext();
 const MovieContextProvider = (props) => {
   const [allMovies, setAllMovies] = useState(null);
 
-/**
- *  request example
- */ 
+  /**
+   *  request example
+   */
   const userRequest = {
     actors: "Chris Pratt",
     // productionCountries: "United States",
@@ -18,29 +18,27 @@ const MovieContextProvider = (props) => {
     // length: "136 min",
     // productionYear: "2017",
     title: "Gu",
-    
   };
 
-   // All movies fetch from DB on render
-   useEffect(() =>  fetchFilteredMovies(userRequest), []);
+  // All movies fetch from DB on render
+  useEffect(() => fetchFilteredMovies(userRequest), []);
 
   /**
    * if the object is empty - returns all data
    * if the object contains request fields - returns specific movie items
-   * @param {object} request 
+   * @param {object} request
    */
   const fetchFilteredMovies = async (request) => {
     // should stringify for pass through URL
-    request =  JSON.stringify(request);
-    
+    request = JSON.stringify(request);
+
     if (!request) {
       let result = await fetch("/api/v1/movies/");
       result = await result.json();
       if (result.status !== "error") {
         setAllMovies(result);
       }
-    } 
-    else {
+    } else {
       let result = await fetch(`/api/v1/movies/${request}`);
       result = await result.json();
       if (result.status !== "error") {
@@ -49,7 +47,17 @@ const MovieContextProvider = (props) => {
     }
   };
 
+  /* GLÖM INTE ATT TA BORT */
+  // GET - search for posts
+  // const search = async (filter) => {
+  //   const response = await fetch(`/api/v1/posts/search/?${filter}`);
 
+  //   const data = await response.json();
+
+  //   setFilterPosts(data);
+  // };
+
+  /* GLÖM INTE ATT TA BORT */
 
   // const fetchAllMovies = async () => {
   //   let result = await fetch("/api/v1/movies/");
