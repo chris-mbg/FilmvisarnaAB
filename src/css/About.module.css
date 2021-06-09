@@ -1,0 +1,19 @@
+.aboutContainer {
+    margin: 0 1rem;
+    display: flex;
+    flex-direction: column;     
+}
+
+.upper_wrapper {}
+
+.filmrulle_wrapper {}
+
+.aboutText {
+    
+}
+
+/* Image */
+.map {
+    width: 100%;
+}
+
