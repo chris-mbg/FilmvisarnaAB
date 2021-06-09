@@ -1,31 +1,48 @@
+/*
+## Alternativ för user input i filterval
+Pris: Range, options (väljer intervall)
+Längd på film: Range
+Genre: Select/options
+Datum: Input type=”date”
+Skådespelare: Select/options; input type=”text”
+Regissör: Select/options, input type=”text”
+Språk: Select/options
+Åldersgräns: Checkbox
+
+*/
+
+
+
 const Filters = () => {
   return (
-    <>
-      <h2>This is filters...</h2>
-    </>
+    <div className="p-1">
+      <h2>Filter</h2>
+      <p>Pris</p>
+      <label>Min</label>
+      <input type="range" />
+      <br></br>
+      <label>Max</label>
+      <input type="range" />
+      <p>Längd</p>
+      <label>Min</label>
+      <input type="range" />
+      <br></br>
+      <label>Max</label>
+      <input type="range" />
+      <p>Genre</p>
+      <select></select>
+      <p>Datum</p>
+      <input type="date" />
+      <p>Skådespelare</p>
+      <input type="text" />
+      <p>Regissör</p>
+      <input type="text" />
+      <p>Språk</p>
+      <select></select>
+      <p>Åldersgråns</p>
+      <input type="checkbox" />
+    </div>
   );
 }
 
 export default Filters;
-
-{/* <Container>
-  <Row>
-    <Col md={4}>md=4</Col>
-    <Col md={{ span: 4, offset: 4 }}>{`md={{ span: 4, offset: 4 }}`}</Col>
-  </Row>
-  <Row>
-    <Col md={{ span: 3, offset: 3 }}>{`md={{ span: 3, offset: 3 }}`}</Col>
-    <Col md={{ span: 3, offset: 3 }}>{`md={{ span: 3, offset: 3 }}`}</Col>
-  </Row>
-  <Row>
-    <Col md={{ span: 6, offset: 3 }}>{`md={{ span: 6, offset: 3 }}`}</Col>
-  </Row>
-</Container>
-
-<Container>
-  <Row>
-    <Col xs={{ order: 'last' }}>First, but last</Col>
-    <Col xs>Second, but unordered</Col>
-    <Col xs={{ order: 'first' }}>Third, but first</Col>
-  </Row>
-</Container> */}
