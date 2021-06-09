@@ -19,6 +19,23 @@
   width: 70%;
 }
 
+.lower_wrapper {
+  display: flex;
+  flex-direction: row;
+}
+
+.days_wrapper {
+  width: 50%;
+  display: inline-flex;
+  justify-content: space-around;
+}
+
+.phonenumber_wrapper {
+  width: 50%;
+  display: inline-flex;
+}
+
+
 /* Image */
 
 .filmrulle_image {
@@ -27,4 +44,18 @@
 
 .map {
   width: 100%;
+}
+@media screen and (max-width: 576px) {
+
+    .upper_wrapper {
+      display: block;
+    }
+
+    .filmrulle_wrapper {
+      width: 100%;
+    }
+    
+    .about_text_wrapper {
+      width: 100%;
+    }
 }

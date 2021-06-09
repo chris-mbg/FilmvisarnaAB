@@ -38,10 +38,13 @@ const AboutPage = () => {
 
       <img className={styles.map} src={map} alt="map" />
 
-      <div className="row d-flex align-items-center mb-2 mb-md-3">
-        <div className={styles.phonenumber}>
+      {/* <div className="row d-flex mb-2 mb-md-3"> */}
+      <div className={styles.lower_wrapper}>
+        <div className={styles.phonenumber_wrapper}>
           <p className={styles.number}>022 172 14 15</p>
         </div>
+
+        <div className={styles.days_wrapper}>
         <div className={styles.MondayFriday}>
           <p className={styles.days}>Måndag - Fredag</p>
           <p className={styles.time}>9.00 - 20.00</p>
@@ -51,8 +54,12 @@ const AboutPage = () => {
           <p className={styles.days}>Lördag - söndag</p>
           <p className={styles.time}>10.00 - 22.00</p>
         </div>
+        </div>
+        {/* /.days_wrapper */}
       </div>
+      {/* /.lower_wrapper */}
     </div>
+    // /.aboutContainer
   );
 };
 
