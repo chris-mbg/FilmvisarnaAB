@@ -1,3 +1,5 @@
+import MultiRangeSlider from "./MultiRangeSlider";
+
 const LengthOptions = () => {
 
   const filterOptions = require("../../utilities/filterOptions/filterOptions.json");
@@ -12,14 +14,9 @@ const LengthOptions = () => {
   };
 
   return (
-    <>
-      <p>Längd på filmen</p>
-        <label>Minimum: {minMaxLength.minLength} min</label>
-        <input type="range" />
-        <br></br>
-        <label>Maximum: {minMaxLength.maxLength} min</label>
-        <input type="range" />
-    </>
+    <div className="mx-2 pt-2 pb-5">
+      <MultiRangeSlider min={minMaxLength.minLength} max={minMaxLength.maxLength} />
+    </div>
   );
 }
 

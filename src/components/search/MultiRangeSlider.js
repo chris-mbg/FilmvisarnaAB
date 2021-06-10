@@ -21,6 +21,7 @@ const MultiRangeSlider = ({ min, max }) => {
 
   // Convert to percentage
   const getPercent = useCallback(value => Math.round(((value - min) / (max - min)) * 100), [min, max]);
+
   // Set width of the range to change from the left side
   useEffect(() => {
     const minPercent = getPercent(minVal);
@@ -42,6 +43,17 @@ const MultiRangeSlider = ({ min, max }) => {
     }
   }, [maxVal, getPercent]);
 
+  const handleMinChange = e => {
+      const value = Math.min(Number(e.target.value), maxVal - 1);
+      setMinVal(value);
+      minValRef.current = value;
+  };
+
+  const handleMaxChange = e => {
+    const value = Math.max(Number(e.target.value), minVal + 1);
+    setMaxVal(value);
+    maxValRef.current = value;
+ };
 
   return (
     <>
@@ -50,11 +62,7 @@ const MultiRangeSlider = ({ min, max }) => {
         min={min}
         max={max}
         value={minVal}
-        onChange={e => {
-          const value = Math.min(Number(e.target.value), maxVal - 1);
-          setMinVal(value);
-          minValRef.current = value;
-        }}
+        onChange={handleMinChange}
         className={`${styles.thumb} ${styles.thumbLeft}`}
         style={{ zIndex: minVal > max - 100 && "5" }}
       />
@@ -63,18 +71,14 @@ const MultiRangeSlider = ({ min, max }) => {
         min={min}
         max={max}
         value={maxVal}
-        onChange={e => {
-          const value = Math.max(Number(e.target.value), minVal + 1);
-          setMaxVal(value);
-          maxValRef.current = value;
-       }}
+        onChange={handleMaxChange}
         className={`${styles.thumb} ${styles.thumbRight}`}
       />
       <div className={`${styles.slider}`}>
         <div className={`${styles.sliderTrack}`} />
         <div ref={range} className={`${styles.sliderRange}`} />
-        <div className={styles.sliderLeftValue}>{minVal}</div>
-        <div className={styles.sliderRightValue}>{maxVal}</div>
+        <div className={styles.sliderLeftValue}>{minVal} min</div>
+        <div className={styles.sliderRightValue}>{maxVal} min</div>
       </div>
     </>
   );

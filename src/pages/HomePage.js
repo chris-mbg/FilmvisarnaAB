@@ -5,13 +5,11 @@ import styles from "../css/HomePage.module.css";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import FilterWrapper from "../components/search/FilterWrapper";
-import MultiRangeSlider from "../components/search/MultiRangeSlider";
 
 const HomePage = () => {
   return (
     <div className="homePage">
       <ImgCarousel />
-      <MultiRangeSlider min={1} max={100} />
       <Row className="mt-4" noGutters={true}>
         <Col xs={12} sm={12} md={12} lg={{ span: 9, offset: 3 }} xl={{ span: 8, offset: 4 }}>
           {/* Searchbar component placeholder */}

@@ -11,13 +11,13 @@
 }
 
 .sliderTrack {
-  background-color: #ced4da;
+  background-color: #151515;
   width: 100%;
   z-index: 1;
 }
 
 .sliderRange {
-  background-color: #9fe5e1;
+  background-color: #E87209;
   z-index: 2;
 }
 .sliderLeftValue,

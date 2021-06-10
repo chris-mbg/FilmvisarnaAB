@@ -41,7 +41,7 @@ const FilterWrapper = () => {
         <FilterAccItem header="Språk" component={<OptionsSelect selectType={"language"}/>} />
         <hr className={`${styles.lineBtwn}`}/>
         <FilterAccItem header="Åldersgräns" component={<AgeLimitOptions />} />
-        <hr className={`${styles.lineBtwn}`}/>
+        {/* <hr className={`${styles.lineBtwn}`}/> */}
       </div>
     )
   }

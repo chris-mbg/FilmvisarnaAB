@@ -25,8 +25,12 @@ const FilterAccItem = ({header, component=null}) => {
           </Col>
         </Row>
         </Accordion.Toggle>
-        <Accordion.Collapse eventKey="0">
-          {component}
+        <Accordion.Collapse eventKey="0" className="mb-2">
+          <Row noGutters={true}>
+            <Col xs={{span: 10, offset: 2}}>
+              {component}
+            </Col>
+          </Row>
         </Accordion.Collapse>
     </Accordion>
   );
