@@ -114,7 +114,7 @@ const UserContextProvider = ({ children }) => {
     try {
       const response = await fetch(`/api/v1/users/${loggedInUser._id}`, {
         method: "PUT",
-        header: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(userInformation),
       });
 

@@ -38,15 +38,29 @@ const ProfileForm = () => {
 
   // Handlers - edit
   const handleFirstNameEdit = () => {
-    setFirstNameDisabled(true);
+    // If update was successful
+    userUpdate({ firstName: firstName }).then((data) => {
+      if (data === true) {
+        setFirstNameDisabled(true);
+      }
+    });
   };
 
   const handleLastNameEdit = () => {
-    setLastNameDisabled(true);
+    userUpdate({ lastName: lastName }).then((data) => {
+      // If update was successful
+      if (data === true) {
+        setLastNameDisabled(true);
+      }
+    });
   };
 
   const handlePhoneEdit = () => {
-    setPhoneDisabled(true);
+    userUpdate({ phoneNumber: phone }).then((data) => {
+      if (data === true) {
+        setPhoneDisabled(true);
+      }
+    });
   };
 
   const handlePasswordEdit = () => {
