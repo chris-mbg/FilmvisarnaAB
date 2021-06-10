@@ -118,8 +118,7 @@ const userUpdate = async (req, res) => {
   try {
     // Checks for two conditions:
     // 1. Checks if there is a req.body.password.
-    // 2. If req.body.password is not undefined - then also check if the password matches the following requirements:
-    // 8 characters, at least one uppercase letter, at least one lowercase letter, one number and one special character.
+    // 2. If req.body.password is not undefined - checks if user entered invalid password.
     if (
       req.body.password !== undefined &&
       !utilities.checkPassword(req.body.password)
@@ -136,7 +135,7 @@ const userUpdate = async (req, res) => {
 
     // Checks for two conditions:
     // 1. Checks if there is a req.body.email
-    // 2. Email validation - checks if email is valid.
+    // 2. Email validation - checks if user entered invalid email.
     if (req.body.email !== undefined && !utilities.checkEmail(req.body.email)) {
       return res
         .status(400)
