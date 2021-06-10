@@ -62,6 +62,13 @@ const ProfileForm = () => {
 
   // Common handler for all input fields (start edit icon)
   const handleEditInput = (e, input) => {
+    // Resets all alerts when user toggles a new input field.
+    setAlertConfirm("");
+    setAlertPassword("");
+    setAlertConfirmPassword("");
+    setAlertEmailExists("");
+    setAlertEmailInvalid("");
+
     // Using spread syntax to create a copy of state variable and also avoiding "reference" to original state variable.
     let newObject = { ...editInput };
 
