@@ -16,11 +16,13 @@ const ProfileForm = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
-  const [firstNameDisabled, setFirstNameDisabled] = useState(true);
-  const [lastNameDisabled, setLastNameDisabled] = useState(true);
-  const [phoneDisabled, setPhoneDisabled] = useState(true);
-  const [emailDisabled, setEmailDisabled] = useState(true);
-  const [passwordDisabled, setPasswordDisabled] = useState(true);
+  const [editInput, setEditInput] = useState({
+    firstNameDisabled: true,
+    lastNameDisabled: true,
+    phoneDisabled: true,
+    emailDisabled: true,
+    passwordDisabled: true,
+  });
 
   const [alertConfirm, setAlertConfirm] = useState(false);
   const [alertPassword, setAlertPassword] = useState(false);
@@ -58,51 +60,70 @@ const ProfileForm = () => {
     }
   };
 
-  // Handlers - edit
-  const handleFirstNameEdit = () => {
+  // Common handler for all input fields (start edit icon)
+  const handleEditInput = (e, input) => {
+    // Using spread syntax to create a copy of state variable and also avoiding "reference" to original state variable.
+    let newObject = { ...editInput };
+
+    // Sets keys to false, except for "key === input"
+    Object.keys(newObject).forEach((key) => {
+      if (key === input) {
+        return (newObject[key] = false);
+      } else {
+        return (newObject[key] = true);
+      }
+    });
+
+    // Set state variable to newObject
+    setEditInput(newObject);
+  };
+
+  // Handlers - confirm edit
+
+  const handleFirstNameConfirmEdit = () => {
     userUpdate({ firstName: firstName }).then((data) => {
       // If update was successful then show confirmation alert/message.
       if (data === true) {
         setAlertConfirm(true);
-        setFirstNameDisabled(true);
+        setEditInput({ ...editInput, firstNameDisabled: true });
 
         return;
       }
     });
   };
 
-  const handleLastNameEdit = () => {
+  const handleLastNameConfirmEdit = () => {
     userUpdate({ lastName: lastName }).then((data) => {
       if (data === true) {
         // If update was successful then show confirmation alert/message and disable specific input field.
         setAlertConfirm(true);
-        setLastNameDisabled(true);
+        setEditInput({ ...editInput, lastNameDisabled: true });
 
         return;
       }
     });
   };
 
-  const handlePhoneEdit = () => {
+  const handlePhoneConfirmEdit = () => {
     userUpdate({ phoneNumber: phone }).then((data) => {
       if (data === true) {
         // If update was successful then show confirmation alert/message and disable specific input field.
         setAlertConfirm(true);
-        setPhoneDisabled(true);
+        setEditInput({ ...editInput, phoneDisabled: true });
 
         return;
       }
     });
   };
 
-  const handlePasswordEdit = () => {
+  const handlePasswordConfirmEdit = () => {
     // If both password and confirmPassword is valid and matches with each other ...
     if (checkPassword(password) && confirmPassword.includes(password)) {
       userUpdate({ password: password }).then((data) => {
         // If updating user's email was successful then show confirmation alert/message and disable inputfield for: password, confirmPassword.
         if (data === true) {
           setAlertConfirm(true);
-          setPasswordDisabled(true);
+          setEditInput({ ...editInput, passwordDisabled: true });
 
           // Reset password fields
           setPassword("");
@@ -144,7 +165,7 @@ const ProfileForm = () => {
         // If updating user's email was successful then show confirmation alert/message and disable specific input field.
         if (data === true) {
           setAlertConfirm(true);
-          setEmailDisabled(true);
+          setEditInput({ ...editInput, emailDisabled: true });
 
           return;
         }
@@ -168,8 +189,8 @@ const ProfileForm = () => {
             </label>
 
             <input
-              style={{ opacity: firstNameDisabled && "0.45" }}
-              disabled={firstNameDisabled}
+              style={{ opacity: editInput.firstNameDisabled && "0.45" }}
+              disabled={editInput.firstNameDisabled}
               value={firstName}
               onChange={(e) => setFirstName(e.target.value)}
               autoComplete="off"
@@ -187,14 +208,14 @@ const ProfileForm = () => {
           md={2}
           lg={1}
         >
-          {firstNameDisabled ? (
+          {editInput.firstNameDisabled ? (
             <i
-              onClick={(e) => setFirstNameDisabled(false)}
+              onClick={(e) => handleEditInput(e, "firstNameDisabled")}
               className={`${styles.icon} fas fa-edit`}
             />
           ) : (
             <i
-              onClick={handleFirstNameEdit}
+              onClick={handleFirstNameConfirmEdit}
               className={`${styles.icon} fas fa-check`}
             ></i>
           )}
@@ -209,8 +230,8 @@ const ProfileForm = () => {
             </label>
 
             <input
-              style={{ opacity: lastNameDisabled && "0.45" }}
-              disabled={lastNameDisabled}
+              style={{ opacity: editInput.lastNameDisabled && "0.45" }}
+              disabled={editInput.lastNameDisabled}
               value={lastName}
               onChange={(e) => setLastName(e.target.value)}
               autoComplete="off"
@@ -228,14 +249,14 @@ const ProfileForm = () => {
           md={2}
           lg={1}
         >
-          {lastNameDisabled ? (
+          {editInput.lastNameDisabled ? (
             <i
-              onClick={(e) => setLastNameDisabled(false)}
+              onClick={(e) => handleEditInput(e, "lastNameDisabled")}
               className={`${styles.icon} fas fa-edit`}
             />
           ) : (
             <i
-              onClick={handleLastNameEdit}
+              onClick={handleLastNameConfirmEdit}
               className={`${styles.icon} fas fa-check`}
             ></i>
           )}
@@ -250,8 +271,8 @@ const ProfileForm = () => {
             </label>
 
             <input
-              style={{ opacity: phoneDisabled && "0.45" }}
-              disabled={phoneDisabled}
+              style={{ opacity: editInput.phoneDisabled && "0.45" }}
+              disabled={editInput.phoneDisabled}
               value={phone}
               onChange={(e) => handlePhone(e)}
               autoComplete="off"
@@ -269,14 +290,14 @@ const ProfileForm = () => {
           md={2}
           lg={1}
         >
-          {phoneDisabled ? (
+          {editInput.phoneDisabled ? (
             <i
-              onClick={(e) => setPhoneDisabled(false)}
+              onClick={(e) => handleEditInput(e, "phoneDisabled")}
               className={`${styles.icon} fas fa-edit`}
             />
           ) : (
             <i
-              onClick={handlePhoneEdit}
+              onClick={handlePhoneConfirmEdit}
               className={`${styles.icon} fas fa-check`}
             ></i>
           )}
@@ -291,8 +312,8 @@ const ProfileForm = () => {
             </label>
 
             <input
-              style={{ opacity: emailDisabled && "0.45" }}
-              disabled={emailDisabled}
+              style={{ opacity: editInput.emailDisabled && "0.45" }}
+              disabled={editInput.emailDisabled}
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               autoComplete="off"
@@ -310,9 +331,9 @@ const ProfileForm = () => {
           md={2}
           lg={1}
         >
-          {emailDisabled ? (
+          {editInput.emailDisabled ? (
             <i
-              onClick={(e) => setEmailDisabled(false)}
+              onClick={(e) => handleEditInput(e, "emailDisabled")}
               className={`${styles.icon} fas fa-edit`}
             />
           ) : (
@@ -332,8 +353,8 @@ const ProfileForm = () => {
             </label>
 
             <input
-              style={{ opacity: passwordDisabled && "0.45" }}
-              disabled={passwordDisabled}
+              style={{ opacity: editInput.passwordDisabled && "0.45" }}
+              disabled={editInput.passwordDisabled}
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               autoComplete="off"
@@ -351,14 +372,14 @@ const ProfileForm = () => {
           md={2}
           lg={1}
         >
-          {passwordDisabled ? (
+          {editInput.passwordDisabled ? (
             <i
-              onClick={(e) => setPasswordDisabled(false)}
+              onClick={(e) => handleEditInput(e, "passwordDisabled")}
               className={`${styles.icon} fas fa-edit`}
             />
           ) : (
             <i
-              onClick={handlePasswordEdit}
+              onClick={handlePasswordConfirmEdit}
               className={`${styles.icon} fas fa-check`}
             ></i>
           )}
@@ -373,8 +394,8 @@ const ProfileForm = () => {
             </label>
 
             <input
-              style={{ opacity: passwordDisabled && "0.45" }}
-              disabled={passwordDisabled}
+              style={{ opacity: editInput.passwordDisabled && "0.45" }}
+              disabled={editInput.passwordDisabled}
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
               autoComplete="off"
