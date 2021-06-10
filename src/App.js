@@ -11,7 +11,7 @@ import './css/App.css';
 import Navbar from './components/Navbar';
 import ReservationContextProvider from './contexts/ReservationContext';
 import Footer from './components/Footer';
-import NotFoundPage from './components/NotFoundPage';
+import NotFoundPage from './pages/NotFoundPage';
 
 function App() {
   return (
