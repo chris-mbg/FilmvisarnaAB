@@ -5,6 +5,7 @@ import Card from 'react-bootstrap/Card';
 import styles from "./styles/FilterWrapper.module.css"
 import { useState} from "react";
 import FilterAccItem from './FilterAccItem';
+import PriceOptions from './PriceOptions';
 
 const FilterWrapper = () => {
   const filterOptions = require("../../utilities/filterOptions/filterOptions.json");
@@ -29,13 +30,8 @@ const FilterWrapper = () => {
   const filterAcc = () => {
     return(
       <Accordion className={`${styles.innerAcc}`}>
-        <FilterAccItem header="Pris" />
-        <Accordion.Toggle as={"div"} eventKey="0" className={`${styles.accHeader}`}>
-          <p>Pris</p>
-        </Accordion.Toggle>
-        <Accordion.Collapse eventKey="0">
-          <p>Komponent för prisval</p>
-        </Accordion.Collapse>
+        <FilterAccItem header="Pris" component={<PriceOptions />} />
+        <hr className={`${styles.lineBtwn}`}/>
         <Accordion.Toggle as={"div"} eventKey="1" className={`${styles.accHeader}`}>
           <p>Längd på film</p>
         </Accordion.Toggle>
