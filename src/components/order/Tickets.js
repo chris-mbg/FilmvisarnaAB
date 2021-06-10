@@ -13,8 +13,12 @@ const Tickets = () => {
   const [showConfirmModal, setShowConfirmModal] = useState(false);
 
   // Context
-  const { seatsChosen, screeningToShow, userConfirmsReservation } =
-    useContext(ReservationContext);
+  const {
+    ticketsChosen,
+    screeningToShow,
+    userConfirmsReservation,
+    getTotalPrice,
+  } = useContext(ReservationContext);
 
   const history = useHistory();
 
@@ -44,11 +48,11 @@ const Tickets = () => {
 
   // Renders each ticket that the user has selected from screening.
   const ticket =
-    seatsChosen &&
-    seatsChosen.map((seat) => {
+    ticketsChosen &&
+    ticketsChosen.map((ticket, index) => {
       return (
         <>
-          <Container className={styles.ticket_container} fluid key={seat}>
+          <Container className={styles.ticket_container} fluid key={index}>
             <Row noGutters={true}>
               <Col lg={5}>
                 <p>
@@ -63,11 +67,20 @@ const Tickets = () => {
               <Col>
                 <ul className={styles.ul}>
                   <li>
-                    Rad: {seat[0] + 1}, Plats: {seat[1] + 1}
+                    Rad: {ticket.seatNumber[0] + 1}, Plats:{" "}
+                    {ticket.seatNumber[1] + 1}
                   </li>
                 </ul>
               </Col>
-              <Col>Pris: {screeningToShow.price} kr</Col>
+              <Col>
+                Pris:{" "}
+                {ticket.ticketType === "adult"
+                  ? screeningToShow.price
+                  : ticket.ticketType === "senior"
+                  ? screeningToShow.price * 0.8
+                  : screeningToShow.price * 0.7}{" "}
+                kr
+              </Col>
             </Row>
           </Container>
         </>
@@ -85,16 +98,19 @@ const Tickets = () => {
           {/* ticket_wrapper_upper */}
           <div className={styles.ticket_wrapper_bottom}>
             <hr className={styles.hr} />
-            {seatsChosen.length > 0 && (
+            {ticketsChosen.length > 0 && (
               <p className={styles.price}>
                 Total pris:{" "}
-                <span>{seatsChosen.length * screeningToShow.price}</span> kr
+                <span>
+                  {getTotalPrice(ticketsChosen, screeningToShow.price)}
+                </span>{" "}
+                kr
               </p>
             )}
             {/* <div className={styles.button_wrapper}>
               <CustomButton text="Boka" />
               </div> */}
-            {seatsChosen.length > 0 && (
+            {ticketsChosen.length > 0 && (
               <div className="d-flex justify-content-center mt-4">
                 <CustomButton
                   text="Boka biljetter"
