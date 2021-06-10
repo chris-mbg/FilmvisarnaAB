@@ -110,6 +110,37 @@ const UserContextProvider = ({ children }) => {
     }
   };
 
+  const userUpdate = async (userInformation) => {
+    try {
+      console.log("userinformation:", userInformation);
+      const response = await fetch(`/api/v1/users/${loggedInUser._id}`, {
+        method: "PUT",
+        header: { "Content-Type": "application/json" },
+        body: JSON.stringify(userInformation),
+      });
+
+      // Returns status code: 409 - if e-mail already exists in database.
+      if (response.status === 409) {
+        return { status: response.status };
+      }
+
+      const data = await response.json();
+
+      // If updating user's new information was NOT successful, then throw new error.
+      if (data.status === "error") {
+        throw new Error();
+      }
+
+      // Return true, if updating user's new information was successful.
+      if (data.status === "success") {
+        // Updating user - authenticating/updating (whoami) loggedInUser variable after successfully updating user.
+        loggedInCheck();
+
+        return true;
+      }
+    } catch (error) {}
+  };
+
   return (
     <UserContext.Provider
       value={{
@@ -124,6 +155,7 @@ const UserContextProvider = ({ children }) => {
         showLogin,
         handleCloseLoginModal,
         handleShowLoginModal,
+        userUpdate,
       }}
     >
       {children}
