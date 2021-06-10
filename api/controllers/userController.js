@@ -53,6 +53,9 @@ const register = async (req, res) => {
         if (err) {
           return res.sendStatus(400);
         } else {
+          // Sets password to: "undefined" - inside result object after successful registration.
+          result.password = undefined;
+
           // "Logs" user in after successful registration.
           req.session.user = result;
 
