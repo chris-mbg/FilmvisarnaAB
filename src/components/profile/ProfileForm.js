@@ -393,8 +393,13 @@ const ProfileForm = () => {
           lg={1}
         ></Col>
       </Row>
-      <ProfileFormAlertBoxes alerts={alerts} />
-      {/* Alerts */}
+
+      <Row noGutters>
+        <Col xs={11} sm={11} md={10} lg={11}>
+          <ProfileFormAlertBoxes alerts={alerts} />
+          {/* Alert boxes */}
+        </Col>
+      </Row>
     </form>
   );
 };

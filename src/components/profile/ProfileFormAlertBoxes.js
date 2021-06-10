@@ -63,7 +63,7 @@ const ProfileFormAlertBoxes = ({ alerts }) => {
     >
       <p>
         Försök igen! <br />
-        Din e-post måste innehålla @ följd utav en domännamn.
+        Din e-post måste innehålla en @ symbol följd utav en domännamn.
       </p>
     </Alert>
   );
