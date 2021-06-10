@@ -3,6 +3,7 @@ import { useContext, useState, useEffect } from "react";
 import { Col, Row } from "react-bootstrap";
 import { UserContext } from "../../contexts/UserContext";
 import { checkEmail, checkPassword } from "../../utilities/utilities";
+import ProfileFormAlertBoxes from "./ProfileFormAlertBoxes";
 
 const ProfileForm = () => {
   // Context
@@ -20,6 +21,26 @@ const ProfileForm = () => {
   const [phoneDisabled, setPhoneDisabled] = useState(true);
   const [emailDisabled, setEmailDisabled] = useState(true);
   const [passwordDisabled, setPasswordDisabled] = useState(true);
+
+  const [alertConfirm, setAlertConfirm] = useState(false);
+  const [alertPassword, setAlertPassword] = useState(false);
+  const [alertConfirmPassword, setAlertConfirmPassword] = useState(false);
+  const [alertEmailExists, setAlertEmailExists] = useState(false);
+  const [alertEmailInvalid, setAlertEmailInvalid] = useState(false);
+
+  // Props
+  const alerts = {
+    alertConfirm,
+    setAlertConfirm,
+    alertPassword,
+    setAlertPassword,
+    alertConfirmPassword,
+    setAlertConfirmPassword,
+    alertEmailExists,
+    setAlertEmailExists,
+    alertEmailInvalid,
+    setAlertEmailInvalid,
+  };
 
   useEffect(() => {
     setFirstName(loggedInUser?.firstName);
@@ -39,19 +60,25 @@ const ProfileForm = () => {
 
   // Handlers - edit
   const handleFirstNameEdit = () => {
-    // If update was successful
     userUpdate({ firstName: firstName }).then((data) => {
+      // If update was successful then show confirmation alert/message.
       if (data === true) {
+        setAlertConfirm(true);
         setFirstNameDisabled(true);
+
+        return;
       }
     });
   };
 
   const handleLastNameEdit = () => {
     userUpdate({ lastName: lastName }).then((data) => {
-      // If update was successful
       if (data === true) {
+        // If update was successful then show confirmation alert/message and disable specific input field.
+        setAlertConfirm(true);
         setLastNameDisabled(true);
+
+        return;
       }
     });
   };
@@ -59,7 +86,11 @@ const ProfileForm = () => {
   const handlePhoneEdit = () => {
     userUpdate({ phoneNumber: phone }).then((data) => {
       if (data === true) {
+        // If update was successful then show confirmation alert/message and disable specific input field.
+        setAlertConfirm(true);
         setPhoneDisabled(true);
+
+        return;
       }
     });
   };
@@ -67,41 +98,60 @@ const ProfileForm = () => {
   const handlePasswordEdit = () => {
     // If both password and confirmPassword is valid and matches with each other ...
     if (checkPassword(password) && confirmPassword.includes(password)) {
-      console.log("password is valid and passwords matches.");
+      userUpdate({ password: password }).then((data) => {
+        // If updating user's email was successful then show confirmation alert/message and disable inputfield for: password, confirmPassword.
+        if (data === true) {
+          setAlertConfirm(true);
+          setPasswordDisabled(true);
+
+          // Reset password fields
+          setPassword("");
+          setConfirmPassword("");
+
+          return;
+        }
+      });
     }
     if (!checkPassword(password)) {
       // If password does NOT fulfills following requirements:
       // 8 characters, at least one uppercase letter, at least one lowercase letter, one number and one special character.
       // set alertPassword to: true.
-      console.log("password is not valid");
+      setAlertPassword(true);
+
       return;
     }
 
-    // If password and confirmPassword does NOT matches with each other, set "alertConfirmPassword" to true.
+    // If password and confirmPassword does NOT matches with each other, set "alertConfirmPassword" to true and disable specific input field.
     if (
       !password.includes(confirmPassword) ||
       !confirmPassword.includes(password)
     ) {
-      console.log("passwords does not matches");
+      setAlertConfirmPassword(true);
+
       return;
     }
-
-    // setPasswordDisabled(true);
   };
 
   const handleEmailEdit = () => {
-    // If e-mail is invalid then...
+    // If e-mail is invalid then set alertEmailInvalid to: true.
     if (!checkEmail(email)) {
+      setAlertEmailInvalid(true);
+
       return;
     } else {
       // If e-mail is valid then proceed...
       userUpdate({ email: email }).then((data) => {
-        // If updating user's email was successful
+        // If updating user's email was successful then show confirmation alert/message and disable specific input field.
         if (data === true) {
+          setAlertConfirm(true);
           setEmailDisabled(true);
+
+          return;
         }
-        // If e-mail already exists in database ...
+        // If e-mail already exists in database then set alertEmailExists to: "true"
         if (data.status === 409) {
+          setAlertEmailExists(true);
+
           return;
         }
       });
@@ -343,6 +393,8 @@ const ProfileForm = () => {
           lg={1}
         ></Col>
       </Row>
+      <ProfileFormAlertBoxes alerts={alerts} />
+      {/* Alerts */}
     </form>
   );
 };
