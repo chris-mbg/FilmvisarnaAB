@@ -83,24 +83,6 @@ const ReservationContextProvider = (props) => {
     }, 0);
   };
 
-  // ! Test variable to be deleted when test is done
-  let testTickets = [
-    {
-      ticketType: "child",
-      seatNumber: [0, 0],
-    },
-    {
-      ticketType: "senior",
-      seatNumber: [0, 1],
-    },
-    {
-      ticketType: "adult",
-      seatNumber: [0, 2],
-    },
-  ];
-  // ! Test case to be deleted when test is done
-  console.log("total price test", getTotalPrice(testTickets, 100));
-
   const saveReservation = async (reservationInfo) => {
     console.log(reservationInfo);
     let result = await fetch("/api/v1/reservations/", {
