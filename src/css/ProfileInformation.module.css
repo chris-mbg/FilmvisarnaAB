@@ -3,7 +3,9 @@
 }
 
 .profile_wrapper {
-  margin: auto;
+  margin-top: 1.5rem;
+  margin-left: auto;
+  margin-right: auto;
   width: 80%;
 }
 
