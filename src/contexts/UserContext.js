@@ -112,7 +112,6 @@ const UserContextProvider = ({ children }) => {
 
   const userUpdate = async (userInformation) => {
     try {
-      console.log("userinformation:", userInformation);
       const response = await fetch(`/api/v1/users/${loggedInUser._id}`, {
         method: "PUT",
         header: { "Content-Type": "application/json" },

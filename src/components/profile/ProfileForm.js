@@ -5,7 +5,7 @@ import { UserContext } from "../../contexts/UserContext";
 
 const ProfileForm = () => {
   // Context
-  const { loggedInUser } = useContext(UserContext);
+  const { loggedInUser, userUpdate } = useContext(UserContext);
 
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
