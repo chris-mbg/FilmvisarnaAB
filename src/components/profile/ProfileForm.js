@@ -68,7 +68,16 @@ const ProfileForm = () => {
   };
 
   const handleEmailEdit = () => {
-    setEmailDisabled(true);
+    userUpdate({ email: email }).then((data) => {
+      // If updating user's email was successful
+      if (data === true) {
+        setEmailDisabled(true);
+      }
+      // If e-mail already exists in database ...
+      if (data.status === 409) {
+        return;
+      }
+    });
   };
 
   return (

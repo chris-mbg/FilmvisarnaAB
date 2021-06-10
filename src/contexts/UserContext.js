@@ -137,7 +137,9 @@ const UserContextProvider = ({ children }) => {
 
         return true;
       }
-    } catch (error) {}
+    } catch (error) {
+      return false;
+    }
   };
 
   return (
