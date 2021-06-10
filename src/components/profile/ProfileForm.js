@@ -65,7 +65,28 @@ const ProfileForm = () => {
   };
 
   const handlePasswordEdit = () => {
-    setPasswordDisabled(true);
+    // If both password and confirmPassword is valid and matches with each other ...
+    if (checkPassword(password) && confirmPassword.includes(password)) {
+      console.log("password is valid and passwords matches.");
+    }
+    if (!checkPassword(password)) {
+      // If password does NOT fulfills following requirements:
+      // 8 characters, at least one uppercase letter, at least one lowercase letter, one number and one special character.
+      // set alertPassword to: true.
+      console.log("password is not valid");
+      return;
+    }
+
+    // If password and confirmPassword does NOT matches with each other, set "alertConfirmPassword" to true.
+    if (
+      !password.includes(confirmPassword) ||
+      !confirmPassword.includes(password)
+    ) {
+      console.log("passwords does not matches");
+      return;
+    }
+
+    // setPasswordDisabled(true);
   };
 
   const handleEmailEdit = () => {
