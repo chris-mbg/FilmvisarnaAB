@@ -2,6 +2,7 @@ import styles from "../../css/ProfileForm.module.css";
 import { useContext, useState, useEffect } from "react";
 import { Col, Row } from "react-bootstrap";
 import { UserContext } from "../../contexts/UserContext";
+import { checkEmail, checkPassword } from "../../utilities/utilities";
 
 const ProfileForm = () => {
   // Context
@@ -68,16 +69,22 @@ const ProfileForm = () => {
   };
 
   const handleEmailEdit = () => {
-    userUpdate({ email: email }).then((data) => {
-      // If updating user's email was successful
-      if (data === true) {
-        setEmailDisabled(true);
-      }
-      // If e-mail already exists in database ...
-      if (data.status === 409) {
-        return;
-      }
-    });
+    // If e-mail is invalid then...
+    if (!checkEmail(email)) {
+      return;
+    } else {
+      // If e-mail is valid then proceed...
+      userUpdate({ email: email }).then((data) => {
+        // If updating user's email was successful
+        if (data === true) {
+          setEmailDisabled(true);
+        }
+        // If e-mail already exists in database ...
+        if (data.status === 409) {
+          return;
+        }
+      });
+    }
   };
 
   return (

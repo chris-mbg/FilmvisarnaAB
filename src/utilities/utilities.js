@@ -12,4 +12,10 @@ const checkPassword = (password) => {
   }
 };
 
-module.exports = { checkPassword };
+// Checks if email meets validation requirements.
+const checkEmail = (email) => {
+  const emailToCompare = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+  return emailToCompare.test(email);
+};
+
+module.exports = { checkPassword, checkEmail };
