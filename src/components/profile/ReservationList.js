@@ -14,7 +14,6 @@ const ReservationList = () => {
   return (
     <div className={styles.listing_wrapper}>
       <h2 className={styles.title}>Bokade biljetter</h2>
-      {/* <UserReservation /> */}
       {reservation}
     </div>
   );
