@@ -11,20 +11,21 @@ const ProfileForm = () => {
   const [lastName, setLastName] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
-  // const [password, setPassword] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
   const [firstNameDisabled, setFirstNameDisabled] = useState(true);
   const [lastNameDisabled, setLastNameDisabled] = useState(true);
   const [phoneDisabled, setPhoneDisabled] = useState(true);
   const [emailDisabled, setEmailDisabled] = useState(true);
-  // const [passwordDisabled, setPasswordDisabled] = useState(true);
+  const [passwordDisabled, setPasswordDisabled] = useState(true);
 
   useEffect(() => {
     setFirstName(loggedInUser?.firstName);
     setLastName(loggedInUser?.lastName);
     setPhone(loggedInUser?.phoneNumber);
     setEmail(loggedInUser?.email);
-  },[loggedInUser]);
+  }, [loggedInUser]);
 
   const handlePhone = (e) => {
     // Only allows numbers - input
@@ -36,25 +37,25 @@ const ProfileForm = () => {
   };
 
   // Handlers - edit
-  // const handleFirstNameEdit = () => {
-  //   setFirstNameDisabled(true);
-  // };
+  const handleFirstNameEdit = () => {
+    setFirstNameDisabled(true);
+  };
 
-  // const handleLastNameEdit = () => {
-  //   setLastNameDisabled(true);
-  // };
+  const handleLastNameEdit = () => {
+    setLastNameDisabled(true);
+  };
 
-  // const handlePhoneEdit = () => {
-  //   setPhoneDisabled(true);
-  // };
+  const handlePhoneEdit = () => {
+    setPhoneDisabled(true);
+  };
 
-  // const handlePasswordEdit = () => {
-  //   setPasswordDisabled(true);
-  // };
+  const handlePasswordEdit = () => {
+    setPasswordDisabled(true);
+  };
 
-  // const handleEmailEdit = () => {
-  //   setEmailDisabled(true);
-  // };
+  const handleEmailEdit = () => {
+    setEmailDisabled(true);
+  };
 
   return (
     <form className={styles.form}>
@@ -85,7 +86,7 @@ const ProfileForm = () => {
           md={2}
           lg={1}
         >
-          {/* {firstNameDisabled ? (
+          {firstNameDisabled ? (
             <i
               onClick={(e) => setFirstNameDisabled(false)}
               className={`${styles.icon} fas fa-edit`}
@@ -95,7 +96,7 @@ const ProfileForm = () => {
               onClick={handleFirstNameEdit}
               className={`${styles.icon} fas fa-check`}
             ></i>
-          )} */}
+          )}
         </Col>
       </Row>
 
@@ -126,7 +127,7 @@ const ProfileForm = () => {
           md={2}
           lg={1}
         >
-          {/* {lastNameDisabled ? (
+          {lastNameDisabled ? (
             <i
               onClick={(e) => setLastNameDisabled(false)}
               className={`${styles.icon} fas fa-edit`}
@@ -136,7 +137,7 @@ const ProfileForm = () => {
               onClick={handleLastNameEdit}
               className={`${styles.icon} fas fa-check`}
             ></i>
-          )} */}
+          )}
         </Col>
       </Row>
 
@@ -167,7 +168,7 @@ const ProfileForm = () => {
           md={2}
           lg={1}
         >
-          {/* {phoneDisabled ? (
+          {phoneDisabled ? (
             <i
               onClick={(e) => setPhoneDisabled(false)}
               className={`${styles.icon} fas fa-edit`}
@@ -177,7 +178,7 @@ const ProfileForm = () => {
               onClick={handlePhoneEdit}
               className={`${styles.icon} fas fa-check`}
             ></i>
-          )} */}
+          )}
         </Col>
       </Row>
 
@@ -208,7 +209,7 @@ const ProfileForm = () => {
           md={2}
           lg={1}
         >
-          {/* {emailDisabled ? (
+          {emailDisabled ? (
             <i
               onClick={(e) => setEmailDisabled(false)}
               className={`${styles.icon} fas fa-edit`}
@@ -218,16 +219,15 @@ const ProfileForm = () => {
               onClick={handleEmailEdit}
               className={`${styles.icon} fas fa-check`}
             ></i>
-          )} */}
+          )}
         </Col>
       </Row>
 
-      {/* Password input */}
-      {/* <Row noGutters>
+      <Row noGutters>
         <Col xs={11} sm={11} md={10} lg={11}>
           <div className="form-group">
             <label className="pl-2" htmlFor="password">
-              Lösenord:
+              Nytt lösenord:
             </label>
 
             <input
@@ -262,8 +262,36 @@ const ProfileForm = () => {
             ></i>
           )}
         </Col>
-      </Row> */}
-      {/* /password input */}
+      </Row>
+
+      <Row noGutters>
+        <Col xs={11} sm={11} md={10} lg={11}>
+          <div className="form-group">
+            <label className="pl-2" htmlFor="password">
+              Bekräfta nytt lösenord:
+            </label>
+
+            <input
+              style={{ opacity: passwordDisabled && "0.45" }}
+              disabled={passwordDisabled}
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              autoComplete="off"
+              required
+              className={`${styles.input} form-control`}
+              type="password"
+              id="confirmpassword"
+            />
+          </div>
+        </Col>
+        <Col
+          className="d-flex align-items-center justify-content-center"
+          xs={1}
+          sm={1}
+          md={2}
+          lg={1}
+        ></Col>
+      </Row>
     </form>
   );
 };
