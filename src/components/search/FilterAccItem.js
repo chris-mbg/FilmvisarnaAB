@@ -16,7 +16,7 @@ const FilterAccItem = ({header, component=null}) => {
   return (
     <Accordion>
       <Accordion.Toggle as={"div"} eventKey="0" className={`${styles.accHeader}`} onClick={() => setToggleAcc(!toggleAcc)}>
-        <Row>
+        <Row noGutters={true}>
           <Col xs={2}>
             {icon}
           </Col>

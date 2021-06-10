@@ -6,18 +6,11 @@ import styles from "./styles/FilterWrapper.module.css"
 import { useState} from "react";
 import FilterAccItem from './FilterAccItem';
 import PriceOptions from './PriceOptions';
+import LengthOptions from './LengthOptions';
 
 const FilterWrapper = () => {
-  const filterOptions = require("../../utilities/filterOptions/filterOptions.json");
+  // const filterOptions = require("../../utilities/filterOptions/filterOptions.json");
 
-  const lengths = filterOptions.movieLengths.map((length) => {
-    const whereToSlice = length.indexOf(" ");
-    return length.slice(0, whereToSlice);
-  });
-  const minMaxLength = {
-    minLength: Math.min(...lengths),
-    maxLength: Math.max(...lengths),
-  };
 
   const [toggleAccordion, setToggleAccordion] = useState(false);
   const icon = !toggleAccordion ? (
@@ -32,12 +25,8 @@ const FilterWrapper = () => {
       <Accordion className={`${styles.innerAcc}`}>
         <FilterAccItem header="Pris" component={<PriceOptions />} />
         <hr className={`${styles.lineBtwn}`}/>
-        <Accordion.Toggle as={"div"} eventKey="1" className={`${styles.accHeader}`}>
-          <p>Längd på film</p>
-        </Accordion.Toggle>
-        <Accordion.Collapse eventKey="1">
-          <p>Komponent för prisval</p>
-        </Accordion.Collapse>
+        <FilterAccItem header="Längd på filmen" component={<LengthOptions />} />
+
         <Accordion.Toggle as={"div"} eventKey="2" className={`${styles.accHeader}`}>
           <p>Genre</p>
         </Accordion.Toggle>
@@ -134,22 +123,8 @@ export default FilterWrapper;
 
   // <div className="p-2 ml-4">
     //   <h2>Filter</h2>
-    //   <p>Pris</p>
-    //   <select>
-    //     <option value="">Pris</option>
-    //     {filterOptions.priceOptions.map((num, i) => (
-    //       <option key={i} value={num}>
-    //         {num} kr
-    //       </option>
-    //     ))}
-    //   </select>
-    //   <p>Längd på filmen</p>
-    //   <label>Minimum: {minMaxLength.minLength} min</label>
-
-    //   <input type="range" />
-    //   <br></br>
-    //   <label>Maximum: {minMaxLength.maxLength} min</label>
-    //   <input type="range" />
+    //
+    //
     //   <p>Genre</p>
     //   <select>
     //     <option value="">Välj en genre</option>
