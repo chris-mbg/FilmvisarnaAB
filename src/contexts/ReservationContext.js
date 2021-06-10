@@ -112,6 +112,28 @@ const ReservationContextProvider = (props) => {
     return result;
   };
 
+  const userCancelsReservation = async (reservationId) => {
+    try {
+      const response = await fetch(`/api/v1/reservations/${reservationId}`, {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+      });
+
+      // If HTTP request (delete) was successful - return true.
+      if (response.status === 200) {
+        // Updates user's reservation list/array.
+        getAllReservationsForUser();
+
+        return true;
+      } else {
+        // If HTTP request (delete) was unsuccessful - throw new Error.
+        throw new Error();
+      }
+    } catch (error) {
+      return false;
+    }
+  };
+
   const values = {
     saveReservation,
     movieIdOnOrderPage,
@@ -124,6 +146,7 @@ const ReservationContextProvider = (props) => {
     setTicketsChosen,
     userConfirmsReservation,
     getTotalPrice,
+    userCancelsReservation,
   };
 
   return (

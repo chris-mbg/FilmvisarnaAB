@@ -1,11 +1,13 @@
 import styles from "../../css/UserReservation.module.css";
 import { useState } from "react";
-import { Accordion, Row, Col, Image } from "react-bootstrap";
+import { Accordion, Row, Col, Image, Modal } from "react-bootstrap";
 import moment from "moment";
 import "moment/locale/sv";
+import CancelBookingModal from "./CancelBookingModal";
 
 const UserReservation = ({ reservation }) => {
   const [toggleAccordion, setToggleAccordion] = useState(false);
+  const [showCancelBookingModal, setShowCancelBookingModal] = useState(false);
 
   // Current time
   const now = moment(new Date()).format();
@@ -94,11 +96,12 @@ const UserReservation = ({ reservation }) => {
                 Rad och platsnummer
               </p>
               <ul className={styles.ul}>
-              {reservation?.tickets.map((ticket, i) => (
-                <li key={i}>
-                  Rad {ticket.seatNumber[0] + 1}, Plats {ticket.seatNumber[1] + 1}
-                </li>
-              ))}
+                {reservation?.tickets.map((ticket, i) => (
+                  <li key={i}>
+                    Rad {ticket.seatNumber[0] + 1}, Plats{" "}
+                    {ticket.seatNumber[1] + 1}
+                  </li>
+                ))}
               </ul>
             </Col>
           </Row>
@@ -110,7 +113,7 @@ const UserReservation = ({ reservation }) => {
               <p className={styles.summary_information}>
                 Antal biljetter:{" "}
                 <span className={styles.sub_information}>
-                  {reservation?.tickets.length}
+                  {reservation?.tickets.length} st
                 </span>
               </p>
               <p className={styles.summary_information}>
@@ -133,12 +136,25 @@ const UserReservation = ({ reservation }) => {
 
           <Row noGutters={true}>
             <Col className={styles.button_wrapper}>
-              {/* <button className="cancelButton">Avboka</button> */}
+              {now <= reservation?.screening?.startTime && (
+                <button
+                  onClick={() => setShowCancelBookingModal(true)}
+                  className="cancelButton"
+                >
+                  Avboka
+                </button>
+              )}
             </Col>
             {/* /.button_wrapper */}
           </Row>
         </div>
       </Accordion.Collapse>
+      <Modal size={"md"} centered={"true"} show={showCancelBookingModal}>
+        <CancelBookingModal
+          reservation={reservation}
+          setShowCancelBookingModal={setShowCancelBookingModal}
+        />
+      </Modal>
     </Accordion>
   );
 };
