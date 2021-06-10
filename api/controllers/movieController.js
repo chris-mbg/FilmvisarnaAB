@@ -1,4 +1,5 @@
 const Movie = require("../models/Movie");
+const Screening = require("../models/Screening");
 
 const getAllMovies = async (req, res) => {
   try {
@@ -44,39 +45,37 @@ const getFilteredMovies = async (req, res) => {
     try {
       //  create an array where each key-value pair is stored in a separate object
       const queryObj = [];
-
       for (let key in userQuery) {
-        if (userQuery.hasOwnProperty(key)) {
-          let object = {};
-          let queryName = new RegExp(`^${userQuery[key]}\\w*`, "gi");
-          object[key] = queryName;
-          queryObj.push(object);
-        }
+        let object = {};
+        // let queryName = new RegExp(`^${userQuery[key]}\\w*`, "gi");
+        let queryName =userQuery[key]
+        object[key] = queryName;
+        queryObj.push(object);
       }
       // todo delete
       console.log("::queryObj:::", queryObj, typeof queryObj);
 
-      /**
-       *
-       * let movies = await Movie.find({ $or: [
-       *                                          { ageLimit: 'PG-11' },
-       *                                          { director: 'Don Hall' },
-       *                                          { language: 'Engelska' },
-       *                                        ]
-       * }).exec();
-       */
+    let movies = [];
 
-      /**
-       * examle of queryObj
-       * ::queryObj:::[
-       * { ageLimit: 'PG-11' },
-       * { director: 'Don Hall' },
-       * { language: 'Engelska' },
-       * ]
-       * */
+      for (let i=0; i < queryObj.length; i ++) {
 
-      let movies = await Movie.find({ $or: queryObj }).exec();
+        if (
+          Object.keys(queryObj[i]).includes("startTime") ||
+          Object.keys(queryObj[i]).includes("price") ||
+          Object.keys(queryObj[i]).includes("auditoriumName")
+        ) {
+
+          await Screening.find({ $or: queryObj }, { movieId: 1} ).populate("movieId").then( dbMovies => { 
+            const mappedMovies = dbMovies.map(item => item.movieId)
+            movies = [...new Set(mappedMovies)]
+          })
+        } else {
+          let movie = await Movie.find({ $or: queryObj }).exec();
+          movies.push(movie)
+        }
+      }
       return res.json(movies);
+      
     } catch (error) {
       res.status(500).json({ status: "error", message: error.message });
       throw error;

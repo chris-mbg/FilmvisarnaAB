@@ -11,16 +11,16 @@ const MovieContextProvider = (props) => {
   const userRequest = {
     // actors: "ChrisPratt",
     // productionCountries: "United States",
-    ageLimit: "PG-11",
+    // ageLimit: "PG-11",
     // director: "",
     // genre: "Äventyr",
     // language: "Engelska",
     // length: "136 min",
     // productionYear: "2017",
     // title: "gu",
-    // price
-    // date
-    // salong
+    price: 90
+    // startTime
+    // auditoriumName: "Lilla"
   };
 
   // All movies fetch from DB on render
