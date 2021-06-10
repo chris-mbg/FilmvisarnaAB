@@ -155,11 +155,11 @@ const userUpdate = async (req, res) => {
         if (error) {
           return res.sendStatus(404);
         } else {
-          // Destructuring
-          const { _id, firstName, lastName, phoneNumber, email } = result;
+          // Sets password to: "undefined" - inside "result" object after successful update.
+          result.password = undefined;
 
           // Sets req.session.user to current updated user.
-          req.session.user = { _id, firstName, lastName, phoneNumber, email };
+          req.session.user = result;
 
           return res.status(200).json({
             status: "success",
