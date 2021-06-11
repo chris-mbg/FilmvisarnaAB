@@ -27,37 +27,29 @@ const auditoria = [
 ];
 
 const movies = [
-  "60acb7942ec1e13448754a82",
-  "60acb7942ec1e13448754a83",
-  "60acb7942ec1e13448754a84",
-  "60acb7942ec1e13448754a85",
-  "60acb7942ec1e13448754a86",
-  "60acb7942ec1e13448754a87",
-  "60acb7942ec1e13448754a88",
-  "60acb7942ec1e13448754a89",
-  "60acb7942ec1e13448754a8a",
-  "60acb7942ec1e13448754a8e",
-  "60acb7942ec1e13448754a8b",
-  "60acb7942ec1e13448754a8d",
-  "60acb7942ec1e13448754a8c",
-  "60acb7942ec1e13448754a8f",
-  "60acb7942ec1e13448754a90",
-  "60acb7942ec1e13448754a91",
-  "60acb7942ec1e13448754a92",
-  "60acb7942ec1e13448754a93",
-  "60acb7942ec1e13448754a94",
-  "60acb7942ec1e13448754a95",
+  { movieId: , price: }
+  { movieId: , price: }
+  { movieId: , price: }
+  { movieId: , price: }
+  { movieId: , price: }
+  { movieId: , price: }
+  { movieId: , price: }
+  { movieId: , price: }
+  { movieId: , price: }
+  { movieId: , price: }
+  { movieId: , price: }
+  { movieId: , price: }
+  { movieId: , price: }
+  { movieId: , price: }
+  { movieId: , price: }
+  { movieId: , price: }
+  { movieId: , price: }
+  { movieId: , price: }
+  { movieId: , price: }
+  { movieId: , price: }
 ];
 
 const dates = [
-  "2021-05-24",
-  "2021-05-25",
-  "2021-05-26",
-  "2021-05-27",
-  "2021-05-28",
-  "2021-05-29",
-  "2021-05-30",
-  "2021-05-31",
   "2021-06-01",
   "2021-06-02",
   "2021-06-03",
@@ -107,7 +99,16 @@ const dates = [
   "2021-07-17",
   "2021-07-18",
   "2021-07-19",
-  "2021-07-20",
+  "2021-07-21",
+  "2021-07-22",
+  "2021-07-23",
+  "2021-07-24",
+  "2021-07-25",
+  "2021-07-26",
+  "2021-07-28",
+  "2021-07-29",
+  "2021-07-30",
+  "2021-07-31",
 ];
 const startTimes = [
   ["15:10", "18:00", "21:00"],
@@ -119,7 +120,7 @@ const selectRandom = (max) => {
   return Math.floor(Math.random() * max);
 };
 
-const prices = [100, 110, 90, 120]
+//const prices = [100, 110, 90, 120]
 
 const screenings = [];
 
@@ -128,7 +129,6 @@ dates.forEach((date) => {
   times.forEach((time) => {
     screenings.push({
       startTime: date + "T" + time, // "2021-05-19T18:28:00.000+00:00"
-      price: prices[selectRandom(4)],
     });
   });
 });
@@ -142,7 +142,11 @@ screenings.forEach((screening, i) => {
   screening.auditoriumName === "Lilla salongen" ? screening.seats = auditoria[0].seats : screening.seats = auditoria[1].seats;
 });
 
-screenings.forEach(screening => screening.movieId = movies[selectRandom(20)]);
+screenings.forEach(screening => {
+  let randomNumber = selectRandom(20)
+  screening.movieId = movies[randomNumber].movieId;
+  screening.price = movies[randomNumber].price;
+});
 
 console.log(screenings);
 
