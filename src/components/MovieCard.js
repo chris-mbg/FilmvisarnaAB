@@ -18,7 +18,7 @@ export default function MovieCard({ movie }) {
       <Card.Body className={styles.bodyWrapper}>
         <Card.Title className={styles.title}>{movie.title}</Card.Title>
         <Card.Text>{movie.genre}</Card.Text>
-        <Card.Text>Längd: {movie.length}</Card.Text>
+        <Card.Text>Längd: {movie.length} min</Card.Text>
         <div className="d-flex justify-content-between mt-4">
           <CustomButton clickHandler={handleInfoClick} text="Info" />
           {/* <CustomButton clickHandler={handleOrderClick} text="Boka" /> */}
