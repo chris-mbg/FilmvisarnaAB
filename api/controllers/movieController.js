@@ -37,7 +37,7 @@ const getFilteredMovies = async (req, res) => {
       let movies = [];
       
         for (let i in userQuery){
-        if ( i === "startTime" || i === "price" || i === "auditoriumName") {
+        if ( i === "startTime" || i === "price" ) {
         
           let requestObj = {};
           let queryName =userQuery[i]
@@ -49,16 +49,13 @@ const getFilteredMovies = async (req, res) => {
           })
         } else {
           let requestObj = {};
-          let queryName = null;
+          
 
-         if (i !== "productionYear" ) {
-           queryName = new RegExp(`^${userQuery[i]}\\w*`, "gi")
-          } else {
-            queryName =userQuery[i]
-          }
+        
+          let queryName = new RegExp(`^${userQuery[i]}\\w*`, "gi")
           requestObj[i] = queryName;
+          console.log(requestObj, typeof requestObj)
 
-console.log(requestObj, typeof requestObj)
           let movie = await Movie.find(requestObj).exec();
           movies= [...movie]
         }
