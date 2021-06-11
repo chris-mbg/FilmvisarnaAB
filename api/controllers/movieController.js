@@ -22,8 +22,6 @@ const getMovieById = async (req, res) => {
 
 const getFilteredMovies = async (req, res) => {
   const userQuery = req.query;
-  // todo delete
-  console.log("req.query", req.query, typeof req.query);
 
   // checked the object for the presence of values, if there are none, I get all the movies
   if (Object.keys(userQuery).length === 0) {
@@ -35,43 +33,34 @@ const getFilteredMovies = async (req, res) => {
       throw error;
     }
   } else {
-    /**
-     * get a specific movies, depending on the request (userQuery === object)
-     * { ageLimit: 'PG-11',
-     *   director: 'Don Hall',
-     *   language: 'Engelska'
-     *  }
-     */
     try {
-      //  create an array where each key-value pair is stored in a separate object
-      const queryObj = [];
-      for (let key in userQuery) {
-        let object = {};
-        // let queryName = new RegExp(`^${userQuery[key]}\\w*`, "gi");
-        let queryName =userQuery[key]
-        object[key] = queryName;
-        queryObj.push(object);
-      }
-      // todo delete
-      console.log("::queryObj:::", queryObj, typeof queryObj);
-
-    let movies = [];
-
-      for (let i=0; i < queryObj.length; i ++) {
-
-        if (
-          Object.keys(queryObj[i]).includes("startTime") ||
-          Object.keys(queryObj[i]).includes("price") ||
-          Object.keys(queryObj[i]).includes("auditoriumName")
-        ) {
-
-          await Screening.find({ $or: queryObj }, { movieId: 1} ).populate("movieId").then( dbMovies => { 
+      let movies = [];
+      
+        for (let i in userQuery){
+        if ( i === "startTime" || i === "price" || i === "auditoriumName") {
+        
+          let requestObj = {};
+          let queryName =userQuery[i]
+          requestObj[i] = queryName;
+          
+          await Screening.find( requestObj, { movieId: 1} ).populate("movieId").then( dbMovies => { 
             const mappedMovies = dbMovies.map(item => item.movieId)
             movies = [...new Set(mappedMovies)]
           })
         } else {
-          let movie = await Movie.find({ $or: queryObj }).exec();
-          movies.push(movie)
+          let requestObj = {};
+          let queryName = null;
+
+         if (i !== "productionYear" ) {
+           queryName = new RegExp(`^${userQuery[i]}\\w*`, "gi")
+          } else {
+            queryName =userQuery[i]
+          }
+          requestObj[i] = queryName;
+
+console.log(requestObj, typeof requestObj)
+          let movie = await Movie.find(requestObj).exec();
+          movies= [...movie]
         }
       }
       return res.json(movies);

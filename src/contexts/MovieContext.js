@@ -14,13 +14,13 @@ const MovieContextProvider = (props) => {
     // ageLimit: "PG-11",
     // director: "",
     // genre: "Äventyr",
-    // language: "Engelska",
+    language: "Engelska",
     // length: "136 min",
-    // productionYear: "2017",
-    // title: "gu",
-    price: 90
-    // startTime
-    // auditoriumName: "Lilla"
+    productionYear: 2017,
+    title: "gu",
+    price: 90,
+    // startTime: 2021-05-24T13:00:00.000+00:00,
+    auditoriumName: "Lilla salongen"
   };
 
   // All movies fetch from DB on render
