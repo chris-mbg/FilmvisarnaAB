@@ -7,9 +7,15 @@ const DateOptions = () => {
   return (
     <>
       <label></label>
-      <input type="date" onChange={e => setUserRequest({...userRequest, startTime: e.target.value})} />
+      <input
+        type="date"
+        value={userRequest.startTime || ""}
+        onChange={(e) =>
+          setUserRequest({ ...userRequest, startTime: e.target.value })
+        }
+      />
     </>
   );
-}
+};
 
 export default DateOptions;

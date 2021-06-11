@@ -3,18 +3,18 @@ import { MovieContext } from "../../contexts/MovieContext";
 
 const OptionsSelect = ({ selectType }) => {
   const filterOptions = require("../../utilities/filterOptions/filterOptions.json");
-
-  // Import filter variable and setter here...
-  const {userRequest, setUserRequest} = useContext(MovieContext);
-
-  // const [price, setPrice] = useState("");
-  // const [genre, setGenre] = useState("");
-  // const [language, setLanguage] = useState("");
+  
+  const { userRequest, setUserRequest } = useContext(MovieContext);
 
   const renderPriceOptions = () => {
     return (
       <>
-        <select onChange={(e) => setUserRequest({...userRequest, price: e.target.value})}>
+        <select
+          value={userRequest.price || ""}
+          onChange={(e) =>
+            setUserRequest({ ...userRequest, price: e.target.value })
+          }
+        >
           <option value="">Välj ett pris</option>
           {filterOptions.priceOptions.sort().map((num, i) => (
             <option key={i} value={num}>
@@ -29,7 +29,12 @@ const OptionsSelect = ({ selectType }) => {
   const renderGenreOptions = () => {
     return (
       <>
-        <select onChange={(e) => setUserRequest({...userRequest, genre: e.target.value})}>
+        <select
+          value={userRequest.genre || ""}
+          onChange={(e) =>
+            setUserRequest({ ...userRequest, genre: e.target.value })
+          }
+        >
           <option value="">Välj en genre</option>
           {filterOptions.movieGenres.sort().map((genre, i) => (
             <option key={i} value={genre}>
@@ -44,7 +49,12 @@ const OptionsSelect = ({ selectType }) => {
   const renderLanguageOptions = () => {
     return (
       <>
-        <select onChange={(e) => setUserRequest({...userRequest, language: e.target.value})}>
+        <select
+          value={userRequest.language || ""}
+          onChange={(e) =>
+            setUserRequest({ ...userRequest, language: e.target.value })
+          }
+        >
           <option value="">Välj ett språk</option>
           {filterOptions.movieLanguages.sort().map((lang, i) => (
             <option key={i} value={lang}>
@@ -54,14 +64,12 @@ const OptionsSelect = ({ selectType }) => {
         </select>
       </>
     );
-  }
-  return selectType === "price" ? (
-    renderPriceOptions()
-  ) : selectType === "genre" ? (
-    renderGenreOptions()
-  ) : (
-    renderLanguageOptions()
-  );
+  };
+  return selectType === "price"
+    ? renderPriceOptions()
+    : selectType === "genre"
+    ? renderGenreOptions()
+    : renderLanguageOptions();
 };
 
 export default OptionsSelect;

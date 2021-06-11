@@ -8,7 +8,8 @@
 .signInButton,
 .okButton,
 .bookTicketButton,
-.trailerButton
+.trailerButton,
+.resetButton
 {
   padding: 5px 35px ;
   border-radius: 2px;
@@ -63,7 +64,12 @@ font-size: 16px;
   margin-top: 18px;
   margin-bottom: 14px;
 }
-
+.resetButton {
+  background-color: transparent;
+  color: #e1e1e1;
+  border: 1px solid;
+  padding: 0.1rem 0.3rem;
+}
 .bookButton:hover,
 .cancelButton:hover,
 .loginButton:hover,
@@ -72,7 +78,7 @@ font-size: 16px;
   background-color: #fb5801  !important;
 }
 
-.infoButton:hover, .okButton:hover, .trailerButton:hover{
+.infoButton:hover, .okButton:hover, .trailerButton:hover, .resetButton:hover {
   background-color:#525050 !important;
 }
 
