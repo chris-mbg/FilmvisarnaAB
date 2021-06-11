@@ -1,13 +1,16 @@
 import { useContext, useEffect, useState } from "react";
 import { MovieContext } from "../contexts/MovieContext";
-import { Row, Col, Image } from "react-bootstrap";
+import { Row, Col, Image, Modal } from "react-bootstrap";
 import styles from "../css/MoviePage.module.css";
 import MovieSchedule from "../components/MovieSchedule";
+import TrailerModal from "../components/TrailerModal";
+import CustomButton from "../components/CustomButton";
 
 export default function MoviePage(props) {
   const { movieId } = props.match.params;
   const [movie, setMovie] = useState(null);
   const [screenings, setScreening] = useState(null);
+  const [showTrailerModal, setShowTrailerModal] = useState(false);
 
   const { getMovieById, getAllScreeningsForMovie } = useContext(MovieContext);
 
@@ -15,7 +18,6 @@ export default function MoviePage(props) {
     async function getMovieAndScreenings() {
       let response = await getMovieById(movieId);
       setMovie(response);
-
       let schedule = await getAllScreeningsForMovie(response._id);
       setScreening(schedule);
     }
@@ -35,10 +37,14 @@ export default function MoviePage(props) {
   };
 
   // todo connect trailer
-  // const seeTrailer = () => {
-  //   console.log("this is a wonderful trailer...");
-  // };
+  const seeTrailer = () => {
+    setShowTrailerModal(true);
+  };
 
+  const handleCloseTrailerModal = () => {
+    // When user click on OK button, ConfirmModal will close.
+    setShowTrailerModal(false);
+  };
   const renderMovieDescription = () => (
     <section className={styles.movieContainer}>
       <Row className="text-center">
@@ -78,12 +84,12 @@ export default function MoviePage(props) {
                 Genre:{""} {movie.genre}
               </p>
             </div>
-            {/* Needed when possibility to see trailer is implemented! */}
-            {/* <CustomButton
+          
+            <CustomButton
               text="Trailer"
               className="order-md-last"
               clickHandler={seeTrailer}
-            /> */}
+            />
           </div>
         </Col>
       </Row>
@@ -100,18 +106,30 @@ export default function MoviePage(props) {
             className={`border-bottom border-white pb-2 ${styles.scheduleItem}`}
           >
             <Col xs={4} sm={3} className={`${styles.scheduleHeading}`}>
-                <h3>Datum</h3>
+              <h3>Datum</h3>
             </Col>
-            <Col xs={2} sm={2} className={`text-left ${styles.scheduleHeading}`}>
-                <h3>Tid</h3>
+            <Col
+              xs={2}
+              sm={2}
+              className={`text-left ${styles.scheduleHeading}`}
+            >
+              <h3>Tid</h3>
             </Col>
-            <Col xs={2} sm={2} className={`text-center ${styles.scheduleHeading}`} >
-                <h3>Platser kvar</h3>
+            <Col
+              xs={2}
+              sm={2}
+              className={`text-center ${styles.scheduleHeading}`}
+            >
+              <h3>Platser kvar</h3>
             </Col>
-            <Col xs={0} sm={3} className={`text-right d-none d-sm-block ${styles.scheduleHeading}`}>
-                <h3>Salong</h3>
+            <Col
+              xs={0}
+              sm={3}
+              className={`text-right d-none d-sm-block ${styles.scheduleHeading}`}
+            >
+              <h3>Salong</h3>
             </Col>
-            <Col xs={3} sm={2} >
+            <Col xs={3} sm={2}>
               {/* Col for button */}
             </Col>
           </Row>
@@ -131,6 +149,20 @@ export default function MoviePage(props) {
         </div>
       ) : (
         <h2>...loading</h2>
+      )}
+
+      {movie && (
+        <Modal
+          centered={true}
+          size={"lg"}
+          show={showTrailerModal}
+          onHide={handleCloseTrailerModal}
+        >
+          <TrailerModal
+            embedId={movie.youtubeTrailer}
+            handleCloseTrailerModal={handleCloseTrailerModal}
+          />
+        </Modal>
       )}
     </div>
   );
