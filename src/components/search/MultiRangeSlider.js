@@ -3,7 +3,7 @@ import PropTypes from "prop-types"; // Built-in typechecking
 import { useState, useRef, useCallback, useEffect } from "react";
 
 
-const MultiRangeSlider = ({ min, max }) => {
+const MultiRangeSlider = ({ min, max, setMaxLengthQuery=null, setMinLengthQuery = null }) => {
   // Set each prop as type number
   MultiRangeSlider.propTypes = {
     min: PropTypes.number.isRequired,
@@ -46,12 +46,14 @@ const MultiRangeSlider = ({ min, max }) => {
   const handleMinChange = e => {
       const value = Math.min(Number(e.target.value), maxVal - 1);
       setMinVal(value);
+      setMinLengthQuery(value);
       minValRef.current = value;
   };
 
   const handleMaxChange = e => {
     const value = Math.max(Number(e.target.value), minVal + 1);
     setMaxVal(value);
+    setMaxLengthQuery(value);
     maxValRef.current = value;
  };
 

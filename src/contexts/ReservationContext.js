@@ -35,7 +35,7 @@ const ReservationContextProvider = (props) => {
     setSeatsChosen([]);
   },[screeningIdOnOrderPage, movieIdOnOrderPage]);
 
-  useEffect(() => console.log("Seats chosen by user", seatsChosen));
+  //useEffect(() => console.log("Seats chosen by user", seatsChosen));
 
 
   // Better to get this from BE and DB..? But we still need to get all screeenings also, and therefore OK to filter in FE, because we already have the info here...
