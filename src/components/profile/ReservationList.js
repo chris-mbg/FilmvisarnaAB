@@ -8,7 +8,7 @@ const ReservationList = () => {
 
   // Maps out user's reservation(s).
   const reservation = userReservations?.map((reservation, index) => {
-    return <UserReservation key={index} reservation={reservation} />;
+    return <UserReservation key={index + reservation._id} reservation={reservation} />;
   });
 
   return (
