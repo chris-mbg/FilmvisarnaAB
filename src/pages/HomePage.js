@@ -9,7 +9,6 @@ const HomePage = () => {
  
   return (
     <div className='homePage'>
-      <ImgCarousel />
       {/* Search bar component goes here */}
       <Row>
         <Col xs={0}>
@@ -37,7 +36,6 @@ const HomePage = () => {
      />
       </div> */}
     </div>
-
   );
 };
 

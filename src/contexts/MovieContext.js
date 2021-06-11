@@ -9,16 +9,16 @@ const MovieContextProvider = (props) => {
    *  request example
    */
   const userRequest = {
-    // actors: "ChrisPratt",
-    // productionCountries: "United States",
-    // ageLimit: "PG-11",
-    // director: "",
+    // actors: "Chris",//regex
+    // ageLimit: "PG-7",
+      // director: "Boden", //regex
     // genre: "Äventyr",
-    language: "Engelska",
-    // length: "136 min",
-    title: "gu",
-    price: 90,
-    // startTime: 2021-05-24T13:00:00.000+00:00,
+    // language: "Franska",
+    // minLength: 93,//must have a value
+    // maxLength: 136,//must have a value
+      // title: "Dalida",//regex
+    // price: 90,
+    // startTime:"2021-07-24",
   };
 
   // All movies fetch from DB on render
