@@ -5,6 +5,43 @@ export const MovieContext = createContext();
 const MovieContextProvider = (props) => {
   const [allMovies, setAllMovies] = useState(null);
 
+
+  const emptyReqObject = {
+    actors: "",
+    ageLimit: "",
+    director: "",
+    genre: "",
+    language: "",
+    length: "",
+    title: "",
+    price: "",
+    startTime: ""
+  }
+  const [userRequest, setUserRequest] = useState(emptyReqObject);
+
+  useEffect(() => console.log("User request changed", userRequest), [userRequest])
+
+
+  /**
+  *  request example
+  */
+ //const userRequest = {
+   // actors: "ChrisPratt",
+   // productionCountries: "United States",
+   // ageLimit: "PG-11",
+   // director: "",
+   // genre: "Äventyr",
+   // language: "Engelska",
+   // length: "136 min",
+   // productionYear: "2017",
+   // title: "gu",
+   //price: 90
+   // startTime
+   // auditoriumName: "Lilla"
+ //};
+
+
+
   // All movies fetch from DB on render
   useEffect(() => fetchAllMovies(), []);
 
@@ -39,6 +76,8 @@ const MovieContextProvider = (props) => {
     allMovies,
     getMovieById,
     getAllScreeningsForMovie,
+    userRequest,
+    setUserRequest,
   };
 
   return (
