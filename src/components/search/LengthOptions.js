@@ -21,7 +21,7 @@ const LengthOptions = () => {
   }
 
   return (
-    <div className="mx-2 pt-2 pb-5">
+    <div className="pt-2 pb-5">
       <MultiRangeSlider min={minMaxLength.minLength} max={minMaxLength.maxLength} setMaxLengthQuery={setMaxLengthQuery} setMinLengthQuery={setMinLengthQuery}/>
     </div>
   );

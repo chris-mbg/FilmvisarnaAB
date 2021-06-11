@@ -18,7 +18,7 @@ const AgeLimitOptions = () => {
               setUserRequest({ ...userRequest, ageLimit: e.target.value })
             }
           />
-          <label for={limit}>{limit.slice(3)} år</label>
+          <label for={limit} className="ml-2">{limit.slice(3)} år</label>
         </div>
       ))}
     </>

@@ -48,18 +48,18 @@ const FilterWrapper = () => {
 
   const getAccordion = () => {
     return (
-      <div className="container mx-3 mt-3 mb-5 border-bottom ">
+      <div className="container mx-auto mt-3 mb-5 border-bottom ">
       <Accordion >
         <Accordion.Toggle as={"div"} eventKey="0" onClick={() => setToggleAccordion(!toggleAccordion)}>
           <Row noGutters={true}>
-            <Col xs={10} sm={10} md={10} lg={10}>
-              <p className="h4">Filter</p>
+            <Col xs={11}>
+              <p className="h4">Filtrera</p>
             </Col>
             <Col
-              xs={2}
-              sm={2}
-              md={2}
-              lg={2}
+              xs={1}
+              // sm={2}
+              // md={2}
+              // lg={2}
               className="d-flex justify-content-center align-items-center"
             >
               <div >
@@ -81,7 +81,7 @@ const FilterWrapper = () => {
       <div className="mx-3 mt-3 mb-5">
           <Row noGutters={true}>
             <Col xs={10} sm={10} md={10} lg={10}>
-              <p className="h4">Filter</p>
+              <p className="h4">Filtrera</p>
             </Col>
             {filters()}
           </Row>

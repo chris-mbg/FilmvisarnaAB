@@ -16,15 +16,16 @@ const HomePage = () => {
           <input type="text" placeholder="Sök..." style={{ width: "90%"}} className="mx-4 my-2" />
         </Col>
         </Row>
-        <Row noGutters={true}>
+        <Row noGutters={true} className="container-xl mx-auto">
           <Col
             xs={12}
             lg={3}
-            xl={4}
+            xl={3}
+            // className="d-flex justify-content-center"
           >
             <FilterWrapper />
           </Col>
-          <Col xs={12} lg={9} xl={8}>
+          <Col xs={12} lg={9} xl={9}>
             <MovieWrapper />
           </Col>
       </Row>
