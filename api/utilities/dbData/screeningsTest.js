@@ -26,28 +26,7 @@ const auditoria = [
   },
 ];
 
-const movies = [
-  { movieId: , price: }
-  { movieId: , price: }
-  { movieId: , price: }
-  { movieId: , price: }
-  { movieId: , price: }
-  { movieId: , price: }
-  { movieId: , price: }
-  { movieId: , price: }
-  { movieId: , price: }
-  { movieId: , price: }
-  { movieId: , price: }
-  { movieId: , price: }
-  { movieId: , price: }
-  { movieId: , price: }
-  { movieId: , price: }
-  { movieId: , price: }
-  { movieId: , price: }
-  { movieId: , price: }
-  { movieId: , price: }
-  { movieId: , price: }
-];
+const movies = require("./movieInfoFromDB.json");
 
 const dates = [
   "2021-06-01",
