@@ -42,10 +42,14 @@ const getFilteredMovies = async (req, res) => {
           const minStartTime = new Date(userQuery.startTime + " 00:00");
           const maxStartTime = new Date(userQuery.startTime + " 23:00");
 
-          let movie = await Screening.where({
+        await Screening.find({
             startTime: { $gte: minStartTime, $lte: maxStartTime },
-          }).exec();
-          movies = [...movie];
+          }, { movieId: 1}).populate("movieId").then(dbMovies => {
+
+            const mappedMovies = dbMovies.map(item => item.movieId)
+            movies = [...mappedMovies];
+          });
+          
         }
         if ("minLength" in userQuery && "maxLength" in userQuery) {
           const minLength = parseInt(userQuery.minLength) || 0;
@@ -82,7 +86,7 @@ const getFilteredMovies = async (req, res) => {
           movies = [...movie];
         }
       }
-      return res.json(movies);
+       return res.json(movies);
     } catch (error) {
       res.status(500).json({ status: "error", message: error.message });
       throw error;
