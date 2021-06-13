@@ -63,11 +63,11 @@ const ProfileForm = () => {
   // Common handler for all input fields (start edit icon)
   const handleEditInput = (e, input) => {
     // Resets all alerts when user toggles a new input field.
-    setAlertConfirm("");
-    setAlertPassword("");
-    setAlertConfirmPassword("");
-    setAlertEmailExists("");
-    setAlertEmailInvalid("");
+    setAlertConfirm(false);
+    setAlertPassword(false);
+    setAlertConfirmPassword(false);
+    setAlertEmailExists(false);
+    setAlertEmailInvalid(false);
 
     // Using spread syntax to create a copy of state variable and also avoiding "reference" to original state variable.
     let newObject = { ...editInput };
@@ -227,9 +227,10 @@ const ProfileForm = () => {
                 className={`${styles.icon} fas fa-check pl-3`}
               ></i>
               <i
-                onClick={() =>
-                  setEditInput({ ...editInput, firstNameDisabled: true })
-                }
+                onClick={() => {
+                  setEditInput({ ...editInput, firstNameDisabled: true });
+                  setFirstName(loggedInUser.firstName);
+                }}
                 className={`${styles.icon} fas fa-times pl-2`}
               ></i>
             </>
@@ -276,9 +277,10 @@ const ProfileForm = () => {
                 className={`${styles.icon} fas fa-check pl-3`}
               ></i>
               <i
-                onClick={() =>
-                  setEditInput({ ...editInput, lastNameDisabled: true })
-                }
+                onClick={() => {
+                  setEditInput({ ...editInput, lastNameDisabled: true });
+                  setLastName(loggedInUser.lastName);
+                }}
                 className={`${styles.icon} fas fa-times pl-2`}
               ></i>
             </>
@@ -325,9 +327,10 @@ const ProfileForm = () => {
                 className={`${styles.icon} fas fa-check pl-3`}
               ></i>
               <i
-                onClick={() =>
-                  setEditInput({ ...editInput, phoneDisabled: true })
-                }
+                onClick={() => {
+                  setEditInput({ ...editInput, phoneDisabled: true });
+                  setPhone(loggedInUser.phone);
+                }}
                 className={`${styles.icon} fas fa-times pl-2`}
               ></i>
             </>
@@ -374,9 +377,12 @@ const ProfileForm = () => {
                 className={`${styles.icon} fas fa-check pl-3`}
               ></i>
               <i
-                onClick={() =>
-                  setEditInput({ ...editInput, emailDisabled: true })
-                }
+                onClick={() => {
+                  setEditInput({ ...editInput, emailDisabled: true });
+                  setEmail(loggedInUser.email);
+                  setAlertEmailExists(false);
+                  setAlertEmailInvalid(false);
+                }}
                 className={`${styles.icon} fas fa-times pl-2`}
               ></i>
             </>
@@ -423,9 +429,13 @@ const ProfileForm = () => {
                 className={`${styles.icon} fas fa-check pl-3`}
               ></i>
               <i
-                onClick={() =>
-                  setEditInput({ ...editInput, passwordDisabled: true })
-                }
+                onClick={() => {
+                  setEditInput({ ...editInput, passwordDisabled: true });
+                  setPassword("");
+                  setConfirmPassword("");
+                  setAlertPassword(false);
+                  setAlertConfirmPassword(false);
+                }}
                 className={`${styles.icon} fas fa-times pl-2`}
               ></i>
             </>
