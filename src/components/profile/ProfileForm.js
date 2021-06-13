@@ -31,7 +31,7 @@ const ProfileForm = () => {
   const [alertEmailInvalid, setAlertEmailInvalid] = useState(false);
 
   // Props
-  const alerts = {
+  const values = {
     alertConfirm,
     setAlertConfirm,
     alertPassword,
@@ -474,7 +474,7 @@ const ProfileForm = () => {
 
       <Row noGutters>
         <Col xs={11} sm={11} md={10} lg={11}>
-          <ProfileFormAlertBoxes alerts={alerts} />
+          <ProfileFormAlertBoxes values={values} />
           {/* Alert boxes */}
         </Col>
       </Row>

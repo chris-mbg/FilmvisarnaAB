@@ -1,6 +1,6 @@
 import { Alert } from "react-bootstrap";
 
-const ProfileFormAlertBoxes = ({ alerts }) => {
+const ProfileFormAlertBoxes = ({ values }) => {
   // Props
   const {
     alertConfirm,
@@ -13,7 +13,7 @@ const ProfileFormAlertBoxes = ({ alerts }) => {
     setAlertEmailExists,
     alertEmailInvalid,
     setAlertEmailInvalid,
-  } = alerts;
+  } = values;
 
   // Alert boxes
   const alertConfirmBox = alertConfirm && (
