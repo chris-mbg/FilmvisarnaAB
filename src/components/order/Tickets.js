@@ -76,7 +76,7 @@ const Tickets = () => {
       return (
         <>
           <Container className={styles.ticket_container} fluid key={index}>
-            <Row className={styles.ticket_upper_container} noGutters={true}>
+            <Row className={styles.ticket_container_upper} noGutters={true}>
               <Col>
                 <p>
                   <span>{screeningToShow.movieId.title} </span>
@@ -118,7 +118,7 @@ const Tickets = () => {
               </Col>
             </Row>
             {/* /.ticket_upper_container */}
-            <Row className={styles.ticket_lower_container} noGutters={true}>
+            <Row className={styles.ticket_container_lower} noGutters={true}>
               <Col>
                 <ul className={styles.ul}>
                   <li>

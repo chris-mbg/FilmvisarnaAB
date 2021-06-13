@@ -9,6 +9,10 @@
   padding-left: 1rem;
 }
 
+.ticket_container_lower {
+  margin-top: 0.5rem;
+}
+
 .tickets_wrapper {
   background-color: #f2f2f2;
   color: #000;
