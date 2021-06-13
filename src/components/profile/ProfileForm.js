@@ -221,10 +221,18 @@ const ProfileForm = () => {
               className={`${styles.icon} fas fa-edit`}
             />
           ) : (
-            <i
-              onClick={handleFirstNameConfirmEdit}
-              className={`${styles.icon} fas fa-check`}
-            ></i>
+            <>
+              <i
+                onClick={handleFirstNameConfirmEdit}
+                className={`${styles.icon} fas fa-check pl-3`}
+              ></i>
+              <i
+                onClick={() =>
+                  setEditInput({ ...editInput, firstNameDisabled: true })
+                }
+                className={`${styles.icon} fas fa-times pl-2`}
+              ></i>
+            </>
           )}
         </Col>
       </Row>
@@ -262,10 +270,18 @@ const ProfileForm = () => {
               className={`${styles.icon} fas fa-edit`}
             />
           ) : (
-            <i
-              onClick={handleLastNameConfirmEdit}
-              className={`${styles.icon} fas fa-check`}
-            ></i>
+            <>
+              <i
+                onClick={handleLastNameConfirmEdit}
+                className={`${styles.icon} fas fa-check pl-3`}
+              ></i>
+              <i
+                onClick={() =>
+                  setEditInput({ ...editInput, lastNameDisabled: true })
+                }
+                className={`${styles.icon} fas fa-times pl-2`}
+              ></i>
+            </>
           )}
         </Col>
       </Row>
@@ -303,10 +319,18 @@ const ProfileForm = () => {
               className={`${styles.icon} fas fa-edit`}
             />
           ) : (
-            <i
-              onClick={handlePhoneConfirmEdit}
-              className={`${styles.icon} fas fa-check`}
-            ></i>
+            <>
+              <i
+                onClick={handlePhoneConfirmEdit}
+                className={`${styles.icon} fas fa-check pl-3`}
+              ></i>
+              <i
+                onClick={() =>
+                  setEditInput({ ...editInput, phoneDisabled: true })
+                }
+                className={`${styles.icon} fas fa-times pl-2`}
+              ></i>
+            </>
           )}
         </Col>
       </Row>
@@ -344,10 +368,18 @@ const ProfileForm = () => {
               className={`${styles.icon} fas fa-edit`}
             />
           ) : (
-            <i
-              onClick={handleEmailEdit}
-              className={`${styles.icon} fas fa-check`}
-            ></i>
+            <>
+              <i
+                onClick={handleEmailEdit}
+                className={`${styles.icon} fas fa-check pl-3`}
+              ></i>
+              <i
+                onClick={() =>
+                  setEditInput({ ...editInput, emailDisabled: true })
+                }
+                className={`${styles.icon} fas fa-times pl-2`}
+              ></i>
+            </>
           )}
         </Col>
       </Row>
@@ -385,10 +417,18 @@ const ProfileForm = () => {
               className={`${styles.icon} fas fa-edit`}
             />
           ) : (
-            <i
-              onClick={handlePasswordConfirmEdit}
-              className={`${styles.icon} fas fa-check`}
-            ></i>
+            <>
+              <i
+                onClick={handlePasswordConfirmEdit}
+                className={`${styles.icon} fas fa-check pl-3`}
+              ></i>
+              <i
+                onClick={() =>
+                  setEditInput({ ...editInput, passwordDisabled: true })
+                }
+                className={`${styles.icon} fas fa-times pl-2`}
+              ></i>
+            </>
           )}
         </Col>
       </Row>
