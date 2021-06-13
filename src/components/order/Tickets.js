@@ -53,15 +53,45 @@ const Tickets = () => {
       return (
         <>
           <Container className={styles.ticket_container} fluid key={index}>
-            <Row noGutters={true}>
-              <Col lg={5}>
+            <Row className={styles.ticket_upper_container} noGutters={true}>
+              <Col>
                 <p>
                   <span>{screeningToShow.movieId.title} </span>
                   <br />
                   <span>{moment(screeningToShow.startTime).format("lll")}</span>
                 </p>
               </Col>
-              {/* <Col lg={5}>Vuxen, pensionär, barn</Col> */}
+              <Col>
+                <Row className={styles.ticket_lower_container} noGutters={true}>
+                  <Col lg={6}>
+                    <input
+                      type="radio"
+                      name="ticket"
+                      onChange={() => console.log("Vuxen ticket is selected")}
+                    />
+                    <label className="pl-2">Vuxen</label>
+                  </Col>
+                  <Col lg={6}>
+                    <input
+                      type="radio"
+                      name="ticket"
+                      onChange={() =>
+                        console.log("Pensionär ticket is selected")
+                      }
+                    />
+                    <label className="pl-2">Pensionär</label>
+                  </Col>
+                  <Col lg={6}>
+                    <input type="radio" name="ticket" />
+                    <label
+                      className="pl-2"
+                      onChange={() => console.log("Barn ticket is selected")}
+                    >
+                      Barn
+                    </label>
+                  </Col>
+                </Row>
+              </Col>
             </Row>
             <Row noGutters={true}>
               <Col>
