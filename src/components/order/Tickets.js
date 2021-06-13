@@ -15,6 +15,7 @@ const Tickets = () => {
   // Context
   const {
     ticketsChosen,
+    setTicketsChosen,
     screeningToShow,
     userConfirmsReservation,
     getTotalPrice,
@@ -46,6 +47,28 @@ const Tickets = () => {
     }
   };
 
+  const handleSelectTicketType = (e, ticket) => {
+    // Create a copy of state variable: ticketsChosen
+    let newList = [...ticketsChosen];
+
+    // Find index of current ticket.
+    const findIndex = newList.indexOf(ticket);
+
+    // New ticket object based on selected ticket type.
+    const newObject = {
+      ticketType: e.target.value,
+      seatNumber: ticket.seatNumber,
+    };
+
+    // Replaces object in array based on:
+    // 1. index of current ticket.
+    // 2. current selected ticket type.
+    newList.splice(findIndex, 1, newObject);
+
+    // Set ticketsChosen to: newList
+    setTicketsChosen(newList);
+  };
+
   // Renders each ticket that the user has selected from screening.
   const ticket =
     ticketsChosen &&
@@ -62,38 +85,40 @@ const Tickets = () => {
                 </p>
               </Col>
               <Col>
-                <Row className={styles.ticket_lower_container} noGutters={true}>
+                <Row noGutters={true}>
                   <Col lg={6}>
                     <input
+                      defaultChecked={true}
                       type="radio"
-                      name="ticket"
-                      onChange={() => console.log("Vuxen ticket is selected")}
+                      name={`ticket` + index}
+                      value="adult"
+                      onChange={(e) => handleSelectTicketType(e, ticket)}
                     />
                     <label className="pl-2">Vuxen</label>
                   </Col>
                   <Col lg={6}>
                     <input
                       type="radio"
-                      name="ticket"
-                      onChange={() =>
-                        console.log("Pensionär ticket is selected")
-                      }
+                      name={`ticket` + index}
+                      value="senior"
+                      onChange={(e) => handleSelectTicketType(e, ticket)}
                     />
                     <label className="pl-2">Pensionär</label>
                   </Col>
                   <Col lg={6}>
-                    <input type="radio" name="ticket" />
-                    <label
-                      className="pl-2"
-                      onChange={() => console.log("Barn ticket is selected")}
-                    >
-                      Barn
-                    </label>
+                    <input
+                      type="radio"
+                      name={`ticket` + index}
+                      value="child"
+                      onChange={(e) => handleSelectTicketType(e, ticket)}
+                    />
+                    <label className="pl-2">Barn</label>
                   </Col>
                 </Row>
               </Col>
             </Row>
-            <Row noGutters={true}>
+            {/* /.ticket_upper_container */}
+            <Row className={styles.ticket_lower_container} noGutters={true}>
               <Col>
                 <ul className={styles.ul}>
                   <li>
@@ -112,6 +137,7 @@ const Tickets = () => {
                 kr
               </Col>
             </Row>
+            {/* /.ticket_lower_container */}
           </Container>
         </>
       );
