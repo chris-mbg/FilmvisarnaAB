@@ -1,17 +1,16 @@
 import React from "react";
 import map from "../assets/map.jpg";
-import filmrulle from "../assets/filmrulle.jpg";
 import styles from "../css/About.module.css";
+import { Jumbotron } from "react-bootstrap";
 
 const AboutPage = () => {
   return (
-    <div className={`${styles.aboutContainer}`}>
+    
+    <div >
+      <Jumbotron className={`${styles.aboutContainer}`}>
+        <h1>Om Oss</h1>
+      </Jumbotron>
       <div className={styles.upper_wrapper}>
-        <div className={styles.filmrulle_wrapper}>
-          <img className={styles.filmrulle_image} src={filmrulle} alt="filmrulle" />
-        </div>
-
-        <div className={styles.about_text_wrapper}>
           <h2 className={styles.textHeading}>Filmvisarna</h2>
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci
@@ -32,34 +31,21 @@ const AboutPage = () => {
             nulla non aliquam tempor. Nulla a eleifend enim, in sodales nisl.
             Vivamus vel sodales quam.
           </p>
-        </div>
       </div>
-      {/* /.upper_wrapper */}
-
-      <img className={styles.map} src={map} alt="map" />
-
-      {/* <div className="row d-flex mb-2 mb-md-3"> */}
-      <div className={styles.lower_wrapper}>
-        <div className={styles.phonenumber_wrapper}>
-          <p className={styles.number}>022 172 14 15</p>
-        </div>
-
+      <div className={styles.low}>
+        <img className={styles.map} src={map} alt="map" />
         <div className={styles.days_wrapper}>
-        <div className={styles.MondayFriday}>
-          <p className={styles.days}>Måndag - Fredag</p>
-          <p className={styles.time}>9.00 - 20.00</p>
+            <p>Måndag - Fredag</p>
+            <p>kl: 9.00 - 20.00</p>
+            <p>Lördag - söndag</p>
+            <p>10.00 - 22.00</p>
         </div>
-
-        <div className={styles.MondayFriday}>
-          <p className={styles.days}>Lördag - söndag</p>
-          <p className={styles.time}>10.00 - 22.00</p>
+        <div>
+            <p>tel: 022 172 14 15</p>
+            <p>Email: filmvisarna@filmvisarna.se</p>
         </div>
-        </div>
-        {/* /.days_wrapper */}
       </div>
-      {/* /.lower_wrapper */}
     </div>
-    // /.aboutContainer
   );
 };
 
