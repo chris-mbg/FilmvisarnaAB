@@ -1,6 +1,6 @@
 .wrapper{
-  max-width: 880px;
-  border-top: 0.5px solid #F3F3F3;
+  max-width: 1440px;
+  /* border-top: 0.5px solid #F3F3F3; */
   border-bottom: 0.5px solid #F3F3F3;
 }
 h2.heading {
@@ -23,6 +23,12 @@ h2.heading {
 }
 @media screen and (min-width: 576px) {
   h2.heading {
-    font-size: 2rem;
+    font-size: 2.2rem;
+  }
+}
+@media screen and (min-width: 992px) {
+  h2.heading {
+    font-size: 2.8rem;
+    margin-bottom: 3rem;
   }
 }

@@ -9,7 +9,6 @@ import LengthOptions from "./LengthOptions";
 import DateOptions from "./DateOptions";
 import TextInput from "./TextInput";
 import AgeLimitOptions from "./AgeLimitOptions";
-import CustomButton from "../CustomButton";
 import { MovieContext } from "../../contexts/MovieContext";
 
 const FilterWrapper = () => {
@@ -76,7 +75,7 @@ const FilterWrapper = () => {
           >
             <Row noGutters={true}>
               <Col xs={11}>
-                <p className="h4">Filtrera</p>
+                <p className={`h4`}>Filtrera</p>
               </Col>
               <Col
                 xs={1}
@@ -97,10 +96,10 @@ const FilterWrapper = () => {
 
   const withoutAccordion = () => {
     return (
-      <div className="ml-3 mr-1 mt-3 mb-5">
+      <div className="ml-3 mt-3 mb-5 pt-lg-2">
         <Row noGutters={true}>
           <Col xs={10} sm={10} md={10} lg={10}>
-            <p className="h4">Filtrera</p>
+            <p className={`h4 ${styles.filterHeading}`}>Filtrera</p>
           </Col>
           {filters()}
         </Row>

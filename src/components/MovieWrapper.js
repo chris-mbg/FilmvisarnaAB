@@ -30,7 +30,7 @@ export default function MovieWrapper() {
     ) {
       return allMovies
         .map((movie) => <MovieCard key={movie._id} movie={movie} />)
-        .slice(0, 6);
+        .slice(0, 8);
     } else {
       // todo implement Spinner?
       return <p>...loading</p>;
@@ -49,7 +49,7 @@ export default function MovieWrapper() {
         <h2 className={styles.heading}>Sökresultat</h2>
       )}
       <div
-        className={`${styles.wrapper} p-0 my-4 d-flex flex-wrap justify-content-around mx-auto`}
+        className={`${styles.wrapper} p-0 my-4 mx-2 mx-lg-4 d-flex flex-wrap justify-content-around mx-auto`}
       >
         {renderCards()}
 

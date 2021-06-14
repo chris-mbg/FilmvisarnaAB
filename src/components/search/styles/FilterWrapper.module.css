@@ -12,6 +12,10 @@
 hr.lineBtwn {
   border: none;
   border-bottom: 1px solid #e1e1e1;
-  margin: 0.3rem 0;
+  margin: 0.45rem 0;
   width: 108%;
+}
+p.filterHeading {
+  height: 53px;
+  padding-top: 15px;
 }

@@ -20,12 +20,12 @@ const HomePage = () => {
           <Col
             xs={12}
             lg={3}
-            xl={{offset: 1, span: 2}}
+            xl={{offset: 0, span: 2}}
             // className="d-flex justify-content-center"
           >
             <FilterWrapper />
           </Col>
-          <Col xs={12} lg={9} xl={9}>
+          <Col xs={12} lg={9} xl={10}>
             <MovieWrapper />
           </Col>
       </Row>
