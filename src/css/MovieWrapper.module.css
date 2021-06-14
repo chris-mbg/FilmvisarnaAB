@@ -32,3 +32,8 @@ h2.heading {
     margin-bottom: 3rem;
   }
 }
+@media screen and (min-width: 1400px) {
+  .wrapper {
+    margin: 0 auto;
+  }
+}

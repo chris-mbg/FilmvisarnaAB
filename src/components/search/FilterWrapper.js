@@ -3,7 +3,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import styles from "./styles/FilterWrapper.module.css";
 import { useContext, useState } from "react";
-import FilterAccItem from "./FilterAccItem";
+import FilterItem from "./FilterItem";
 import OptionsSelect from "./OptionsSelect";
 import LengthOptions from "./LengthOptions";
 import DateOptions from "./DateOptions";
@@ -16,102 +16,79 @@ const FilterWrapper = () => {
 
   const [toggleAccordion, setToggleAccordion] = useState(false);
   const icon = !toggleAccordion ? (
-    <i className={`fas fa-chevron-down`} />
+    <i className={`fas fa-filter`} />
   ) : (
-    <i className={`fas fa-chevron-up`} />
+    <i className={`fas fa-times`} />
   );
 
   const filters = () => {
     return (
-      <div>
-        <FilterAccItem
-          header="Pris"
-          component={<OptionsSelect selectType={"price"} />}
-        />
-        <hr className={`${styles.lineBtwn}`} />
-        <FilterAccItem header="Längd på filmen" component={<LengthOptions />} />
-        <hr className={`${styles.lineBtwn}`} />
-        <FilterAccItem
-          header="Genre"
+      <Row noGutters={true}>
+        <FilterItem heading={"Datum"} component={<DateOptions />} />
+        <FilterItem
+          heading={"Pris"}
           component={<OptionsSelect selectType={"genre"} />}
         />
-        <hr className={`${styles.lineBtwn}`} />
-        <FilterAccItem header="Datum" component={<DateOptions />} />
-        <hr className={`${styles.lineBtwn}`} />
-        <FilterAccItem
-          header="Skådespelare"
+        <FilterItem
+          heading={"Genre"}
+          component={<OptionsSelect selectType={"genre"} />}
+        />
+        <FilterItem
+          heading={"Skådespelare"}
           component={<TextInput inputType={"actor"} />}
         />
-        <hr className={`${styles.lineBtwn}`} />
-        <FilterAccItem
-          header="Regissör"
+        <FilterItem
+          heading={"Regissör"}
           component={<TextInput inputType={"director"} />}
         />
-        <hr className={`${styles.lineBtwn}`} />
-        <FilterAccItem
-          header="Språk"
+        <FilterItem
+          heading={"Språk"}
           component={<OptionsSelect selectType={"language"} />}
         />
-        <hr className={`${styles.lineBtwn}`} />
-        <FilterAccItem header="Åldersgräns" component={<AgeLimitOptions />} />
-        <hr className={`${styles.lineBtwn}`} />
-        <div className="d-flex justify-content-end mt-3">
-          <button onClick={() => setUserRequest({})} className="resetButton">
-            Rensa
-          </button>
-        </div>
-      </div>
+        <FilterItem heading={"Längd på film"} component={<LengthOptions />} />
+        <FilterItem heading={"Åldersgräns"} component={<AgeLimitOptions />} />
+
+        {/* <hr className={`${styles.lineBtwn}`} /> */}
+        <Col xs={12}>
+          <div className="d-flex justify-content-end mt-1">
+            <button onClick={() => setUserRequest({})} className="resetButton">
+              Rensa sökning
+            </button>
+          </div>
+        </Col>
+      </Row>
     );
   };
 
   const getAccordion = () => {
     return (
-      <div className="container mx-auto mt-3 mb-5">
+      <div className={toggleAccordion ? styles.filterWrapper : styles.filterWrapperClosed}>
         <Accordion>
           <Accordion.Toggle
             as={"div"}
             eventKey="0"
             onClick={() => setToggleAccordion(!toggleAccordion)}
+            className="mb-2 text-center"
           >
-            <Row noGutters={true}>
-              <Col xs={11}>
-                <p className={`h4`}>Filtrera</p>
-              </Col>
-              <Col
-                xs={1}
-                // sm={2}
-                // md={2}
-                // lg={2}
-                className="d-flex justify-content-center align-items-center"
-              >
-                <div>{icon}</div>
-              </Col>
-            </Row>
+            <div className="d-flex justify-content-between align-items-center">
+              <span className={styles.filterHeading}>Filtrera</span>
+              <span>{icon}</span>
+            </div>
           </Accordion.Toggle>
-          <Accordion.Collapse eventKey="0">{filters()}</Accordion.Collapse>
+          <Accordion.Collapse eventKey="0">
+            {filters()}
+          </Accordion.Collapse>
         </Accordion>
       </div>
     );
   };
 
-  const withoutAccordion = () => {
-    return (
-      <div className="ml-3 mt-3 mb-5 pt-lg-2">
-        <Row noGutters={true}>
-          <Col xs={10} sm={10} md={10} lg={10}>
-            <p className={`h4 ${styles.filterHeading}`}>Filtrera</p>
-          </Col>
-          {filters()}
-        </Row>
-      </div>
-    );
-  };
-
   return (
-    <div>
-      <div className="d-lg-none">{getAccordion()}</div>
-      <div className="d-none d-lg-block">{withoutAccordion()}</div>
-    </div>
+    <>
+      {/* <hr className={styles.lineBtwn}></hr> */}
+      {getAccordion()}
+      {/* <hr className={styles.lineBtwn}></hr> */}
+    </>
   );
 };
 

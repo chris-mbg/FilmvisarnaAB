@@ -71,7 +71,7 @@ div.scheduleButtonWrapper div.bookButtonContainer div.bookButton {
   background-color: transparent;
   color: #e1e1e1;
   border: 1px solid;
-  padding: 0.1rem 0.3rem;
+  padding: 0.2rem 0.4rem;
 }
 .bookButton:hover,
 .loginButton:hover,

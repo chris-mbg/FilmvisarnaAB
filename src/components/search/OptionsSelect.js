@@ -3,7 +3,7 @@ import { MovieContext } from "../../contexts/MovieContext";
 
 const OptionsSelect = ({ selectType }) => {
   const filterOptions = require("../../utilities/filterOptions/filterOptions.json");
-  
+
   const { userRequest, setUserRequest } = useContext(MovieContext);
 
   const renderPriceOptions = () => {

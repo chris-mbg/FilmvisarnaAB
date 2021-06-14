@@ -49,7 +49,7 @@ export default function MovieWrapper() {
         <h2 className={styles.heading}>Sökresultat</h2>
       )}
       <div
-        className={`${styles.wrapper} p-0 my-4 mx-2 mx-lg-4 d-flex flex-wrap justify-content-around mx-auto`}
+        className={`${styles.wrapper} p-0 my-4 mx-2 mx-lg-4 d-flex flex-wrap justify-content-around mx-xl-auto`}
       >
         {renderCards()}
 

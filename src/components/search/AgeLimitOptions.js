@@ -1,5 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { MovieContext } from "../../contexts/MovieContext";
+import styles from "./styles/FilterWrapper.module.css";
+
 
 const AgeLimitOptions = () => {
   const filterOptions = require("../../utilities/filterOptions/filterOptions.json");
@@ -16,9 +18,9 @@ const AgeLimitOptions = () => {
   }, [userRequest]);
 
   return (
-    <form id="radioForm">
+    <div className={styles.radioButtonsContainer}>
       {filterOptions.movieAgeLimits.map((limit, i) => (
-        <div key={i}>
+        <div key={i} className={styles.radioInputLabel}>
           <input
             className="ageLimitRadio"
             type="radio"
@@ -27,12 +29,12 @@ const AgeLimitOptions = () => {
             onChange={(e) => setUserRequest({ ...userRequest, ageLimit: e.target.value})}
             // checked={radioSelected == limit}
           />
-          <label for={limit} className="ml-2">
+          <label for={limit} className="ml-2 ageLimitRadio">
             {limit.slice(3)} år
           </label>
         </div>
       ))}
-    </form>
+    </div>
   );
 };
 
