@@ -11,9 +11,9 @@ const TextInput = ({ inputType }) => {
           <input
             type="text"
             placeholder="Sök skådespelare..."
-            value={userRequest.actor || ""}
+            value={userRequest.actors || ""}
             onChange={(e) =>
-              setUserRequest({ ...userRequest, actor: e.target.value })
+              setUserRequest({ ...userRequest, actors: e.target.value })
             }
           />
         </>

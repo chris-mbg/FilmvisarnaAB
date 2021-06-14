@@ -34,7 +34,6 @@ const getFilteredMovies = async (req, res) => {
     }
   } else {
     try {
-      let movies = [];
 
       const minLength = parseInt(userQuery.minLength) || 0;
       const maxLength = parseInt(userQuery.maxLength) || 236;
@@ -60,7 +59,11 @@ const getFilteredMovies = async (req, res) => {
           { movieId: 1 }
         ).exec();
 
+        if (screeningResults.length === 0) {
+          return res.json(screeningResults);
+        }
         screeningResults = screeningResults.map((value) => value.movieId);
+
       }
 
       // 60c326ac579ac038c4b685ae
