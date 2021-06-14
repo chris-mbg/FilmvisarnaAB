@@ -58,29 +58,6 @@ const UserReservation = ({ reservation }) => {
 
       <Accordion.Collapse eventKey="0">
         <div>
-          {/* <hr className={styles.hr} />
-          <Row className={styles.movie_wrapper} noGutters={true}>
-            <Col xs={3} sm={3} md={3} lg={3}>
-              <Image
-                className={styles.movie_image}
-                src={reservation.movie.image}
-                alt="image"
-              />
-            </Col>
-            <Col
-              xs={9}
-              sm={9}
-              md={9}
-              lg={9}
-              className="d-flex align-items-center"
-            >
-              <p className={styles.movie_information}>
-                {reservation.movie.genre}
-                <br /> Längd: {reservation.movie.length}
-              </p>
-            </Col>
-          </Row> */}
-          {/* /.movie_wrapper */}
           <hr className={styles.hr} />
 
           <Row className={styles.auditoria_wrapper} noGutters={true}>
@@ -100,8 +77,8 @@ const UserReservation = ({ reservation }) => {
                 {reservation?.tickets.map((ticket, i) => (
                   <li key={i}>
                     Rad {ticket.seatNumber[0] + 1}, Plats{" "}
-                    {ticket.seatNumber[1] + 1}{" "}
-                    ({checkTicketType(ticket.ticketType)})
+                    {ticket.seatNumber[1] + 1} (
+                    {checkTicketType(ticket.ticketType)})
                   </li>
                 ))}
               </ul>
@@ -129,7 +106,7 @@ const UserReservation = ({ reservation }) => {
               <p className={styles.order_information}>
                 Order:{" "}
                 <span className={styles.sub_information}>
-                  #{reservation?._id}
+                  #{reservation?._id.slice(0, 8)}
                 </span>
               </p>
             </Col>

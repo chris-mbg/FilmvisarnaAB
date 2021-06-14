@@ -66,7 +66,7 @@ const ConfirmModal = ({ handleCloseConfirmModal, userConfirmationInfo }) => {
           <p className={styles.order_information}>
             Order:{" "}
             <span className={styles.sub_information}>
-              #{userConfirmationInfo._id}
+              #{userConfirmationInfo._id.slice(0, 8)}
             </span>
           </p>
         </Col>
