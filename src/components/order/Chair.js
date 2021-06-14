@@ -10,31 +10,40 @@ export default function Chair({
   detailsSelectedChair,
   deailsOrderedChair,
 }) {
-  const { seatsChosen, setSeatsChosen } = useContext(ReservationContext);
+  const { ticketsChosen, setTicketsChosen } = useContext(ReservationContext);
 
   const [isChosen, setIsChosen] = useState(false);
 
-  const handleChairClick = (seatNumber) => {
+  const handleChairClick = (seatNr) => {
     if (reserved) {
-      console.log("Not bookable...");
+      return;
     } else {
       setIsChosen((prevState) => !prevState);
-      console.log("You clicked a seat", seatNumber);
-      // send seatNumber to ReservationContext/set variable in ReservationContext
-      const alreadyPicked = seatsChosen.some(
-        (seat) => seat[0] === seatNumber[0] && seat[1] === seatNumber[1]
-      );
-      console.log(alreadyPicked);
-      if (alreadyPicked) {
-        setSeatsChosen(
-          seatsChosen.filter((seat) =>
-            seat[0] === seatNumber[0] && seat[1] === seatNumber[1]
+      console.log("You clicked a seat", seatNr);
+
+      // Check if seatNr is previously chosen by user
+      if (
+        ticketsChosen.some(
+          (ticket) =>
+            ticket.seatNumber[0] === seatNr[0] &&
+            ticket.seatNumber[1] === seatNr[1]
+        )
+      ) {
+        // If seatNr prev chosen, filter out from the ticketsChosen array
+        setTicketsChosen(
+          ticketsChosen.filter((ticket) =>
+            ticket.seatNumber[0] === seatNr[0] &&
+            ticket.seatNumber[1] === seatNr[1]
               ? false
               : true
           )
         );
       } else {
-        setSeatsChosen((prevState) => [...prevState, seatNumber]);
+        // If not, spread prevState and create new object in array with the clicked searNr
+        setTicketsChosen((prevState) => [
+          ...prevState,
+          { ticketType: "adult", seatNumber: seatNr },
+        ]);
       }
     }
   };
@@ -43,16 +52,16 @@ export default function Chair({
     <>
       {detailsSelectedChair && (
         <>
-        <Row>
-          <Col
-            sm={12}
-            md={6}
-            className="d-flex align-items-center justify-content-center justify-content-md-end"
-          >
-            <div className={`${styles.chairItem}  ${styles.chosen}`}></div>
-            <span className={styles.spanDescrittions}>Vald plats</span>
-          </Col>
-        </Row>
+          <Row>
+            <Col
+              sm={12}
+              md={6}
+              className="d-flex align-items-center justify-content-center justify-content-md-end"
+            >
+              <div className={`${styles.chairItem}  ${styles.chosen}`}></div>
+              <span className={styles.spanDescrittions}>Vald plats</span>
+            </Col>
+          </Row>
         </>
       )}
 
