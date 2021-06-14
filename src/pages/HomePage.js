@@ -1,3 +1,5 @@
+import React, { useEffect, useState, useContext } from "react";
+import {MovieContext} from "../contexts/MovieContext";
 import MovieWrapper from '../components/MovieWrapper'
 import ImgCarousel from "../components/ImgCarousel"
 import MovieSchedule from "../components/MovieSchedule"
@@ -6,7 +8,15 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 const HomePage = () => {
- 
+  const { getScreeningsForMovie } = useContext(MovieContext)
+  const [screenings, setScreening] = useState(null);
+
+ useEffect(async () => {
+  let schedule = await getScreeningsForMovie();
+  console.log(schedule)
+  setScreening(schedule);
+ }, [])
+
   return (
     <div className='homePage'>
       {/* Search bar component goes here */}
@@ -20,21 +30,21 @@ const HomePage = () => {
       </Row>
 
       {/* "Visas idag" goes here */}
-      {/* <div className={styles.scheduleWrapper}>
+      <div className={styles.scheduleWrapper}>
         <h2>Visas idag</h2>
+        {screenings && screenings.map((movieScreen) => {
+          return (
       <MovieSchedule
       time={"19.00"}
       title={"Guardians of the Galaxy Vol. 2"}
       auditorium={"Stora salongen"}
       isHomePage={true}
      />
-     <MovieSchedule
-      time={"19.00"}
-      title={"The Fast and the Furious"}
-      auditorium={"Lilla salongen"}
-      isHomePage={true}
-     />
-      </div> */}
+          )
+        } ) }
+      
+    
+      </div>
     </div>
   );
 };

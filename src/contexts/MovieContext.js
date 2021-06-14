@@ -10,10 +10,10 @@ const MovieContextProvider = (props) => {
    */
   const userRequest = {
     // actors: "Chris",//regex
-    ageLimit: "PG-7",
+    // ageLimit: "PG-7",
       // director: "Boden", //regex
     // genre: "Äventyr",
-    language: "Franska",
+    // language: "Franska",
     // minLength: 93,//must have a value
     // maxLength: 136,//must have a value
       // textSearch: "Dalida",//regex
@@ -71,8 +71,9 @@ const MovieContextProvider = (props) => {
     }
   };
 
-  const getAllScreeningsForMovie = async (movieId) => {
-    let result = await fetch(`/api/v1/screenings/${movieId}`);
+  const getScreeningsForMovie = async (movieId) => {
+    
+    let result = await fetch(`/api/v1/screenings/?movieId=${movieId}`);
     result = await result.json();
     if (result.status !== "error") {
       // Makes the startTime property into a Date object before returning the result
@@ -87,7 +88,7 @@ const MovieContextProvider = (props) => {
   const values = {
     allMovies,
     getMovieById,
-    getAllScreeningsForMovie,
+   getScreeningsForMovie,
   };
 
   return (

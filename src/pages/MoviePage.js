@@ -9,14 +9,14 @@ export default function MoviePage(props) {
   const [movie, setMovie] = useState(null);
   const [screenings, setScreening] = useState(null);
 
-  const { getMovieById, getAllScreeningsForMovie } = useContext(MovieContext);
+  const { getMovieById, getScreeningsForMovie } = useContext(MovieContext);
 
   useEffect(() => {
     async function getMovieAndScreenings() {
       let response = await getMovieById(movieId);
       setMovie(response);
 
-      let schedule = await getAllScreeningsForMovie(response._id);
+      let schedule = await getScreeningsForMovie(movieId);
       setScreening(schedule);
     }
     getMovieAndScreenings();
