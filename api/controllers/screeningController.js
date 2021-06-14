@@ -7,7 +7,7 @@ const getScreenings = async (req, res) => {
 
     // Screenings from when the request is made and onwards
     const now = new Date();
-    console.log(now, typeof now);
+   
     // let screenings = await Screening.find({ movieId: movieId }).where('startTime').gte(now).sort("startTime").exec();
 
     // Just changed the query to db to also populate movieId
@@ -22,14 +22,13 @@ const getScreenings = async (req, res) => {
 
       let screenings = await Screening.find({
         startTime: { $gte: minStartTime, $lte: maxStartTime },
-      }).exec();
+      }).populate("movieId").exec();
 
       console.log(screenings)
       return res.json(screenings);
 
     } else {
       const movieId = req.query;
-     
       let screenings = await Screening.find( movieId )
         .where("startTime")
         .gte(now)
