@@ -13,7 +13,6 @@ const HomePage = () => {
 
   useEffect(async () => {
     let schedule = await getScreeningsForMovie();
-
     setScreening(schedule);
   }, []);
 

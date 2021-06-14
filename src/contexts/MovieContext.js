@@ -49,8 +49,6 @@ const MovieContextProvider = (props) => {
 
       // delete last "&"
       queryString = queryString.slice(0, -1);
-      // todo delete
-      console.log("::queryString:::", queryString, typeof queryString);
 
       result = await fetch(`/api/v1/movies/?${queryString}`);
     }
@@ -58,7 +56,6 @@ const MovieContextProvider = (props) => {
     result = await result.json();
       if (result.status !== "error") {
         setAllMovies(result);
-        console.log(result)
       }
   };
 

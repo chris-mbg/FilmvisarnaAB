@@ -24,7 +24,6 @@ const getScreenings = async (req, res) => {
         startTime: { $gte: minStartTime, $lte: maxStartTime },
       }).populate("movieId").exec();
 
-      console.log(screenings)
       return res.json(screenings);
 
     } else {
