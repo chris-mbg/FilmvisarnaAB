@@ -22,7 +22,7 @@ const getMovieById = async (req, res) => {
 
 const getFilteredMovies = async (req, res) => {
   const userQuery = req.query;
-  console.log(userQuery)
+  console.log(userQuery);
 
   // checked the object for the presence of values, if there are none, I get all the movies
   if (Object.keys(userQuery).length === 0) {
@@ -40,28 +40,53 @@ const getFilteredMovies = async (req, res) => {
       const minLength = parseInt(userQuery.minLength) || 0;
       const maxLength = parseInt(userQuery.maxLength) || 236;
       const actorsQuery = new RegExp(`\\w*${userQuery.actors ?? ""}\\w*`, "gi");
-      const directorsQuery = new RegExp(`\\w*${userQuery.director ?? ""}\\w*`, "gi");
-      const textSearchQuery = new RegExp(`\\w*${userQuery.textSearch ?? ""}\\w*`, "gi");
+      const directorsQuery = new RegExp(
+        `\\w*${userQuery.director ?? ""}\\w*`,
+        "gi"
+      );
+      const textSearchQuery = new RegExp(
+        `\\w*${userQuery.textSearch ?? ""}\\w*`,
+        "gi"
+      );
 
-      let result = await Movie.find(
-        {
-          $and: [
-            { length: { $gte: minLength, $lte: maxLength }},
-            { actors: actorsQuery },
-            { director: directorsQuery },
-            userQuery.genre ? { genre: userQuery.genre} : {},
-            userQuery.price ? { price: userQuery.price} : {},
-            userQuery.ageLimit ? { ageLimit: userQuery.ageLimit} : {},
-            userQuery.language ? { language: userQuery.language} : {},
-          ],
-          $or: [
-            { title: textSearchQuery },
-            { description: textSearchQuery },
-            { director: textSearchQuery },
-            { actors: textSearchQuery },
-          ]
-        }
-      ).exec();
+      let screeningResults;
+      if (userQuery.startTime) {
+        const minStartTime = new Date(userQuery.startTime + " 00:00");
+        const maxStartTime = new Date(userQuery.startTime + " 23:00");
+
+        screeningResults = await Screening.find(
+          {
+            startTime: { $gte: minStartTime, $lte: maxStartTime },
+          },
+          { movieId: 1 }
+        ).exec();
+      }
+      console.log(screeningResults);
+      // 60c326ac579ac038c4b685ae
+      // 60c326ac579ac038c4b685a9
+      // 60c326ac579ac038c4b685ac
+      //{ $or: [...screeningResults] }
+
+      let result = await Movie.find({
+        $and: [
+          { length: { $gte: minLength, $lte: maxLength } },
+          { actors: actorsQuery },
+          { director: directorsQuery },
+          userQuery.genre ? { genre: userQuery.genre } : {},
+          userQuery.price ? { price: userQuery.price } : {},
+          userQuery.ageLimit ? { ageLimit: userQuery.ageLimit } : {},
+          userQuery.language ? { language: userQuery.language } : {},
+        ],
+        $or: [
+          { title: textSearchQuery },
+          { description: textSearchQuery },
+          { director: textSearchQuery },
+          { actors: textSearchQuery },
+        ],
+        $and: [
+          { movieId: "60c326ac579ac038c4b685ae" }
+        ]
+      });
 
       res.json(result);
 
