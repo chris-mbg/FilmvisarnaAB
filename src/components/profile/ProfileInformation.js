@@ -6,7 +6,7 @@ const ProfileInformation = () => {
     <div className={styles.profile_wrapper}>
       <div className={styles.header_wrapper}>
         <h2>Profilinformation</h2>
-        <p>Här nedan kan du redigera din profil.</p>
+        {/* <p>Här nedan kan du redigera din profil.</p> */}
       </div>
       {/* /.header_wrapper */}
       <hr className={styles.hr} />

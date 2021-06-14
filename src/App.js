@@ -10,6 +10,8 @@ import MovieContextProvider from './contexts/MovieContext';
 import './css/App.css';
 import Navbar from './components/Navbar';
 import ReservationContextProvider from './contexts/ReservationContext';
+import Footer from './components/Footer';
+import NotFoundPage from './pages/NotFoundPage';
 
 function App() {
   return (
@@ -33,11 +35,13 @@ function App() {
                   component={RegistrationPage}
                 />
                 <Route exact path='/profile' component={ProfilePage} />
+                <Route component={NotFoundPage} />
               </Switch>
             </BrowserRouter>
           </ReservationContextProvider>
         </MovieContextProvider>
       </UserContextProvider>
+      <Footer />
     </div>
   );
 }

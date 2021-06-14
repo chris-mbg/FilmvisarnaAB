@@ -6,9 +6,19 @@
   font-family: "Open Sans", sans-serif;
   position: relative;
   min-height: 100vh;
+  padding-bottom: 115px;
 }
 
 /* Hides scrollbar for Chrome - but still enable scrolling */
 ::-webkit-scrollbar {
   display: none;
+}
+/* * {
+  outline: 1px solid red;
+  } */
+
+@media screen and (min-width:576px) {
+  .App {
+    padding-bottom: 120px;
+  }
 }

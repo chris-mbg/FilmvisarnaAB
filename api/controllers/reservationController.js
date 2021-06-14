@@ -4,16 +4,21 @@ const Screening = require("../models/Screening");
 const User = require("../models/User");
 
 const getReservationsForUser = async (req, res) => {
-  if(!req.session.user) {
-    return res.status(401).json({status: "error", message: "No user logged in"});
+  if (!req.session.user) {
+    return res
+      .status(401)
+      .json({ status: "error", message: "No user logged in" });
   }
   try {
-    let reservations = await Reservation.find({userId: req.session.user._id});
+    let reservations = await Reservation.find({
+      userId: req.session.user._id,
+    }).sort({ "screening.startTime": "desc" });
+
     return res.json(reservations);
   } catch (error) {
-    res.status(400).json({status: "error", message: error.message});
+    res.status(400).json({ status: "error", message: error.message });
   }
-}
+};
 
 const createNewReservation = async (req, res) => {
   /*
@@ -91,7 +96,62 @@ const createNewReservation = async (req, res) => {
   }
 };
 
+const cancelReservation = async (req, res) => {
+  const { reservationId } = req.params;
+  console.log("ReservationId", reservationId);
+
+  if (!req.session.user) {
+    return res
+      .status(401)
+      .json({ status: "error", message: "No user logged in" });
+  }
+
+  try {
+    let reservationToCancel = await Reservation.findById(reservationId);
+
+    // Check if the user logged in is the one who has made the reservationToCancel
+    if (req.session.user._id !== String(reservationToCancel.userId)) {
+      return res
+        .status(401)
+        .json({ status: "error", message: "Reservation made by other user" });
+    }
+
+    // Find the screening connected to the reservation
+    let screening = await Screening.findById(
+      reservationToCancel.screening.screeningId
+    );
+
+    // ...and change the seats in the screening from booked to unbooked.
+    reservationToCancel.tickets.forEach((ticket, i) => {
+      console.log("In forEach loop, i:", i);
+      screening.seats[ticket.seatNumber[0]][ticket.seatNumber[1]] = 0;
+      console.log("Un-booking ticket...");
+    });
+
+    screening.markModified("seats");
+    await screening.save();
+
+    // When the seats are changed and the screening saved to the DB, delete reservation and send success msg to FE.
+    reservationToCancel.deleteOne((err, result) => {
+      if (err) {
+        res.status(500).json({ status: "error", message: err.message });
+      } else {
+        res
+          .status(200)
+          .json({
+            status: "success",
+            message: `Reservation with ordernr ${reservationId} is now cancelled`,
+            cancelledReservation: result,
+          });
+      }
+    });
+  } catch (error) {
+    res.status(400).json({ status: "error", message: error.message });
+  }
+};
+
 module.exports = {
   getReservationsForUser,
   createNewReservation,
+  cancelReservation,
 };

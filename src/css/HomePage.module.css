@@ -1,3 +1,8 @@
+.homeWrapper{
+  width: 90%;
+  margin: auto;
+  border: 1px solid red;
+}
 .scheduleWrapper{
   background-color: #E5E5E5;
   margin: 1rem;

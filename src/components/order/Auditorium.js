@@ -2,10 +2,11 @@ import { useEffect } from "react";
 import { useContext, useState } from "react";
 import { ReservationContext } from "../../contexts/ReservationContext";
 import Chair from "./Chair";
-// import { Row, Col } from "react-bootstrap";
+import styles from "./styles/Auditorium.module.css";
+
 
 const Auditorium = () => {
-  const { screeningToShow, seatsChosen } = useContext(ReservationContext);
+  const { screeningToShow } = useContext(ReservationContext);
   const [auditorium, setAuditorium] = useState(null);
 
   const renderCinemaMatrix = () => {
@@ -13,6 +14,7 @@ const Auditorium = () => {
     const cinemaMatrix = [];
     if (screeningToShow) {
       const seats = screeningToShow.seats;
+      console.log( 'screeningToShow', screeningToShow)
 
       for (let row = 0; row < seats.length; row++) {
         cinemaMatrix.push(<br key={row}></br>);
@@ -33,13 +35,14 @@ const Auditorium = () => {
                 reserved={false}
                 row={row}
                 seat={seat}
+                chairsInRow={seats[row].length}
                 key={screeningToShow._id + row + seat}
               />
             );
           }
         }
       }
-      return <div className="container">{cinemaMatrix}</div>;
+      return <div className={styles.chairsWrapper}>{cinemaMatrix}</div>;
     } else {
       return <h2>...loading</h2>;
     }
@@ -48,20 +51,18 @@ const Auditorium = () => {
   useEffect(() => setAuditorium(renderCinemaMatrix()), [screeningToShow]);
 
   return (
-    <div className="bg-light text-center mt-3">
-      <span className="border-top border-dark"></span>
-      {screeningToShow ? auditorium : null}
-      {/* <p>Valda platser:</p>
-      {seatsChosen && (
-        <div>
-          {seatsChosen.map((seatNr) => (
-            <p>
-              Rad: {seatNr[0]} Plats: {seatNr[1]}
-            </p>
-          ))}
+    <>
+    {screeningToShow && (
+      <div className={`${styles.wrapper}`}>
+      <span className={styles.screen}></span>
+      {auditorium}
+        <div className={styles.details}>
+          <Chair detailsSelectedChair={true} />
+          <Chair deailsOrderedChair={true} />
         </div>
-      )} */}
-    </div>
+        </div>
+    )}
+    </>
   );
 };
 
