@@ -1,5 +1,5 @@
 import React from "react";
-import map from "../assets/map.jpg";
+import karta from "../assets/karta.jpg";
 import styles from "../css/About.module.css";
 import { Jumbotron } from "react-bootstrap";
 
@@ -8,7 +8,7 @@ const AboutPage = () => {
     
     <div >
       <Jumbotron className={`${styles.aboutContainer}`}>
-        <h1>Om Oss</h1>
+        {/* <h1>Om Oss</h1> */}
       </Jumbotron>
       <div className={styles.upper_wrapper}>
           <h2 className={styles.textHeading}>Filmvisarna</h2>
@@ -32,9 +32,11 @@ const AboutPage = () => {
             Vivamus vel sodales quam.
           </p>
       </div>
+      <h4 className={styles.h4}>Öppettider och kontaktuppgiter</h4>
       <div className={styles.low}>
-        <img className={styles.map} src={map} alt="map" />
+        
         <div className={styles.days_wrapper}>
+          
             <p>Måndag - Fredag</p>
             <p>kl: 9.00 - 20.00</p>
             <p>Lördag - söndag</p>
@@ -44,6 +46,7 @@ const AboutPage = () => {
             <p>tel: 022 172 14 15</p>
             <p>Email: filmvisarna@filmvisarna.se</p>
         </div>
+        <img className={styles.karta} src={karta} alt="karta" />
       </div>
     </div>
   );
