@@ -7,13 +7,21 @@ import { Modal } from 'react-bootstrap';
 import ModalHeader from 'react-bootstrap/ModalHeader';
 import style from '../css/Login.module.css';
 
-// const {
-//   handleCloseLoginModal,
-//   handleShowLoginModal,
-//   showLogin,
-//   loggedInUser,
-//   logout,
-// } = useContext(UserContext);
+// function GuardedRoute({ props, component: Component, auth, ...rest }) {
+//   const { handleCloseLoginModal, handleShowLoginModal } =
+//     useContext(UserContext);
+
+//   <Route
+//     {...rest}
+//     render={(props) =>
+//       auth === true ? (
+//         <Component {...rest} {...props} />
+//       ) : (
+//         <Redirect to={handleShowLoginModal} component={Login} />
+//       )
+//     }
+//   />;
+// }
 
 const GuardedRoute = ({ component: Component, auth, ...rest }) => (
   <Route
@@ -22,7 +30,7 @@ const GuardedRoute = ({ component: Component, auth, ...rest }) => (
       auth === true ? (
         <Component {...rest} {...props} />
       ) : (
-        <Redirect to='/registration' component={Login} />
+        <Redirect exact path to='/' component={Login} />
       )
     }
   />
