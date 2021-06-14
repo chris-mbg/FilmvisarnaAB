@@ -22,7 +22,6 @@ const getMovieById = async (req, res) => {
 
 const getFilteredMovies = async (req, res) => {
   const userQuery = req.query;
-  console.log(userQuery);
 
   // checked the object for the presence of values, if there are none, I get all the movies
   if (Object.keys(userQuery).length === 0) {
@@ -49,7 +48,7 @@ const getFilteredMovies = async (req, res) => {
         "gi"
       );
 
-      let screeningResults;
+      let screeningResults = [];
       if (userQuery.startTime) {
         const minStartTime = new Date(userQuery.startTime + " 00:00");
         const maxStartTime = new Date(userQuery.startTime + " 23:00");
@@ -60,8 +59,10 @@ const getFilteredMovies = async (req, res) => {
           },
           { movieId: 1 }
         ).exec();
+
+        screeningResults = screeningResults.map((value) => value.movieId);
       }
-      console.log(screeningResults);
+
       // 60c326ac579ac038c4b685ae
       // 60c326ac579ac038c4b685a9
       // 60c326ac579ac038c4b685ac
@@ -73,19 +74,33 @@ const getFilteredMovies = async (req, res) => {
           { actors: actorsQuery },
           { director: directorsQuery },
           userQuery.genre ? { genre: userQuery.genre } : {},
-          userQuery.price ? { price: userQuery.price } : {},
+          userQuery.price ? { price: parseInt(userQuery.price) } : {},
           userQuery.ageLimit ? { ageLimit: userQuery.ageLimit } : {},
           userQuery.language ? { language: userQuery.language } : {},
+          screeningResults.length === 0
+            ? {}
+            : {
+                $or: [
+                  {
+                    _id: screeningResults,
+                  },
+                ],
+              },
+          {
+            $or: [
+              { title: textSearchQuery },
+              { description: textSearchQuery },
+              { director: textSearchQuery },
+              { actors: textSearchQuery },
+            ],
+          },
         ],
-        $or: [
-          { title: textSearchQuery },
-          { description: textSearchQuery },
-          { director: textSearchQuery },
-          { actors: textSearchQuery },
-        ],
-        $and: [
-          { movieId: "60c326ac579ac038c4b685ae" }
-        ]
+        // $or: [
+        //   { title: textSearchQuery },
+        //   { description: textSearchQuery },
+        //   { director: textSearchQuery },
+        //   { actors: textSearchQuery },
+        // ],
       });
 
       res.json(result);

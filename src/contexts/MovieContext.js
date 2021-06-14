@@ -10,10 +10,10 @@ const MovieContextProvider = (props) => {
    */
   const userRequest = {
     // actors: "Chris",//regex
-    // ageLimit: "PG-7",
+    ageLimit: "PG-7",
       // director: "Boden", //regex
     // genre: "Äventyr",
-    // language: "Franska",
+    language: "Franska",
     // minLength: 93,//must have a value
     // maxLength: 136,//must have a value
       // textSearch: "Dalida",//regex
