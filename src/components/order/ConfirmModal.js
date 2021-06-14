@@ -2,6 +2,7 @@ import styles from "../../css/ConfirmModal.module.css";
 import { Container, Row, Col } from "react-bootstrap";
 import moment from "moment";
 import "moment/locale/sv";
+import { checkTicketType } from "../../utilities/utilities";
 
 const ConfirmModal = ({ handleCloseConfirmModal, userConfirmationInfo }) => {
   const reservation = (
@@ -36,7 +37,8 @@ const ConfirmModal = ({ handleCloseConfirmModal, userConfirmationInfo }) => {
           <ul className={styles.ul}>
             {userConfirmationInfo.tickets.map((ticket, i) => (
               <li key={i}>
-                Rad {ticket.seatNumber[0] + 1}, Plats {ticket.seatNumber[1] + 1}
+                Rad {ticket.seatNumber[0] + 1}, Plats {ticket.seatNumber[1] + 1} {" "}
+                ({checkTicketType(ticket.ticketType)})
               </li>
             ))}
           </ul>
