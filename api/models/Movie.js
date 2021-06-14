@@ -9,10 +9,11 @@ const movieSchema = new Schema({
   genre: String,
   image: String,
   language: String,
-  length: Number,       // Or should this be a Number? But info from OMDB is ie Runtime: "155 min"
+  length: Number,
   productionCountries: [String],
   productionYear: Number,
   title: String,
+  price: Number,
   youtubeTrailer: String,
 });
 

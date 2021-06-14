@@ -70,7 +70,7 @@ export default function MoviePage(props) {
               </p>
               <p>
                 {" "}
-                Längd: <span>{movie.length}</span>
+                Längd: <span>{movie.length} min</span>
                 {/* Sammanfattning: <span>{movie.productionYear}</span>
                 &#183;<span>{movie.length}</span> */}
               </p>
