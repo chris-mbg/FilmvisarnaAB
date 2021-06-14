@@ -66,7 +66,7 @@ export default function MovieSchedule({
           </div>
         </Col>
         <Col
-          xs={3}
+          xs={12}
           sm={2}
           className={`d-flex justify-content-end align-items-center ${styles.scheduleButtonWrapper}`}
         >
