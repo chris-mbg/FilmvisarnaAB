@@ -22,6 +22,7 @@ const getMovieById = async (req, res) => {
 
 const getFilteredMovies = async (req, res) => {
   const userQuery = req.query;
+  console.log(userQuery)
 
   // checked the object for the presence of values, if there are none, I get all the movies
   if (Object.keys(userQuery).length === 0) {
@@ -35,58 +36,105 @@ const getFilteredMovies = async (req, res) => {
   } else {
     try {
       let movies = [];
-  
-      for (let i in userQuery) {
-        console.log("INSIDE LOOP", i, userQuery, userQuery[i], typeof i);
-        if ("startTime" in userQuery) {
-          const minStartTime = new Date(userQuery.startTime + " 00:00");
-          const maxStartTime = new Date(userQuery.startTime + " 23:00");
 
-        await Screening.find({
-            startTime: { $gte: minStartTime, $lte: maxStartTime },
-          }, { movieId: 1}).populate("movieId").then(dbMovies => {
+      const minLength = parseInt(userQuery.minLength) || 0;
+      const maxLength = parseInt(userQuery.maxLength) || 236;
+      const actorsQuery = new RegExp(`\\w*${userQuery.actors ?? ""}\\w*`, "gi");
+      const directorsQuery = new RegExp(`\\w*${userQuery.director ?? ""}\\w*`, "gi");
+      const textSearchQuery = new RegExp(`\\w*${userQuery.textSearch ?? ""}\\w*`, "gi");
 
-            const mappedMovies = dbMovies.map(item => item.movieId)
-            movies = [...mappedMovies];
-          });
-          
+      let result = await Movie.find(
+        {
+          $and: [
+            { length: { $gte: minLength, $lte: maxLength }},
+            { actors: actorsQuery },
+            { director: directorsQuery },
+            userQuery.genre ? { genre: userQuery.genre} : {},
+            userQuery.price ? { price: userQuery.price} : {},
+            userQuery.ageLimit ? { ageLimit: userQuery.ageLimit} : {},
+            userQuery.language ? { language: userQuery.language} : {},
+          ],
+          $or: [
+            { title: textSearchQuery },
+            { description: textSearchQuery },
+            { director: textSearchQuery },
+            { actors: textSearchQuery },
+          ]
         }
-        if ("minLength" in userQuery && "maxLength" in userQuery) {
-          const minLength = parseInt(userQuery.minLength) || 0;
-          const maxLength = parseInt(userQuery.maxLength) || 136;
+      ).exec();
 
-          let movie = await Movie.where({
-            length: { $gte: minLength, $lte: maxLength },
-          }).exec();
-          movies = [...movie];
-        }
+      res.json(result);
 
-        if (
-          "actors" in userQuery || "director" in userQuery ) {
-          const actorsQuery = new RegExp(`^${userQuery.actors}\\w*`, "gi");
-          const directorsQuery = new RegExp(`^${userQuery.director}\\w*`, "gi");
-          let movie = await Movie.find({
-            $or: [{ actors: { $in: [actorsQuery] } }, { director: directorsQuery }],
-          }).exec();
-          movies = [...movie];
-        }
+      // for (let i in userQuery) {
+      //   console.log("INSIDE LOOP", i, userQuery, userQuery[i], typeof i);
+      //   if ("startTime" in userQuery) {
+      //     const minStartTime = new Date(userQuery.startTime + " 00:00");
+      //     const maxStartTime = new Date(userQuery.startTime + " 23:00");
 
-        if("title" in userQuery){
-            titleQuery = new RegExp(`^${userQuery[i]}\\w*`, "gi");
-            let movie = await Movie.find({
-              $or: [{ title : titleQuery }, {description: titleQuery }, {director: titleQuery }],
-            }).exec();
-            movies = [...movie]; 
-        }
+      //     await Screening.find(
+      //       {
+      //         startTime: { $gte: minStartTime, $lte: maxStartTime },
+      //       },
+      //       { movieId: 1 }
+      //     )
+      //       .populate("movieId")
+      //       .then((dbMovies) => {
+      //         const mappedMovies = dbMovies.map((item) => item.movieId);
+      //         movies = [...mappedMovies];
+      //       });
+      //   }
+      //   if ("minLength" in userQuery && "maxLength" in userQuery) {
+      //     const minLength = parseInt(userQuery.minLength) || 0;
+      //     const maxLength = parseInt(userQuery.maxLength) || 136;
 
-        if ("genre" in userQuery || "ageLimit" in userQuery || "language" in userQuery || "price" in userQuery){
-          let movie = await Movie.find({
-            $or: [{ genre : userQuery.genre }, { ageLimit: userQuery.ageLimit }, { language: userQuery.language }, {price : parseInt(userQuery.price) }],
-          }).exec();
-          movies = [...movie];
-        }
-      }
-       return res.json(movies);
+      //     let movie = await Movie.where({
+      //       length: { $gte: minLength, $lte: maxLength },
+      //     }).exec();
+      //     movies = [...movie];
+      //   }
+
+      //   if ("actors" in userQuery || "director" in userQuery) {
+      //     const actorsQuery = new RegExp(`^${userQuery.actors}\\w*`, "gi");
+      //     const directorsQuery = new RegExp(`^${userQuery.director}\\w*`, "gi");
+      //     let movie = await Movie.find({
+      //       $or: [
+      //         { actors: { $in: [actorsQuery] } },
+      //         { director: directorsQuery },
+      //       ],
+      //     }).exec();
+      //     movies = [...movie];
+      //   }
+
+      //   if ("title" in userQuery) {
+      //     titleQuery = new RegExp(`^${userQuery[i]}\\w*`, "gi");
+      //     let movie = await Movie.find({
+      //       $or: [
+      //         { title: titleQuery },
+      //         { description: titleQuery },
+      //         { director: titleQuery },
+      //       ],
+      //     }).exec();
+      //     movies = [...movie];
+      //   }
+
+      //   if (
+      //     "genre" in userQuery ||
+      //     "ageLimit" in userQuery ||
+      //     "language" in userQuery ||
+      //     "price" in userQuery
+      //   ) {
+      //     let movie = await Movie.find({
+      //       $or: [
+      //         { genre: userQuery.genre },
+      //         { ageLimit: userQuery.ageLimit },
+      //         { language: userQuery.language },
+      //         { price: parseInt(userQuery.price) },
+      //       ],
+      //     }).exec();
+      //     movies = [...movie];
+      //   }
+      // }
+      // return res.json(movies);
     } catch (error) {
       res.status(500).json({ status: "error", message: error.message });
       throw error;

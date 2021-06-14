@@ -16,7 +16,7 @@ const MovieContextProvider = (props) => {
     // language: "Franska",
     // minLength: 93,//must have a value
     // maxLength: 136,//must have a value
-      // title: "Dalida",//regex
+      // textSearch: "Dalida",//regex
     // price: 90,
     // startTime:"2021-07-24",
   };
