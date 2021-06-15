@@ -14,18 +14,6 @@ import Footer from './components/Footer';
 import GuardedRoute from './components/GuardedRoute';
 
 function App() {
-  const [isAuthenticated, setisAuthenticated] = useState(false);
-
-  // function login() {
-  //   setisAuthenticated(true);
-  //   console.log('loggedInUser:' + isAuthenticated);
-  // }
-
-  // function logout() {
-  //   setisAuthenticated(false);
-  //   console.log('loggedInUser:' + isAuthenticated);
-  // }
-
   return (
     <div className='App'>
       <UserContextProvider>
@@ -41,19 +29,13 @@ function App() {
                   exact
                   path='/order/:movieId/:screeningId?'
                   component={OrderPage}
-                  auth={isAuthenticated}
                 />
                 <Route
                   exact
                   path='/registration'
                   component={RegistrationPage}
                 />
-                <GuardedRoute
-                  exact
-                  path='/profile'
-                  component={ProfilePage}
-                  auth={isAuthenticated}
-                />
+                <GuardedRoute exact path='/profile' component={ProfilePage} />
               </Switch>
             </BrowserRouter>
           </ReservationContextProvider>
