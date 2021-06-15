@@ -6,7 +6,7 @@ import styles from "./styles/Auditorium.module.css";
 
 
 const Auditorium = () => {
-  const { screeningToShow, seatsChosen } = useContext(ReservationContext);
+  const { screeningToShow } = useContext(ReservationContext);
   const [auditorium, setAuditorium] = useState(null);
 
   const renderCinemaMatrix = () => {

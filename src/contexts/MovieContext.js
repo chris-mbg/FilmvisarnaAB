@@ -4,16 +4,63 @@ export const MovieContext = createContext();
 
 const MovieContextProvider = (props) => {
   const [allMovies, setAllMovies] = useState(null);
+  const [userRequest, setUserRequest] = useState({})
+
+  /**
+   *  request example
+   */
+  //const userRequest = {
+    // actors: "Chris",//regex
+    //ageLimit: "PG-7",
+      // director: "Boden", //regex
+    // genre: "Äventyr",
+    //language: "Franska",
+    // minLength: 93,//must have a value
+    // maxLength: 136,//must have a value
+      // textSearch: "Dalida",//regex
+    // price: 90,
+    // startTime:"2021-07-24",
+  //};
 
   // All movies fetch from DB on render
-  useEffect(() => fetchAllMovies(), []);
+  useEffect(() => fetchFilteredMovies(userRequest), []);
 
-  const fetchAllMovies = async () => {
-    let result = await fetch("/api/v1/movies/");
-    result = await result.json();
-    if (result.status !== "error") {
-      setAllMovies(result);
+  /**
+   * if the object is empty - returns all data
+   * if the object contains request fields - returns specific movie items
+   * @param {object} request
+   */
+  const fetchFilteredMovies = async (userRequest) => {
+    let result = null;
+
+    if (Object.keys(userRequest).length === 0) {
+      result = await fetch("/api/v1/movies/");
+
+    } else {
+      let queryString = "";
+
+      for (let key in userRequest) {
+        // delete empty key
+        if (userRequest[key] === "") {
+          delete userRequest[key]
+        }else{
+          queryString += `${key}=${userRequest[key]}&`;
+        }
+      }
+
+      // delete last "&"
+      queryString = queryString.slice(0, -1);
+      // todo delete
+      console.log("::queryString:::", queryString, typeof queryString);
+
+      result = await fetch(`/api/v1/movies/?${queryString}`);
     }
+
+    result = await result.json();
+      if (result.status !== "error") {
+        setAllMovies(result);
+        console.log(result)
+      }
   };
 
   const getMovieById = async (movieId) => {
@@ -30,7 +77,10 @@ const MovieContextProvider = (props) => {
     result = await result.json();
     if (result.status !== "error") {
       // Makes the startTime property into a Date object before returning the result
-      result = result.map(screening => ({...screening, startTime: new Date(screening.startTime)}));
+      result = result.map((screening) => ({
+        ...screening,
+        startTime: new Date(screening.startTime),
+      }));
       return result;
     }
   };
