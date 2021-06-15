@@ -10,4 +10,7 @@ router.post("/login", userController.login);
 router.get("/whoami", userController.whoami);
 router.get("/logout", userController.logout);
 
+/* Updates a user */
+router.put("/:userId", userController.userUpdate);
+
 module.exports = router;
