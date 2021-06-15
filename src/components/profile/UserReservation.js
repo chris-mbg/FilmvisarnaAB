@@ -4,6 +4,7 @@ import { Accordion, Row, Col, Modal } from "react-bootstrap";
 import moment from "moment";
 import "moment/locale/sv";
 import CancelBookingModal from "./CancelBookingModal";
+import { checkTicketType } from "../../utilities/utilities";
 
 const UserReservation = ({ reservation }) => {
   const [toggleAccordion, setToggleAccordion] = useState(false);
@@ -77,7 +78,8 @@ const UserReservation = ({ reservation }) => {
                 {reservation?.tickets.map((ticket, i) => (
                   <li key={i}>
                     Rad {ticket.seatNumber[0] + 1}, Plats{" "}
-                    {ticket.seatNumber[1] + 1}
+                    {ticket.seatNumber[1] + 1} (
+                    {checkTicketType(ticket.ticketType)})
                   </li>
                 ))}
               </ul>
@@ -105,7 +107,7 @@ const UserReservation = ({ reservation }) => {
               <p className={styles.order_information}>
                 Order:{" "}
                 <span className={styles.sub_information}>
-                  #{reservation?._id}
+                  #{reservation?._id.slice(0, 8)}
                 </span>
               </p>
             </Col>

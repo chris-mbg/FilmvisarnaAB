@@ -15,7 +15,7 @@ const ReservationContextProvider = (props) => {
   const [movieScreenings, setMovieScreenings] = useState(null);
   const [screeningToShow, setScreeningToShow] = useState(null);
 
-  const [seatsChosen, setSeatsChosen] = useState([]);
+  const [ticketsChosen, setTicketsChosen] = useState([]);
 
   useEffect(() => {
     async function changeMovie() {
@@ -35,11 +35,11 @@ const ReservationContextProvider = (props) => {
   }, [movieIdOnOrderPage]);
 
   useEffect(() => {
-    // If change in movie or screening --> reset seatsChosen
-    setSeatsChosen([]);
+    // If change in movie or screening --> reset ticketsChosen
+    setTicketsChosen([]);
   }, [screeningIdOnOrderPage, movieIdOnOrderPage]);
 
-  useEffect(() => console.log("Seats chosen by user", seatsChosen));
+  useEffect(() => console.log("Tickets/seats chosen by user", ticketsChosen));
 
   // Better to get this from BE and DB..? But we still need to get all screeenings also, and therefore OK to filter in FE, because we already have the info here...
   useEffect(() => {
@@ -70,6 +70,19 @@ const ReservationContextProvider = (props) => {
     screeningToShow,
   ]);
 
+  const getTotalPrice = (ticketsArray, fullPrice) => {
+    return ticketsArray.reduce((totalPrice, currVal) => {
+      let ticketPrice =
+        currVal.ticketType === "adult"
+          ? fullPrice
+          : currVal.ticketType === "senior"
+          ? 0.8 * fullPrice
+          : 0.7 * fullPrice; // The ticketType is "child"
+      totalPrice += ticketPrice;
+      return totalPrice;
+    }, 0);
+  };
+
   const saveReservation = async (reservationInfo) => {
     console.log(reservationInfo);
     let result = await fetch("/api/v1/reservations/", {
@@ -84,25 +97,17 @@ const ReservationContextProvider = (props) => {
       return false;
     } else {
       console.log("Seats booked", result.reservation);
-      //When possible --> Update list of user reservations showed on ProfilePage.
+      //Update list of user reservations showed on ProfilePage.
       getAllReservationsForUser();
       return result.reservation;
     }
   };
 
-  const getTickets = () => {
-    const tickets = [];
-    for (let i = 0; i < seatsChosen.length; i++) {
-      tickets.push({ ticketType: "adult", seatNumber: seatsChosen[i] });
-    }
-    return tickets;
-  };
-
   const userConfirmsReservation = async () => {
     let result = await saveReservation({
       screeningId: screeningToShow._id,
-      tickets: getTickets(),
-      totalPrice: seatsChosen.length * screeningToShow.price,
+      tickets: ticketsChosen,
+      totalPrice: getTotalPrice(ticketsChosen, screeningToShow.price),
     });
     return result;
   };
@@ -137,10 +142,10 @@ const ReservationContextProvider = (props) => {
     setScreeningIdOnOrderPage,
     movieScreenings,
     screeningToShow,
-    //setScreeningToShow,
-    seatsChosen,
-    setSeatsChosen,
+    ticketsChosen,
+    setTicketsChosen,
     userConfirmsReservation,
+    getTotalPrice,
     userCancelsReservation,
   };
 
