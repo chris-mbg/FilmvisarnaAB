@@ -4,22 +4,23 @@ export const MovieContext = createContext();
 
 const MovieContextProvider = (props) => {
   const [allMovies, setAllMovies] = useState(null);
+  const [userRequest, setUserRequest] = useState({})
 
   /**
    *  request example
    */
-  const userRequest = {
+  //const userRequest = {
     // actors: "Chris",//regex
-    ageLimit: "PG-7",
+    //ageLimit: "PG-7",
       // director: "Boden", //regex
     // genre: "Äventyr",
-    language: "Franska",
+    //language: "Franska",
     // minLength: 93,//must have a value
     // maxLength: 136,//must have a value
       // textSearch: "Dalida",//regex
     // price: 90,
     // startTime:"2021-07-24",
-  };
+  //};
 
   // All movies fetch from DB on render
   useEffect(() => fetchFilteredMovies(userRequest), []);

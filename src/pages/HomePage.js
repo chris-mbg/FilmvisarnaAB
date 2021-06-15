@@ -6,9 +6,10 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 const HomePage = () => {
- 
+
   return (
     <div className='homePage'>
+      <ImgCarousel />
       {/* Search bar component goes here */}
       <Row>
         <Col xs={0}>
