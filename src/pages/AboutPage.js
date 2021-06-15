@@ -5,84 +5,81 @@ import { Carousel } from "react-bootstrap";
 
 const AboutPage = () => {
   return (
-    
-    <div >
+    <div>
       <Carousel>
-  <Carousel.Item>
-    <img
-      className={styles.aboutContainer}
-      src="https://media.istockphoto.com/photos/red-velvet-theater-curtain-picture-id915090126?k=6&m=915090126&s=170667a&w=0&h=rd1GLJhQotmUvs7qt2E0qaha2CrEkZBWAvuvFrxH0Mo="
-      alt="First slide"
-    />
-    <Carousel.Caption>
-      {/* <h3>First slide label</h3>
+        <Carousel.Item>
+          <img
+            className={styles.aboutContainer}
+            src="https://media.istockphoto.com/photos/red-velvet-theater-curtain-picture-id915090126?k=6&m=915090126&s=170667a&w=0&h=rd1GLJhQotmUvs7qt2E0qaha2CrEkZBWAvuvFrxH0Mo="
+            alt="First slide"
+          />
+          <Carousel.Caption>
+            {/* <h3>First slide label</h3>
       <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p> */}
-    </Carousel.Caption>
-  </Carousel.Item>
-  <Carousel.Item>
-    <img
-      className={styles.aboutContainer}
-      src="https://img.aws.la-croix.com/2017/12/01/1200896237/frequentation-salles-cinema-cesse-daugmenter-atteint-20112156-millions-dentrees_0_729_486.jpg"
-      alt="Second slide"
-    />
+          </Carousel.Caption>
+        </Carousel.Item>
+        <Carousel.Item>
+          <img
+            className={styles.aboutContainer}
+            src="https://img.aws.la-croix.com/2017/12/01/1200896237/frequentation-salles-cinema-cesse-daugmenter-atteint-20112156-millions-dentrees_0_729_486.jpg"
+            alt="Second slide"
+          />
 
-    <Carousel.Caption>
-      {/* <h3>Second slide label</h3>
+          <Carousel.Caption>
+            {/* <h3>Second slide label</h3>
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p> */}
-    </Carousel.Caption>
-  </Carousel.Item>
-  <Carousel.Item>
-    <img
-      className={styles.aboutContainer}
-      src="https://www.vectracom.fr/wp-content/uploads/2018/11/700_FO59474791_a1dfd092f58a037e9ed227119296e100.jpg"
-      alt="Third slide"
-    />
+          </Carousel.Caption>
+        </Carousel.Item>
+        <Carousel.Item>
+          <img
+            className={styles.aboutContainer}
+            src="https://www.vectracom.fr/wp-content/uploads/2018/11/700_FO59474791_a1dfd092f58a037e9ed227119296e100.jpg"
+            alt="Third slide"
+          />
 
-    <Carousel.Caption>
-      {/* <h3>Third slide label</h3>
+          <Carousel.Caption>
+            {/* <h3>Third slide label</h3>
       <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p> */}
-    </Carousel.Caption>
-  </Carousel.Item>
-</Carousel>
+          </Carousel.Caption>
+        </Carousel.Item>
+      </Carousel>
       <div className={styles.upper_wrapper}>
-          <h2 className={styles.textHeading}>Filmvisarna</h2>
-          <p>
-          ”They may take our lives, but they’ll never take our freedom!” – Mel Gibson. 
-          ”I’m also just a girl, standing in front of a boy, asking him to love her.” – Julia Roberts.
-          ”My name is Maximus Decimus Meridius, commander of the Armies of the North, 
-          General of the Felix Legions and loyal servant to the true emperor, Marcus Aurelius. 
-          Father to a murdered son, husband to a murdered wife. And I will have my vengeance, 
-          in this life or the next.” – Russel Crowe.
-          ”Just keep swimming” – Doris
-          </p>
-          <p>
-          ”You is kind. You is smart. You is important.” – Viola Davis.
-          ”You talkin’ to me? You talkin’ to me? You talkin’ to me? Well, 
-          who the hell else are you talkin’ to? You talkin’ to me? Well, 
-          I’m the only one here. Who the f–k do you think you’re talkin’ to?” – Robert De Niro.
-          ”Say hello to my little friend” – Al Pacino.
-          ”Keep your friends close, but you enemies closer” – Al Pacino.
-          ”Don’t forget to fall in love with yourself first” – Sarah Jessica Parker.
-          ”My mama always said, ´Life is like a box of chocolates; 
-          you never know what you’re gonna get” – Tom Hanks.
-          ”The greatest trick the devil ever pulled was convincing the world he didn’t exist.” – Kevin Spacey.
-          </p>
+        <h2 className={styles.textHeading}>Filmvisarna</h2>
+        <p>
+          ”They may take our lives, but they’ll never take our freedom!” – Mel
+          Gibson. ”I’m also just a girl, standing in front of a boy, asking him
+          to love her.” – Julia Roberts. ”My name is Maximus Decimus Meridius,
+          commander of the Armies of the North, General of the Felix Legions and
+          loyal servant to the true emperor, Marcus Aurelius. Father to a
+          murdered son, husband to a murdered wife. And I will have my
+          vengeance, in this life or the next.” – Russel Crowe. ”Just keep
+          swimming” – Doris
+        </p>
+        <p>
+          ”You is kind. You is smart. You is important.” – Viola Davis. ”You
+          talkin’ to me? You talkin’ to me? You talkin’ to me? Well, who the
+          hell else are you talkin’ to? You talkin’ to me? Well, I’m the only
+          one here. Who the f–k do you think you’re talkin’ to?” – Robert De
+          Niro. ”Say hello to my little friend” – Al Pacino. ”Keep your friends
+          close, but you enemies closer” – Al Pacino. ”Don’t forget to fall in
+          love with yourself first” – Sarah Jessica Parker. ”My mama always
+          said, ´Life is like a box of chocolates; you never know what you’re
+          gonna get” – Tom Hanks. ”The greatest trick the devil ever pulled was
+          convincing the world he didn’t exist.” – Kevin Spacey.
+        </p>
       </div>
       <h4 className={styles.h4}>Öppettider och kontaktuppgiter</h4>
       <div className={styles.low}>
-        
         <div className={styles.days_wrapper}>
-          
-            <p>Måndag - Fredag</p>
-            <p>kl: 9.00 - 20.00</p>
-            <p>Lördag - söndag</p>
-            <p>10.00 - 22.00</p>
+          <p>Måndag - Fredag</p>
+          <p>kl: 9.00 - 20.00</p>
+          <p>Lördag - söndag</p>
+          <p>10.00 - 22.00</p>
         </div>
         <div>
-            <p>Adressgatan 11, 
-              123 45 Staden</p>
-            <p>tel: 022 172 14 15</p>
-            <p>Email: filmvisarna@filmvisarna.se</p>
+          <p>Adressgatan 11, 123 45 Staden</p>
+          <p>tel: 022 172 14 15</p>
+          <p>Email: filmvisarna@filmvisarna.se</p>
         </div>
         <img className={styles.karta} src={karta} alt="karta" />
       </div>
