@@ -27,7 +27,7 @@ const FilterWrapper = () => {
         <FilterItem heading={"Datum"} component={<DateOptions />} />
         <FilterItem
           heading={"Pris"}
-          component={<OptionsSelect selectType={"genre"} />}
+          component={<OptionsSelect selectType={"price"} />}
         />
         <FilterItem
           heading={"Genre"}
