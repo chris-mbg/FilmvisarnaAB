@@ -5,7 +5,7 @@ import CustomButton from "./CustomButton";
 import styles from "../css/BookButton.module.css"
 
 const BookButton = ({ movieId, screeningId = null }) => {
-console.log("INSIDE BOOK BUTTON",movieId, screeningId);
+
   const { loggedInUser, setShowLogin} = useContext(UserContext);
   const history = useHistory();
 

@@ -44,7 +44,7 @@ export default function MovieWrapper() {
             </span>
           ) : (
             <span>
-              Visa alla filmer <i class="fas fa-arrow-down"></i>
+              Visa alla filmer <i className="fas fa-arrow-down"></i>
             </span>
           )}
         </button>

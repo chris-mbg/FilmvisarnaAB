@@ -9,11 +9,14 @@ import Col from "react-bootstrap/Col";
 
 const HomePage = () => {
   const { getScreeningsForMovie } = useContext(MovieContext);
-  const [screenings, setScreening] = useState(null);
+  const [screenings, setScreenings] = useState(null);
 
-  useEffect(async () => {
-    let schedule = await getScreeningsForMovie("", new Date().toLocaleDateString("sv-SV"));
-    setScreening(schedule);
+  useEffect( () => {
+    async function getTodaysScreenings() {
+      let schedule = await getScreeningsForMovie("", new Date().toLocaleDateString("sv-SV"));
+      setScreenings(schedule);
+    };
+    getTodaysScreenings();
   }, []);
 
   return (
@@ -33,6 +36,7 @@ const HomePage = () => {
         {screenings &&
           screenings.map((movieScreen) => (
             <MovieSchedule
+              key={movieScreen._id}
               time={movieScreen.startTime.toLocaleString("sv-SE").slice(11, 16)}
               title={movieScreen.movieId.title}
               auditorium={movieScreen.auditoriumName}
