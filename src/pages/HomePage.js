@@ -12,7 +12,7 @@ const HomePage = () => {
   const [screenings, setScreening] = useState(null);
 
   useEffect(async () => {
-    let schedule = await getScreeningsForMovie();
+    let schedule = await getScreeningsForMovie("", new Date().toLocaleDateString("sv-SV"));
     setScreening(schedule);
   }, []);
 
@@ -37,6 +37,8 @@ const HomePage = () => {
               title={movieScreen.movieId.title}
               auditorium={movieScreen.auditoriumName}
               isHomePage={true}
+              movieId={movieScreen.movieId._id}
+              screeningId={movieScreen._id}
             />
           ))}
       </div>

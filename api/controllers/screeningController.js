@@ -2,21 +2,9 @@ const Screening = require("../models/Screening");
 
 const getScreenings = async (req, res) => {
   try {
-    // .find() with movieId as filter parameter and all screenings regardless of date
-    //let screenings = await Screening.find({ movieId: movieId }).exec();
-
-    // Screenings from when the request is made and onwards
-    const now = new Date();
-
-    // let screenings = await Screening.find({ movieId: movieId }).where('startTime').gte(now).sort("startTime").exec();
-
-    // Just changed the query to db to also populate movieId
-    // let screenings = await Screening.find( movieId ).where('startTime').gte(now).sort("startTime").populate("movieId").exec();
-
-    if (req.query.movieId === "undefined") {
-
-      date = now.toLocaleDateString("sv-SV")
-
+    if (req.query.date) {
+      const date = req.query.date
+  
       const minStartTime = new Date(date + " 00:00");
       const maxStartTime = new Date(date + " 23:00");
 
@@ -25,13 +13,14 @@ const getScreenings = async (req, res) => {
       }).populate("movieId").exec();
 
       return res.json(screenings);
+    } 
 
-    } else {
+    if (req.query.movieId){
       const movieId = req.query;
-      console.log(movieId);
+
       let screenings = await Screening.find( movieId )
         .where("startTime")
-        .gte(now)
+        .gte(new Date())
         .sort("startTime")
         .populate("movieId")
         .exec();

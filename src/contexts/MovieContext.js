@@ -68,10 +68,14 @@ const MovieContextProvider = (props) => {
     }
   };
 
-  const getScreeningsForMovie = async (movieId) => {
+  const getScreeningsForMovie = async (movieId, date) => {
+    let queryString;
+    if(movieId){queryString = `movieId=${movieId}`} 
+    if(date){queryString = `date=${date}`}
 
-    let result = await fetch(`/api/v1/screenings/?movieId=${movieId}`);
+    let result = await fetch(`/api/v1/screenings/?${queryString}`);
     result = await result.json();
+    
     if (result.status !== "error") {
       // Makes the startTime property into a Date object before returning the result
       result = result.map((screening) => ({
