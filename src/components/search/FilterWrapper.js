@@ -2,7 +2,7 @@ import Accordion from "react-bootstrap/Accordion";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import styles from "./styles/FilterWrapper.module.css";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import FilterItem from "./FilterItem";
 import OptionsSelect from "./OptionsSelect";
 import LengthOptions from "./LengthOptions";
@@ -15,6 +15,22 @@ const FilterWrapper = () => {
   const { setUserRequest } = useContext(MovieContext);
 
   const [toggleAccordion, setToggleAccordion] = useState(false);
+
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    // Handler to call on window resize
+    function handleResize() {
+      // Set window width/height to state
+      setWindowWidth(window.innerWidth);
+    }
+    // Add event listener
+    window.addEventListener("resize", handleResize);
+
+    // Remove event listener on cleanup
+    return () => window.removeEventListener("resize", handleResize);
+  },[])
+
   const icon = !toggleAccordion ? (
     <i className={`fas fa-search fa-lg`} />
   ) : (
@@ -69,9 +85,28 @@ const FilterWrapper = () => {
     );
   };
 
+  const noAccordion = () => {
+    return (
+      <>
+        <div style={{height: 100}}></div>
+        <div className={styles.filterWrapper}>
+          <div className="d-flex justify-content-between align-items-center">
+            <span className={styles.filterHeading}>Sök</span>
+            {/* <span>{icon}</span> */}
+          </div>
+          {filters()}
+        </div>
+      </>
+    );
+  };
+
   const getAccordion = () => {
     return (
-      <div className={toggleAccordion ? styles.filterWrapper : styles.filterWrapperClosed}>
+      <div
+        className={
+          toggleAccordion ? styles.filterWrapper : styles.filterWrapperClosed
+        }
+      >
         <Accordion>
           <Accordion.Toggle
             as={"div"}
@@ -84,9 +119,7 @@ const FilterWrapper = () => {
               <span>{icon}</span>
             </div>
           </Accordion.Toggle>
-          <Accordion.Collapse eventKey="0">
-            {filters()}
-          </Accordion.Collapse>
+          <Accordion.Collapse eventKey="0">{filters()}</Accordion.Collapse>
         </Accordion>
       </div>
     );
@@ -94,9 +127,8 @@ const FilterWrapper = () => {
 
   return (
     <>
-      {/* <hr className={styles.lineBtwn}></hr> */}
-      {getAccordion()}
-      {/* <hr className={styles.lineBtwn}></hr> */}
+      {windowWidth >= 1200 ? noAccordion() : getAccordion()}
+      {/* {getAccordion()} */}
     </>
   );
 };

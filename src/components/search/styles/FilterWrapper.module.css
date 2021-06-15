@@ -48,3 +48,8 @@ input.textSearch {
     border: none;
   }
 }
+@media screen and (min-width:1200px) {
+  .filterWrapper {
+    margin-left: 1.25rem;
+  }
+}
