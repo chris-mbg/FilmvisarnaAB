@@ -1,16 +1,14 @@
-import styles from "./styles/MultiRangeSlider.module.css"
+import styles from "./styles/MultiRangeSlider.module.css";
 import PropTypes from "prop-types"; // Built-in typechecking
 import { useRef, useCallback, useEffect, useContext } from "react";
 import { MovieContext } from "../../contexts/MovieContext";
 
-
-const MultiRangeSlider = ({ min, max}) => {
-
-  const {userRequest, setUserRequest } = useContext(MovieContext);
+const MultiRangeSlider = ({ min, max }) => {
+  const { userRequest, setUserRequest } = useContext(MovieContext);
   // Set each prop as type number
   MultiRangeSlider.propTypes = {
     min: PropTypes.number.isRequired,
-    max: PropTypes.number.isRequired
+    max: PropTypes.number.isRequired,
   };
 
   // Refs
@@ -19,7 +17,10 @@ const MultiRangeSlider = ({ min, max}) => {
   const range = useRef(null);
 
   // Convert to percentage
-  const getPercent = useCallback(value => Math.round(((value - min) / (max - min)) * 100), [min, max]);
+  const getPercent = useCallback(
+    (value) => Math.round(((value - min) / (max - min)) * 100),
+    [min, max]
+  );
 
   // Set width of the range to change from the left side
   useEffect(() => {
@@ -42,19 +43,36 @@ const MultiRangeSlider = ({ min, max}) => {
     }
   }, [userRequest.maxLength, getPercent]);
 
-  const handleMinChange = e => {
-      const value = Math.min(Number(e.target.value), (userRequest.maxLength || max) - 1);
-      //setMinVal(value);
-      setUserRequest({...userRequest, minLength: value});
-      minValRef.current = value;
+  useEffect(() => {
+    // To reset when search/filter object is cleared
+    if (Object.keys(userRequest).length === 0) {
+      console.log("In useEffect if-statement", maxValRef.current)
+      range.current.style.width = "100%";
+      range.current.style.left = "0%";
+      maxValRef.current = max;
+      minValRef.current = min;
+    }
+  }, [userRequest]);
+
+  const handleMinChange = (e) => {
+    const value = Math.min(
+      Number(e.target.value),
+      (userRequest.maxLength || max) - 1
+    );
+    //setMinVal(value);
+    setUserRequest({ ...userRequest, minLength: value });
+    minValRef.current = value;
   };
 
-  const handleMaxChange = e => {
-    const value = Math.max(Number(e.target.value), (userRequest.minLength || min) + 1);
+  const handleMaxChange = (e) => {
+    const value = Math.max(
+      Number(e.target.value),
+      (userRequest.minLength || min) + 1
+    );
     //setMaxVal(value);
-    setUserRequest({...userRequest, maxLength: value});
+    setUserRequest({ ...userRequest, maxLength: value });
     maxValRef.current = value;
- };
+  };
 
   return (
     <>
@@ -78,11 +96,15 @@ const MultiRangeSlider = ({ min, max}) => {
       <div className={`${styles.slider}`}>
         <div className={`${styles.sliderTrack}`} />
         <div ref={range} className={`${styles.sliderRange}`} />
-        <div className={styles.sliderLeftValue}>{userRequest.minLength || min} min</div>
-        <div className={styles.sliderRightValue}>{userRequest.maxLength || max} min</div>
+        <div className={styles.sliderLeftValue}>
+          {userRequest.minLength || min} min
+        </div>
+        <div className={styles.sliderRightValue}>
+          {userRequest.maxLength || max} min
+        </div>
       </div>
     </>
   );
-}
+};
 
 export default MultiRangeSlider;

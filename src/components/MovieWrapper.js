@@ -25,19 +25,16 @@ export default function MovieWrapper() {
       ));
     } else if (
       allMovies &&
-      Object.keys(userRequest).length == 0 &&
+      Object.keys(userRequest).length === 0 &&
       !showAllMovies
     ) {
       return allMovies
         .map((movie) => <MovieCard key={movie._id} movie={movie} />)
         .slice(0, 8);
     } else {
-      // todo implement Spinner?
       return <p>...loading</p>;
     }
   };
-
-  console.log("Obj keys length:", Object.keys(userRequest).length);
 
   return (
     <div className="mt-3">

@@ -27,7 +27,7 @@ const FilterWrapper = () => {
         <Col xs={12}>
           <hr className={styles.lineBtwn}></hr>
         </Col>
-        <Col xs={12}>
+        <Col xs={12} lg={9}>
           <TextInput inputType={"textSearch"} />
         </Col>
         <Col xs={12}>

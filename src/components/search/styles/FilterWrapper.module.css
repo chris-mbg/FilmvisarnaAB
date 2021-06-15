@@ -1,11 +1,11 @@
 .filterWrapper {
   box-shadow: 1px 3px 10px 1px #e872097c;
-  margin: 1rem auto;
+  margin: 0 auto 0.5rem auto;
   padding: 1rem;
 }
 .filterWrapperClosed {
   box-shadow: 1px 3px 10px 1px #1515157c;
-  margin: 1rem auto;
+  margin: 0 auto 0.5rem auto;
   padding: 1rem;
 }
 hr.lineBtwn {
@@ -16,6 +16,10 @@ hr.lineBtwn {
 }
 .filterItem {
   border-bottom: 1px solid #e1e1e142;
+  /* display: flex; */
+  /* flex-flow: column nowrap; */
+  /* justify-content: space-evenly; */
+  /* align-items: flex-start; */
 }
 span.filterHeading {
   font-size: 1.4rem;
@@ -26,12 +30,20 @@ p.typeHeading {
 }
 .filterItem select {
   min-width: 60%;
+  height: 2rem;
 }
-input.textSearch {
+.filterWrapper input[type="text"], .filterWrapper input[type="date"], .filterWrapper select{
+  background-color: #e1e1e1;
+  border: none;
+  height: 30px;
+}
+
+.filterWrapper input[type="text"].textSearch {
   margin: 1rem 0;
   font-size: 1.1rem;
   padding: 0.5rem;
   width: 100%;
+  height: 2.2rem;
 }
 .radioButtonsContainer {
   display: flex;
@@ -43,6 +55,11 @@ input.textSearch {
   margin-right: 1rem;
 }
 
+@media screen and (min-width:576px) {
+  .filterItem select {
+      min-width: 85%;
+    }
+}
 @media screen and (min-width:768px) {
   .accHeader {
     border: none;

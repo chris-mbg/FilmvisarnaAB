@@ -1,7 +1,6 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import { MovieContext } from "../../contexts/MovieContext";
 import styles from "./styles/FilterWrapper.module.css";
-
 
 const AgeLimitOptions = () => {
   const filterOptions = require("../../utilities/filterOptions/filterOptions.json");
@@ -10,11 +9,9 @@ const AgeLimitOptions = () => {
 
   useEffect(() => {
     if (Object.keys(userRequest).length === 0) {
-      let radios = document.querySelectorAll(".ageLimitRadio");
-      console.log("radios", radios);
-      radios.forEach(radio => radio.checked = false);
+      let radios = document.querySelectorAll("input.ageLimitRadio");
+      radios.forEach((radio) => (radio.checked = false));
     }
-    console.log(userRequest.ageLimit)
   }, [userRequest]);
 
   return (
@@ -26,8 +23,9 @@ const AgeLimitOptions = () => {
             type="radio"
             value={limit}
             name="ageLimit"
-            onChange={(e) => setUserRequest({ ...userRequest, ageLimit: e.target.value})}
-            // checked={radioSelected == limit}
+            onChange={(e) =>
+              setUserRequest({ ...userRequest, ageLimit: e.target.value })
+            }
           />
           <label for={limit} className="ml-2 ageLimitRadio">
             {limit.slice(3)} år

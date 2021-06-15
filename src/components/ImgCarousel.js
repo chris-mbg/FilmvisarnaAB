@@ -9,7 +9,7 @@ const ImgCarousel = () => {
   useEffect(() => setMoviePics(require("../assets/caroPics.json")), []);
 
   return (
-    <div className={`container-fluid py-3 p-xl-4 mx-auto`}>
+    <div className={`container-fluid py-3 p-xl-5 mx-auto`}>
       <Carousel>
         <Carousel.Item interval={7000}>
           <img
