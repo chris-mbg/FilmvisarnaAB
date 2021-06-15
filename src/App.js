@@ -12,7 +12,6 @@ import Navbar from './components/Navbar';
 import ReservationContextProvider from './contexts/ReservationContext';
 import Footer from './components/Footer';
 import NotFoundPage from './pages/NotFoundPage';
-import GuardedRoute from './components/GuardedRoute';
 
 function App() {
   return (
@@ -35,7 +34,8 @@ function App() {
                   path='/registration'
                   component={RegistrationPage}
                 />
-                <GuardedRoute exact path='/profile' component={ProfilePage} />
+                <Route exact path='/profile' component={ProfilePage} />
+                <Route component={NotFoundPage} />
               </Switch>
             </BrowserRouter>
           </ReservationContextProvider>
