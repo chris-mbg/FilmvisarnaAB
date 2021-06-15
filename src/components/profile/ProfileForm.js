@@ -38,12 +38,12 @@ const ProfileForm = () => {
     setEmail(loggedInUser?.email);
   }, [loggedInUser]);
 
-  const handlePhone = (e) => {
+  const handlePhone = (value) => {
     // Only allows numbers - input
     const checkNumber = /^[0-9]*$/g;
 
-    if (checkNumber.test(e.target.value)) {
-      setPhone(e.target.value);
+    if (checkNumber.test(value)) {
+      setPhone(value);
     }
   };
 

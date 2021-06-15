@@ -44,7 +44,7 @@ const ProfileFormInputFields = ({ values }) => {
               style={{ opacity: editInput.firstNameDisabled && "0.45" }}
               disabled={editInput.firstNameDisabled}
               value={firstName}
-              onChange={(e) => setFirstName(e.target.value)}
+              onChange={(e) => setFirstName(e.target.value.replace(/[&\/\\#,+()$~%.'":*?<>{}^_@!]/g, "").replace(/[0-9]/g, ""))}
               autoComplete="off"
               required
               className={`${styles.input} form-control`}
@@ -94,7 +94,7 @@ const ProfileFormInputFields = ({ values }) => {
               style={{ opacity: editInput.lastNameDisabled && "0.45" }}
               disabled={editInput.lastNameDisabled}
               value={lastName}
-              onChange={(e) => setLastName(e.target.value)}
+              onChange={(e) => setLastName(e.target.value.replace(/[&\/\\#,+()$~%.'":*?<>{}^_@!]/g, "").replace(/[0-9]/g, ""))}
               autoComplete="off"
               required
               className={`${styles.input} form-control`}
@@ -144,7 +144,7 @@ const ProfileFormInputFields = ({ values }) => {
               style={{ opacity: editInput.phoneDisabled && "0.45" }}
               disabled={editInput.phoneDisabled}
               value={phone}
-              onChange={(e) => handlePhone(e)}
+              onChange={(e) => handlePhone(e.target.value.substring(0, 10) || "")}
               autoComplete="off"
               required
               className={`${styles.input} form-control`}
