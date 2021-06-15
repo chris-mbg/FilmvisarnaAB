@@ -18,6 +18,7 @@ const HomePage = () => {
 
   return (
     <div className="homePage">
+      <ImgCarousel />
       {/* Search bar component goes here */}
       <Row>
         <Col xs={0}>{/* Filter component goes here */}</Col>
@@ -26,7 +27,7 @@ const HomePage = () => {
         </Col>
       </Row>
 
-      {/* "Visas idag" goes here */}
+      {/* "Visas idag" */}
       <div className={styles.scheduleWrapper}>
         <h2>Visas idag</h2>
         {screenings &&
