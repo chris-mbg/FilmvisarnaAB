@@ -15,7 +15,7 @@ const OptionsSelect = ({ selectType }) => {
             setUserRequest({ ...userRequest, price: e.target.value })
           }
         >
-          <option value="">Välj ett pris</option>
+          <option value=""></option>
           {filterOptions.priceOptions.sort().map((num, i) => (
             <option key={i} value={num}>
               {num} kr
@@ -35,7 +35,7 @@ const OptionsSelect = ({ selectType }) => {
             setUserRequest({ ...userRequest, genre: e.target.value })
           }
         >
-          <option value="">Välj en genre</option>
+          <option value=""></option>
           {filterOptions.movieGenres.sort().map((genre, i) => (
             <option key={i} value={genre}>
               {genre}
@@ -55,7 +55,7 @@ const OptionsSelect = ({ selectType }) => {
             setUserRequest({ ...userRequest, language: e.target.value })
           }
         >
-          <option value="">Välj ett språk</option>
+          <option value=""></option>
           {filterOptions.movieLanguages.sort().map((lang, i) => (
             <option key={i} value={lang}>
               {lang}

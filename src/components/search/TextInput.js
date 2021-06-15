@@ -1,5 +1,7 @@
 import { useContext } from "react";
 import { MovieContext } from "../../contexts/MovieContext";
+import styles from "./styles/FilterWrapper.module.css";
+
 
 const TextInput = ({ inputType }) => {
   const { userRequest, setUserRequest } = useContext(MovieContext);
@@ -17,7 +19,7 @@ const TextInput = ({ inputType }) => {
             }
           />
         </>
-      ) : (
+      ) : inputType === "director" ? (
         <>
           <input
             type="text"
@@ -26,6 +28,18 @@ const TextInput = ({ inputType }) => {
             onChange={(e) =>
               setUserRequest({ ...userRequest, director: e.target.value })
             }
+          />
+        </>
+      ) : (
+        <>
+          <input
+            type="text"
+            placeholder="Sök..."
+            value={userRequest.textSearch|| ""}
+            onChange={(e) =>
+              setUserRequest({ ...userRequest, textSearch: e.target.value })
+            }
+            className={styles.textSearch}
           />
         </>
       )}

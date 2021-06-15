@@ -16,14 +16,23 @@ const FilterWrapper = () => {
 
   const [toggleAccordion, setToggleAccordion] = useState(false);
   const icon = !toggleAccordion ? (
-    <i className={`fas fa-filter`} />
+    <i className={`fas fa-search fa-lg`} />
   ) : (
-    <i className={`fas fa-times`} />
+    <i className={`fas fa-times fa-lg`} />
   );
 
   const filters = () => {
     return (
       <Row noGutters={true}>
+        <Col xs={12}>
+          <hr className={styles.lineBtwn}></hr>
+        </Col>
+        <Col xs={12}>
+          <TextInput inputType={"textSearch"} />
+        </Col>
+        <Col xs={12}>
+          <hr className={styles.lineBtwn}></hr>
+        </Col>
         <FilterItem heading={"Datum"} component={<DateOptions />} />
         <FilterItem
           heading={"Pris"}
@@ -71,7 +80,7 @@ const FilterWrapper = () => {
             className="mb-2 text-center"
           >
             <div className="d-flex justify-content-between align-items-center">
-              <span className={styles.filterHeading}>Filtrera</span>
+              <span className={styles.filterHeading}>Sök</span>
               <span>{icon}</span>
             </div>
           </Accordion.Toggle>
