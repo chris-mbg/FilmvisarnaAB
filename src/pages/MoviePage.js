@@ -36,7 +36,6 @@ export default function MoviePage(props) {
     return reservedPlaces ? reservedPlaces : "0";
   };
 
-  // todo connect trailer
   const seeTrailer = () => {
     setShowTrailerModal(true);
   };
@@ -45,6 +44,7 @@ export default function MoviePage(props) {
     // When user click on OK button, ConfirmModal will close.
     setShowTrailerModal(false);
   };
+
   const renderMovieDescription = () => (
     <section className={styles.movieContainer}>
       <Row className="text-center">
@@ -70,26 +70,22 @@ export default function MoviePage(props) {
               <p>Språk: {movie.language}</p>
               <p>
                 Produktionsår: {movie.productionYear}
-                {/* {movie.productionCountries.map((country) => (
-                  <span>{country}</span>
-                ))} */}
               </p>
               <p>
                 {" "}
                 Längd: <span>{movie.length} min</span>
-                {/* Sammanfattning: <span>{movie.productionYear}</span>
-                &#183;<span>{movie.length}</span> */}
               </p>
               <p>
                 Genre:{""} {movie.genre}
               </p>
             </div>
-          
-            <CustomButton
-              text="Trailer"
-              className="order-md-last"
-              clickHandler={seeTrailer}
-            />
+            <div className="d-flex justify-content-center">
+              <CustomButton
+                text="Trailer"
+                className="order-md-last"
+                clickHandler={seeTrailer}
+              />
+            </div>
           </div>
         </Col>
       </Row>
