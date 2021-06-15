@@ -69,7 +69,7 @@ const MovieContextProvider = (props) => {
   };
 
   const getScreeningsForMovie = async (movieId) => {
-    
+
     let result = await fetch(`/api/v1/screenings/?movieId=${movieId}`);
     result = await result.json();
     if (result.status !== "error") {
@@ -85,7 +85,7 @@ const MovieContextProvider = (props) => {
   const values = {
     allMovies,
     getMovieById,
-   getScreeningsForMovie,
+    getScreeningsForMovie,
   };
 
   return (
