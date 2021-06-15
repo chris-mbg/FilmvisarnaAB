@@ -1,13 +1,16 @@
 import { useContext, useEffect, useState } from "react";
 import { MovieContext } from "../contexts/MovieContext";
-import { Row, Col, Image } from "react-bootstrap";
+import { Row, Col, Image, Modal } from "react-bootstrap";
 import styles from "../css/MoviePage.module.css";
 import MovieSchedule from "../components/MovieSchedule";
+import TrailerModal from "../components/TrailerModal";
+import CustomButton from "../components/CustomButton";
 
 export default function MoviePage(props) {
   const { movieId } = props.match.params;
   const [movie, setMovie] = useState(null);
   const [screenings, setScreening] = useState(null);
+  const [showTrailerModal, setShowTrailerModal] = useState(false);
 
   const { getMovieById, getAllScreeningsForMovie } = useContext(MovieContext);
 
@@ -15,7 +18,6 @@ export default function MoviePage(props) {
     async function getMovieAndScreenings() {
       let response = await getMovieById(movieId);
       setMovie(response);
-
       let schedule = await getAllScreeningsForMovie(response._id);
       setScreening(schedule);
     }
@@ -34,10 +36,14 @@ export default function MoviePage(props) {
     return reservedPlaces ? reservedPlaces : "0";
   };
 
-  // todo connect trailer
-  // const seeTrailer = () => {
-  //   console.log("this is a wonderful trailer...");
-  // };
+  const seeTrailer = () => {
+    setShowTrailerModal(true);
+  };
+
+  const handleCloseTrailerModal = () => {
+    // When user click on OK button, ConfirmModal will close.
+    setShowTrailerModal(false);
+  };
 
   const renderMovieDescription = () => (
     <section className={styles.movieContainer}>
@@ -64,26 +70,22 @@ export default function MoviePage(props) {
               <p>Språk: {movie.language}</p>
               <p>
                 Produktionsår: {movie.productionYear}
-                {/* {movie.productionCountries.map((country) => (
-                  <span>{country}</span>
-                ))} */}
               </p>
               <p>
                 {" "}
-                Längd: <span>{movie.length}</span>
-                {/* Sammanfattning: <span>{movie.productionYear}</span>
-                &#183;<span>{movie.length}</span> */}
+                Längd: <span>{movie.length} min</span>
               </p>
               <p>
                 Genre:{""} {movie.genre}
               </p>
             </div>
-            {/* Needed when possibility to see trailer is implemented! */}
-            {/* <CustomButton
-              text="Trailer"
-              className="order-md-last"
-              clickHandler={seeTrailer}
-            /> */}
+            <div className="d-flex justify-content-center">
+              <CustomButton
+                text="Trailer"
+                className="order-md-last"
+                clickHandler={seeTrailer}
+              />
+            </div>
           </div>
         </Col>
       </Row>
@@ -100,18 +102,30 @@ export default function MoviePage(props) {
             className={`border-bottom border-white pb-2 ${styles.scheduleItem}`}
           >
             <Col xs={4} sm={3} className={`${styles.scheduleHeading}`}>
-                <h3>Datum</h3>
+              <h3>Datum</h3>
             </Col>
-            <Col xs={2} sm={2} className={`text-left ${styles.scheduleHeading}`}>
-                <h3>Tid</h3>
+            <Col
+              xs={2}
+              sm={2}
+              className={`text-left ${styles.scheduleHeading}`}
+            >
+              <h3>Tid</h3>
             </Col>
-            <Col xs={2} sm={2} className={`text-center ${styles.scheduleHeading}`} >
-                <h3>Platser kvar</h3>
+            <Col
+              xs={2}
+              sm={2}
+              className={`text-center ${styles.scheduleHeading}`}
+            >
+              <h3>Platser kvar</h3>
             </Col>
-            <Col xs={0} sm={3} className={`text-right d-none d-sm-block ${styles.scheduleHeading}`}>
-                <h3>Salong</h3>
+            <Col
+              xs={0}
+              sm={3}
+              className={`text-right d-none d-sm-block ${styles.scheduleHeading}`}
+            >
+              <h3>Salong</h3>
             </Col>
-            <Col xs={3} sm={2} >
+            <Col xs={3} sm={2}>
               {/* Col for button */}
             </Col>
           </Row>
@@ -131,6 +145,20 @@ export default function MoviePage(props) {
         </div>
       ) : (
         <h2>...loading</h2>
+      )}
+
+      {movie && (
+        <Modal
+          centered={true}
+          size={"lg"}
+          show={showTrailerModal}
+          onHide={handleCloseTrailerModal}
+        >
+          <TrailerModal
+            embedId={movie.youtubeTrailer}
+            handleCloseTrailerModal={handleCloseTrailerModal}
+          />
+        </Modal>
       )}
     </div>
   );

@@ -6,7 +6,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 const HomePage = () => {
- 
+
   return (
     <div className='homePage'>
       <ImgCarousel />
@@ -37,7 +37,6 @@ const HomePage = () => {
      />
       </div> */}
     </div>
-
   );
 };
 
