@@ -1,35 +1,71 @@
 import React from "react";
 import karta from "../assets/karta.jpg";
 import styles from "../css/About.module.css";
-import { Jumbotron } from "react-bootstrap";
+import { Carousel } from "react-bootstrap";
 
 const AboutPage = () => {
   return (
     
     <div >
-      <Jumbotron className={`${styles.aboutContainer}`}>
-        {/* <h1>Om Oss</h1> */}
-      </Jumbotron>
+      <Carousel>
+  <Carousel.Item>
+    <img
+      className={styles.aboutContainer}
+      src="https://media.istockphoto.com/photos/red-velvet-theater-curtain-picture-id915090126?k=6&m=915090126&s=170667a&w=0&h=rd1GLJhQotmUvs7qt2E0qaha2CrEkZBWAvuvFrxH0Mo="
+      alt="First slide"
+    />
+    <Carousel.Caption>
+      {/* <h3>First slide label</h3>
+      <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p> */}
+    </Carousel.Caption>
+  </Carousel.Item>
+  <Carousel.Item>
+    <img
+      className={styles.aboutContainer}
+      src="https://img.aws.la-croix.com/2017/12/01/1200896237/frequentation-salles-cinema-cesse-daugmenter-atteint-20112156-millions-dentrees_0_729_486.jpg"
+      alt="Second slide"
+    />
+
+    <Carousel.Caption>
+      {/* <h3>Second slide label</h3>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p> */}
+    </Carousel.Caption>
+  </Carousel.Item>
+  <Carousel.Item>
+    <img
+      className={styles.aboutContainer}
+      src="https://www.vectracom.fr/wp-content/uploads/2018/11/700_FO59474791_a1dfd092f58a037e9ed227119296e100.jpg"
+      alt="Third slide"
+    />
+
+    <Carousel.Caption>
+      {/* <h3>Third slide label</h3>
+      <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p> */}
+    </Carousel.Caption>
+  </Carousel.Item>
+</Carousel>
       <div className={styles.upper_wrapper}>
           <h2 className={styles.textHeading}>Filmvisarna</h2>
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci
-            veritatis cupiditate ipsa ducimus ex! Perspiciatis quisquam
-            exercitationem debitis recusandae repellat magnam maxime sunt.
-            Maxime consequuntur, at quidem eius rerum pariatur.
+          ”They may take our lives, but they’ll never take our freedom!” – Mel Gibson. 
+          ”I’m also just a girl, standing in front of a boy, asking him to love her.” – Julia Roberts.
+          ”My name is Maximus Decimus Meridius, commander of the Armies of the North, 
+          General of the Felix Legions and loyal servant to the true emperor, Marcus Aurelius. 
+          Father to a murdered son, husband to a murdered wife. And I will have my vengeance, 
+          in this life or the next.” – Russel Crowe.
+          ”Just keep swimming” – Doris
           </p>
           <p>
-            Sed auctor tincidunt ante sit amet volutpat. Donec euismod nisl eu
-            neque lacinia, at pellentesque turpis dictum. Proin a libero
-            ultricies, faucibus dui at, consectetur enim. Nulla ullamcorper non
-            mi vitae ullamcorper. Aliquam at sem nec quam gravida commodo id ac
-            metus. Vestibulum ultricies tortor ut eros aliquam vehicula.
-            Maecenas sed diam scelerisque, convallis justo et, faucibus leo.
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis nunc
-            ligula, tristique eget ligula luctus, commodo euismod enim.
-            Pellentesque lacinia enim vel mi varius viverra. Sed vestibulum
-            nulla non aliquam tempor. Nulla a eleifend enim, in sodales nisl.
-            Vivamus vel sodales quam.
+          ”You is kind. You is smart. You is important.” – Viola Davis.
+          ”You talkin’ to me? You talkin’ to me? You talkin’ to me? Well, 
+          who the hell else are you talkin’ to? You talkin’ to me? Well, 
+          I’m the only one here. Who the f–k do you think you’re talkin’ to?” – Robert De Niro.
+          ”Say hello to my little friend” – Al Pacino.
+          ”Keep your friends close, but you enemies closer” – Al Pacino.
+          ”Don’t forget to fall in love with yourself first” – Sarah Jessica Parker.
+          ”My mama always said, ´Life is like a box of chocolates; 
+          you never know what you’re gonna get” – Tom Hanks.
+          ”The greatest trick the devil ever pulled was convincing the world he didn’t exist.” – Kevin Spacey.
           </p>
       </div>
       <h4 className={styles.h4}>Öppettider och kontaktuppgiter</h4>
@@ -43,6 +79,8 @@ const AboutPage = () => {
             <p>10.00 - 22.00</p>
         </div>
         <div>
+            <p>Adressgatan 11, 
+              123 45 Staden</p>
             <p>tel: 022 172 14 15</p>
             <p>Email: filmvisarna@filmvisarna.se</p>
         </div>

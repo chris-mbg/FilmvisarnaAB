@@ -1,8 +1,9 @@
 .aboutContainer {
-  background-image: url(https://media.istockphoto.com/photos/red-velvet-theater-curtain-picture-id915090126?k=6&m=915090126&s=170667a&w=0&h=rd1GLJhQotmUvs7qt2E0qaha2CrEkZBWAvuvFrxH0Mo=);
-  background-size: cover;
+  display: flex;
+  /* background-image: url(https://media.istockphoto.com/photos/red-velvet-theater-curtain-picture-id915090126?k=6&m=915090126&s=170667a&w=0&h=rd1GLJhQotmUvs7qt2E0qaha2CrEkZBWAvuvFrxH0Mo=);
+  background-size: cover; */
   height: 50vh;
-  width: 1110px;
+  width: 80%;
   margin-left: auto;
   margin-right: auto;
   margin-top: 2rem;
@@ -13,7 +14,7 @@
   margin-bottom: 2rem;
   margin-left: auto;
   margin-right: auto;
-  width: 1110px;
+  width: 80%;
 }
 
 .low {
@@ -23,20 +24,35 @@
   margin-bottom: 2rem;
   margin-left: auto;
   margin-right: auto;
-  width: 1110px;
+  width: 80%;
 }
 .karta {
   width: 30%;
 }
 .h4 {
-  margin-right: auto;
-  margin-left: auto;
-  width: 1110px;
+    
+    font-size: larger; 
+    display: flex;
+    justify-content: center;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1024px) {
+  .aboutContainer {
+    height: 35vh;
+  }
   .upper_wrapper {
     display: block;
+    font-size: 20px;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .aboutContainer {
+    height: 25vh;
+  }
+  .upper_wrapper {
+    display: block;
+    font-size: 16px;
   }
   .low {
     flex-direction: column;
@@ -44,4 +60,6 @@
   .karta {
     width: 100%;
   }
+  
+
 }
