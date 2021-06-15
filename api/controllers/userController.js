@@ -106,9 +106,87 @@ const login = async (req, res) => {
   return res.status(401).json({ status: "error", message: "Bad credentials" });
 };
 
+// PUT - update a user - /:userId
+const userUpdate = async (req, res) => {
+  // Checks if user is logged in - if not logged in then return error object.
+  if (!req.session.user) {
+    return res
+      .status(401)
+      .json({ status: "error", message: "No user logged in" });
+  }
+
+  try {
+    // Checks for two conditions:
+    // 1. Checks if there is a req.body.password.
+    // 2. If req.body.password is not undefined - checks if user entered invalid password.
+    if (
+      req.body.password !== undefined &&
+      !utilities.checkPassword(req.body.password)
+    ) {
+      return res
+        .status(400)
+        .json({ status: "error", message: "User entered invalid password." });
+    }
+
+    // If req.body.password is NOT undefined - then encrypt password.
+    if (req.body.password !== undefined) {
+      req.body.password = Encrypt(req.body.password);
+    }
+
+    // Checks for two conditions:
+    // 1. Checks if there is a req.body.email
+    // 2. Email validation - checks if user entered invalid email.
+    if (req.body.email !== undefined && !utilities.checkEmail(req.body.email)) {
+      return res
+        .status(400)
+        .json({ status: "error", message: "User entered invalid email." });
+    }
+
+    // Checks if e-mail is already registered in database.
+    const emailExists = await User.exists({ email: req.body.email });
+
+    // If email already exists in database...
+    if (emailExists) {
+      return res.status(409).json({
+        status: "success",
+        message: `User already exists: ${emailExists}`,
+      });
+    }
+
+    // If email does NOT already exists in database or if req.body.email is not undefined - then proceed to updating user's information.
+    if (!emailExists || req.body.email !== undefined) {
+      await User.findByIdAndUpdate(req.params.userId, req.body, {
+        new: true,
+      }).exec(function (error, result) {
+        // If user does not exists in database, return status code: 404
+        if (error) {
+          return res.sendStatus(404);
+        } else {
+          // Sets password to: "undefined" - inside "result" object after successful update.
+          result.password = undefined;
+
+          // Sets req.session.user to current updated user.
+          req.session.user = result;
+
+          return res.status(200).json({
+            status: "success",
+            message: "Successfully updated user.",
+            data: result,
+          });
+        }
+      });
+    }
+  } catch (error) {
+    res.status(500).json({ status: "error", message: error.message });
+
+    throw error;
+  }
+};
+
 module.exports = {
   whoami,
   register,
   login,
   logout,
+  userUpdate,
 };
