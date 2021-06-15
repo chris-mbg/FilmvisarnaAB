@@ -12,4 +12,22 @@ const checkPassword = (password) => {
   }
 };
 
-module.exports = { checkPassword };
+// Check which ticket type and returns relevant text (translated to Swedish)
+const checkTicketType = (tickettype) => {
+  switch (tickettype) {
+    case `adult`: {
+      return "Vuxen";
+    }
+    case `senior`: {
+      return "Pensionär";
+    }
+    case `child`: {
+      return "Barn";
+    }
+    default: {
+      break;
+    }
+  }
+};
+
+module.exports = { checkPassword, checkTicketType };
