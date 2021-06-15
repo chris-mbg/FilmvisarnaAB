@@ -11,9 +11,8 @@ const HomePage = () => {
     <div className="homePage">
       <ImgCarousel />
       <Row className="mt-4" noGutters={true}>
-        <Col xs={12} sm={12} md={12} lg={{ span: 9, offset: 3 }} xl={{ span: 8, offset: 3 }}>
-          {/* Searchbar component placeholder */}
-          <input type="text" placeholder="Sök..." style={{ width: "90%"}} className="mx-4 my-2" />
+        <Col xs={12}>
+          {/* Searchbar component goes here */}
         </Col>
         </Row>
         <Row noGutters={true} className="mx-3 mx-sm-4 mx-lg-auto">
