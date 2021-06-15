@@ -1,41 +1,51 @@
-import MovieWrapper from '../components/MovieWrapper'
-import ImgCarousel from "../components/ImgCarousel"
-import MovieSchedule from "../components/MovieSchedule"
-import styles from "../css/HomePage.module.css"
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+import React, { useEffect, useState, useContext } from "react";
+import { MovieContext } from "../contexts/MovieContext";
+import MovieWrapper from "../components/MovieWrapper";
+import ImgCarousel from "../components/ImgCarousel";
+import MovieSchedule from "../components/MovieSchedule";
+import styles from "../css/HomePage.module.css";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 
 const HomePage = () => {
+  const { getScreeningsForMovie } = useContext(MovieContext);
+  const [screenings, setScreenings] = useState(null);
+
+  useEffect( () => {
+    async function getTodaysScreenings() {
+      let schedule = await getScreeningsForMovie("", new Date().toLocaleDateString("sv-SV"));
+      setScreenings(schedule);
+    };
+    getTodaysScreenings();
+  }, []);
 
   return (
-    <div className='homePage'>
+    <div className="homePage">
       <ImgCarousel />
       {/* Search bar component goes here */}
       <Row>
-        <Col xs={0}>
-          {/* Filter component goes here */}
-        </Col>
+        <Col xs={0}>{/* Filter component goes here */}</Col>
         <Col xs={12}>
-          <MovieWrapper/>
+          <MovieWrapper />
         </Col>
       </Row>
 
-      {/* "Visas idag" goes here */}
-      {/* <div className={styles.scheduleWrapper}>
+      {/* "Visas idag" */}
+      <div className={styles.scheduleWrapper}>
         <h2>Visas idag</h2>
-      <MovieSchedule
-      time={"19.00"}
-      title={"Guardians of the Galaxy Vol. 2"}
-      auditorium={"Stora salongen"}
-      isHomePage={true}
-     />
-     <MovieSchedule
-      time={"19.00"}
-      title={"The Fast and the Furious"}
-      auditorium={"Lilla salongen"}
-      isHomePage={true}
-     />
-      </div> */}
+        {screenings &&
+          screenings.map((movieScreen) => (
+            <MovieSchedule
+              key={movieScreen._id}
+              time={movieScreen.startTime.toLocaleString("sv-SE").slice(11, 16)}
+              title={movieScreen.movieId.title}
+              auditorium={movieScreen.auditoriumName}
+              isHomePage={true}
+              movieId={movieScreen.movieId._id}
+              screeningId={movieScreen._id}
+            />
+          ))}
+      </div>
     </div>
   );
 };

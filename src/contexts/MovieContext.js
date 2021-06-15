@@ -11,10 +11,10 @@ const MovieContextProvider = (props) => {
    */
   //const userRequest = {
     // actors: "Chris",//regex
-    //ageLimit: "PG-7",
+    // ageLimit: "PG-7",
       // director: "Boden", //regex
     // genre: "Äventyr",
-    //language: "Franska",
+    // language: "Franska",
     // minLength: 93,//must have a value
     // maxLength: 136,//must have a value
       // textSearch: "Dalida",//regex
@@ -50,8 +50,6 @@ const MovieContextProvider = (props) => {
 
       // delete last "&"
       queryString = queryString.slice(0, -1);
-      // todo delete
-      console.log("::queryString:::", queryString, typeof queryString);
 
       result = await fetch(`/api/v1/movies/?${queryString}`);
     }
@@ -59,7 +57,6 @@ const MovieContextProvider = (props) => {
     result = await result.json();
       if (result.status !== "error") {
         setAllMovies(result);
-        console.log(result)
       }
   };
 
@@ -72,9 +69,14 @@ const MovieContextProvider = (props) => {
     }
   };
 
-  const getAllScreeningsForMovie = async (movieId) => {
-    let result = await fetch(`/api/v1/screenings/${movieId}`);
+  const getScreeningsForMovie = async (movieId, date) => {
+    let queryString;
+    if(movieId){queryString = `movieId=${movieId}`} 
+    if(date){queryString = `date=${date}`}
+
+    let result = await fetch(`/api/v1/screenings/?${queryString}`);
     result = await result.json();
+    
     if (result.status !== "error") {
       // Makes the startTime property into a Date object before returning the result
       result = result.map((screening) => ({
@@ -88,7 +90,7 @@ const MovieContextProvider = (props) => {
   const values = {
     allMovies,
     getMovieById,
-    getAllScreeningsForMovie,
+    getScreeningsForMovie,
   };
 
   return (
