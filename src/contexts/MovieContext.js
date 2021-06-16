@@ -1,4 +1,5 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useEffect, useState, useMemo } from "react";
+import { debounce } from "../utilities/utilities"
 
 export const MovieContext = createContext();
 
@@ -8,19 +9,19 @@ const MovieContextProvider = (props) => {
   const [userRequest, setUserRequest] = useState({});
 
   /**
-   *  request example
+   *  user request example
    */
-  //const userRequest = {
-    // actors: "Chris",//regex
-    //ageLimit: "PG-7",
-      // director: "Boden", //regex
-    // genre: "Äventyr",
-    //language: "Franska",
-    // minLength: 93,//must have a value
-    // maxLength: 136,//must have a value
-      // textSearch: "Dalida",//regex
-    // price: 90,
-    // startTime:"2021-07-24",
+// userRequest = {
+//   actors: "Chris",//regex
+//   ageLimit: "PG-7",
+//   director: "Boden", //regex
+//   genre: "Äventyr",
+//   language: "Franska",
+//   minLength: 93,//must have a value
+//   maxLength: 136,//must have a value
+//   textSearch: "Dalida",//regex
+//   price: 90,
+//   startTime:"2021-07-24",
 //  };
 
   useEffect(() => {
@@ -28,7 +29,17 @@ const MovieContextProvider = (props) => {
   }, [userRequest]);
 
   // All movies fetch from DB on render
-  useEffect(() => fetchFilteredMovies(userRequest), [userRequest]);
+  //useEffect(() => fetchFilteredMovies(userRequest), [userRequest]);
+
+  function saveInput(){
+    console.log('Saving data');
+  }
+  //const processChange = debounce(() => saveInput());
+
+  //const debouncedEventHandler = useMemo(() => debounce(() => saveInput(), 2000),[])
+  const debouncedEventHandler = useMemo(() => debounce(() => fetchFilteredMovies(userRequest), 200),[userRequest])
+
+  useEffect(() => debouncedEventHandler(), [userRequest]);
 
   /**
    * if the object is empty - returns all data
@@ -76,12 +87,12 @@ const MovieContextProvider = (props) => {
 
   const getScreeningsForMovie = async (movieId, date) => {
     let queryString;
-    if(movieId){queryString = `movieId=${movieId}`} 
+    if(movieId){queryString = `movieId=${movieId}`}
     if(date){queryString = `date=${date}`}
 
     let result = await fetch(`/api/v1/screenings/?${queryString}`);
     result = await result.json();
-    
+
     if (result.status !== "error") {
       // Makes the startTime property into a Date object before returning the result
       result = result.map((screening) => ({
