@@ -215,6 +215,7 @@ const ProfileForm = () => {
     setConfirmPassword,
     editInput,
     setEditInput,
+    setDefaultUserInformation,
     alertEmptyInput,
     setAlertEmptyInput,
     alertConfirm,
