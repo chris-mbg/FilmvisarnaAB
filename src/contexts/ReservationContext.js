@@ -6,7 +6,7 @@ import { UserContext } from "./UserContext";
 export const ReservationContext = createContext();
 
 const ReservationContextProvider = (props) => {
-  const { getAllScreeningsForMovie } = useContext(MovieContext);
+  const { getScreeningsForMovie } = useContext(MovieContext);
   const { getAllReservationsForUser } = useContext(UserContext);
 
   const [movieIdOnOrderPage, setMovieIdOnOrderPage] = useState(null);
@@ -28,7 +28,7 @@ const ReservationContextProvider = (props) => {
         setScreeningToShow(null);
       }
       if (movieIdOnOrderPage) {
-        setMovieScreenings(await getAllScreeningsForMovie(movieIdOnOrderPage));
+        setMovieScreenings(await getScreeningsForMovie(movieIdOnOrderPage));
       }
     }
     changeMovie();
@@ -41,7 +41,7 @@ const ReservationContextProvider = (props) => {
 
   useEffect(() => console.log("Tickets/seats chosen by user", ticketsChosen));
 
-  // Better to get this from BE and DB..? But we still need to get all screeenings also, and therefore OK to filter in FE, because we already have the info here...
+  // Select right screening to show on OrderPage
   useEffect(() => {
     if (screeningIdOnOrderPage === null) {
       setScreeningToShow(null);

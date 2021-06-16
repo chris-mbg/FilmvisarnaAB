@@ -51,7 +51,6 @@ const getFilteredMovies = async (req, res) => {
       if (userQuery.startTime) {
         const minStartTime = new Date(userQuery.startTime + " 00:00");
         const maxStartTime = new Date(userQuery.startTime + " 23:00");
-
         screeningResults = await Screening.find(
           {
             startTime: { $gte: minStartTime, $lte: maxStartTime },
