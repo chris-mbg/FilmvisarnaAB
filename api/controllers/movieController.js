@@ -95,6 +95,7 @@ const getFilteredMovies = async (req, res) => {
               { description: textSearchQuery },
               { director: textSearchQuery },
               { actors: textSearchQuery },
+              { genre: textSearchQuery },
             ],
           },
         ],
