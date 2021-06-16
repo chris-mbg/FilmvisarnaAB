@@ -10,7 +10,7 @@ export default function MovieCard({ movie }) {
   const handleInfoClick = () => history.push(`/movies/${movie._id}`);
     // col-md-6 col-lg-4 col-xl-3
   return (
-    <Card className={`${styles.cardWrapper} mb-2`}>
+    <Card className={`${styles.cardWrapper} mb-2 mx-2 mx-lg-4`}>
       <Card.Img style={{ maxHeight: "350px" }} src={movie.image} />
       <Card.Body className={styles.bodyWrapper}>
         <Card.Title className={styles.title}>{movie.title}</Card.Title>
