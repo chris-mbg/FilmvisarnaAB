@@ -36,11 +36,14 @@ const checkEmail = (email) => {
   return emailToCompare.test(email);
 };
 
-function debounce(func, timeout = 300) {
+// debounce function, returns a function
+// 2 args, function to call and delay (ms)
+// timer to cancel the timeout, closure (allows the func to access variables defined in the function scope, even when the function is invoked outside of their scope)
+function debounce(func, timeout) {
   let timer;
-  return (...args) => {
+  return (arg) => {
     clearTimeout(timer);
-    timer = setTimeout(() => func.apply(this, args), timeout);
+    timer = setTimeout(() => func(arg), timeout);
   };
 };
 

@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState, useMemo } from "react";
+import { createContext, useEffect, useState, useCallback } from "react";
 import { debounce } from "../utilities/utilities"
 
 export const MovieContext = createContext();
@@ -8,18 +8,16 @@ const MovieContextProvider = (props) => {
   const [allMovies, setAllMovies] = useState(null);
   const [userRequest, setUserRequest] = useState({});
 
-  /**
-   *  user request example
-   */
+  /** user request example */
 // userRequest = {
-//   actors: "Chris",//regex
+//   actors: "Chris",
 //   ageLimit: "PG-7",
-//   director: "Boden", //regex
+//   director: "Boden",
 //   genre: "Äventyr",
 //   language: "Franska",
-//   minLength: 93,//must have a value
-//   maxLength: 136,//must have a value
-//   textSearch: "Dalida",//regex
+//   minLength: 93,
+//   maxLength: 136,
+//   textSearch: "Dalida",
 //   price: 90,
 //   startTime:"2021-07-24",
 //  };
@@ -28,29 +26,16 @@ const MovieContextProvider = (props) => {
     console.log("User request changed", userRequest);
   }, [userRequest]);
 
-  // All movies fetch from DB on render
-  //useEffect(() => fetchFilteredMovies(userRequest), [userRequest]);
-
-  function saveInput(){
-    console.log('Saving data');
-  }
-  //const processChange = debounce(() => saveInput());
-
-  //const debouncedEventHandler = useMemo(() => debounce(() => saveInput(), 2000),[])
-  const debouncedEventHandler = useMemo(() => debounce(() => fetchFilteredMovies(userRequest), 300),[userRequest])
-
-  useEffect(() => debouncedEventHandler(), [userRequest]);
-
   /**
    * if the object is empty - returns all data
    * if the object contains request fields - returns specific movie items
    * @param {object} request
    */
   const fetchFilteredMovies = async (userRequest) => {
-    console.log("Fetching...")
+    console.log("Fetching... userReq", userRequest)
     let result = null;
 
-    if (Object.keys(userRequest).length === 0) {
+    if (Object.keys(userRequest).length === 0 ) {
       result = await fetch("/api/v1/movies/");
 
     } else {
@@ -77,6 +62,14 @@ const MovieContextProvider = (props) => {
       }
   };
 
+  // To avoid to many fetches to the DB, debounce function (defined in utilities.js) is used. Will invoke its callback after waiting 300 ms after the last call.
+  //useCallback is used not to get a "new" function every time the component updates (mainly because of the userRequest-variable)
+  const debounceFetch = useCallback(debounce((userRequest) => fetchFilteredMovies(userRequest), 300), []);
+
+  // Calling the debounceFetch function on every change in the userRequest variable.
+  useEffect(() => debounceFetch(userRequest), [userRequest]);
+
+
   const getMovieById = async (movieId) => {
     let result = await fetch(`/api/v1/movies/${movieId}`);
     result = await result.json();
@@ -85,6 +78,7 @@ const MovieContextProvider = (props) => {
       return result;
     }
   };
+
 
   const getScreeningsForMovie = async (movieId, date) => {
     let queryString;

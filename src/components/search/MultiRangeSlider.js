@@ -46,7 +46,6 @@ const MultiRangeSlider = ({ min, max }) => {
   useEffect(() => {
     // To reset when search/filter object is cleared
     if (Object.keys(userRequest).length === 0) {
-      console.log("In useEffect if-statement", maxValRef.current)
       range.current.style.width = "100%";
       range.current.style.left = "0%";
       maxValRef.current = max;
@@ -59,7 +58,6 @@ const MultiRangeSlider = ({ min, max }) => {
       Number(e.target.value),
       (userRequest.maxLength || max) - 1
     );
-    //setMinVal(value);
     setUserRequest({ ...userRequest, minLength: value });
     minValRef.current = value;
   };
@@ -69,7 +67,6 @@ const MultiRangeSlider = ({ min, max }) => {
       Number(e.target.value),
       (userRequest.minLength || min) + 1
     );
-    //setMaxVal(value);
     setUserRequest({ ...userRequest, maxLength: value });
     maxValRef.current = value;
   };
