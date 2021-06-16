@@ -5,50 +5,71 @@ import React from "react";
 import { MovieContext } from "../contexts/MovieContext";
 
 export default function MovieWrapper() {
-  const { allMovies } = useContext(MovieContext);
+  const { allMovies, userRequest } = useContext(MovieContext);
 
   const [showAllMovies, setShowAllMovies] = useState(false);
 
   const renderCards = () => {
-    if (allMovies) {
-      if (showAllMovies) {
-        return allMovies.map((movie) => (
-          <MovieCard key={movie._id} movie={movie} />
-        ));
-      } else {
-        return allMovies
-          .map((movie) => <MovieCard key={movie._id} movie={movie} />)
-          .slice(0, 6);
-      }
+    if (allMovies && allMovies.length === 0) {
+      return (
+        <p className="p-5 h4 border m-5">
+          Tyvärr, sökningen gav inga resultat...
+        </p>
+      );
+    } else if (
+      allMovies &&
+      (showAllMovies || Object.keys(userRequest).length !== 0)
+    ) {
+      return allMovies.map((movie) => (
+        <MovieCard key={movie._id} movie={movie} />
+      ));
+    } else if (
+      allMovies &&
+      Object.keys(userRequest).length === 0 &&
+      !showAllMovies
+    ) {
+      return allMovies
+        .map((movie) => <MovieCard key={movie._id} movie={movie} />)
+        .slice(0, 8);
     } else {
-      // todo implement Spinner?
       return <p>...loading</p>;
     }
   };
+
   return (
     <div className="mt-3">
-      <h2 className={styles.heading}>{ showAllMovies ? "Alla filmer" : "Mest sedda filmer"} </h2>
+      {Object.keys(userRequest).length === 0 ? (
+        <h2 className={styles.heading}>
+          {showAllMovies ? "Alla filmer" : "Mest sedda filmer"}
+        </h2>
+      ) : (
+        <h2 className={styles.heading}>Sökresultat</h2>
+      )}
       <div
-        className={`${styles.wrapper} p-0 my-4 d-flex flex-wrap justify-content-around mx-auto`}
+        className={`${styles.wrapper} p-0 my-4 mx-2 mx-lg-4 d-flex flex-wrap justify-content-center mx-xl-auto`}
       >
         {renderCards()}
 
-      <div className={`col-12 justify-content-end ${styles.showAllBtnContainer}`}>
-        <button
-          className={styles.showAllBtn}
-          onClick={() => setShowAllMovies(!showAllMovies)}
-        >
-          {showAllMovies ? (
-            <span>
-              Visa färre <i class="fas fa-arrow-up"></i>
-            </span>
-          ) : (
-            <span>
-              Visa alla filmer <i className="fas fa-arrow-down"></i>
-            </span>
-          )}
-        </button>
-        </div>
+        {Object.keys(userRequest).length === 0 && (
+          <div
+            className={`col-12 justify-content-end ${styles.showAllBtnContainer}`}
+          >
+            <button
+              className={styles.showAllBtn}
+              onClick={() => setShowAllMovies(!showAllMovies)}
+            >
+              {showAllMovies ? (
+                <span>
+                  Visa färre <i class="fas fa-arrow-up"></i>
+                </span>
+              ) : (
+                <span>
+                  Visa alla filmer <i class="fas fa-arrow-down"></i>
+                </span>
+              )}
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );

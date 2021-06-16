@@ -1,11 +1,12 @@
-import React, { useEffect, useState, useContext } from "react";
-import { MovieContext } from "../contexts/MovieContext";
 import MovieWrapper from "../components/MovieWrapper";
 import ImgCarousel from "../components/ImgCarousel";
 import MovieSchedule from "../components/MovieSchedule";
 import styles from "../css/HomePage.module.css";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import FilterWrapper from "../components/search/FilterWrapper";
+import React, { useEffect, useState, useContext } from "react";
+import { MovieContext } from "../contexts/MovieContext";
 
 const HomePage = () => {
   const { getScreeningsForMovie } = useContext(MovieContext);
@@ -22,10 +23,16 @@ const HomePage = () => {
   return (
     <div className="homePage">
       <ImgCarousel />
-      {/* Search bar component goes here */}
-      <Row>
-        <Col xs={0}>{/* Filter component goes here */}</Col>
-        <Col xs={12}>
+      <Row noGutters={true} className="mx-3 mx-sm-4 mx-lg-auto">
+        <Col
+          xs={12}
+          lg={{offset: 1, span: 10}}
+          xl={{offset: 2, span: 8}}
+          className="p-1 my-2"
+        >
+          <FilterWrapper />
+        </Col>
+        <Col xs={12} lg={12} xl={12}>
           <MovieWrapper />
         </Col>
       </Row>
