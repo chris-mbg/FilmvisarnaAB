@@ -37,7 +37,7 @@ const MovieContextProvider = (props) => {
   //const processChange = debounce(() => saveInput());
 
   //const debouncedEventHandler = useMemo(() => debounce(() => saveInput(), 2000),[])
-  const debouncedEventHandler = useMemo(() => debounce(() => fetchFilteredMovies(userRequest), 200),[userRequest])
+  const debouncedEventHandler = useMemo(() => debounce(() => fetchFilteredMovies(userRequest), 300),[userRequest])
 
   useEffect(() => debouncedEventHandler(), [userRequest]);
 
@@ -47,6 +47,7 @@ const MovieContextProvider = (props) => {
    * @param {object} request
    */
   const fetchFilteredMovies = async (userRequest) => {
+    console.log("Fetching...")
     let result = null;
 
     if (Object.keys(userRequest).length === 0) {
