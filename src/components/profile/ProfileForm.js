@@ -33,11 +33,16 @@ const ProfileForm = () => {
   const [alertEmailInvalid, setAlertEmailInvalid] = useState(false);
 
   useEffect(() => {
+    setDefaultUserInformation();
+  }, [loggedInUser]);
+
+  // Function which sets default user information
+  const setDefaultUserInformation = () => {
     setFirstName(loggedInUser?.firstName);
     setLastName(loggedInUser?.lastName);
     setPhone(loggedInUser?.phoneNumber);
     setEmail(loggedInUser?.email);
-  }, [loggedInUser]);
+  };
 
   const handlePhone = (value) => {
     // Only allows numbers - input
