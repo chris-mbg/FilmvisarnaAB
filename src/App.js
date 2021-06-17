@@ -13,6 +13,7 @@ import ReservationContextProvider from './contexts/ReservationContext';
 import Footer from './components/Footer';
 import NotFoundPage from './pages/NotFoundPage';
 import GuardedRoute from './components/GuardedRoute';
+import AboutPage from './pages/AboutPage';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
               <Navbar />
               <Switch>
                 <Route exact path='/' component={HomePage} />
+                <Route exact path='/about' component={AboutPage} />
                 <Route exact path='/movies/:movieId' component={MoviePage} />
                 <GuardedRoute
                   exact

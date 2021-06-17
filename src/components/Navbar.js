@@ -53,9 +53,9 @@ function Navbar1() {
             START
           </Nav.Link>
           {/* Use when about-page is done */}
-          {/* <Nav.Link as={Link} to='/about' className={styles.link}>
+          <Nav.Link as={Link} to='/about' className={styles.link}>
             OM OSS
-          </Nav.Link> */}
+          </Nav.Link>
           {loggedInUser ? (
             <Nav.Link as={Link} to="/profile" className={styles.link}>
               MIN PROFIL
