@@ -8,13 +8,7 @@ const GuardedRoute = ({ component: Component, ...rest }) => {
     <Route
       {...rest}
       render={(props) =>
-        loggedInUser ? (
-          <Component {...props} />
-        ) : (
-          <>
-            <Redirect exact to='/' />
-          </>
-        )
+        loggedInUser ? <Component {...props} /> : <Redirect exact to='/' />
       }
     />
   );
