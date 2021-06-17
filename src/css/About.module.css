@@ -3,7 +3,7 @@
   /* background-image: url(https://media.istockphoto.com/photos/red-velvet-theater-curtain-picture-id915090126?k=6&m=915090126&s=170667a&w=0&h=rd1GLJhQotmUvs7qt2E0qaha2CrEkZBWAvuvFrxH0Mo=);
   background-size: cover; */
   height: 50vh;
-  width: 80%;
+  width: 75%;
   margin-left: auto;
   margin-right: auto;
   margin-top: 2rem;
@@ -14,20 +14,23 @@
   margin-bottom: 2rem;
   margin-left: auto;
   margin-right: auto;
-  width: 80%;
+  width: 75%;
 }
 
 .low {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   margin-top: 2rem;
   margin-bottom: 2rem;
   margin-left: auto;
   margin-right: auto;
-  width: 80%;
+  width: 75%;
 }
 .karta {
-  width: 30%;
+  width: 100%;
+  height: 30%;
+  display: flex;
+  justify-content: center;
 }
 .h4 {
   font-size: larger;

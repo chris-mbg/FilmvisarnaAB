@@ -81,8 +81,18 @@ const AboutPage = () => {
           <p>tel: 022 172 14 15</p>
           <p>Email: filmvisarna@filmvisarna.se</p>
         </div>
-        <img className={styles.karta} src={karta} alt="karta" />
+        
       </div>
+      <div className={styles.karta}>
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2254.0901562567615!2d12.991935251582639!3d55.60044458041721!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4653a15435423321%3A0xd5e40999ac88751f!2sMalm%C3%B6%20stadsbibliotek!5e0!3m2!1ssv!2sse!4v1623919995406!5m2!1ssv!2sse"
+            width="50%"
+            height="250"
+            style={{border:0}}
+            allowfullscreen=""
+            loading="lazy"
+          ></iframe>
+        </div>
     </div>
   );
 };
