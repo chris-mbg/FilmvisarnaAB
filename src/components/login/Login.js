@@ -24,7 +24,6 @@ export const Login = () => {
 
     // Login
     login({ email, password }).then((data) => {
-      console.log(data);
       // If login information is "incorrect"
       if (data === false) {
         setInvalidLogin(true);

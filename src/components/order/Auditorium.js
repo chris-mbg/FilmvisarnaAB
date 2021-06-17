@@ -1,5 +1,4 @@
-import { useEffect } from "react";
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import { ReservationContext } from "../../contexts/ReservationContext";
 import Chair from "./Chair";
 import styles from "./styles/Auditorium.module.css";
@@ -10,11 +9,9 @@ const Auditorium = () => {
   const [auditorium, setAuditorium] = useState(null);
 
   const renderCinemaMatrix = () => {
-    console.log("render matrix...");
     const cinemaMatrix = [];
     if (screeningToShow) {
       const seats = screeningToShow.seats;
-      console.log( 'screeningToShow', screeningToShow)
 
       for (let row = 0; row < seats.length; row++) {
         cinemaMatrix.push(<br key={row}></br>);

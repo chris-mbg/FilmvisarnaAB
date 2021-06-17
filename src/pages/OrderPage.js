@@ -1,15 +1,14 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { ReservationContext } from "../contexts/ReservationContext";
-import { Container, Row, Col } from "react-bootstrap";
+import { Row, Col } from "react-bootstrap";
 
 import Auditorium from "../components/order/Auditorium";
 import ScreeningPicker from "../components/order/ScreeningPicker";
-import CustomButton from "../components/CustomButton";
 import styles from "../css/OrderPage.module.css";
 import Tickets from "../components/order/Tickets";
 
-// For this page is necessarily (otherwise page not be loaded) to click the "BOOK" button, Because screening id  is needed for to find  the desired movie !!!!!
+// For this page is necessarily (otherwise page not be loaded) to click the "BOOK" button, Because screening id  is needed for to find the desired movie.
 export default function OrderPage() {
   const { setMovieIdOnOrderPage, setScreeningIdOnOrderPage } =
     useContext(ReservationContext);
