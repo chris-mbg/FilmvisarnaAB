@@ -3,8 +3,9 @@ import { createContext, useEffect, useState } from "react";
 export const MovieContext = createContext();
 
 const MovieContextProvider = (props) => {
+
   const [allMovies, setAllMovies] = useState(null);
-  const [userRequest, setUserRequest] = useState({})
+  const [userRequest, setUserRequest] = useState({});
 
   /**
    *  request example
@@ -20,10 +21,14 @@ const MovieContextProvider = (props) => {
       // textSearch: "Dalida",//regex
     // price: 90,
     // startTime:"2021-07-24",
-  //};
+//  };
+
+  useEffect(() => {
+    console.log("User request changed", userRequest);
+  }, [userRequest]);
 
   // All movies fetch from DB on render
-  useEffect(() => fetchFilteredMovies(userRequest), []);
+  useEffect(() => fetchFilteredMovies(userRequest), [userRequest]);
 
   /**
    * if the object is empty - returns all data
@@ -50,8 +55,6 @@ const MovieContextProvider = (props) => {
 
       // delete last "&"
       queryString = queryString.slice(0, -1);
-      // todo delete
-      console.log("::queryString:::", queryString, typeof queryString);
 
       result = await fetch(`/api/v1/movies/?${queryString}`);
     }
@@ -59,7 +62,6 @@ const MovieContextProvider = (props) => {
     result = await result.json();
       if (result.status !== "error") {
         setAllMovies(result);
-        console.log(result)
       }
   };
 
@@ -72,9 +74,14 @@ const MovieContextProvider = (props) => {
     }
   };
 
-  const getAllScreeningsForMovie = async (movieId) => {
-    let result = await fetch(`/api/v1/screenings/${movieId}`);
+  const getScreeningsForMovie = async (movieId, date) => {
+    let queryString;
+    if(movieId){queryString = `movieId=${movieId}`} 
+    if(date){queryString = `date=${date}`}
+
+    let result = await fetch(`/api/v1/screenings/?${queryString}`);
     result = await result.json();
+    
     if (result.status !== "error") {
       // Makes the startTime property into a Date object before returning the result
       result = result.map((screening) => ({
@@ -88,7 +95,9 @@ const MovieContextProvider = (props) => {
   const values = {
     allMovies,
     getMovieById,
-    getAllScreeningsForMovie,
+    getScreeningsForMovie,
+    userRequest,
+    setUserRequest,
   };
 
   return (

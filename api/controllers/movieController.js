@@ -34,7 +34,6 @@ const getFilteredMovies = async (req, res) => {
     }
   } else {
     try {
-      let movies = [];
 
       const minLength = parseInt(userQuery.minLength) || 0;
       const maxLength = parseInt(userQuery.maxLength) || 236;
@@ -52,7 +51,6 @@ const getFilteredMovies = async (req, res) => {
       if (userQuery.startTime) {
         const minStartTime = new Date(userQuery.startTime + " 00:00");
         const maxStartTime = new Date(userQuery.startTime + " 23:00");
-
         screeningResults = await Screening.find(
           {
             startTime: { $gte: minStartTime, $lte: maxStartTime },
@@ -60,7 +58,11 @@ const getFilteredMovies = async (req, res) => {
           { movieId: 1 }
         ).exec();
 
+        if (screeningResults.length === 0) {
+          return res.json(screeningResults);
+        }
         screeningResults = screeningResults.map((value) => value.movieId);
+
       }
 
       // 60c326ac579ac038c4b685ae
@@ -92,6 +94,7 @@ const getFilteredMovies = async (req, res) => {
               { description: textSearchQuery },
               { director: textSearchQuery },
               { actors: textSearchQuery },
+              { genre: textSearchQuery },
             ],
           },
         ],

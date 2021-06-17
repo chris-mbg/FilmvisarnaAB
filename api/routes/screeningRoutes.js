@@ -4,6 +4,6 @@ const router = express.Router();
 // Import controller
 const screeningController = require("../controllers/screeningController");
 
-router.get("/:movieId", screeningController.getScreeningsByMovieId);
+router.get("/", screeningController.getScreenings);
 
 module.exports = router;
