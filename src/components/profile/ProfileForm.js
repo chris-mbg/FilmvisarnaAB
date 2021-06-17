@@ -66,7 +66,7 @@ const ProfileForm = () => {
     // Using spread syntax to create a copy of state variable and also avoiding "reference" to original state variable.
     let newObject = { ...editInput };
 
-    // Sets keys to false, except for "key === input"
+    // Sets keys to true, except for "key === input"
     Object.keys(newObject).forEach((key) => {
       if (key === input) {
         return (newObject[key] = false);
