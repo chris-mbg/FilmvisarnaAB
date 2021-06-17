@@ -3,6 +3,8 @@ import { Alert } from "react-bootstrap";
 const ProfileFormAlertBoxes = ({ values }) => {
   // Props
   const {
+    alertEmptyInput,
+    setAlertEmptyInput,
     alertConfirm,
     setAlertConfirm,
     alertPassword,
@@ -16,6 +18,12 @@ const ProfileFormAlertBoxes = ({ values }) => {
   } = values;
 
   // Alert boxes
+  const alertEmptyInputBox = alertEmptyInput && (
+    <Alert variant="dark" onClose={() => setAlertEmptyInput(false)} dismissible>
+      <p>Fältet får ej vara tomt.</p>
+    </Alert>
+  );
+
   const alertConfirmBox = alertConfirm && (
     <Alert variant="dark" onClose={() => setAlertConfirm(false)} dismissible>
       <p>Din profil är nu ändrad!</p>
@@ -69,6 +77,7 @@ const ProfileFormAlertBoxes = ({ values }) => {
   );
   return (
     <>
+      {alertEmptyInputBox}
       {alertConfirmBox}
       {alertPasswordBox}
       {alertConfirmPasswordBox}

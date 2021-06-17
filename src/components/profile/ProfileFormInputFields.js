@@ -19,6 +19,7 @@ const ProfileFormInputFields = ({ values }) => {
     setConfirmPassword,
     editInput,
     setEditInput,
+    setDefaultUserInformation,
     setAlertEmailExists,
     setAlertEmailInvalid,
     setAlertPassword,
@@ -44,7 +45,13 @@ const ProfileFormInputFields = ({ values }) => {
               style={{ opacity: editInput.firstNameDisabled && "0.45" }}
               disabled={editInput.firstNameDisabled}
               value={firstName}
-              onChange={(e) => setFirstName(e.target.value.replace(/[&\/\\#,+()$~%.'":*?<>{}^_@!]/g, "").replace(/[0-9]/g, ""))}
+              onChange={(e) =>
+                setFirstName(
+                  e.target.value
+                    .replace(/[&\/\\#,+()$~%.'":*?<>{}^_@!]/g, "")
+                    .replace(/[0-9]/g, "")
+                )
+              }
               autoComplete="off"
               required
               className={`${styles.input} form-control`}
@@ -62,7 +69,10 @@ const ProfileFormInputFields = ({ values }) => {
         >
           {editInput.firstNameDisabled ? (
             <i
-              onClick={(e) => handleEditInput(e, "firstNameDisabled")}
+              onClick={(e) => {
+                setDefaultUserInformation();
+                handleEditInput(e, "firstNameDisabled");
+              }}
               className={`${styles.icon} fas fa-edit`}
             />
           ) : (
@@ -94,7 +104,13 @@ const ProfileFormInputFields = ({ values }) => {
               style={{ opacity: editInput.lastNameDisabled && "0.45" }}
               disabled={editInput.lastNameDisabled}
               value={lastName}
-              onChange={(e) => setLastName(e.target.value.replace(/[&\/\\#,+()$~%.'":*?<>{}^_@!]/g, "").replace(/[0-9]/g, ""))}
+              onChange={(e) =>
+                setLastName(
+                  e.target.value
+                    .replace(/[&\/\\#,+()$~%.'":*?<>{}^_@!]/g, "")
+                    .replace(/[0-9]/g, "")
+                )
+              }
               autoComplete="off"
               required
               className={`${styles.input} form-control`}
@@ -112,7 +128,10 @@ const ProfileFormInputFields = ({ values }) => {
         >
           {editInput.lastNameDisabled ? (
             <i
-              onClick={(e) => handleEditInput(e, "lastNameDisabled")}
+              onClick={(e) => {
+                setDefaultUserInformation();
+                handleEditInput(e, "lastNameDisabled");
+              }}
               className={`${styles.icon} fas fa-edit`}
             />
           ) : (
@@ -144,7 +163,9 @@ const ProfileFormInputFields = ({ values }) => {
               style={{ opacity: editInput.phoneDisabled && "0.45" }}
               disabled={editInput.phoneDisabled}
               value={phone}
-              onChange={(e) => handlePhone(e.target.value.substring(0, 10) || "")}
+              onChange={(e) =>
+                handlePhone(e.target.value.substring(0, 10) || "")
+              }
               autoComplete="off"
               required
               className={`${styles.input} form-control`}
@@ -162,7 +183,10 @@ const ProfileFormInputFields = ({ values }) => {
         >
           {editInput.phoneDisabled ? (
             <i
-              onClick={(e) => handleEditInput(e, "phoneDisabled")}
+              onClick={(e) => {
+                setDefaultUserInformation();
+                handleEditInput(e, "phoneDisabled");
+              }}
               className={`${styles.icon} fas fa-edit`}
             />
           ) : (
@@ -212,7 +236,10 @@ const ProfileFormInputFields = ({ values }) => {
         >
           {editInput.emailDisabled ? (
             <i
-              onClick={(e) => handleEditInput(e, "emailDisabled")}
+              onClick={(e) => {
+                setDefaultUserInformation();
+                handleEditInput(e, "emailDisabled");
+              }}
               className={`${styles.icon} fas fa-edit`}
             />
           ) : (
@@ -264,7 +291,10 @@ const ProfileFormInputFields = ({ values }) => {
         >
           {editInput.passwordDisabled ? (
             <i
-              onClick={(e) => handleEditInput(e, "passwordDisabled")}
+              onClick={(e) => {
+                setDefaultUserInformation();
+                handleEditInput(e, "passwordDisabled");
+              }}
               className={`${styles.icon} fas fa-edit`}
             />
           ) : (

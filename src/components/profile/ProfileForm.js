@@ -25,6 +25,7 @@ const ProfileForm = () => {
     passwordDisabled: true,
   });
 
+  const [alertEmptyInput, setAlertEmptyInput] = useState(false);
   const [alertConfirm, setAlertConfirm] = useState(false);
   const [alertPassword, setAlertPassword] = useState(false);
   const [alertConfirmPassword, setAlertConfirmPassword] = useState(false);
@@ -32,11 +33,16 @@ const ProfileForm = () => {
   const [alertEmailInvalid, setAlertEmailInvalid] = useState(false);
 
   useEffect(() => {
+    setDefaultUserInformation();
+  }, [loggedInUser]);
+
+  // Function which sets default user information
+  const setDefaultUserInformation = () => {
     setFirstName(loggedInUser?.firstName);
     setLastName(loggedInUser?.lastName);
     setPhone(loggedInUser?.phoneNumber);
     setEmail(loggedInUser?.email);
-  }, [loggedInUser]);
+  };
 
   const handlePhone = (value) => {
     // Only allows numbers - input
@@ -50,6 +56,7 @@ const ProfileForm = () => {
   // Common handler for all input fields (start edit icon)
   const handleEditInput = (e, input) => {
     // Resets all alerts when user toggles a new input field.
+    setAlertEmptyInput(false);
     setAlertConfirm(false);
     setAlertPassword(false);
     setAlertConfirmPassword(false);
@@ -75,6 +82,12 @@ const ProfileForm = () => {
   // Handlers - confirm edit
 
   const handleFirstNameConfirmEdit = () => {
+    if (!firstName) {
+      // If inputfield for firstName is empty, set alertEmptyInput to: true.
+      setAlertEmptyInput(true);
+      return;
+    }
+
     userUpdate({ firstName: firstName }).then((data) => {
       // If update was successful then show confirmation alert/message.
       if (data === true) {
@@ -87,6 +100,12 @@ const ProfileForm = () => {
   };
 
   const handleLastNameConfirmEdit = () => {
+    if (!lastName) {
+      // If inputfield for lastName is empty, set alertEmptyInput to: true.
+      setAlertEmptyInput(true);
+      return;
+    }
+
     userUpdate({ lastName: lastName }).then((data) => {
       if (data === true) {
         // If update was successful then show confirmation alert/message and disable specific input field.
@@ -99,6 +118,12 @@ const ProfileForm = () => {
   };
 
   const handlePhoneConfirmEdit = () => {
+    if (!phone) {
+      // If inputfield for phone is empty, set alertEmptyInput to: true.
+      setAlertEmptyInput(true);
+      return;
+    }
+
     userUpdate({ phoneNumber: phone }).then((data) => {
       if (data === true) {
         // If update was successful then show confirmation alert/message and disable specific input field.
@@ -190,6 +215,9 @@ const ProfileForm = () => {
     setConfirmPassword,
     editInput,
     setEditInput,
+    setDefaultUserInformation,
+    alertEmptyInput,
+    setAlertEmptyInput,
     alertConfirm,
     setAlertConfirm,
     alertPassword,
