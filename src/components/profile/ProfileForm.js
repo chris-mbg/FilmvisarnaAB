@@ -2,268 +2,251 @@ import styles from "../../css/ProfileForm.module.css";
 import { useContext, useState, useEffect } from "react";
 import { Col, Row } from "react-bootstrap";
 import { UserContext } from "../../contexts/UserContext";
+import { checkEmail, checkPassword } from "../../utilities/utilities";
+import ProfileFormAlertBoxes from "./ProfileFormAlertBoxes";
+import ProfileFormInputFields from "./ProfileFormInputFields";
 
 const ProfileForm = () => {
   // Context
-  const { loggedInUser } = useContext(UserContext);
+  const { loggedInUser, userUpdate } = useContext(UserContext);
 
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
-  // const [password, setPassword] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
-  const [firstNameDisabled, setFirstNameDisabled] = useState(true);
-  const [lastNameDisabled, setLastNameDisabled] = useState(true);
-  const [phoneDisabled, setPhoneDisabled] = useState(true);
-  const [emailDisabled, setEmailDisabled] = useState(true);
-  // const [passwordDisabled, setPasswordDisabled] = useState(true);
+  const [editInput, setEditInput] = useState({
+    firstNameDisabled: true,
+    lastNameDisabled: true,
+    phoneDisabled: true,
+    emailDisabled: true,
+    passwordDisabled: true,
+  });
+
+  const [alertEmptyInput, setAlertEmptyInput] = useState(false);
+  const [alertConfirm, setAlertConfirm] = useState(false);
+  const [alertPassword, setAlertPassword] = useState(false);
+  const [alertConfirmPassword, setAlertConfirmPassword] = useState(false);
+  const [alertEmailExists, setAlertEmailExists] = useState(false);
+  const [alertEmailInvalid, setAlertEmailInvalid] = useState(false);
 
   useEffect(() => {
+    setDefaultUserInformation();
+  }, [loggedInUser]);
+
+  // Function which sets default user information
+  const setDefaultUserInformation = () => {
     setFirstName(loggedInUser?.firstName);
     setLastName(loggedInUser?.lastName);
     setPhone(loggedInUser?.phoneNumber);
     setEmail(loggedInUser?.email);
-  },[loggedInUser]);
+  };
 
-  const handlePhone = (e) => {
+  const handlePhone = (value) => {
     // Only allows numbers - input
     const checkNumber = /^[0-9]*$/g;
 
-    if (checkNumber.test(e.target.value)) {
-      setPhone(e.target.value);
+    if (checkNumber.test(value)) {
+      setPhone(value);
     }
   };
 
-  // Handlers - edit
-  // const handleFirstNameEdit = () => {
-  //   setFirstNameDisabled(true);
-  // };
+  // Common handler for all input fields (start edit icon)
+  const handleEditInput = (e, input) => {
+    // Resets all alerts when user toggles a new input field.
+    setAlertEmptyInput(false);
+    setAlertConfirm(false);
+    setAlertPassword(false);
+    setAlertConfirmPassword(false);
+    setAlertEmailExists(false);
+    setAlertEmailInvalid(false);
 
-  // const handleLastNameEdit = () => {
-  //   setLastNameDisabled(true);
-  // };
+    // Using spread syntax to create a copy of state variable and also avoiding "reference" to original state variable.
+    let newObject = { ...editInput };
 
-  // const handlePhoneEdit = () => {
-  //   setPhoneDisabled(true);
-  // };
+    // Sets keys to false, except for "key === input"
+    Object.keys(newObject).forEach((key) => {
+      if (key === input) {
+        return (newObject[key] = false);
+      } else {
+        return (newObject[key] = true);
+      }
+    });
 
-  // const handlePasswordEdit = () => {
-  //   setPasswordDisabled(true);
-  // };
+    // Set state variable to newObject
+    setEditInput(newObject);
+  };
 
-  // const handleEmailEdit = () => {
-  //   setEmailDisabled(true);
-  // };
+  // Handlers - confirm edit
+
+  const handleFirstNameConfirmEdit = () => {
+    if (!firstName) {
+      // If inputfield for firstName is empty, set alertEmptyInput to: true.
+      setAlertEmptyInput(true);
+      return;
+    }
+
+    userUpdate({ firstName: firstName }).then((data) => {
+      // If update was successful then show confirmation alert/message.
+      if (data === true) {
+        setAlertConfirm(true);
+        setEditInput({ ...editInput, firstNameDisabled: true });
+
+        return;
+      }
+    });
+  };
+
+  const handleLastNameConfirmEdit = () => {
+    if (!lastName) {
+      // If inputfield for lastName is empty, set alertEmptyInput to: true.
+      setAlertEmptyInput(true);
+      return;
+    }
+
+    userUpdate({ lastName: lastName }).then((data) => {
+      if (data === true) {
+        // If update was successful then show confirmation alert/message and disable specific input field.
+        setAlertConfirm(true);
+        setEditInput({ ...editInput, lastNameDisabled: true });
+
+        return;
+      }
+    });
+  };
+
+  const handlePhoneConfirmEdit = () => {
+    if (!phone) {
+      // If inputfield for phone is empty, set alertEmptyInput to: true.
+      setAlertEmptyInput(true);
+      return;
+    }
+
+    userUpdate({ phoneNumber: phone }).then((data) => {
+      if (data === true) {
+        // If update was successful then show confirmation alert/message and disable specific input field.
+        setAlertConfirm(true);
+        setEditInput({ ...editInput, phoneDisabled: true });
+
+        return;
+      }
+    });
+  };
+
+  const handlePasswordConfirmEdit = () => {
+    // If both password and confirmPassword is valid and matches with each other ...
+    if (checkPassword(password) && confirmPassword.includes(password)) {
+      userUpdate({ password: password }).then((data) => {
+        // If updating user's email was successful then show confirmation alert/message and disable inputfield for: password, confirmPassword.
+        if (data === true) {
+          setAlertConfirm(true);
+          setEditInput({ ...editInput, passwordDisabled: true });
+
+          // Reset password fields
+          setPassword("");
+          setConfirmPassword("");
+
+          return;
+        }
+      });
+    }
+    if (!checkPassword(password)) {
+      // If password does NOT fulfills following requirements:
+      // 8 characters, at least one uppercase letter, at least one lowercase letter, one number and one special character.
+      // set alertPassword to: true.
+      setAlertPassword(true);
+
+      return;
+    }
+
+    // If password and confirmPassword does NOT matches with each other, set "alertConfirmPassword" to true and disable specific input field.
+    if (
+      !password.includes(confirmPassword) ||
+      !confirmPassword.includes(password)
+    ) {
+      setAlertConfirmPassword(true);
+
+      return;
+    }
+  };
+
+  const handleEmailEdit = () => {
+    // If e-mail is invalid then set alertEmailInvalid to: true.
+    if (!checkEmail(email)) {
+      setAlertEmailInvalid(true);
+
+      return;
+    } else {
+      // If e-mail is valid then proceed...
+      userUpdate({ email: email }).then((data) => {
+        // If updating user's email was successful then show confirmation alert/message and disable specific input field.
+        if (data === true) {
+          setAlertConfirm(true);
+          setEditInput({ ...editInput, emailDisabled: true });
+
+          return;
+        }
+        // If e-mail already exists in database then set alertEmailExists to: "true"
+        if (data.status === 409) {
+          setAlertEmailExists(true);
+
+          return;
+        }
+      });
+    }
+  };
+
+  // Props
+  const values = {
+    loggedInUser,
+    firstName,
+    setFirstName,
+    lastName,
+    setLastName,
+    phone,
+    setPhone,
+    email,
+    setEmail,
+    password,
+    setPassword,
+    confirmPassword,
+    setConfirmPassword,
+    editInput,
+    setEditInput,
+    setDefaultUserInformation,
+    alertEmptyInput,
+    setAlertEmptyInput,
+    alertConfirm,
+    setAlertConfirm,
+    alertPassword,
+    setAlertPassword,
+    alertConfirmPassword,
+    setAlertConfirmPassword,
+    alertEmailExists,
+    setAlertEmailExists,
+    alertEmailInvalid,
+    setAlertEmailInvalid,
+    handlePhone,
+    handleEditInput,
+    handleFirstNameConfirmEdit,
+    handleLastNameConfirmEdit,
+    handlePhoneConfirmEdit,
+    handlePasswordConfirmEdit,
+    handleEmailEdit,
+  };
 
   return (
     <form className={styles.form}>
+      <ProfileFormInputFields values={values} />
+      {/* Input fields */}
       <Row noGutters>
         <Col xs={11} sm={11} md={10} lg={11}>
-          <div className="form-group">
-            <label className="pl-2" htmlFor="firstname">
-              Förnamn:
-            </label>
-
-            <input
-              style={{ opacity: firstNameDisabled && "0.45" }}
-              disabled={firstNameDisabled}
-              value={firstName}
-              onChange={(e) => setFirstName(e.target.value)}
-              autoComplete="off"
-              required
-              className={`${styles.input} form-control`}
-              type="text"
-              id="firstname"
-            />
-          </div>
-        </Col>
-        <Col
-          className="d-flex align-items-center justify-content-center"
-          xs={1}
-          sm={1}
-          md={2}
-          lg={1}
-        >
-          {/* {firstNameDisabled ? (
-            <i
-              onClick={(e) => setFirstNameDisabled(false)}
-              className={`${styles.icon} fas fa-edit`}
-            />
-          ) : (
-            <i
-              onClick={handleFirstNameEdit}
-              className={`${styles.icon} fas fa-check`}
-            ></i>
-          )} */}
+          <ProfileFormAlertBoxes values={values} />
+          {/* Alert boxes */}
         </Col>
       </Row>
-
-      <Row noGutters>
-        <Col xs={11} sm={11} md={10} lg={11}>
-          <div className="form-group">
-            <label className="pl-2" htmlFor="lastname">
-              Efternamn:
-            </label>
-
-            <input
-              style={{ opacity: lastNameDisabled && "0.45" }}
-              disabled={lastNameDisabled}
-              value={lastName}
-              onChange={(e) => setLastName(e.target.value)}
-              autoComplete="off"
-              required
-              className={`${styles.input} form-control`}
-              type="text"
-              id="lastname"
-            />
-          </div>
-        </Col>
-        <Col
-          className="d-flex align-items-center justify-content-center"
-          xs={1}
-          sm={1}
-          md={2}
-          lg={1}
-        >
-          {/* {lastNameDisabled ? (
-            <i
-              onClick={(e) => setLastNameDisabled(false)}
-              className={`${styles.icon} fas fa-edit`}
-            />
-          ) : (
-            <i
-              onClick={handleLastNameEdit}
-              className={`${styles.icon} fas fa-check`}
-            ></i>
-          )} */}
-        </Col>
-      </Row>
-
-      <Row noGutters>
-        <Col xs={11} sm={11} md={10} lg={11}>
-          <div className="form-group">
-            <label className="pl-2" htmlFor="phone">
-              Telefonnummer:
-            </label>
-
-            <input
-              style={{ opacity: phoneDisabled && "0.45" }}
-              disabled={phoneDisabled}
-              value={phone}
-              onChange={(e) => handlePhone(e)}
-              autoComplete="off"
-              required
-              className={`${styles.input} form-control`}
-              type="tel"
-              id="phone"
-            />
-          </div>
-        </Col>
-        <Col
-          className="d-flex align-items-center justify-content-center"
-          xs={1}
-          sm={1}
-          md={2}
-          lg={1}
-        >
-          {/* {phoneDisabled ? (
-            <i
-              onClick={(e) => setPhoneDisabled(false)}
-              className={`${styles.icon} fas fa-edit`}
-            />
-          ) : (
-            <i
-              onClick={handlePhoneEdit}
-              className={`${styles.icon} fas fa-check`}
-            ></i>
-          )} */}
-        </Col>
-      </Row>
-
-      <Row noGutters>
-        <Col xs={11} sm={11} md={10} lg={11}>
-          <div className="form-group">
-            <label className="pl-2" htmlFor="email">
-              E-post:
-            </label>
-
-            <input
-              style={{ opacity: emailDisabled && "0.45" }}
-              disabled={emailDisabled}
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              autoComplete="off"
-              required
-              className={`${styles.input} form-control`}
-              type="email"
-              id="email"
-            />
-          </div>
-        </Col>
-        <Col
-          className="d-flex align-items-center justify-content-center"
-          xs={1}
-          sm={1}
-          md={2}
-          lg={1}
-        >
-          {/* {emailDisabled ? (
-            <i
-              onClick={(e) => setEmailDisabled(false)}
-              className={`${styles.icon} fas fa-edit`}
-            />
-          ) : (
-            <i
-              onClick={handleEmailEdit}
-              className={`${styles.icon} fas fa-check`}
-            ></i>
-          )} */}
-        </Col>
-      </Row>
-
-      {/* Password input */}
-      {/* <Row noGutters>
-        <Col xs={11} sm={11} md={10} lg={11}>
-          <div className="form-group">
-            <label className="pl-2" htmlFor="password">
-              Lösenord:
-            </label>
-
-            <input
-              style={{ opacity: passwordDisabled && "0.45" }}
-              disabled={passwordDisabled}
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              autoComplete="off"
-              required
-              className={`${styles.input} form-control`}
-              type="password"
-              id="password"
-            />
-          </div>
-        </Col>
-        <Col
-          className="d-flex align-items-center justify-content-center"
-          xs={1}
-          sm={1}
-          md={2}
-          lg={1}
-        >
-          {passwordDisabled ? (
-            <i
-              onClick={(e) => setPasswordDisabled(false)}
-              className={`${styles.icon} fas fa-edit`}
-            />
-          ) : (
-            <i
-              onClick={handlePasswordEdit}
-              className={`${styles.icon} fas fa-check`}
-            ></i>
-          )}
-        </Col>
-      </Row> */}
-      {/* /password input */}
     </form>
   );
 };

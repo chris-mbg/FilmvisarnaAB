@@ -11,13 +11,20 @@ import Tickets from "../components/order/Tickets";
 
 // For this page is necessarily (otherwise page not be loaded) to click the "BOOK" button, Because screening id  is needed for to find  the desired movie !!!!!
 export default function OrderPage() {
-  const { setMovieIdOnOrderPage, setScreeningIdOnOrderPage } = useContext(
-    ReservationContext
-  );
+  const { setMovieIdOnOrderPage, setScreeningIdOnOrderPage } =
+    useContext(ReservationContext);
   const { movieId, screeningId } = useParams();
 
   useEffect(() => setScreeningIdOnOrderPage(screeningId), [screeningId]);
   useEffect(() => setMovieIdOnOrderPage(movieId), [movieId]);
+
+  // When component unmounts - resets state variables.
+  useEffect(() => {
+    return () => {
+      setScreeningIdOnOrderPage(null);
+      setMovieIdOnOrderPage(null);
+    };
+  }, []);
 
   return (
     <div className="mx-3 py-5">
