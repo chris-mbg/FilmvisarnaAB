@@ -22,17 +22,12 @@ const MovieContextProvider = (props) => {
 //   startTime:"2021-07-24",
 //  };
 
-  useEffect(() => {
-    console.log("User request changed", userRequest);
-  }, [userRequest]);
-
   /**
    * if the object is empty - returns all data
    * if the object contains request fields - returns specific movie items
    * @param {object} request
    */
   const fetchFilteredMovies = async (userRequest) => {
-    console.log("Fetching... userReq", userRequest)
     let result = null;
 
     if (Object.keys(userRequest).length === 0 ) {
