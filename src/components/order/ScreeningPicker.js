@@ -34,7 +34,6 @@ const ScreeningPicker = () => {
     //setScreeningIdOnOrderPage(e.target.value);
   };
 
-  console.log("selectedScreening", selectedScreening)
   return (
     <>
       <Row className="my-4 ">

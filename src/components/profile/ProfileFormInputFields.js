@@ -48,7 +48,7 @@ const ProfileFormInputFields = ({ values }) => {
               onChange={(e) =>
                 setFirstName(
                   e.target.value
-                    .replace(/[&\/\\#,+()$~%.'":*?<>{}^_@!]/g, "")
+                    .replace(/[&/\\#,+()$~%.'":*?<>{}^_@!]/g, "")
                     .replace(/[0-9]/g, "")
                 )
               }
@@ -107,7 +107,7 @@ const ProfileFormInputFields = ({ values }) => {
               onChange={(e) =>
                 setLastName(
                   e.target.value
-                    .replace(/[&\/\\#,+()$~%.'":*?<>{}^_@!]/g, "")
+                    .replace(/[&/\\#,+()$~%.'":*?<>{}^_@!]/g, "")
                     .replace(/[0-9]/g, "")
                 )
               }

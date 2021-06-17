@@ -131,6 +131,7 @@ export default function MoviePage(props) {
           </Row>
           {screenings.map((screen) => (
             <MovieSchedule
+              key={screen._id}
               isMoviePage={true}
               date={screen.startTime.toLocaleString("sv-SE").slice(0, 11)}
               time={screen.startTime.toLocaleString("sv-SE").slice(11, 16)}

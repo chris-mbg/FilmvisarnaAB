@@ -36,4 +36,15 @@ const checkEmail = (email) => {
   return emailToCompare.test(email);
 };
 
-module.exports = { checkPassword, checkEmail, checkTicketType };
+// debounce function, returns a function
+// 2 args, function to call and delay (ms)
+// timer to cancel the timeout, closure (allows the func to access variables defined in the function scope, even when the function is invoked outside of their scope)
+function debounce(func, timeout) {
+  let timer;
+  return (arg) => {
+    clearTimeout(timer);
+    timer = setTimeout(() => func(arg), timeout);
+  };
+};
+
+module.exports = { checkPassword, checkEmail, checkTicketType, debounce };

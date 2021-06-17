@@ -27,7 +27,7 @@ const AgeLimitOptions = () => {
               setUserRequest({ ...userRequest, ageLimit: e.target.value })
             }
           />
-          <label for={limit} className="ml-2 ageLimitRadio">
+          <label htmlFor={limit} className="ml-2 ageLimitRadio">
             {limit.slice(3)} år
           </label>
         </div>

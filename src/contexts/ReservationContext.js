@@ -39,8 +39,6 @@ const ReservationContextProvider = (props) => {
     setTicketsChosen([]);
   }, [screeningIdOnOrderPage, movieIdOnOrderPage]);
 
-  useEffect(() => console.log("Tickets/seats chosen by user", ticketsChosen));
-
   // Select right screening to show on OrderPage
   useEffect(() => {
     if (screeningIdOnOrderPage === null) {
@@ -53,15 +51,6 @@ const ReservationContextProvider = (props) => {
       );
     }
   }, [screeningIdOnOrderPage, movieScreenings]);
-
-  useEffect(
-    () => console.log("movie Screenings", movieScreenings),
-    [movieScreenings]
-  );
-  useEffect(
-    () => console.log("one screening", screeningToShow),
-    [screeningToShow]
-  );
 
   useEffect(() => {}, [
     movieIdOnOrderPage,
@@ -84,19 +73,17 @@ const ReservationContextProvider = (props) => {
   };
 
   const saveReservation = async (reservationInfo) => {
-    console.log(reservationInfo);
+
     let result = await fetch("/api/v1/reservations/", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(reservationInfo),
     });
     result = await result.json();
-    console.log("in saveReserv, result:", result);
+
     if (result.status === "error") {
-      console.log("Error. Could not save reservation");
       return false;
     } else {
-      console.log("Seats booked", result.reservation);
       //Update list of user reservations showed on ProfilePage.
       getAllReservationsForUser();
       return result.reservation;

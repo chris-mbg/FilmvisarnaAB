@@ -60,11 +60,11 @@ export default function MovieWrapper() {
             >
               {showAllMovies ? (
                 <span>
-                  Visa färre <i class="fas fa-arrow-up"></i>
+                  Visa färre <i className="fas fa-arrow-up"></i>
                 </span>
               ) : (
                 <span>
-                  Visa alla filmer <i class="fas fa-arrow-down"></i>
+                  Visa alla filmer <i className="fas fa-arrow-down"></i>
                 </span>
               )}
             </button>
