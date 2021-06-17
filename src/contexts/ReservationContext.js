@@ -39,8 +39,6 @@ const ReservationContextProvider = (props) => {
     setTicketsChosen([]);
   }, [screeningIdOnOrderPage, movieIdOnOrderPage]);
 
-  useEffect(() => console.log("Tickets/seats chosen by user", ticketsChosen));
-
   // Select right screening to show on OrderPage
   useEffect(() => {
     if (screeningIdOnOrderPage === null) {
