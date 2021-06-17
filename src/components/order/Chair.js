@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useState, useContext } from "react";
 import { ReservationContext } from "../../contexts/ReservationContext";
 import { Row, Col } from "react-bootstrap";
 import styles from "./styles/Chair.module.css";
@@ -19,7 +19,6 @@ export default function Chair({
       return;
     } else {
       setIsChosen((prevState) => !prevState);
-      console.log("You clicked a seat", seatNr);
 
       // Check if seatNr is previously chosen by user
       if (

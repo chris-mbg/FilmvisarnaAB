@@ -1,5 +1,4 @@
 import React from "react";
-import karta from "../assets/karta.jpg";
 import styles from "../css/About.module.css";
 import { Carousel } from "react-bootstrap";
 
@@ -81,7 +80,7 @@ const AboutPage = () => {
           <p>tel: 022 172 14 15</p>
           <p>Email: filmvisarna@filmvisarna.se</p>
         </div>
-        
+
       </div>
       <div className={styles.karta}>
           <iframe
@@ -91,6 +90,7 @@ const AboutPage = () => {
             style={{border:0}}
             allowfullscreen=""
             loading="lazy"
+            title="Embedded map"
           ></iframe>
         </div>
     </div>

@@ -1,8 +1,7 @@
 import React from "react";
 
 const TrailerModal = ({ embedId }) => {
-  console.log(embedId);
-
+  
   return (
     <div
       style={{
@@ -28,7 +27,7 @@ const TrailerModal = ({ embedId }) => {
         allowFullScreen
         title="Embedded youtube"
       />
-     
+
     </div>
   );
 };

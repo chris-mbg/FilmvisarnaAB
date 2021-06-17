@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import styles from "../css/Navbar.module.css";
 import { Link, useHistory, useLocation } from "react-router-dom";
 import Nav from "react-bootstrap/Nav";
@@ -26,7 +26,6 @@ function Navbar1() {
       // If logout is successful.
       if (data === true) {
         // Re-directs user to start page if logout is successful (on order and profile pages)
-        console.log("location pathname", location.pathname);
         if (
           location.pathname === "/profile" ||
           location.pathname.includes("/order/")

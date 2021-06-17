@@ -36,9 +36,8 @@ const Tickets = () => {
   const handleConfirmClick = async () => {
     let result = await userConfirmsReservation();
     if (!result) {
-      console.log("Something went wrong, error with booking tickets");
+      return
     } else {
-      console.log("result", result);
       // Saves user recent reservation inside state variable: userConfirmationInfo
       setUserConfirmationInfo(result);
 
