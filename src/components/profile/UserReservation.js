@@ -1,6 +1,6 @@
 import styles from "../../css/UserReservation.module.css";
 import { useState } from "react";
-import { Accordion, Row, Col, Image, Modal } from "react-bootstrap";
+import { Accordion, Row, Col, Modal } from "react-bootstrap";
 import moment from "moment";
 import "moment/locale/sv";
 import CancelBookingModal from "./CancelBookingModal";
@@ -58,6 +58,7 @@ const UserReservation = ({ reservation }) => {
 
       <Accordion.Collapse eventKey="0">
         <div>
+          {/* /.movie_wrapper */}
           <hr className={styles.hr} />
 
           <Row className={styles.auditoria_wrapper} noGutters={true}>

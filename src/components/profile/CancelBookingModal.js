@@ -25,7 +25,9 @@ const CancelBookingModal = ({ reservation, setShowCancelBookingModal }) => {
       <Modal.Body>
         <p className={styles.content_text}>
           Order:{" "}
-          <span className={styles.sub_information}>#{reservation?._id}</span>{" "}
+          <span className={styles.sub_information}>
+            #{reservation?._id.slice(0, 8)}
+          </span>{" "}
           <br />
           {reservation?.movie?.title} <br />
           {moment(reservation?.screening?.startTime).locale("sv").format("LLL")}
