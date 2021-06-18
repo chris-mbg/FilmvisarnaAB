@@ -96,7 +96,6 @@ const getFilteredMovies = async (req, res) => {
 };
 
 module.exports = {
-  getAllMovies,
   getMovieById,
   getFilteredMovies,
 };
