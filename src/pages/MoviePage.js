@@ -157,7 +157,6 @@ export default function MoviePage(props) {
         >
           <TrailerModal
             embedId={movie.youtubeTrailer}
-            handleCloseTrailerModal={handleCloseTrailerModal}
           />
         </Modal>
       )}
